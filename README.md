@@ -47,7 +47,8 @@ python3 -m http.server 8901
 | 路徑 | 內容 |
 |---|---|
 | `index.html` | 整個網站，含資料表、地圖路徑與所有樣式 |
-| `img/<縣市>.webp` | 20 張縣市代表海報 |
+| `img/<poster>.webp` | 21 張原始海報（22 縣市共用，新竹與嘉義各一對共用） |
+| `img/og.jpg` | 分享預覽圖 1200×630 |
 | `img/hero.webp` | 首頁人物（去背） |
 | `img/hero-bg.webp` | 首頁背景手繪海景 |
 | `img/logo.webp` / `logo-white.webp` | 毛筆 wordmark，深色版與白色版 |
@@ -56,7 +57,13 @@ python3 -m http.server 8901
 | `img/deco-*.webp` | 海上點綴：海豚、帆船、海鷗、飛魚、燈塔小島、浪花 |
 | `img/<id>-base.webp` | 22 張縣市底圖（**無字**，文字由 HTML 疊上） |
 | `audio/theme.mp3` | 背景音樂，按下按鈕才載入 |
-| `tools/` | 產線腳本，見下方〈產線〉 |
+| `tools/build_prompt.py` | 由資料產生生成 prompt，資料不全就擋下來 |
+| `tools/gen.sh` | 呼叫 codex 產一張圖。**原本放 /tmp，重開機被清掉整條產線就斷了**，所以搬進 repo |
+| `tools/gen_all.sh` | 批次生成缺底圖的縣市 |
+| `tools/verify_base.py` | 量測底圖版面是否合規 |
+| `tools/register_base.py` | 驗收過後把 base 欄位寫回資料 |
+| `tools/sync_split.py` | 資料同步進 index.html |
+| `robots.txt` / `sitemap.xml` | 網址寫死在裡面，換網域要一起改 |
 | `AGENTS.md` | **動這個 repo 之前先讀**：硬規則與驗證方式 |
 | `data/character.md` | 角色阿蕊的設定：名字、她跟地方的關係、髮花規則、恆定項 |
 | `data/counties.json` | 22 縣市資料表，`source` 欄位標可信度 |
@@ -82,6 +89,13 @@ python3 -m http.server 8901
 | `scene.outfit` / `hair` | 服裝與髮飾，**讀自原海報**不是自己發明 |
 | `scene.accessory_basis` | 非花配件的依據，對不回資料的配件一律拿掉 |
 | `scene.right_zone` | 右側留白畫海還是天空遠山（內陸縣市畫海是事實錯誤） |
+| `scene.flower_shown` | **實際畫在頭上的花**。多數等於 symbols.flower，台南是鳳凰花（市樹） |
+| `scene.hair_zh` / `outfit_zh` | 髮飾與服裝的中文說明，給人看的 |
+| `scene.hair_basis` | 髮飾對應到哪一筆查證資料 |
+| `quote_basis` | 那句引句取自海報的哪個位置、改了什麼 |
+| `symbols.flower/tree/bird` | 各帶 `value`／`source`／`url`／`note` |
+| `verified` / `notes` / `todo` | 查證紀錄、注意事項、待辦 |
+| `group` / `tagline` / `share` | 行政層級、原海報標語、分享圖用的欄位 |
 
 改完要跑 `tools/sync_split.py` 同步進 `index.html`。
 
@@ -125,6 +139,18 @@ python3 tools/sync_split.py               # 資料同步進 index.html
 | 音浪線 | 中高頻。與上面那條反向漂流，會互相穿插交錯 |
 
 音量走自動增益：追蹤各頻段自己的動態範圍，換一首曲子也不會卡在頂端或整個不動。
+
+## 分享預覽與 SEO
+
+`img/og.jpg`（1200×630）是分享到 Facebook、LINE、Threads 時的預覽圖。
+這種視覺型專案沒有 `og:image`，分享出去就只有一行字。
+
+`index.html` 的 `<head>` 裡有 Open Graph 與 Twitter Card 標籤，
+外加 `robots.txt` 與 `sitemap.xml`。
+
+**網址是寫死的**（目前指向 `https://yazelin.github.io/taiwan-people/`）。
+換網域的話 `canonical`、`og:url`、`og:image`、`robots.txt`、`sitemap.xml`
+五個地方都要一起改，漏掉任何一個，預覽圖就會指到不存在的位置。
 
 ## 已知的資料問題
 
