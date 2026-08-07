@@ -1082,7 +1082,13 @@ addEventListener("keydown",e=>{if(e.key==="Escape") lb.removeAttribute("open")})
   /* 下面那條浪的位置：直接用音浪那支發布的函式，不自己重算。
      兩張畫布幾何完全相同，座標可以共用；自己重算會因為分屬不同 rAF
      迴圈而走不同步，中間的泡沫就對不準線了。 */
-  window.__upper=waveY;          // 供量測與其他層引用
+  /* 兩支動畫迴圈之間的接縫，全部掛在 window 上：
+       __lvA / __lvB  音量（低頻／中高頻），viz 那支寫、這支的 waveY 讀
+       __lower        下面那條浪的位置，viz 那支寫、這支的 waveY2 讀
+       __upper        這條水線的位置，給驗證腳本量兩條線有沒有交錯用
+     不是垃圾，是刻意的公開介面——兩支迴圈各自算會走不同步，
+     中間的泡沫就會對不準線。 */
+  window.__upper=waveY;
   function waveY2(x){
     return window.__lower ? window.__lower(x,H) : waveY(x)+30;
   }
