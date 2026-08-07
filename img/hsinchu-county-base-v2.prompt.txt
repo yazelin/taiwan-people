@@ -1,0 +1,30 @@
+Base prompt
+===========
+
+Generated from the project source of truth:
+
+    python3 tools/build_prompt.py 新竹縣
+
+This is the exact base prompt supplied in the image-generation request. Input order:
+
+1. img/hsinchu-city.webp — shared original poster; scenery, pose, composition, palette, and lighting only
+2. data/character/ref-half.png — character identity, build, outstretched-left-arm gesture, and pose only
+3. data/character/face.png — face, warm brown eyes, hair colour, and shoulder-length hair only
+
+The written prompt takes precedence over conflicting details in the references.
+
+Selected correction prompt
+==========================
+
+Use case: identity-preserve
+Asset type: project website county base illustration
+Primary request: Correct only the negative-space geometry in the most recent illustration. Preserve the character, face, anatomy, styling, lighting, clothing, flower, hairpin, tote, food, pose, and left-side scenery exactly.
+
+Treat the 4:3 canvas as a coordinate grid.
+1. The exact vertical line x = 50% is an absolute boundary for the woman and her props. Move her right forearm, lei-cha bowl, puffed-rice saucer, and fingers leftward so they rest in front of her torso and every part of the character and every prop is strictly within x = 0% to 49%. Keep the outstretched left arm and open-hand pose unchanged. Do not shrink the character; keep the close mid-thigh portrait scale.
+2. The entire vertical strip x = 60% to 100%, y = 0% to 100%, is the HTML text zone. Every pixel of this rightmost 40% must read as pale, airy atmospheric space. It contains only open pale blue-white sky and extremely faint, distant blue-gray ridge silhouettes dissolving into white mist. At x = 60%, all detailed terrain must fade out completely into bright haze.
+3. Specifically erase from x = 60% to 100%: every tea terrace, rice field, path, dark or green hillside, flower, leaf, tree, bamboo, village building, object, road, figure, and foreground vegetation. The bottom-right corner must be almost white-blue haze, never green or dark. No sea.
+
+Keep all detailed scenery only left of x = 60%: terraced tea and rice fields, red-brick Hakka village with swallowtail roofs, misty bamboo ridge, bamboo, and camellia branches. Do not remove those from the left side. Keep the same continuous anime illustration, natural daylight, soft painterly shading, warm brown eyes, neat compact high bun, pale pink camellia, gold beaded tassel hairpin, indigo Hakka tunic, wordless tote illustration, and natural hands with four fingers plus thumb.
+
+No new objects or people. No text, letters, characters, logos, labels, blank rectangles, border, frame, sea, hats, glasses, electronics, extra fingers, fused fingers, green eyes, blue eyes, bubble tea, loose windblown hair, or ponytail. Landscape aspect ratio 4:3.

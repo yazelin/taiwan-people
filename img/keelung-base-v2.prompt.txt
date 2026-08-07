@@ -1,0 +1,9 @@
+Use case: precise-object-edit
+Asset type: project-local Keelung county base illustration
+Input roles: Image 1 is the generated Keelung illustration to recompose; Images 2 and 3 lock A-luí's identity, warm brown eyes, build, and anime style; Image 4 is the original Keelung poster for sailor styling and source composition only.
+
+Recompose only to correct scale and protected negative space. Pull the camera back slightly and shift every subject and scenic object left. Keep the complete character, skewer, hands, tote, cap, flowers, and jacket wholly left of the horizontal midpoint. Crop at mid-thigh. Keep the entire rightmost 40% as calm open water only, with any distant sunlight glitter low near the horizon. Keep the top 22% of the right half as completely empty blue sky. Keep Keelung Islet, Heping Island's eroded sandstone platform, the rocky tide-pool coast, and all crape myrtle plants in the left 60%.
+
+Preserve her identity, warm brown eyes, friendly smile, neat compact high bun fully contained beneath the navy sailor cap, gold beaded tassel hairpin, pink crape myrtle sprig, navy-and-white striped top and navy jacket, anchor earrings, canvas tote, outstretched left-hand pose, grilled chikuwa skewer, natural daylight, palette, painterly anime finish, and 4:3 landscape ratio.
+
+No text or letterforms, panels, borders, badges, logos, labels, stickers, electronics, flags, official emblems, pearl milk tea, extra people, extra or fused fingers, long loose hair, ponytail, or windblown hair mass. Garment and tote prints are complete wordless illustrations without blank rectangular label areas.

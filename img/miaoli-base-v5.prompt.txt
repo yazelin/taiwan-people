@@ -1,0 +1,13 @@
+Generation mode: built-in imagegen
+Use case: identity-preserve with targeted precise-object corrections
+
+Base prompt source:
+python3 tools/build_prompt.py 苗栗縣
+
+Reference roles:
+- img/miaoli.webp: original Miaoli poster, local outfit and scene reference
+- data/character/ref-half.png: identity, build and outstretched pose reference
+- data/character/face.png: face, warm-brown eyes, hair colour and hair-length reference
+
+Final correction prompt:
+Preserve the approved identity, compact high bun, tiny four-petalled osmanthus sprig, blue floral headscarf, fixed gold tassel hairpin, navy Hakka tunic, wordless tote, wordless strawberry punnet, left-side streets, carved-timber displays, Huoyanshan, daylight and painterly anime style. Move the existing strawberry punnet and bent right hand inward so their rightmost edge ends before x=48% and no part of the character crosses x=50%. Replace x=60–100%, top to bottom, with seamless pale open sky and extremely faint distant blue ridges only. End the orange-red Huoyanshan ridges before x=60%. No text, pseudo-text, labels, logos, emblems, panels, borders or watermark.

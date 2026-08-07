@@ -1,0 +1,27 @@
+Base prompt
+===========
+
+Generated from the project source of truth:
+
+    python3 tools/build_prompt.py 台北市
+
+This is the exact base prompt supplied in the image-generation request. Input order:
+
+1. img/taipei.webp — original Taipei poster; scenery, pose, composition, palette, and lighting only
+2. data/character/ref-half.png — character identity, build, outstretched-left-arm gesture, and pose only
+3. data/character/face.png — face, warm brown eyes, hair colour, and shoulder-length hair only
+
+The written prompt takes precedence over conflicting details in the references.
+
+Selected correction prompt
+==========================
+
+Use case: precise-object-edit
+Asset type: project-local county base illustration for the Taipei page
+Input images: Image 1 is the edit target. Images 2 and 3 are identity reference sheets only.
+
+Primary request: Change only the RIGHTMOST 40 PERCENT of Image 1. Preserve the character, her exact face and warm brown eyes, compact high bun, pink azalea, gold tassel hairpin, expression, pose, hands, pineapple cake, hoodie, jacket, tote bag, garment graphics, flowers, bathhouses, fumaroles, stone-step trail, anime style, palette, lighting, and all content in the left 60 percent exactly as shown.
+
+Replace the entire rightmost 40 percent, including its bottom-right corner, with extremely pale open sky above only distant, receding ridge silhouettes fading layer by layer into light blue atmospheric haze. The whole rightmost 40 percent must remain PALE AND LIGHT from top to bottom for text overlay. Remove the near dark forested slope and every foreground tree, bush, branch, building, road, figure, and object from that region. No sea. The top 22 percent of the right half must be plain unobstructed open sky, with no clouds or objects. Blend the changed area seamlessly into the left-side scene as one continuous illustration.
+
+Do not change the 4:3 landscape canvas. Add no text, letters, Chinese characters, logos, labels, panels, borders, badges, frames, flags, electronics, or new accessories. Do not alter the character or move her.

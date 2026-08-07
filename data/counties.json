@@ -1,0 +1,2029 @@
+{
+  "_note": "22 縣市資料表。source 標示可信度：official 已核對官方、wikipedia 僅維基待查、none 該縣市未指定。切勿直接抄原始海報 —— 海報由 AI 生成，已知有錯字與張冠李戴（高雄那張的代表樹與代表鳥其實是台南的）。",
+  "_fields": {
+    "share.who": "分享圖右上引導句。主詞刻意用地方而非人，避免對群體貼標籤。",
+    "share.words": "三個特質詞，取自海報標語，仍待逐一斟酌。",
+    "share.focus": "底圖裁方形時的水平中心（0–1），讓人物落在畫面偏左。",
+    "scene": "生成底圖時要寫進 prompt 的在地元素。",
+    "base": "無文字底圖檔名（img/<base>.webp），上緣 22% 與右緣 40% 需留空。",
+    "places": "卡片右欄第一列：三個代表地標。選鑑別度高、外地人也認得的。",
+    "foods": "卡片右欄第二列。**第一項要與 scene.hand 一致**，文字與畫面才會互相印證。",
+    "symbols": "不再顯示在右欄。市花保留，因為它決定角色髮上那朵花的種類（同時是恆定記號與地方變數）。",
+    "symbols.flower": "該縣市市花。同時決定背景花木與她髮上那朵花。source：official＝已對官方原始出處；wikipedia_cited_gov＝維基且該表附政府引註，未逐一開啟核對；none＝該縣市未指定。",
+    "quote": "阿蕊的短句。句式照高雄原海報最左的直書原句「海風鹹鹹，人情暖暖，高雄是咱的家。」——四字（後兩字疊字）＋四字（後兩字疊字）＋「XX是咱的家」。\n20 張原海報只有南部與離島幾張有這條直書，句式還各不相同，北部那幾張根本沒有，所以其餘 21 句是照高雄的調性重寫的。\n判準：換成任何縣市都成立的話就是空話。每句的兩個名詞都要對得回 scene.landmarks 或 foods，依據寫在 quote_basis。主詞是地方或物產，不是人。",
+    "scene.hand": "她手上拿的東西，寫成給生圖模型看的英文描述。取自該縣市的 foods。**不要畫任何真實品牌的商標或包裝**，品牌名只出現在文字欄。珍奶屬台灣層級，縣市不要用。",
+    "scene.plants": "背景要出現的植物。**預設就是該縣市的市花**，不要憑海報上的圖憑印象填；高雄第一版誤填鳳凰木（台南市樹），生出來的紅花既不是木棉也不是鳳凰花。",
+    "scene.plants_desc": "給生圖模型看的植物外觀描述，比只寫花名可靠。要寫出可驗收的具體特徵（花瓣數、顏色、開在什麼樣的枝上、有沒有葉）。沒有這欄就退回只用 plants 的花名。",
+    "traits": "卡片右欄第三列「這裡的人」。主詞是人，補回舊海報有、新卡片缺的生活態度維度。取自各縣市海報的代表特質／代表精神欄，各挑三個。分享圖右上用同一組詞。",
+    "scene.outfit": "服裝，**讀自原海報的人物區**，不是自己發明。取款式、配色、剪影；衣服上的縣市名字樣不取，因為新底圖的印花不能有文字。",
+    "verified": "已用搜尋確認屬於該縣市的項目。未列在這裡的表示尚未找到佐證，不代表錯。",
+    "scene.hair": "髮飾，讀自原海報。**若海報畫的花是別縣市的指定花就要換掉**——屏東海報畫扶桑花，但扶桑＝朱槿是高雄市花之一，已改為屏東自己的九重葛。",
+    "scene.landmarks": "背景地標。要**看原海報畫的是什麼**，不能只讀海報的文字清單——澎湖的文字清單沒有燈塔，但畫面上有，而且那是最強的視覺地標。",
+    "scene.accessory_basis": "非花配件的設計依據。**配件必須對得回 symbols 或 scene.landmarks 的某一筆，對不回就拿掉**——只寫個名字加上去的裝飾不算設計。髮型本身（馬尾／丸子頭）不是配件，不需要依據。",
+    "scene.right_zone": "右側 40% 留白畫什麼：sea＝海，sky＝開闊天空與遠山薄霧。依該縣市三個地標的**所在地**決定，不是依有沒有海岸線——台北市與南投縣是內陸，畫海是事實錯誤。",
+    "scene.landmarks_en": "地標的視覺描述，與 landmarks 一一對應。模型不認得中文地名，只丟名字它會自己編一個——苗栗第一版畫成海岸懸崖加石獅子就是這樣來的。這裡寫的是外觀不是史實，改地標要同步改這欄。",
+    "quote_basis": "每句 quote 的兩個名詞各自對應到哪一筆查證過的地標或物產。"
+  },
+  "counties": [
+    {
+      "id": "keelung",
+      "name": "基隆市",
+      "en": "KEELUNG",
+      "group": "n",
+      "poster": "keelung",
+      "base": "keelung-base",
+      "share": {
+        "who": "基隆，代表了",
+        "words": [
+          "海派",
+          "浪漫",
+          "念舊"
+        ],
+        "focus": null
+      },
+      "tagline": "海的起點・山的懷抱・人情的港灣・雨都的浪漫",
+      "quote": "雨絲綿綿，廟口鬧鬧，基隆是咱的家。",
+      "symbols": {
+        "flower": {
+          "value": "紫薇",
+          "source": "wikipedia_cited_gov",
+          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+        },
+        "tree": {
+          "value": "楓香",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        },
+        "bird": {
+          "value": "黑鳶",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        }
+      },
+      "scene": {
+        "landmarks": [
+          "基隆嶼",
+          "和平島",
+          "潮境公園"
+        ],
+        "plants": [
+          "紫薇"
+        ],
+        "hand": "a skewer of grilled chikuwa fish-paste rolls, golden and slightly charred",
+        "hand_zh": "廟口的吉古拉",
+        "outfit_zh": "深藍水手帽（錨徽）、藍白條紋上衣、深藍外套、錨形耳環",
+        "outfit": "a navy sailor cap, a navy-and-white striped top under a dark navy jacket, anchor-shaped earrings",
+        "hair": "a sprig of pink crape myrtle tucked into the band of her navy sailor cap; her hair is in the neat high bun, fully contained under the cap with nothing poking through the crown",
+        "hair_zh": "水手帽帶插紫薇（基隆市花）、頭髮放下",
+        "hair_basis": "symbols.flower",
+        "accessory_basis": "水手帽：基隆港是台灣主要國際商港與郵輪母港。**此依據尚未寫入 verified，待查證後補 landmarks**。錨形耳環已刪（與水手帽重複）。",
+        "right_zone": "sea",
+        "landmarks_en": [
+          "Keelung Islet, a lone green volcanic island offshore",
+          "Heping Island's eroded sandstone sea platform",
+          "a rocky coastal park with tide pools"
+        ],
+        "plants_desc": "crape myrtle blossoms: clusters of six crinkled crepe-paper petals in bright pink, each on a long claw-like stalk, on a smooth-barked shrub"
+      },
+      "todo": [
+        "生成 base 底圖",
+        "查證 symbols.flower（決定髮花）"
+      ],
+      "places": [
+        "基隆嶼",
+        "和平島",
+        "潮境公園"
+      ],
+      "foods": [
+        "廟口小吃",
+        "吉古拉",
+        "基隆豆干"
+      ],
+      "notes": [
+        "海報無「美食代表」欄，改自「物產代表」。廟口小吃取自人情味欄。",
+        "吉古拉佐證最強——來源指出「只有基隆人這樣叫，是基隆專屬用語」。基隆嶼、基隆豆干未另找到佐證。",
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。"
+      ],
+      "traits": [
+        "海派",
+        "浪漫",
+        "念舊"
+      ],
+      "verified": [
+        "和平島",
+        "潮境公園",
+        "廟口小吃",
+        "吉古拉"
+      ],
+      "quote_basis": "雨都氣候、基隆廟口小吃"
+    },
+    {
+      "id": "taipei",
+      "name": "台北市",
+      "en": "TAIPEI CITY",
+      "group": "n",
+      "poster": "taipei",
+      "base": "taipei-base",
+      "share": {
+        "who": "台北，代表了",
+        "words": [
+          "多元",
+          "包容",
+          "講究"
+        ],
+        "focus": null
+      },
+      "tagline": "多元包容・創新進步・人文薈萃・國際視野・永續宜居",
+      "quote": "硫煙裊裊，湯泉熱熱，台北是咱的家。",
+      "symbols": {
+        "flower": {
+          "value": "杜鵑花",
+          "source": "wikipedia_cited_gov",
+          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+        },
+        "tree": {
+          "value": "榕樹",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        },
+        "bird": {
+          "value": "台灣藍鵲",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        }
+      },
+      "scene": {
+        "landmarks": [
+          "陽明山",
+          "北投溫泉",
+          "象山"
+        ],
+        "plants": [
+          "杜鵑花"
+        ],
+        "hand": "a small square pineapple cake held in a plain unbranded paper sleeve",
+        "hand_zh": "鳳梨酥",
+        "outfit_zh": "黑色連帽上衣（城市剪影印花）＋白色外套、101 造型耳環",
+        "outfit": "a black hoodie printed with a wordless city-skyline graphic under a white jacket",
+        "hair_zh": "杜鵑花（台北市花）＋高馬尾",
+        "hair": "a pink azalea pinned beside her neat high bun",
+        "hair_basis": "symbols.flower",
+        "accessory_basis": "101 耳環已刪：台北的 landmarks 是陽明山、北投溫泉、象山，沒有 101，配件對不回任何欄位。",
+        "right_zone": "sky",
+        "landmarks_en": [
+          "the grassy volcanic ridges of Yangmingshan with steaming fumaroles",
+          "old Japanese-era hot spring bathhouses among trees",
+          "a steep forested hill trail of stone steps overlooking the city"
+        ],
+        "plants_desc": "azalea blossoms: funnel-shaped flowers with five spreading lobes in pink, the upper lobe freckled with darker spots, in tight clusters on a low evergreen shrub"
+      },
+      "todo": [
+        "生成 base 底圖",
+        "查證 symbols.flower（決定髮花）"
+      ],
+      "places": [
+        "陽明山",
+        "北投溫泉",
+        "象山"
+      ],
+      "foods": [
+        "士林夜市",
+        "鳳梨酥",
+        "貓空鐵觀音"
+      ],
+      "notes": [
+        "海報「代表樹 台灣欒樹」有誤，台北市樹是榕樹（台灣欒樹是宜蘭縣與嘉義縣的）。",
+        "**發現疑點**：海報列的「文山包種茶」主產地在新北坪林、石碇，台北市貓空產的是鐵觀音。新北那張海報也列了文山包種茶，兩張都可疑。建議台北改用貓空鐵觀音。",
+        "**文山包種茶已換成貓空鐵觀音**。查證結果：文山包種茶產區橫跨新北坪林、石碇、深坑等與台北南港、木柵，坪林占全區約67%為最大產區，屬新北；台北市貓空一帶則是鐵觀音的唯一生產茶區。包種茶雖發源於台北南港，但用貓空鐵觀音對台北的專屬性更強。",
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。"
+      ],
+      "traits": [
+        "多元",
+        "包容",
+        "講究"
+      ],
+      "verified": [
+        "陽明山",
+        "北投溫泉",
+        "士林夜市",
+        "貓空鐵觀音"
+      ],
+      "quote_basis": "陽明山硫氣孔、北投溫泉"
+    },
+    {
+      "id": "new-taipei",
+      "name": "新北市",
+      "en": "NEW TAIPEI CITY",
+      "group": "n",
+      "poster": "new-taipei",
+      "base": "new-taipei-base",
+      "share": {
+        "who": "新北，代表了",
+        "words": [
+          "實在",
+          "勤懇",
+          "山海兼容"
+        ],
+        "focus": null
+      },
+      "tagline": "山海交織・多元共榮・人情厚實・活力無限",
+      "quote": "潮聲隆隆，山城層層，新北是咱的家。",
+      "symbols": {
+        "flower": {
+          "value": "茶花",
+          "source": "wikipedia_cited_gov",
+          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+        },
+        "tree": {
+          "value": "台灣山櫻",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        },
+        "bird": {
+          "value": "鷺鷥",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        }
+      },
+      "scene": {
+        "landmarks": [
+          "野柳",
+          "淡水",
+          "烏來"
+        ],
+        "plants": [
+          "茶花"
+        ],
+        "hand": "a paper cup of taro balls in iced sweet soup with a wooden spoon",
+        "hand_zh": "九份芋圓",
+        "outfit_zh": "白色棒球外套、藍色圓領T、金色髮圈",
+        "outfit": "a white varsity jacket with navy sleeves over a blue crew-neck tee",
+        "hair": "a pale pink camellia pinned beside her neat high bun",
+        "hair_zh": "茶花（新北市花）＋高馬尾",
+        "hair_basis": "symbols.flower",
+        "accessory_basis": "金色髮圈已刪：純裝飾，對不回任何欄位。",
+        "right_zone": "sea",
+        "landmarks_en": [
+          "Yehliu's mushroom-shaped eroded rock formations on a cape",
+          "a hillside harbour town of old brick streets by a river mouth",
+          "a forested mountain gorge with a tall waterfall"
+        ],
+        "plants_desc": "camellia blossoms: rounded pale pink flowers with many overlapping petals in a spiral and a boss of yellow stamens, among thick glossy dark green leaves"
+      },
+      "todo": [
+        "生成 base 底圖",
+        "查證 symbols.flower（決定髮花）"
+      ],
+      "places": [
+        "野柳",
+        "淡水",
+        "烏來"
+      ],
+      "foods": [
+        "萬里蟹",
+        "貢寮鮑",
+        "金山地瓜"
+      ],
+      "notes": [
+        "海報「代表樹 台灣欒樹」有誤，新北市樹是台灣山櫻。foods 取自物產欄，海報無美食欄。",
+        "野柳地質公園、淡水、烏來皆屬新北；萬里蟹（萬里區）與貢寮鮑（貢寮區）經觀光單位與新北市漁業處資料確認。金山地瓜未另找到佐證。",
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。"
+      ],
+      "traits": [
+        "實在",
+        "勤懇",
+        "山海兼容"
+      ],
+      "verified": [
+        "野柳",
+        "淡水",
+        "烏來",
+        "萬里蟹",
+        "貢寮鮑"
+      ],
+      "quote_basis": "野柳海蝕海岸、九份山城"
+    },
+    {
+      "id": "taoyuan",
+      "name": "桃園市",
+      "en": "TAOYUAN",
+      "group": "n",
+      "poster": "taoyuan",
+      "base": "taoyuan-base",
+      "share": {
+        "who": "桃園，代表了",
+        "words": [
+          "移民城市",
+          "有拼勁",
+          "多族群"
+        ],
+        "focus": null
+      },
+      "tagline": "航空城・科技城・國門之都・活力桃園・幸福宜居",
+      "quote": "埤塘閃閃，豆干韌韌，桃園是咱的家。",
+      "symbols": {
+        "flower": {
+          "value": "桃花",
+          "source": "wikipedia_cited_gov",
+          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+        },
+        "tree": {
+          "value": "桃樹",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        },
+        "bird": {
+          "value": "台灣藍鵲",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        }
+      },
+      "scene": {
+        "landmarks": [
+          "拉拉山",
+          "石門水庫",
+          "大溪老街"
+        ],
+        "plants": [
+          "桃花"
+        ],
+        "hand": "skewered braised dried tofu cubes, dark soy-braised, on a bamboo stick",
+        "hand_zh": "大溪豆干",
+        "outfit_zh": "粉紅色連帽外套、白T、桃花髮飾",
+        "outfit": "a soft pink hooded jacket over a white tee",
+        "hair": "a pink peach blossom pinned beside her neat high bun",
+        "hair_zh": "桃花髮飾（桃園市花）",
+        "hair_basis": "symbols.flower",
+        "right_zone": "sea",
+        "landmarks_en": [
+          "a chain of irrigation ponds reflecting the sky across farmland",
+          "a red-brick Hakka village with swallowtail roof ridges",
+          "a coastal windmill row above sand dunes"
+        ],
+        "plants_desc": "peach blossoms: five rounded pink petals with a ring of fine stamens, borne close along the woody branch"
+      },
+      "todo": [
+        "生成 base 底圖",
+        "查證 symbols.flower（決定髮花）"
+      ],
+      "places": [
+        "拉拉山",
+        "石門水庫",
+        "大溪老街"
+      ],
+      "foods": [
+        "大溪豆干",
+        "石門活魚",
+        "忠貞米干"
+      ],
+      "notes": [
+        "海報自然景觀欄把「小烏來」誤寫成「小鳥来」。忠貞市場以雲南米干聞名，取米干為食物名。",
+        "六項全部確認。石門水庫橫跨大溪、龍潭、復興三區（並延伸至新竹縣關西），主體屬桃園。",
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。"
+      ],
+      "traits": [
+        "移民城市",
+        "有拼勁",
+        "多族群"
+      ],
+      "verified": [
+        "拉拉山",
+        "石門水庫",
+        "大溪老街",
+        "大溪豆干",
+        "石門活魚",
+        "忠貞米干"
+      ],
+      "quote_basis": "桃園埤塘、大溪豆干"
+    },
+    {
+      "id": "hsinchu-city",
+      "name": "新竹市",
+      "en": "HSINCHU CITY",
+      "group": "n",
+      "poster": "hsinchu-city",
+      "base": "hsinchu-city-base",
+      "share": {
+        "who": "新竹，代表了",
+        "words": [
+          "務實",
+          "低調",
+          "有遠見"
+        ],
+        "focus": null
+      },
+      "tagline": "科技城・風城・古都・創新・智慧・人文薈萃",
+      "quote": "風聲颼颼，米粉細細，新竹是咱的家。",
+      "symbols": {
+        "flower": {
+          "value": "杜鵑花",
+          "source": "wikipedia_cited_gov",
+          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+        },
+        "tree": {
+          "value": "黑松",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        },
+        "bird": {
+          "value": "喜鵲",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        }
+      },
+      "scene": {
+        "landmarks": [
+          "十八尖山",
+          "南寮漁港",
+          "新竹都城隍廟"
+        ],
+        "plants": [
+          "杜鵑花"
+        ],
+        "hand": "a small bowl of clear soup with springy pork meatballs",
+        "hand_zh": "貢丸湯",
+        "outfit_zh": "白色棒球外套、黑色帽T（電路板圖案）、金色髮夾",
+        "outfit": "a white varsity jacket over a black hoodie printed with a wordless circuit-board pattern",
+        "hair": "a pink azalea tucked into her neat high bun",
+        "hair_zh": "杜鵑花（新竹市花）＋丸子頭",
+        "hair_basis": "symbols.flower",
+        "accessory_basis": "金髮夾已刪：純裝飾，對不回任何欄位。",
+        "right_zone": "sea",
+        "landmarks_en": [
+          "a low forested hill park of walking paths",
+          "a fishing harbour with a long arched footbridge",
+          "an old temple with elaborate swallowtail eaves and stone lions"
+        ],
+        "plants_desc": "azalea blossoms: funnel-shaped flowers with five spreading lobes in pink, the upper lobe freckled with darker spots, in tight clusters on a low evergreen shrub"
+      },
+      "todo": [
+        "生成 base 底圖",
+        "查證 symbols.flower（決定髮花）"
+      ],
+      "places": [
+        "十八尖山",
+        "南寮漁港",
+        "新竹都城隍廟"
+      ],
+      "foods": [
+        "新竹米粉",
+        "貢丸",
+        "竹塹餅"
+      ],
+      "notes": [
+        "海報美食欄的「客家小炒・擂茶」其實是新竹縣客家庄（北埔、竹東）的，不是新竹市。",
+        "六項全部確認。台灣光華雜誌明確稱米粉、貢丸、竹塹餅為「新竹三寶」，竹塹為新竹舊名。",
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。"
+      ],
+      "traits": [
+        "務實",
+        "低調",
+        "有遠見"
+      ],
+      "verified": [
+        "十八尖山",
+        "南寮漁港",
+        "新竹都城隍廟",
+        "新竹米粉",
+        "貢丸",
+        "竹塹餅"
+      ],
+      "quote_basis": "風城、新竹米粉（就是靠風吹乾的）"
+    },
+    {
+      "id": "hsinchu-county",
+      "name": "新竹縣",
+      "en": "HSINCHU COUNTY",
+      "group": "n",
+      "poster": "hsinchu-city",
+      "base": "hsinchu-county-base",
+      "share": {
+        "who": "新竹，代表了",
+        "words": [
+          "客家硬頸",
+          "念祖",
+          "勤儉"
+        ],
+        "focus": null
+      },
+      "tagline": "科技城・風城・古都・創新・智慧・人文薈萃",
+      "quote": "擂茶稠稠，茶山青青，新竹是咱的家。",
+      "symbols": {
+        "flower": {
+          "value": "茶花",
+          "source": "wikipedia_cited_gov",
+          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+        },
+        "tree": {
+          "value": "竹柏",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        },
+        "bird": {
+          "value": "五色鳥",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        }
+      },
+      "scene": {
+        "landmarks": [
+          "內灣老街",
+          "北埔老街",
+          "司馬庫斯"
+        ],
+        "plants": [
+          "茶花"
+        ],
+        "hand": "a bowl of hakka lei-cha, thick pale-green ground tea, with a small dish of puffed rice",
+        "hand_zh": "客家擂茶",
+        "outfit_zh": "客家藍衫（立領盤扣、白色小花印花）",
+        "outfit": "an indigo hakka blue tunic with a mandarin collar, cloth knot buttons and small white floral print",
+        "hair": "a pale pink camellia pinned beside her neat high bun",
+        "hair_zh": "茶花（新竹縣花）",
+        "hair_basis": "symbols.flower",
+        "right_zone": "sky",
+        "landmarks_en": [
+          "terraced tea and rice fields on rolling hills",
+          "a Hakka village of red-brick houses with swallowtail roofs",
+          "a bamboo-forested mountain ridge in mist"
+        ],
+        "plants_desc": "camellia blossoms: rounded pale pink flowers with many overlapping petals in a spiral and a boss of yellow stamens, among thick glossy dark green leaves"
+      },
+      "todo": [
+        "生成 base 底圖",
+        "查證 symbols.flower（決定髮花）"
+      ],
+      "places": [
+        "內灣老街",
+        "北埔老街",
+        "司馬庫斯"
+      ],
+      "foods": [
+        "客家擂茶",
+        "粄條",
+        "東方美人茶"
+      ],
+      "notes": [
+        "與新竹市共用海報，但海報內容以市為主。這三項來自既有知識，**待查證**。",
+        "北埔老街及其客家擂茶、粄條、東方美人茶經搜尋確認。內灣（橫山鄉）與司馬庫斯（尖石鄉）依行政區劃屬新竹縣，未另找到專頁佐證。",
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
+        "**新竹縣沒有自己的海報**（與新竹市共用一張），造型是依該縣特徵推定的，不是讀來的。要更準就得另外找依據。",
+        "id 原本與共用海報的另一個縣市相同，導致批次生圖時被當成「已存在」跳過。id＝底圖檔名，必須唯一；poster 才是可以共用的。"
+      ],
+      "traits": [
+        "客家硬頸",
+        "念祖",
+        "勤儉"
+      ],
+      "verified": [
+        "北埔老街",
+        "客家擂茶",
+        "粄條",
+        "東方美人茶"
+      ],
+      "quote_basis": "客家擂茶、北埔峨眉的東方美人茶山"
+    },
+    {
+      "id": "yilan",
+      "name": "宜蘭縣",
+      "en": "YILAN",
+      "group": "n",
+      "poster": "yilan",
+      "base": "yilan-base",
+      "share": {
+        "who": "宜蘭，代表了",
+        "words": [
+          "純淨",
+          "慢活",
+          "樂天"
+        ],
+        "focus": null
+      },
+      "tagline": "山海環繞・純淨生活・人情溫暖・慢活樂天",
+      "quote": "水田亮亮，青蔥直直，宜蘭是咱的家。",
+      "symbols": {
+        "flower": {
+          "value": "國蘭",
+          "source": "wikipedia_cited_gov",
+          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+        },
+        "tree": {
+          "value": "台灣欒樹",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        },
+        "bird": {
+          "value": "彩鷸",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        }
+      },
+      "scene": {
+        "landmarks": [
+          "龜山島",
+          "太平山",
+          "冬山河"
+        ],
+        "plants": [
+          "國蘭"
+        ],
+        "hand": "a fresh bundle of long white-and-green Sanxing spring onions",
+        "hand_zh": "三星蔥",
+        "outfit_zh": "米白和風上衣＋深綠農作圍裙、白花綠葉髮飾、綠色垂墜耳環",
+        "outfit": "a cream wrap-front top under a dark green farming apron, green drop earrings",
+        "hair": "a spray of pale cymbidium orchid with slender green leaves tucked into her neat high bun",
+        "hair_zh": "國蘭（宜蘭縣花）＋綠葉",
+        "hair_basis": "symbols.flower",
+        "right_zone": "sea",
+        "landmarks_en": [
+          "a wide braided river valley between green mountains",
+          "flooded rice paddies mirroring the sky",
+          "a lagoon of channels and reed beds"
+        ],
+        "plants_desc": "cymbidium orchid: slender greenish-cream flowers with three narrow sepals, two petals and a spotted lip, several on an arching spike, with long strap-like leaves"
+      },
+      "todo": [
+        "生成 base 底圖",
+        "查證 symbols.flower（決定髮花）"
+      ],
+      "places": [
+        "龜山島",
+        "太平山",
+        "冬山河"
+      ],
+      "foods": [
+        "三星蔥",
+        "鴨賞",
+        "宜蘭牛舌餅"
+      ],
+      "notes": [
+        "海報物產欄列了「櫻花蝦」，但櫻花蝦主產地是屏東東港，宜蘭的代表海產是南方澳鯖魚。已排除。",
+        "六項全部確認。三星蔥產於三星鄉。",
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。"
+      ],
+      "traits": [
+        "純淨",
+        "慢活",
+        "樂天"
+      ],
+      "verified": [
+        "龜山島",
+        "太平山",
+        "冬山河",
+        "三星蔥",
+        "鴨賞",
+        "宜蘭牛舌餅"
+      ],
+      "quote_basis": "蘭陽平原水田、三星蔥"
+    },
+    {
+      "id": "miaoli",
+      "name": "苗栗縣",
+      "en": "MIAOLI",
+      "group": "c",
+      "poster": "miaoli",
+      "base": "miaoli-base",
+      "share": {
+        "who": "苗栗，代表了",
+        "words": [
+          "客家魂",
+          "山城心",
+          "人情味"
+        ],
+        "focus": null
+      },
+      "tagline": "客家大縣・山城慢活・自然美景・勤儉樸實・人情味濃",
+      "quote": "木香沉沉，草莓紅紅，苗栗是咱的家。",
+      "symbols": {
+        "flower": {
+          "value": "桂花",
+          "source": "wikipedia_cited_gov",
+          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+        },
+        "tree": {
+          "value": "樟樹",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        },
+        "bird": {
+          "value": "喜鵲",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        }
+      },
+      "scene": {
+        "landmarks": [
+          "南庄老街",
+          "三義木雕村",
+          "火炎山"
+        ],
+        "plants": [
+          "桂花"
+        ],
+        "hand": "a small punnet of bright red strawberries",
+        "hand_zh": "大湖草莓",
+        "outfit_zh": "深藍客家藍衫（立領盤扣、白色小花印花）＋藍花頭巾",
+        "outfit": "a navy hakka blue tunic with a mandarin collar and small white floral print, a blue floral headscarf",
+        "hair": "a white-and-orange sprig of osmanthus tucked above the blue floral headscarf",
+        "hair_zh": "桂花（苗栗縣花）＋藍花頭巾",
+        "hair_basis": "symbols.flower",
+        "accessory_basis": "藍花頭巾：搭客家藍衫的傳統頭巾，苗栗是客家人口占多數的縣。**此依據尚未寫入 verified，待查證後補**。",
+        "right_zone": "sky",
+        "landmarks_en": [
+          "an old mountain street of wooden shopfronts under red lanterns",
+          "a woodcarving village workshop street with carved timber displays",
+          "Huoyanshan's bare orange-red eroded badland ridges"
+        ],
+        "plants_desc": "osmanthus: sprays of very small four-petalled cream-white flowers in dense clusters tucked in the leaf axils of a glossy-leaved shrub"
+      },
+      "todo": [
+        "生成 base 底圖",
+        "查證 symbols.flower（決定髮花）"
+      ],
+      "places": [
+        "南庄老街",
+        "三義木雕村",
+        "火炎山"
+      ],
+      "foods": [
+        "大湖草莓",
+        "客家小炒",
+        "苗栗粄條"
+      ],
+      "notes": [
+        "海報美食欄有「三義木雕冰」，非既有詞彙，疑似把木雕與冰品混寫，已排除。草莓取大湖鄉（苗栗最知名產地）。",
+        "六項全部確認。三義為「木雕之鄉」，火炎山在三義，大湖草莓在大湖鄉。",
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
+        "海報畫桐花，但桐花不是任何縣市的指定花；改用查證過的苗栗縣花桂花。"
+      ],
+      "traits": [
+        "客家魂",
+        "山城心",
+        "人情味"
+      ],
+      "verified": [
+        "南庄老街",
+        "三義木雕村",
+        "火炎山",
+        "大湖草莓",
+        "客家小炒",
+        "苗栗粄條"
+      ],
+      "quote_basis": "三義木雕、大湖草莓"
+    },
+    {
+      "id": "taichung",
+      "name": "台中市",
+      "en": "TAICHUNG",
+      "group": "c",
+      "poster": "taichung",
+      "base": "taichung-base",
+      "share": {
+        "who": "台中，代表了",
+        "words": [
+          "溫暖",
+          "努力",
+          "有品味"
+        ],
+        "focus": null
+      },
+      "tagline": "宜居・創新・文化・美食・友善・進步・多元・活力",
+      "quote": "濕地闊闊，餅香酥酥，台中是咱的家。",
+      "symbols": {
+        "flower": {
+          "value": "山櫻花",
+          "source": "wikipedia_cited_gov",
+          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+        },
+        "tree": {
+          "value": "台灣五葉松",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        },
+        "bird": {
+          "value": "白耳畫眉",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        }
+      },
+      "scene": {
+        "landmarks": [
+          "高美濕地",
+          "台中國家歌劇院",
+          "宮原眼科"
+        ],
+        "plants": [
+          "山櫻花"
+        ],
+        "hand": "a round flaky sun cake, one of them broken open to show the pale maltose filling inside, held on a plain paper wrapper",
+        "hand_zh": "太陽餅",
+        "outfit_zh": "卡其色外套、白T（城市剪影）、彩色髮夾",
+        "outfit": "a khaki utility jacket over a white tee printed with a wordless city skyline",
+        "hair": "a deep pink Taiwan cherry blossom pinned beside her neat high bun",
+        "hair_zh": "山櫻花（台中市花）",
+        "hair_basis": "symbols.flower",
+        "accessory_basis": "彩色髮夾已刪：純裝飾，對不回任何欄位。",
+        "right_zone": "sea",
+        "landmarks_en": [
+          "a coastal wetland of boardwalks and windmills at low tide",
+          "a modern curved-concrete opera house",
+          "an ornate red-brick historic shopfront"
+        ],
+        "plants_desc": "Taiwan cherry blossoms: deep rose-pink bell-shaped flowers hanging downward in small clusters on a dark bare branch"
+      },
+      "todo": [
+        "生成 base 底圖",
+        "查證 symbols.flower（決定髮花）"
+      ],
+      "places": [
+        "高美濕地",
+        "台中國家歌劇院",
+        "宮原眼科"
+      ],
+      "foods": [
+        "珍珠奶茶",
+        "太陽餅",
+        "逢甲夜市"
+      ],
+      "notes": [
+        "六項全部確認。**珍奶發源地說法查證通過**：春水堂為公認發源，先前的待查證解除。歌劇院為伊東豐雄設計，位西屯區。",
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
+        "手持物原為珍珠奶茶。珍奶確實出自台中（春水堂），但 card.json 的 must_not 明訂「縣市層級不拿珍奶」，而且首頁的台灣通用版就是拿珍奶，縣市再拿一次就重複了。改用太陽餅——一樣是台中獨有，且與首頁區隔。"
+      ],
+      "traits": [
+        "溫暖",
+        "努力",
+        "有品味"
+      ],
+      "verified": [
+        "高美濕地",
+        "台中國家歌劇院",
+        "宮原眼科",
+        "珍珠奶茶",
+        "太陽餅",
+        "逢甲夜市"
+      ],
+      "quote_basis": "高美濕地、太陽餅"
+    },
+    {
+      "id": "changhua",
+      "name": "彰化縣",
+      "en": "CHANGHUA",
+      "group": "c",
+      "poster": "changhua",
+      "base": null,
+      "share": {
+        "who": "彰化，代表了",
+        "words": [
+          "樸實",
+          "勤儉",
+          "重傳承"
+        ],
+        "focus": null
+      },
+      "tagline": "勤奮・樸實・傳承・創新・熱情・堅韌",
+      "quote": "車庫圓圓，肉圓燙燙，彰化是咱的家。",
+      "symbols": {
+        "flower": {
+          "value": "菊花",
+          "source": "wikipedia_cited_gov",
+          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+        },
+        "tree": {
+          "value": "菩提樹",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        },
+        "bird": {
+          "value": "灰面鵟鷹",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        }
+      },
+      "scene": {
+        "landmarks": [
+          "鹿港老街",
+          "八卦山大佛",
+          "扇形車庫"
+        ],
+        "plants": [
+          "菊花"
+        ],
+        "hand": "a small plate with a translucent steamed meatball dumpling in red sauce",
+        "hand_zh": "彰化肉圓",
+        "outfit_zh": "淡紫色襯衫、白T、紫色小花髮飾",
+        "outfit": "a light lilac open shirt over a white tee",
+        "hair": "a cluster of purple chrysanthemums pinned beside her neat high bun",
+        "hair_zh": "紫色菊花（彰化縣花）",
+        "hair_basis": "symbols.flower",
+        "right_zone": "sea",
+        "landmarks_en": [
+          "a large stone seated Buddha statue on a wooded hill",
+          "a long row of coastal wind turbines above oyster flats",
+          "an old temple with layered swallowtail roofs"
+        ],
+        "plants_desc": "chrysanthemums: rounded purple blooms of many narrow ray petals layered around a small centre"
+      },
+      "todo": [
+        "查證 symbols.flower（決定髮花）"
+      ],
+      "places": [
+        "鹿港老街",
+        "八卦山大佛",
+        "扇形車庫"
+      ],
+      "foods": [
+        "彰化肉圓",
+        "爌肉飯",
+        "王功蚵仔"
+      ],
+      "notes": [
+        "蚵仔取王功漁港（海報自然景觀欄稱「蚵仔的故鄉」）。",
+        "六項全部確認。八卦山大佛高26公尺；扇形車庫1922年建、12軌；王功漁港以蚵聞名。",
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。"
+      ],
+      "traits": [
+        "樸實",
+        "勤儉",
+        "重傳承"
+      ],
+      "verified": [
+        "鹿港老街",
+        "八卦山大佛",
+        "扇形車庫",
+        "彰化肉圓",
+        "爌肉飯",
+        "王功蚵仔"
+      ],
+      "quote_basis": "扇形車庫、彰化肉圓"
+    },
+    {
+      "id": "nantou",
+      "name": "南投縣",
+      "en": "NANTOU",
+      "group": "c",
+      "poster": "nantou",
+      "base": null,
+      "share": {
+        "who": "南投，代表了",
+        "words": [
+          "誠實",
+          "勤奮",
+          "和諧"
+        ],
+        "focus": null
+      },
+      "tagline": "好山・好水・好茶・好人情",
+      "quote": "潭水深深，茶香淡淡，南投是咱的家。",
+      "symbols": {
+        "flower": {
+          "value": "梅花",
+          "source": "wikipedia_cited_gov",
+          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+        },
+        "tree": {
+          "value": "樟樹",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        },
+        "bird": {
+          "value": null,
+          "source": "none",
+          "note": "該縣市未指定"
+        }
+      },
+      "scene": {
+        "landmarks": [
+          "日月潭",
+          "清境農場",
+          "合歡山"
+        ],
+        "plants": [
+          "梅花"
+        ],
+        "hand": "a small ceramic cup of amber oolong tea, steam rising",
+        "hand_zh": "凍頂烏龍茶",
+        "outfit_zh": "米白上衣＋紅黑幾何織紋長版背心",
+        "outfit": "a cream top under a long open vest bordered with woven geometric bands in deep red and black",
+        "hair": "white plum blossoms beside her neat high bun",
+        "hair_zh": "梅花（南投縣花）",
+        "hair_basis": "symbols.flower",
+        "right_zone": "sky",
+        "landmarks_en": [
+          "Sun Moon Lake, a broad mountain lake ringed by forested peaks",
+          "high green pastureland with sheep on a ridge",
+          "a bare alpine mountain road above the treeline"
+        ],
+        "plants_desc": "plum blossoms: five separate rounded white petals with a spray of long stamens, borne directly on a dark gnarled leafless branch"
+      },
+      "todo": [
+        "查證 symbols.flower（決定髮花）"
+      ],
+      "places": [
+        "日月潭",
+        "清境農場",
+        "合歡山"
+      ],
+      "foods": [
+        "凍頂烏龍茶",
+        "南投意麵",
+        "竹山番薯"
+      ],
+      "notes": [
+        "南投是唯一不靠海的縣。無縣鳥。",
+        "日月潭為台灣面積最大湖泊；清境農場在仁愛鄉、海拔約1750公尺。**合歡山位於花蓮與南投交界**，非南投獨有，用作背景沒問題但不宜宣稱專屬。凍頂烏龍茶、南投意麵、竹山番薯未另找到佐證。",
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
+        "服裝含原住民族織紋，依原海報保留視覺但**不指名族群**——台東就有阿美、卑南、排灣、布農、達悟五族，指錯族群的織紋比指錯市樹嚴重。若要對外正式發佈，這幾張建議先請具代表性的族人或相關單位過目。"
+      ],
+      "traits": [
+        "誠實",
+        "勤奮",
+        "和諧"
+      ],
+      "verified": [
+        "日月潭",
+        "清境農場",
+        "合歡山"
+      ],
+      "quote_basis": "日月潭、凍頂烏龍茶"
+    },
+    {
+      "id": "yunlin",
+      "name": "雲林縣",
+      "en": "YUNLIN",
+      "group": "c",
+      "poster": "yunlin",
+      "base": null,
+      "share": {
+        "who": "雲林，代表了",
+        "words": [
+          "腳踏實地",
+          "好客",
+          "有責任感"
+        ],
+        "focus": null
+      },
+      "tagline": "勤奮・樸實・堅韌・熱情・傳承・創新・在地・永續",
+      "quote": "稻浪滾滾，醬缸厚厚，雲林是咱的家。",
+      "symbols": {
+        "flower": {
+          "value": "蝴蝶蘭",
+          "source": "wikipedia_cited_gov",
+          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+        },
+        "tree": {
+          "value": "樟樹",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        },
+        "bird": {
+          "value": "台灣藍鵲",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        }
+      },
+      "scene": {
+        "landmarks": [
+          "北港朝天宮",
+          "西螺大橋",
+          "劍湖山"
+        ],
+        "plants": [
+          "蝴蝶蘭"
+        ],
+        "hand": "a cup of freshly brewed black coffee",
+        "hand_zh": "古坑咖啡",
+        "outfit_zh": "焦糖色格紋襯衫、白T、向日葵髮飾＋金流蘇",
+        "outfit": "a caramel plaid shirt worn open over a white tee",
+        "hair": "a white moth orchid beside her neat high bun",
+        "hair_zh": "蝴蝶蘭（雲林縣花）",
+        "hair_basis": "symbols.flower",
+        "right_zone": "sea",
+        "landmarks_en": [
+          "a vast flat patchwork of farmland to the horizon",
+          "an ornate gilded temple with dragon columns",
+          "a coastal oyster farm of bamboo racks at low tide"
+        ],
+        "plants_desc": "moth orchid: broad flat white flowers, two wide round upper petals and three narrower sepals with a small yellow-red lip, several along an arching stem"
+      },
+      "todo": [
+        "生成 base 底圖",
+        "查證 symbols.flower（決定髮花）"
+      ],
+      "places": [
+        "北港朝天宮",
+        "西螺大橋",
+        "劍湖山"
+      ],
+      "foods": [
+        "古坑咖啡",
+        "雲林花生",
+        "西螺醬油"
+      ],
+      "notes": [
+        "海報自然景觀欄的「湖山」左緣被裁掉，應為劍湖山。",
+        "六項全部確認。北港朝天宮建於1694年、逾三百年；西螺以醬油觀光工廠聞名；古坑以綠色隧道與咖啡文化聞名。",
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
+        "海報畫向日葵，但向日葵不是雲林的官方象徵；改用查證過的縣花蝴蝶蘭。"
+      ],
+      "traits": [
+        "腳踏實地",
+        "好客",
+        "有責任感"
+      ],
+      "verified": [
+        "北港朝天宮",
+        "西螺大橋",
+        "劍湖山",
+        "古坑咖啡",
+        "西螺醬油",
+        "雲林花生"
+      ],
+      "quote_basis": "農業大縣的稻田、西螺醬油"
+    },
+    {
+      "id": "chiayi-city",
+      "name": "嘉義市",
+      "en": "CHIAYI CITY",
+      "group": "s",
+      "poster": "chiayi-county",
+      "base": null,
+      "share": {
+        "who": "嘉義，代表了",
+        "words": [
+          "慢慢來",
+          "重人情",
+          "講義氣"
+        ],
+        "focus": null
+      },
+      "tagline": "純樸・熱情・友善・勤奮・堅韌・重情・好客",
+      "quote": "檜香濃濃，雞飯燒燒，嘉義是咱的家。",
+      "symbols": {
+        "flower": {
+          "value": "豔紫荊",
+          "source": "wikipedia_cited_gov",
+          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+        },
+        "tree": {
+          "value": "豔紫荊",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        },
+        "bird": {
+          "value": null,
+          "source": "none",
+          "note": "該縣市未指定"
+        }
+      },
+      "scene": {
+        "landmarks": [
+          "檜意森活村",
+          "文化路夜市",
+          "射日塔"
+        ],
+        "plants": [
+          "豔紫荊"
+        ],
+        "hand": "a small bowl of rice topped with shredded turkey and drizzled sauce",
+        "hand_zh": "火雞肉飯",
+        "outfit_zh": "草帽、紅藍格紋襯衫、白T",
+        "outfit": "a red-and-blue plaid shirt worn open over a white tee",
+        "hair": "a pink Hong Kong orchid blossom pinned beside her neat high bun",
+        "hair_zh": "豔紫荊（嘉義市花）＋高馬尾",
+        "hair_basis": "symbols.flower",
+        "accessory_basis": "草帽已刪：草帽的依據是農作日曬，那是嘉義縣不是嘉義市。兩者共用一張海報，正好靠這點區分。",
+        "right_zone": "sky",
+        "landmarks_en": [
+          "a wooden Japanese-era railway station",
+          "a forestry village of dark timber houses",
+          "a narrow-gauge red diesel railcar on mountain tracks"
+        ],
+        "plants_desc": "Hong Kong orchid tree blossoms: large magenta-purple flowers of five broad petals, the uppermost streaked deeper, with long curving stamens"
+      },
+      "todo": [
+        "生成 base 底圖",
+        "查證 symbols.flower（決定髮花）"
+      ],
+      "places": [
+        "檜意森活村",
+        "文化路夜市",
+        "射日塔"
+      ],
+      "foods": [
+        "火雞肉飯",
+        "林聰明沙鍋魚頭",
+        "方塊酥"
+      ],
+      "notes": [
+        "海報以嘉義縣的阿里山為主，市的地標沒列。這三個地標來自既有知識，**待查證**。諸羅城是嘉義市舊稱。無市鳥，且市花與市樹同為豔紫荊。",
+        "文化路夜市與檜意森活村確認在嘉義市區；林聰明沙鍋魚頭總店地址為嘉義市中正路361號，可確認屬市。射日塔與方塊酥未找到佐證。",
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
+        "id 原本與共用海報的另一個縣市相同，導致批次生圖時被當成「已存在」跳過。id＝底圖檔名，必須唯一；poster 才是可以共用的。"
+      ],
+      "traits": [
+        "慢慢來",
+        "重人情",
+        "講義氣"
+      ],
+      "verified": [
+        "文化路夜市",
+        "檜意森活村",
+        "火雞肉飯",
+        "林聰明沙鍋魚頭"
+      ],
+      "quote_basis": "檜意森活村、火雞肉飯"
+    },
+    {
+      "id": "chiayi-county",
+      "name": "嘉義縣",
+      "en": "CHIAYI COUNTY",
+      "group": "s",
+      "poster": "chiayi-county",
+      "base": null,
+      "share": {
+        "who": "嘉義，代表了",
+        "words": [
+          "純樸",
+          "堅持",
+          "誠懇"
+        ],
+        "focus": null
+      },
+      "tagline": "純樸・熱情・友善・勤奮・堅韌・重情・好客",
+      "quote": "雲海茫茫，茶園高高，嘉義是咱的家。",
+      "symbols": {
+        "flower": {
+          "value": "玉蘭花",
+          "source": "wikipedia_cited_gov",
+          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+        },
+        "tree": {
+          "value": "台灣欒樹",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        },
+        "bird": {
+          "value": "藍腹鷴",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        }
+      },
+      "scene": {
+        "landmarks": [
+          "阿里山",
+          "奮起湖老街",
+          "東石漁人碼頭"
+        ],
+        "plants": [
+          "玉蘭花"
+        ],
+        "hand": "a small ceramic cup of pale green high-mountain tea",
+        "hand_zh": "阿里山高山茶",
+        "outfit_zh": "草帽、深綠襯衫、白T",
+        "outfit": "a forest-green shirt worn open over a white tee",
+        "hair": "a woven straw boater sitting level on her head with her neat high bun gathered at the back below the brim — no hair pokes through the crown and no loose tail hangs past her shoulders; a white magnolia blossom tucked into the hat band",
+        "hair_zh": "草帽後傾、馬尾在帽後，帽帶插玉蘭花（嘉義縣花）",
+        "hair_basis": "symbols.flower",
+        "accessory_basis": "草帽：嘉義縣是農業縣（landmarks 含阿里山），草帽是農作日常。與嘉義市的區分點。",
+        "right_zone": "sky",
+        "landmarks_en": [
+          "Alishan's cypress forest in drifting cloud",
+          "a sea of clouds below a mountain ridge at sunrise",
+          "a narrow-gauge railway curving through tall conifers"
+        ],
+        "plants_desc": "white magnolia: upright ivory flowers of several thick pointed petals, strongly fragrant, on a broad-leaved tree"
+      },
+      "todo": [
+        "生成 base 底圖",
+        "查證 symbols.flower（決定髮花）"
+      ],
+      "places": [
+        "阿里山",
+        "奮起湖老街",
+        "東石漁人碼頭"
+      ],
+      "foods": [
+        "阿里山高山茶",
+        "東石鮮蚵",
+        "梅山茶"
+      ],
+      "notes": [
+        "與嘉義市共用海報。海報美食欄的火雞肉飯、林聰明沙鍋魚頭、方塊酥其實都是嘉義市的，已分給市。",
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
+        "**嘉義縣沒有自己的海報**（與嘉義市共用一張），造型是依該縣特徵推定的，不是讀來的。要更準就得另外找依據。"
+      ],
+      "traits": [
+        "純樸",
+        "堅持",
+        "誠懇"
+      ],
+      "quote_basis": "阿里山雲海、阿里山高山茶"
+    },
+    {
+      "id": "tainan",
+      "name": "台南市",
+      "en": "TAINAN",
+      "group": "s",
+      "poster": "tainan",
+      "base": null,
+      "share": {
+        "who": "台南，代表了",
+        "words": [
+          "古都風華",
+          "慢活",
+          "重人情"
+        ],
+        "focus": null
+      },
+      "tagline": "熱情・人情味・傳統・慢城・文化・智慧・美食・古都風情",
+      "quote": "古城老老，湯頭清清，台南是咱的家。",
+      "symbols": {
+        "flower": {
+          "value": "蝴蝶蘭",
+          "source": "wikipedia_cited_gov",
+          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+        },
+        "tree": {
+          "value": "鳳凰樹",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        },
+        "bird": {
+          "value": "水雉",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        }
+      },
+      "scene": {
+        "landmarks": [
+          "赤崁樓",
+          "安平古堡",
+          "七股鹽山"
+        ],
+        "plants": [
+          "蝴蝶蘭"
+        ],
+        "hand": "a bowl of clear beef soup with thin slices of fresh beef",
+        "hand_zh": "台南牛肉湯",
+        "outfit_zh": "橘紅花卉印花襯衫、白T、紅色鳳凰花髮飾＋金流蘇",
+        "outfit": "an open shirt printed with orange-red blossoms over a white tee",
+        "hair": "a red flame-tree blossom beside her neat high bun",
+        "hair_zh": "鳳凰花",
+        "hair_basis": "symbols.tree",
+        "right_zone": "sea",
+        "landmarks_en": [
+          "a Dutch-era brick fort with an arched gateway",
+          "salt flats laid out in shallow geometric pans",
+          "an ornate temple courtyard with swallowtail eaves"
+        ],
+        "plants_desc": "moth orchid: broad flat white flowers, two wide round upper petals and three narrower sepals with a small yellow-red lip, several along an arching stem"
+      },
+      "todo": [
+        "生成 base 底圖",
+        "查證 symbols.flower（決定髮花）"
+      ],
+      "places": [
+        "赤崁樓",
+        "安平古堡",
+        "七股鹽山"
+      ],
+      "foods": [
+        "台南牛肉湯",
+        "擔仔麵",
+        "虱目魚"
+      ],
+      "notes": [
+        "台南孔廟為全臺首學，亦可替換入 places。",
+        "六項全部確認。安平古堡原為1624年荷蘭熱蘭遮城，台灣第一座城堡；赤崁樓為荷蘭普羅民遮城遺構。",
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
+        "鳳凰花的依據是**鳳凰樹＝台南市樹**（查證過），不是海報。台南市花是蝴蝶蘭，但雲林、台東也是蝴蝶蘭，三個縣市會撞，改用市樹的花較能識別。"
+      ],
+      "traits": [
+        "古都風華",
+        "慢活",
+        "重人情"
+      ],
+      "verified": [
+        "赤崁樓",
+        "安平古堡",
+        "七股鹽山",
+        "台南牛肉湯",
+        "擔仔麵",
+        "虱目魚"
+      ],
+      "quote_basis": "赤崁樓與安平古堡、台南牛肉湯"
+    },
+    {
+      "id": "kaohsiung",
+      "name": "高雄市",
+      "en": "KAOHSIUNG",
+      "group": "s",
+      "poster": "kaohsiung",
+      "base": null,
+      "share": {
+        "who": "高雄，代表了",
+        "words": [
+          "熱情",
+          "豪爽",
+          "打拚"
+        ],
+        "focus": 0.26
+      },
+      "tagline": "熱情・豪爽・創新・包容・勤奮・實在・重情・打拼",
+      "quote": "海風鹹鹹，人情暖暖，高雄是咱的家。",
+      "symbols": {
+        "flower": {
+          "value": "木棉花",
+          "source": "official",
+          "note": "1980 年起經兩次全體市民票選"
+        },
+        "tree": {
+          "value": "木棉",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        },
+        "bird": {
+          "value": "綠繡眼",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        }
+      },
+      "scene": {
+        "landmarks": [
+          "西子灣",
+          "蓮池潭",
+          "旗津"
+        ],
+        "plants": [
+          "木棉花"
+        ],
+        "hand": "a Taiwanese-style crispy fried chicken burger held in a plain unbranded paper wrapper",
+        "hand_zh": "炸雞腿堡（無品牌包裝）",
+        "plants_desc": "kapok (Bombax ceiba) blossoms: large orange-red flowers with five thick fleshy petals and prominent stamens, growing directly on BARE LEAFLESS branches of a sturdy thick-trunked tree — the kapok flowers before its leaves appear, so there must be no green foliage on the flowering branches",
+        "outfit_zh": "淺藍丹寧襯衫、白T、木棉花髮飾",
+        "outfit": "a light denim shirt worn open over a white tee",
+        "hair": "a red kapok blossom beside her neat high bun",
+        "hair_zh": "木棉花",
+        "hair_basis": "symbols.flower",
+        "right_zone": "sea",
+        "landmarks_en": [
+          "the 85 Sky Tower's forked silhouette above the harbour",
+          "a curved steel-and-glass waterfront pavilion",
+          "a lagoon lined with pagodas and dragon-tiger towers"
+        ]
+      },
+      "todo": [],
+      "places": [
+        "西子灣",
+        "蓮池潭",
+        "旗津"
+      ],
+      "foods": [
+        "丹丹漢堡",
+        "木瓜牛奶",
+        "旗山香蕉冰"
+      ],
+      "notes": [
+        "scene.plants 原本誤填「鳳凰木」——那是台南市樹。高雄的市花與市樹都是木棉。",
+        "手持物取自丹丹漢堡（1984 年高雄前金區創立，只在南台灣展店），但畫面上不得出現該品牌的商標或包裝——商標問題，同「不用官方市徽」的原則。品牌名只出現在文字欄。",
+        "木棉的花模型畫得對（五瓣、橘紅、花蕊明顯），但把它畫在長滿綠葉的細枝上，讀起來變成鳳凰木或紅色灌木。木棉最鮮明的特徵是「花先開、葉後長」，開花時滿樹光禿，這點必須在 prompt 裡明講。",
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。"
+      ],
+      "traits": [
+        "熱情",
+        "豪爽",
+        "打拚"
+      ],
+      "quote_basis": "原海報最左直書的原句，未改。"
+    },
+    {
+      "id": "pingtung",
+      "name": "屏東縣",
+      "en": "PINGTUNG",
+      "group": "s",
+      "poster": "pingtung",
+      "base": null,
+      "share": {
+        "who": "屏東，代表了",
+        "words": [
+          "樂天",
+          "純樸",
+          "包容"
+        ],
+        "focus": null
+      },
+      "tagline": "熱情・純樸・豪爽・慢活・勇敢・包容・善良・樂天",
+      "quote": "日頭辣辣，海水藍藍，屏東是咱的家。",
+      "symbols": {
+        "flower": {
+          "value": "九重葛",
+          "source": "wikipedia_cited_gov",
+          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+        },
+        "tree": {
+          "value": "可可椰子",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        },
+        "bird": {
+          "value": "紅尾伯勞",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        }
+      },
+      "scene": {
+        "landmarks": [
+          "墾丁國家公園",
+          "東港大鵬灣",
+          "佳樂水"
+        ],
+        "plants": [
+          "九重葛"
+        ],
+        "hand": "a bowl of mung-bean dessert with shaved ice",
+        "hand_zh": "恆春綠豆蒜",
+        "outfit_zh": "彩色幾何織紋襯衫（橘、綠、藍條帶）、白T",
+        "outfit": "an open shirt with colourful woven geometric bands in orange, green and blue over a white tee",
+        "hair": "a bright magenta bougainvillea pinned beside her neat high bun",
+        "hair_zh": "九重葛（屏東縣花）",
+        "hair_basis": "symbols.flower",
+        "accessory_basis": "黃花已刪：不是屏東的任何官方象徵，純湊色。",
+        "right_zone": "sea",
+        "landmarks_en": [
+          "Eluanbi lighthouse, a white tower on a grassy cape",
+          "a tropical coastline of coral rock and palms",
+          "forested mountain ridges rising inland"
+        ],
+        "plants_desc": "bougainvillea: dense sprays of papery magenta bracts in threes, each trio surrounding three tiny white tubular flowers, on a thorny climbing stem"
+      },
+      "todo": [
+        "生成 base 底圖",
+        "查證 symbols.flower（決定髮花）"
+      ],
+      "places": [
+        "墾丁國家公園",
+        "東港大鵬灣",
+        "佳樂水"
+      ],
+      "foods": [
+        "東港黑鮪魚",
+        "萬巒豬腳",
+        "恆春綠豆蒜"
+      ],
+      "notes": [
+        "海報「代表海產」欄為黑鮪魚與櫻花蝦，確認櫻花蝦屬屏東東港——宜蘭那張把櫻花蝦列進物產是錯的。",
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
+        "服裝含原住民族織紋，依原海報保留視覺但**不指名族群**——台東就有阿美、卑南、排灣、布農、達悟五族，指錯族群的織紋比指錯市樹嚴重。若要對外正式發佈，這幾張建議先請具代表性的族人或相關單位過目。",
+        "原海報畫扶桑花，但扶桑＝朱槿是**舊高雄縣**縣花，帶著別的縣市的聯想，改用屏東自己的九重葛（桃紅色，同樣搶眼）。"
+      ],
+      "traits": [
+        "樂天",
+        "純樸",
+        "包容"
+      ],
+      "quote_basis": "恆春半島日照、墾丁海域"
+    },
+    {
+      "id": "hualien",
+      "name": "花蓮縣",
+      "en": "HUALIEN",
+      "group": "e",
+      "poster": "hualien",
+      "base": null,
+      "share": {
+        "who": "花蓮，代表了",
+        "words": [
+          "純淨",
+          "自由",
+          "堅韌"
+        ],
+        "focus": null
+      },
+      "tagline": "山海共生・原鄉文化・人情純樸・慢活樂天",
+      "quote": "峽谷幽幽，海水靜靜，花蓮是咱的家。",
+      "symbols": {
+        "flower": {
+          "value": "蓮花",
+          "source": "wikipedia_cited_gov",
+          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+        },
+        "tree": {
+          "value": "菩提樹",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        },
+        "bird": {
+          "value": "朱鸝",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        }
+      },
+      "scene": {
+        "landmarks": [
+          "太魯閣峽谷",
+          "清水斷崖",
+          "七星潭"
+        ],
+        "plants": [
+          "蓮花"
+        ],
+        "hand": "a clear cup of deep red roselle tea with ice",
+        "hand_zh": "洛神花茶",
+        "outfit_zh": "白色荷葉袖上衣＋織紋滾邊背心（紅、黑、白幾何紋）、多層串珠項鍊與長串珠耳環",
+        "outfit": "a white puff-sleeve top under an open vest bordered with woven geometric bands in red, black and white, layered beaded necklaces and long beaded earrings",
+        "hair": "a pink lotus blossom pinned beside her neat high bun, layered beaded necklaces and long beaded earrings",
+        "hair_zh": "蓮花（花蓮縣花）",
+        "hair_basis": "symbols.flower",
+        "right_zone": "sea",
+        "landmarks_en": [
+          "Taroko's sheer marble gorge walls above a river",
+          "a long pebble beach against a wall of green mountains",
+          "terraced rice fields on a coastal plateau"
+        ],
+        "plants_desc": "lotus: a large pink cup-shaped flower of many pointed petals above a round green seed pod, rising on a tall stalk beside a flat round leaf"
+      },
+      "todo": [
+        "生成 base 底圖",
+        "查證 symbols.flower（決定髮花）"
+      ],
+      "places": [
+        "太魯閣峽谷",
+        "清水斷崖",
+        "七星潭"
+      ],
+      "foods": [
+        "瑞穗文旦",
+        "洛神花",
+        "金針花"
+      ],
+      "notes": [
+        "海報是物產欄非美食欄。洛神花與台東共有，但花蓮的瑞穗文旦與六十石山金針較專屬。",
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
+        "服裝含原住民族織紋，依原海報保留視覺但**不指名族群**——台東就有阿美、卑南、排灣、布農、達悟五族，指錯族群的織紋比指錯市樹嚴重。若要對外正式發佈，這幾張建議先請具代表性的族人或相關單位過目。",
+        "髮飾是花冠不是蓮花——蓮花是大型水生花，戴在頭上不合理。這是規則四唯一的例外。",
+        "海報是不指定種類的花冠；改用查證過的縣花蓮花。"
+      ],
+      "traits": [
+        "純淨",
+        "自由",
+        "堅韌"
+      ],
+      "quote_basis": "太魯閣峽谷、七星潭"
+    },
+    {
+      "id": "taitung",
+      "name": "台東縣",
+      "en": "TAITUNG",
+      "group": "e",
+      "poster": "taitung",
+      "base": null,
+      "share": {
+        "who": "台東，代表了",
+        "words": [
+          "包容",
+          "自由",
+          "樂觀"
+        ],
+        "focus": null
+      },
+      "tagline": "山海之間・慢活樂天・南島原鄉・人情最暖",
+      "quote": "稻香飄飄，海岸長長，台東是咱的家。",
+      "symbols": {
+        "flower": {
+          "value": "蝴蝶蘭",
+          "source": "wikipedia_cited_gov",
+          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+        },
+        "tree": {
+          "value": "樟樹",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        },
+        "bird": {
+          "value": "烏頭翁",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        }
+      },
+      "scene": {
+        "landmarks": [
+          "三仙台",
+          "伯朗大道",
+          "知本溫泉"
+        ],
+        "plants": [
+          "蝴蝶蘭"
+        ],
+        "hand": "a whole green sugar-apple (custard apple) with its distinctive knobbly skin",
+        "hand_zh": "台東釋迦",
+        "outfit_zh": "黑色長版上衣配紅白幾何織紋滾邊與腰帶、多層串珠項鍊、長串珠耳環",
+        "outfit": "a black long tunic bordered with woven geometric bands in red and white at the sleeves, hem and sash, layered beaded necklaces and long beaded earrings",
+        "hair": "a flower crown centred on white moth orchids, with small fruits woven in",
+        "hair_zh": "花冠，主花為蝴蝶蘭（台東縣花）＋果實",
+        "hair_basis": "symbols.flower",
+        "right_zone": "sea",
+        "landmarks_en": [
+          "a lone tree on a grassy ridge above the Pacific",
+          "terraced rice fields on a coastal hill",
+          "a hot spring valley between forested mountains"
+        ],
+        "plants_desc": "moth orchid: broad flat white flowers, two wide round upper petals and three narrower sepals with a small yellow-red lip, several along an arching stem"
+      },
+      "todo": [
+        "生成 base 底圖",
+        "查證 symbols.flower（決定髮花）"
+      ],
+      "places": [
+        "三仙台",
+        "伯朗大道",
+        "知本溫泉"
+      ],
+      "foods": [
+        "台東釋迦",
+        "池上米",
+        "鹿野紅烏龍"
+      ],
+      "notes": [
+        "縣花經多方來源交叉確認為蝴蝶蘭（縣樹樟樹）。舊海報底部畫紅色朱槿是海報的錯，不是資料的錯。",
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
+        "服裝含原住民族織紋，依原海報保留視覺但**不指名族群**——台東就有阿美、卑南、排灣、布農、達悟五族，指錯族群的織紋比指錯市樹嚴重。若要對外正式發佈，這幾張建議先請具代表性的族人或相關單位過目。"
+      ],
+      "traits": [
+        "包容",
+        "自由",
+        "樂觀"
+      ],
+      "quote_basis": "池上米與伯朗大道、東海岸"
+    },
+    {
+      "id": "penghu",
+      "name": "澎湖縣",
+      "en": "PENGHU",
+      "group": "i",
+      "poster": "penghu",
+      "base": null,
+      "share": {
+        "who": "澎湖，代表了",
+        "words": [
+          "熱情",
+          "團結",
+          "勇敢"
+        ],
+        "focus": null
+      },
+      "tagline": "熱情・純樸・重情・樂天・團結・勇敢・堅韌・包容",
+      "quote": "石滬彎彎，海水清清，澎湖是咱的家。",
+      "symbols": {
+        "flower": {
+          "value": "天人菊",
+          "source": "wikipedia_cited_gov",
+          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+        },
+        "tree": {
+          "value": "榕樹",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        },
+        "bird": {
+          "value": "澎湖小雲雀",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        }
+      },
+      "scene": {
+        "landmarks": [
+          "西嶼燈塔（漁翁島燈塔）",
+          "雙心石滬",
+          "澎湖漁港",
+          "玄武岩海岸"
+        ],
+        "plants": [
+          "天人菊"
+        ],
+        "hand": "a cone of bright magenta-pink prickly-pear ice cream",
+        "hand_zh": "仙人掌冰",
+        "outfit_zh": "淺藍小白花襯衫（原海報造型），不戴帽子",
+        "outfit": "a light blue open shirt printed with small white flowers and snowflake motifs over a white tee — NO hat",
+        "hair": "her neat high bun decorated with a starfish, seashells and a sea-urchin shell, and a blanket flower — yellow petals with a deep red band — tucked in beside them",
+        "hair_zh": "天人菊（澎湖縣花）＋海星、貝殼、海膽殼",
+        "hair_basis": "symbols.flower",
+        "accessory_basis": "海星、貝殼、海膽殼：對回 landmarks 的雙心石滬——石滬是潮間帶漁法，這些是潮間帶生物，不是泛用的海邊裝飾。",
+        "right_zone": "sea",
+        "landmarks_en": [
+          "Yuweng Island lighthouse, a white tower on a low headland",
+          "a heart-shaped stone weir fish trap in shallow turquoise water",
+          "a small fishing harbour of low stone quays",
+          "columnar basalt sea cliffs"
+        ],
+        "plants_desc": "blanket flower: daisy-like blooms with a ring of yellow-tipped petals over a deep red centre band, on wiry stems in sandy ground"
+      },
+      "todo": [
+        "生成 base 底圖",
+        "查證 symbols.flower（決定髮花）"
+      ],
+      "places": [
+        "雙心石滬",
+        "七美藍洞",
+        "澎湖天后宮"
+      ],
+      "foods": [
+        "小管麵線",
+        "仙人掌冰",
+        "花枝丸"
+      ],
+      "notes": [
+        "仙人掌冰為鮮明的粉紅色，視覺辨識度高，適合當手持物。",
+        "造型與背景改為**照原海報的畫面**，不是海報的文字清單：海星貝殼髮飾、淺藍小白花襯衫、背景的西嶼燈塔與漁港，都是原圖已經有的。先前我自己發明草帽與海藍亞麻，等於把既有的澎湖識別覆蓋掉。",
+        "漁翁島燈塔（西嶼燈塔）確認：澎湖縣西嶼鄉外垵村，清乾隆43年（1778）始建，台灣最古老燈塔，國定古蹟，純白鑄鐵圓塔。海報畫的白色燈塔對得起來。",
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。"
+      ],
+      "traits": [
+        "熱情",
+        "團結",
+        "勇敢"
+      ],
+      "verified": [
+        "西嶼燈塔（漁翁島燈塔）",
+        "雙心石滬",
+        "小管麵線",
+        "仙人掌冰"
+      ],
+      "quote_basis": "雙心石滬、澎湖海域"
+    },
+    {
+      "id": "kinmen",
+      "name": "金門縣",
+      "en": "KINMEN",
+      "group": "i",
+      "poster": "kinmen",
+      "base": "kinmen-base",
+      "share": {
+        "who": "金門，代表了",
+        "words": [
+          "堅毅",
+          "重情",
+          "守護"
+        ],
+        "focus": null
+      },
+      "tagline": "堅毅・重情・守護・傳承・勤儉・團結・熱情・豪爽",
+      "quote": "海風硬硬，貢糖甜甜，金門是咱的家。",
+      "symbols": {
+        "flower": {
+          "value": "四季蘭",
+          "source": "wikipedia_cited_gov",
+          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+        },
+        "tree": {
+          "value": "木棉",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        },
+        "bird": {
+          "value": null,
+          "source": "none",
+          "note": "該縣市未指定"
+        }
+      },
+      "scene": {
+        "landmarks": [
+          "莒光樓",
+          "翟山坑道",
+          "風獅爺"
+        ],
+        "plants": [
+          "四季蘭"
+        ],
+        "hand": "a piece of peanut candy in a plain unbranded paper wrapper",
+        "hand_zh": "金門貢糖",
+        "outfit_zh": "軍綠色外套、白T、金珠花髮飾＋紅流蘇",
+        "outfit": "an olive-green field jacket worn open over a white tee",
+        "hair": "a pale cymbidium orchid pinned beside her neat high bun",
+        "hair_zh": "四季蘭（金門縣花）",
+        "hair_basis": "symbols.flower",
+        "right_zone": "sea",
+        "landmarks_en": [
+          "a stone Wind Lion God statue standing in a field",
+          "a southern-Fujian village of red-brick houses with swallowtail roofs",
+          "a granite coastal fort tower"
+        ],
+        "plants_desc": "cymbidium orchid: slender pale flowers with narrow sepals and a spotted lip on an arching spike, with long strap-like leaves"
+      },
+      "todo": [
+        "生成 base 底圖",
+        "查證 symbols.flower（決定髮花）"
+      ],
+      "places": [
+        "莒光樓",
+        "翟山坑道",
+        "風獅爺"
+      ],
+      "foods": [
+        "金門貢糖",
+        "廣東粥",
+        "金門高粱酒"
+      ],
+      "notes": [
+        "手持物取貢糖不取高粱酒：酒有品牌（金門酒廠）且角色持酒不適合社群傳播。無縣鳥。",
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
+        "**背景不畫「三民主義統一中國」標語牆與國旗**——原海報有，但對外傳播不適合。"
+      ],
+      "traits": [
+        "堅毅",
+        "重情",
+        "守護"
+      ],
+      "quote_basis": "原海報直書寫「風很硬，心很暖」；金門貢糖"
+    },
+    {
+      "id": "lienchiang",
+      "name": "連江縣",
+      "en": "LIENCHIANG",
+      "group": "i",
+      "poster": "lienchiang",
+      "base": null,
+      "share": {
+        "who": "連江，代表了",
+        "words": [
+          "堅毅",
+          "團結",
+          "守望"
+        ],
+        "focus": null
+      },
+      "tagline": "堅毅・重情・守望・包容・團結・勤儉・純樸・勇敢・樂天",
+      "quote": "石屋疊疊，海路遠遠，馬祖是咱的家。",
+      "symbols": {
+        "flower": {
+          "value": "紅花石蒜",
+          "source": "wikipedia_cited_gov",
+          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+        },
+        "tree": {
+          "value": "海桐",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        },
+        "bird": {
+          "value": "黑嘴端鳳頭燕鷗",
+          "source": "wikipedia",
+          "note": "僅維基，待對官方核實"
+        }
+      },
+      "scene": {
+        "landmarks": [
+          "芹壁聚落",
+          "北海坑道",
+          "大坵島"
+        ],
+        "plants": [
+          "紅花石蒜"
+        ],
+        "hand": "a round sesame-topped flatbread with a hole in the middle",
+        "hand_zh": "繼光餅",
+        "outfit_zh": "丹寧襯衫、白T（藍色聚落印花）、白花髮飾＋藍流蘇",
+        "outfit": "a denim shirt worn open over a white tee printed with a wordless blue stone-village graphic",
+        "hair": "a red spider lily with its slender recurved petals beside her neat high bun",
+        "hair_zh": "紅花石蒜（連江縣花）",
+        "hair_basis": "symbols.flower",
+        "right_zone": "sea",
+        "landmarks_en": [
+          "a hillside village of stone houses with tiled roofs above a cove",
+          "a granite sea tunnel opening to the water",
+          "a small green island of grassland and cliffs"
+        ],
+        "plants_desc": "red spider lily: a bare stem topped by a starburst of six narrow crimson petals curled sharply backward, with very long protruding stamens, no leaves"
+      },
+      "todo": [
+        "查證 symbols.flower（決定髮花）"
+      ],
+      "places": [
+        "芹壁聚落",
+        "北海坑道",
+        "大坵島"
+      ],
+      "foods": [
+        "繼光餅",
+        "老酒麵線",
+        "馬祖淡菜"
+      ],
+      "notes": [
+        "藍眼淚為季節性現象，未列入地標。大坵島以梅花鹿聞名。",
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。"
+      ],
+      "traits": [
+        "堅毅",
+        "團結",
+        "守望"
+      ],
+      "quote_basis": "芹壁聚落石屋、離島航程"
+    }
+  ],
+  "_character": {
+    "髮花規則": "她頭上永遠有一朵花，花的種類就是該縣市的市花／縣花。",
+    "為什麼": "吉祥物的辨識靠剪影加一個不會認錯的記號，不是靠臉。原本 20 張共用同一朵通用白花，等於浪費了現成的記號。",
+    "副作用": "市花從右欄的註腳升格為角色設計的一部分，22 縣市有 18 種不同的花，鑑別度夠。",
+    "高雄": "木棉花（紅色），與原本的白花差異明顯，一眼看得出換了地方。"
+  }
+}

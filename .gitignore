@@ -1,0 +1,8 @@
+# 生圖的中間版本：每次嘗試都是 2–3MB 的 PNG，網站不會用到，
+# 留在 ~/taiwan-people-drafts/ 供比對，不進版控
+img/*.png
+img/*-v[0-9].webp
+
+# 產線暫存
+/tmp/
+*.tmp

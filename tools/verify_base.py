@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+"""量測底圖是否符合版面規格。縮圖目視不算驗證，這裡量的是會出事的三件事。
+
+    python3 tools/verify_base.py            # 檢查所有已存在的底圖
+    python3 tools/verify_base.py 苗栗縣      # 只檢查一個
+
+三個判準的由來：
+- 文字區的亮度與局部起伏：文字是深藍色加白光暈，底圖太暗或太雜就讀不到。
+  苗栗第三版的右下量到 0.48／0.050，就是模型在那裡放了一片近景暗樹林。
+- 人物橫向範圍：規格是佔寬 38%、不越過中線。苗栗第一版只有 26%（太小），
+  第四版衝到 59%（越線）。兩種都要擋。
+"""
+import json
+import pathlib
+import sys
+
+import numpy as np
+from PIL import Image
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+DATA = json.loads((ROOT / "data" / "counties.json").read_text(encoding="utf-8"))
+
+# 文字區：不是猜的，是用 Playwright 量瀏覽器裡 .split-top / .split-side 的實際
+# getBoundingClientRect，再換算回原圖座標（卡片是 object-fit:cover，左右各裁掉約 3%）。
+# 原本猜成 y 72–90%，但那裡根本沒有文字，害兩張好圖被判不合格。
+# 門檻分區：縣市名是粗體大字＋強白光暈，實測 0.54 的藍天上依然清楚，所以放寬；
+# 文字塊裡有小標籤（走一趟／吃一輪／XX，代表了），那才是會先看不見的東西。
+ZONES = [("縣市名", .58, .93, .03, .13, 0.42),
+         ("文字塊", .58, .93, .18, .49, 0.55)]
+MAX_VAR = 0.030
+
+
+def measure(path):
+    a = np.asarray(Image.open(path).convert("RGB"), float)
+    H, W, _ = a.shape
+    lum = (.2126 * a[..., 0] + .7152 * a[..., 1] + .0722 * a[..., 2]) / 255
+    out = []
+    for name, x0, x1, y0, y1, floor in ZONES:
+        r = lum[int(y0 * H):int(y1 * H), int(x0 * W):int(x1 * W)]
+        b = r[:r.shape[0] // 8 * 8, :r.shape[1] // 8 * 8].reshape(r.shape[0] // 8, 8, -1, 8)
+        out.append((name, r.mean(), float(np.median(b.std(axis=(1, 3)))), floor))
+    # 人物橫向範圍：縱向邊緣強度沿 x 的分布，取超過門檻的最右緣
+    g = np.abs(np.diff(lum, axis=1))
+    col = g.mean(axis=0)
+    idx = np.where(col > col.mean() + col.std() * .5)[0]
+    right = (idx.max() / W) if len(idx) else 0.0
+    return out, right
+
+
+def main():
+    want = sys.argv[1:] or None
+    bad = 0
+    for c in DATA["counties"]:
+        if want and c["name"] not in want:
+            continue
+        # 高雄的檔名是 kh-base 不是 kaohsiung-base，一律讀資料裡的 base 欄位
+        p = ROOT / "img" / f"{c.get('base') or c['id'] + '-base'}.webp"
+        if not p.exists():
+            continue
+        zones, right = measure(p)
+        probs = [f"{n.strip()} 亮度{l:.2f}" for n, l, v, f in zones if l < f]
+        probs += [f"{n.strip()} 起伏{v:.3f}" for n, l, v, f in zones if v > MAX_VAR]
+        if right > .58:
+            probs.append(f"人物越過中線太多（右緣 {right:.0%}）")
+        if right < .38:
+            probs.append(f"人物太小（右緣 {right:.0%}）")
+        mark = "✔" if not probs else "✘"
+        if probs:
+            bad += 1
+        detail = "  ".join(f"{n}{l:.2f}/{v:.3f}" for n, l, v, f in zones)
+        print(f"{mark} {c['name']:<4}{detail}  右緣 {right:.0%}"
+              + ("   ← " + "、".join(probs) if probs else ""))
+    print(f"\n需要重生 {bad} 張" if bad else "\n全部通過")
+    return 1 if bad else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
