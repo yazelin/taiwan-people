@@ -1,0 +1,29 @@
+Generation mode: built-in imagegen
+Use case: stylized-concept followed by targeted precise-object corrections
+
+Base prompt source:
+python3 tools/build_prompt.py 苗栗縣
+
+Reference roles:
+- img/miaoli.webp: original Miaoli poster, style, palette and local-outfit reference
+- data/character/ref-half.png: identity, build, welcoming pose and tote reference
+- data/character/face.png: face, warm-brown eyes and hair-colour reference
+
+Final accepted corrections:
+1. Preserve the approved character, outfit, pose and painterly style. Remove Nanzhuang
+   Old Street and Sanyi workshop scenery because they cannot be seen from the Da'an
+   River bed below Huoyanshan. Use one continuous riverbed viewpoint with Huoyanshan
+   as the only hero landmark.
+2. Render the county flower as botanically recognisable sweet osmanthus: very small
+   cream-white blossoms with exactly four rounded petals and tiny warm orange centres,
+   clustered in leaf axils, both in the hair sprig and the lower-left foreground shrub.
+3. Keep x=60-100% pale, quiet and low-detail: graduated sky, faint receding ridges and
+   a soft sunlit suggestion of the distant gravel riverbed fading into haze. No dark
+   rocks, hard edges, nearby vegetation, buildings, objects or text in that zone.
+
+Global constraints retained from the generated base prompt:
+- One continuous 4:3 scene; no collage, panels, border, text, letters or logos.
+- Brown eyes; compact high bun; blue floral headscarf; fixed gold tassel hairpin.
+- Navy Hakka tunic, silver earrings, white strap, wordless tote and strawberry punnet.
+- Open LEFT palm has exactly four fingers and one thumb; RIGHT hand holds strawberries.
+- No sea, bubble tea, brands, electronics, hats, glasses or political symbols.

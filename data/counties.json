@@ -780,7 +780,7 @@
       "en": "MIAOLI",
       "group": "c",
       "poster": "miaoli",
-      "base": null,
+      "base": "miaoli-base",
       "share": {
         "who": "苗栗，代表了",
         "words": [
@@ -846,7 +846,6 @@
         "viewpoint_sees": "from here the bare orange-red eroded ridges rise straight up across the river with pale hills behind"
       },
       "todo": [
-        "生成 base 底圖",
         "查證 symbols.flower（決定髮花）"
       ],
       "places": [
@@ -933,7 +932,7 @@
         "hair_zh": "山櫻花（台中市花）",
         "hair_basis": "symbols.flower",
         "accessory_basis": "彩色髮夾已刪：純裝飾，對不回任何欄位。",
-        "right_zone": "sea",
+        "right_zone": "sky",
         "landmarks_en": [
           "Gaomei Wetland's boardwalk and wind turbines over shining tidal flats",
           "the National Taichung Theater, a curved white concrete building of cave-like openings",
@@ -947,10 +946,15 @@
           "Gaomei Wetland's boardwalk and wind turbines over shining tidal flats",
           "Miyahara, an ornate red-brick historic shopfront with arched windows"
         ],
-        "light": "west",
+        "viewpoint_support_en": [
+          "the broad, flat paved entrance plaza directly in front of the theater",
+          "the green lawn and street trees of Summer Green Park across Huilai Road",
+          "layered modern office and residential towers of Taichung's Seventh Redevelopment Zone around the theater"
+        ],
+        "light": "inland",
         "accessories": "two small round enamel badges with a wordless heart motif on her jacket, a backpack strap over one shoulder, and small hoop earrings",
         "viewpoint": "standing in the plaza in front of the National Taichung Theater",
-        "viewpoint_sees": "from here the theatre's curved white shell fills the mid-ground with the city's towers around and behind it"
+        "viewpoint_sees": "from here the theatre's curved white shell fills the mid-ground, with its broad paved entrance plaza, Summer Green Park across Huilai Road, and the modern towers of the Seventh Redevelopment Zone around it. There is no sea here; Gaomei Wetland and Miyahara are far away and must not appear"
       },
       "todo": [
         "生成 base 底圖",
