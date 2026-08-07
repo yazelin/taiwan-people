@@ -1,0 +1,22 @@
+Built-in image generation, three passes.
+
+PASS 1 — BASE GENERATION
+
+The county prompt was generated with:
+
+    python3 tools/build_prompt.py 基隆市
+
+Reference roles:
+- img/keelung.webp: style, palette, painterly shading, and the old poster's Keelung styling only; no poster layout or text.
+- data/character/ref-half.png: A-luí's face, warm brown eyes, body build, signature gesture, and illustration finish only; no outfit, drink, or windblown hairstyle.
+- data/character/face.png: identity turnaround for face, warm brown eyes, dark brown-black hair colour, and shoulder-length hair only; no clothing, white flower, ponytail, or windblown hairstyle.
+
+The generated county prompt was used verbatim, with the explicit clarification that all support details must be geographically plausible from the single Chaojing Park coastal-path viewpoint, and that no object may enter the rightmost 40 percent.
+
+PASS 2 — BACKGROUND RECOMPOSITION
+
+Preserve the character exactly. Change only the background composition and lighting distribution so the right-side HTML text area is usable. Move and slightly reduce Keelung Islet so its full silhouette occupies approximately x=38–56%. Confine all rocks, honeycomb sandstone, tide pools, railings, rooflines, vegetation, visitors, boats, and land details to x=0–58%. Starting at x=60%, show only calm open water and softly graded hazy sky. The top 22% of the right half is uninterrupted sky. Keep the middle of the right 40% smooth and low-contrast. Put the sun off-frame left and keep glare outside the protected text area. Preserve the four depth planes, painterly anime finish, warm late-afternoon light, and dark out-of-focus pink crape myrtle foreground. No text, labels, panels, borders, logos, flags, or new character accessories.
+
+PASS 3 — BOTANICAL FLOWER CORRECTION
+
+Change only the pink flowers. Replace the smooth generic decorative flowers on the sailor-cap band and lower-left foreground with botanically recognisable pink crape myrtle (Lagerstroemia indica). Each clearly visible blossom has exactly six separate thin, deeply crinkled, ruffled petals, each attached by a long narrow claw-like base around fine yellow stamens. Arrange them in a branching panicle with buds and smooth oval leaves. The cap has one small sprig tucked flat into the band; the foreground remains dark and softly out of focus. They must not resemble cherry, plum, cosmos, daisies, hydrangeas, or smooth five-/eight-petal flowers. Preserve every other design decision, especially identity, warm brown eyes, hands, grilled chikuwa, outfit, accessories, background geography, right-side negative space, light, and framing. No text, letters, logos, watermark, labels, panels, flags, or new objects.

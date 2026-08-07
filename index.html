@@ -641,7 +641,12 @@ section:has(>.hero){overflow-x:clip}
       </a>
     </div>
     <div class="figure">
-      <img src="img/hero.webp" width="685" height="1461" alt="台灣人代表角色：手持台灣帆布袋與珍珠奶茶、伸手迎向前方的女孩，背景是山海與國旗。">
+      <!-- 一般螢幕拿 900px（318KB），高解析螢幕才拿 1800px（776KB）。
+       實測：1440 視窗 DPR1 需要 781px、DPR2 需要 1562px。
+       4K 母檔（2757×5861）在 ~/taiwan-people-drafts/，供印刷或周邊用，不進 repo。 -->
+      <img src="img/hero.webp" srcset="img/hero.webp 1x, img/hero@2x.webp 2x"
+           width="900" height="1913"
+           alt="台灣人代表角色阿蕊：手持台灣帆布袋與珍珠奶茶、伸手迎向前方的女孩。">
     </div>
   </div>
   <div class="waterline" aria-hidden="true"><i></i><canvas class="foam" id="foam"></canvas><canvas class="viz" id="viz"></canvas></div>

@@ -21,9 +21,13 @@
     "scene.landmarks": "背景地標。要**看原海報畫的是什麼**，不能只讀海報的文字清單——澎湖的文字清單沒有燈塔，但畫面上有，而且那是最強的視覺地標。",
     "scene.accessory_basis": "非花配件的設計依據。**配件必須對得回 symbols 或 scene.landmarks 的某一筆，對不回就拿掉**——只寫個名字加上去的裝飾不算設計。髮型本身（馬尾／丸子頭）不是配件，不需要依據。",
     "scene.right_zone": "右側 40% 留白畫什麼：sea＝海，sky＝開闊天空與遠山薄霧。依該縣市三個地標的**所在地**決定，不是依有沒有海岸線——台北市與南投縣是內陸，畫海是事實錯誤。",
-    "scene.landmarks_en": "地標的視覺描述，與 landmarks 一一對應。模型不認得中文地名，只丟名字它會自己編一個——苗栗第一版畫成海岸懸崖加石獅子就是這樣來的。這裡寫的是外觀不是史實，改地標要同步改這欄。",
+    "scene.landmarks_en": "地標的視覺描述，**與 landmarks 逐項對應**。\n曾經憑對該縣市的印象自由發揮而沒有逐項對照，結果 22 個縣市裡有 9 個對不上——卡片寫「鹿港老街」圖上卻畫大佛。中文是查證過的，英文以中文為準。",
     "quote_basis": "每句 quote 的兩個名詞各自對應到哪一筆查證過的地標或物產。",
-    "scene.flower_shown": "實際畫在頭上的花。多數等於 symbols.flower，但台南是鳳凰花（市樹）——市花蝴蝶蘭同時是雲林、台南、台東三個縣市的，認不出台南。網頁的花名清單由這個欄位產生，不從 hair_zh 那種散文欄位挖。"
+    "scene.flower_shown": "實際畫在頭上的花。多數等於 symbols.flower，但台南是鳳凰花（市樹）——市花蝴蝶蘭同時是雲林、台南、台東三個縣市的，認不出台南。網頁的花名清單由這個欄位產生，不從 hair_zh 那種散文欄位挖。",
+    "scene.hero_landmark": "那張圖的視覺主角，只有它畫清楚，其餘退到霧裡。先前三個地標等權重並列，等於把資料表畫成圖，眼睛不知道看哪。",
+    "scene.light": "光線配方，依地理決定：west＝西部面海的夕照、east＝東部面海的晨光、inland＝內陸午後斜光掠過山稜。先前沒指定光源，每張的光向都不一樣，物件像各自貼上去的。",
+    "scene.accessories": "人物身上的次要配件，讀自原海報的人物區。\n原則跟背景一樣：主識別（髮花＋金珠流蘇髮簪）清楚，配件豐富但視覺權重低。\n先前 prompt 只寫服裝、帆布袋、手持物、髮花，徽章與吊牌全部沒寫，模型就自己簡化了。\n**有字的一律改成無字版本**——底圖不能有文字，所以「宜蘭尚青」木牌變成無字木牌、「I♥台中」徽章變成無字愛心徽章。",
+    "scene.viewpoint": "她站在哪個具體位置。**畫面裡只能出現從那裡真的看得到的東西。**\n少了這條，模型會把不同地方的地標拼在同一格——台北那張就是陽明山（北邊山上）、北投（山腳）、101（市中心盆地）三者同框，地理上沒有任何位置能同時看到。\n結果 101 從雲海裡獨自聳立、旁邊接一條山城老街，變成地理拼貼。"
   },
   "counties": [
     {
@@ -32,7 +36,7 @@
       "en": "KEELUNG",
       "group": "n",
       "poster": "keelung",
-      "base": "keelung-base",
+      "base": null,
       "share": {
         "who": "基隆，代表了",
         "words": [
@@ -81,12 +85,22 @@
         "accessory_basis": "水手帽：基隆港是台灣主要國際商港與郵輪母港。**此依據尚未寫入 verified，待查證後補 landmarks**。錨形耳環已刪（與水手帽重複）。",
         "right_zone": "sea",
         "landmarks_en": [
-          "Keelung Islet, a lone green volcanic island offshore",
-          "Heping Island's eroded sandstone sea platform",
-          "a rocky coastal park with tide pools"
+          "Keelung Islet, a lone green volcanic island rising offshore",
+          "Heping Island's eroded honeycomb sandstone sea platform",
+          "a rocky coastal park of tide pools below green cliffs"
         ],
         "plants_desc": "crape myrtle blossoms: clusters of six crinkled crepe-paper petals in bright pink, each on a long claw-like stalk, on a smooth-barked shrub",
-        "flower_shown": "紫薇"
+        "flower_shown": "紫薇",
+        "hero_landmark": "基隆嶼",
+        "hero_landmark_en": "Keelung Islet, a lone green volcanic island rising offshore",
+        "others_en": [
+          "Heping Island's eroded honeycomb sandstone sea platform",
+          "a rocky coastal park of tide pools below green cliffs"
+        ],
+        "light": "west",
+        "accessories": "a round enamel badge with a wordless anchor motif pinned to her jacket, small anchor-shaped earrings, and a cord lanyard with a plain wooden tag",
+        "viewpoint": "standing on the rocky coastal path at Chaojing Park on the north shore",
+        "viewpoint_sees": "from here the volcanic cone of Keelung Islet sits out on the water, with the eroded sandstone shelf of Heping Island along the shore to the left"
       },
       "todo": [
         "生成 base 底圖",
@@ -159,9 +173,9 @@
       },
       "scene": {
         "landmarks": [
+          "台北101",
           "陽明山",
-          "北投溫泉",
-          "象山"
+          "北投溫泉"
         ],
         "plants": [
           "杜鵑花"
@@ -173,24 +187,39 @@
         "hair_zh": "杜鵑花（台北市花）、頭髮放下",
         "hair": "a pink azalea pinned in her hair, which is worn DOWN and loose over her shoulders, not gathered into a bun",
         "hair_basis": "symbols.flower",
-        "accessory_basis": "101 耳環已刪：台北的 landmarks 是陽明山、北投溫泉、象山，沒有 101，配件對不回任何欄位。",
+        "accessory_basis": "城市剪影徽章：對回 landmarks 的台北101。101 造型耳環已刪；小圓圈耳環是阿蕊固定造型。無依據的吊牌已刪。",
         "right_zone": "sky",
         "landmarks_en": [
-          "the grassy volcanic ridges of Yangmingshan with steaming fumaroles",
-          "old Japanese-era hot spring bathhouses among trees",
-          "a steep forested hill trail of stone steps overlooking the city"
+          "Taipei 101, the tall segmented tower of green glass with stacked pagoda-like sections",
+          "the grassy volcanic ridges of Yangmingshan with steaming sulphur fumaroles",
+          "old Japanese-era hot spring bathhouses of dark timber among trees at Beitou"
         ],
         "plants_desc": "azalea blossoms: funnel-shaped flowers with five spreading lobes in pink, the upper lobe freckled with darker spots, in tight clusters on a low evergreen shrub",
-        "flower_shown": "杜鵑花"
+        "flower_shown": "杜鵑花",
+        "hero_landmark": "台北101",
+        "hero_landmark_en": "Taipei 101, the tall segmented tower of green glass with stacked pagoda-like sections",
+        "others_en": [
+          "the grassy volcanic ridges of Yangmingshan with steaming sulphur fumaroles",
+          "old Japanese-era hot spring bathhouses of dark timber among trees at Beitou"
+        ],
+        "viewpoint_support_en": [
+          "the dense Xinyi city grid and layered office and residential rooflines surrounding Taipei 101's base",
+          "street trees and the wooded edge of the Elephant Mountain trail in the near left foreground",
+          "the low blue-green Yangmingshan ridgeline far across the Taipei Basin, without visible fumaroles or bathhouses"
+        ],
+        "light": "inland",
+        "accessories": "two small round enamel badges with wordless city-skyline motifs on her jacket, and small hoop earrings",
+        "viewpoint": "standing on the Elephant Mountain trail on the city's south-east edge — the classic Taipei viewpoint",
+        "viewpoint_sees": "from here Taipei 101 rises straight out of the dense city basin below, with the whole grid of buildings around its base, and the Yangmingshan ridges lying low along the horizon behind it. Beitou is not visible from here and must not appear"
       },
       "todo": [
         "生成 base 底圖",
         "查證 symbols.flower（決定髮花）"
       ],
       "places": [
+        "台北101",
         "陽明山",
-        "北投溫泉",
-        "象山"
+        "北投溫泉"
       ],
       "foods": [
         "士林夜市",
@@ -202,7 +231,8 @@
         "**發現疑點**：海報列的「文山包種茶」主產地在新北坪林、石碇，台北市貓空產的是鐵觀音。新北那張海報也列了文山包種茶，兩張都可疑。建議台北改用貓空鐵觀音。",
         "**文山包種茶已換成貓空鐵觀音**。查證結果：文山包種茶產區橫跨新北坪林、石碇、深坑等與台北南港、木柵，坪林占全區約67%為最大產區，屬新北；台北市貓空一帶則是鐵觀音的唯一生產茶區。包種茶雖發源於台北南港，但用貓空鐵觀音對台北的專屬性更強。",
         "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
-        "髮型是**放下**不是盤髮——原海報就是這樣。先前一律改成盤髮是錯的，那是看縮圖下的通則判斷，把原本明確不同的四個縣市（基隆、台北、花蓮、台東）也蓋掉了。"
+        "髮型是**放下**不是盤髮——原海報就是這樣。先前一律改成盤髮是錯的，那是看縮圖下的通則判斷，把原本明確不同的四個縣市（基隆、台北、花蓮、台東）也蓋掉了。",
+        "地標原本是陽明山、北投溫泉、象山，全是自然景觀，漏掉最有辨識度的台北101——成因是我只讀海報的文字清單（北投溫泉・貓空茶園・象山夜景），沒看海報**畫面上**畫著 101 與捷運。這是「只讀條列不看畫」的第六次。"
       ],
       "traits": [
         "多元",
@@ -272,12 +302,26 @@
         "accessory_basis": "金色髮圈已刪：純裝飾，對不回任何欄位。",
         "right_zone": "sea",
         "landmarks_en": [
-          "Yehliu's mushroom-shaped eroded rock formations on a cape",
-          "a hillside harbour town of old brick streets by a river mouth",
-          "a forested mountain gorge with a tall waterfall"
+          "Yehliu's mushroom-shaped eroded rock formations on a low cape",
+          "Tamsui's riverside old street and ferry wharf at the river mouth",
+          "Wulai's forested gorge with a tall waterfall and a red suspension bridge"
         ],
         "plants_desc": "camellia blossoms: rounded pale pink flowers with many overlapping petals in a spiral and a boss of yellow stamens, among thick glossy dark green leaves",
-        "flower_shown": "茶花"
+        "flower_shown": "茶花",
+        "hero_landmark": "野柳",
+        "hero_landmark_en": "Yehliu's mushroom-shaped eroded rock formations on a low cape",
+        "others_en": [
+          "Tamsui's riverside old street and ferry wharf at the river mouth",
+          "Wulai's forested gorge with a tall waterfall and a red suspension bridge"
+        ],
+        "viewpoint_support_en": [
+          "the winding visitor walkway threading through Yehliu's honeycomb sandstone",
+          "two or three small distant visitors among low coastal rock formations"
+        ],
+        "light": "west",
+        "accessories": "a cord lanyard with a plain wooden tag hanging at her chest, a beaded bracelet, and small drop earrings",
+        "viewpoint": "standing on the walkway out along Yehliu Cape",
+        "viewpoint_sees": "from here the mushroom rocks and honeycomb sandstone spread across the cape with the open sea beyond; Tamsui and Wulai are far away and must not appear"
       },
       "todo": [
         "生成 base 底圖",
@@ -318,7 +362,7 @@
       "en": "TAOYUAN",
       "group": "n",
       "poster": "taoyuan",
-      "base": "taoyuan-base",
+      "base": null,
       "share": {
         "who": "桃園，代表了",
         "words": [
@@ -365,12 +409,22 @@
         "hair_basis": "symbols.flower",
         "right_zone": "sea",
         "landmarks_en": [
-          "a chain of irrigation ponds reflecting the sky across farmland",
-          "a red-brick Hakka village with swallowtail roof ridges",
-          "a coastal windmill row above sand dunes"
+          "Lalashan's ancient cypress giants in mountain mist",
+          "Shimen Reservoir, a broad green lake held by a curved concrete dam between hills",
+          "Daxi Old Street's row of ornate baroque-style shopfront facades"
         ],
         "plants_desc": "peach blossoms: five rounded pink petals with a ring of fine stamens, borne close along the woody branch",
-        "flower_shown": "桃花"
+        "flower_shown": "桃花",
+        "hero_landmark": "石門水庫",
+        "hero_landmark_en": "Shimen Reservoir, a broad green lake held by a curved concrete dam between hills",
+        "others_en": [
+          "Lalashan's ancient cypress giants in mountain mist",
+          "Daxi Old Street's row of ornate baroque-style shopfront facades"
+        ],
+        "light": "west",
+        "accessories": "an ID-card lanyard with a blank card at her chest, a small round enamel badge, and a beaded bracelet",
+        "viewpoint": "standing on the crest of the Shimen Reservoir dam",
+        "viewpoint_sees": "from here the green reservoir lake stretches back between forested hills, with the ridges of Lalashan far behind in haze"
       },
       "todo": [
         "生成 base 底圖",
@@ -412,7 +466,7 @@
       "en": "HSINCHU CITY",
       "group": "n",
       "poster": "hsinchu-city",
-      "base": "hsinchu-city-base",
+      "base": null,
       "share": {
         "who": "新竹，代表了",
         "words": [
@@ -460,12 +514,22 @@
         "accessory_basis": "金髮夾已刪：純裝飾，對不回任何欄位。",
         "right_zone": "sea",
         "landmarks_en": [
-          "a low forested hill park of walking paths",
-          "a fishing harbour with a long arched footbridge",
-          "an old temple with elaborate swallowtail eaves and stone lions"
+          "Shibajianshan, a low forested hill park of shaded walking paths",
+          "Nanliao fishing harbour with its long white arched footbridge",
+          "Hsinchu City God Temple, an old temple with elaborate swallowtail eaves and stone lions"
         ],
         "plants_desc": "azalea blossoms: funnel-shaped flowers with five spreading lobes in pink, the upper lobe freckled with darker spots, in tight clusters on a low evergreen shrub",
-        "flower_shown": "杜鵑花"
+        "flower_shown": "杜鵑花",
+        "hero_landmark": "新竹都城隍廟",
+        "hero_landmark_en": "Hsinchu City God Temple, an old temple with elaborate swallowtail eaves and stone lions",
+        "others_en": [
+          "Shibajianshan, a low forested hill park of shaded walking paths",
+          "Nanliao fishing harbour with its long white arched footbridge"
+        ],
+        "light": "west",
+        "accessories": "a round enamel badge with a wordless circuit-board motif, a cord lanyard with a plain tag, and small stud earrings",
+        "viewpoint": "standing in the plaza in front of the Hsinchu City God Temple",
+        "viewpoint_sees": "from here the temple's swallowtail eaves and stone lions fill the mid-ground with food stalls and old shophouses around it"
       },
       "todo": [
         "生成 base 底圖",
@@ -507,7 +571,7 @@
       "en": "HSINCHU COUNTY",
       "group": "n",
       "poster": "hsinchu-city",
-      "base": "hsinchu-county-base",
+      "base": null,
       "share": {
         "who": "新竹，代表了",
         "words": [
@@ -555,12 +619,22 @@
         "hair_basis": "symbols.flower",
         "right_zone": "sky",
         "landmarks_en": [
-          "terraced tea and rice fields on rolling hills",
-          "a Hakka village of red-brick houses with swallowtail roofs",
-          "a bamboo-forested mountain ridge in mist"
+          "Neiwan Old Street beside a railway bridge over a stony river",
+          "Beipu Old Street's red-brick Hakka shophouses and tea rooms",
+          "Smangus, a remote cypress-forested mountain village in cloud"
         ],
         "plants_desc": "camellia blossoms: rounded pale pink flowers with many overlapping petals in a spiral and a boss of yellow stamens, among thick glossy dark green leaves",
-        "flower_shown": "茶花"
+        "flower_shown": "茶花",
+        "hero_landmark": "北埔老街",
+        "hero_landmark_en": "Beipu Old Street's red-brick Hakka shophouses and tea rooms",
+        "others_en": [
+          "Neiwan Old Street beside a railway bridge over a stony river",
+          "Smangus, a remote cypress-forested mountain village in cloud"
+        ],
+        "light": "inland",
+        "accessories": "a woven Hakka-patterned cord bracelet, small jade drop earrings, and a plain cloth pouch at her hip",
+        "viewpoint": "standing in the lane of Beipu Old Street",
+        "viewpoint_sees": "from here red-brick Hakka shophouses and tea rooms line both sides with tiled roofs layered behind and hills beyond"
       },
       "todo": [
         "生成 base 底圖",
@@ -602,7 +676,7 @@
       "en": "YILAN",
       "group": "n",
       "poster": "yilan",
-      "base": "yilan-base",
+      "base": null,
       "share": {
         "who": "宜蘭，代表了",
         "words": [
@@ -649,12 +723,22 @@
         "hair_basis": "symbols.flower",
         "right_zone": "sea",
         "landmarks_en": [
-          "a wide braided river valley between green mountains",
-          "flooded rice paddies mirroring the sky",
-          "a lagoon of channels and reed beds"
+          "Guishan Island, a turtle-shaped volcanic island floating offshore",
+          "Taipingshan's cypress forest and mountain railway in drifting cloud",
+          "the Dongshan River's wide green channel with its arched bridges"
         ],
         "plants_desc": "cymbidium orchid: slender greenish-cream flowers with three narrow sepals, two petals and a spotted lip, several on an arching spike, with long strap-like leaves",
-        "flower_shown": "國蘭"
+        "flower_shown": "國蘭",
+        "hero_landmark": "龜山島",
+        "hero_landmark_en": "Guishan Island, a turtle-shaped volcanic island floating offshore",
+        "others_en": [
+          "Taipingshan's cypress forest and mountain railway in drifting cloud",
+          "the Dongshan River's wide green channel with its arched bridges"
+        ],
+        "light": "east",
+        "accessories": "a green jade pendant on a cord, a beaded wrist strand, and a small woven bamboo basket hanging from her arm",
+        "viewpoint": "standing on the shore of the Toucheng coast facing the Pacific",
+        "viewpoint_sees": "from here the turtle-shaped Guishan Island floats offshore, with fishing boats and the dark ridge of the Central Range behind to the west"
       },
       "todo": [
         "生成 base 底圖",
@@ -696,7 +780,7 @@
       "en": "MIAOLI",
       "group": "c",
       "poster": "miaoli",
-      "base": "miaoli-base",
+      "base": null,
       "share": {
         "who": "苗栗，代表了",
         "words": [
@@ -744,12 +828,22 @@
         "accessory_basis": "藍花頭巾：搭客家藍衫的傳統頭巾，苗栗是客家人口占多數的縣。**此依據尚未寫入 verified，待查證後補**。",
         "right_zone": "sky",
         "landmarks_en": [
-          "an old mountain street of wooden shopfronts under red lanterns",
-          "a woodcarving village workshop street with carved timber displays",
+          "Nanzhuang Old Street of wooden shopfronts under red lanterns",
+          "Sanyi's woodcarving workshops with carved timber displays along the street",
           "Huoyanshan's bare orange-red eroded badland ridges"
         ],
         "plants_desc": "osmanthus: sprays of very small four-petalled cream-white flowers in dense clusters tucked in the leaf axils of a glossy-leaved shrub",
-        "flower_shown": "桂花"
+        "flower_shown": "桂花",
+        "hero_landmark": "火炎山",
+        "hero_landmark_en": "Huoyanshan's bare orange-red eroded badland ridges",
+        "others_en": [
+          "Nanzhuang Old Street of wooden shopfronts under red lanterns",
+          "Sanyi's woodcarving workshops with carved timber displays along the street"
+        ],
+        "light": "inland",
+        "accessories": "long dangling silver earrings, a white cross-body cloth strap, and cloth-knot buttons at her collar",
+        "viewpoint": "standing on the dry bed of the Da'an River below Huoyanshan",
+        "viewpoint_sees": "from here the bare orange-red eroded ridges rise straight up across the river with pale hills behind"
       },
       "todo": [
         "生成 base 底圖",
@@ -792,7 +886,7 @@
       "en": "TAICHUNG",
       "group": "c",
       "poster": "taichung",
-      "base": "taichung-base",
+      "base": null,
       "share": {
         "who": "台中，代表了",
         "words": [
@@ -841,12 +935,22 @@
         "accessory_basis": "彩色髮夾已刪：純裝飾，對不回任何欄位。",
         "right_zone": "sea",
         "landmarks_en": [
-          "a coastal wetland of boardwalks and windmills at low tide",
-          "a modern curved-concrete opera house",
-          "an ornate red-brick historic shopfront"
+          "Gaomei Wetland's boardwalk and wind turbines over shining tidal flats",
+          "the National Taichung Theater, a curved white concrete building of cave-like openings",
+          "Miyahara, an ornate red-brick historic shopfront with arched windows"
         ],
         "plants_desc": "Taiwan cherry blossoms: deep rose-pink bell-shaped flowers hanging downward in small clusters on a dark bare branch",
-        "flower_shown": "山櫻花"
+        "flower_shown": "山櫻花",
+        "hero_landmark": "台中國家歌劇院",
+        "hero_landmark_en": "the National Taichung Theater, a curved white concrete building of cave-like openings",
+        "others_en": [
+          "Gaomei Wetland's boardwalk and wind turbines over shining tidal flats",
+          "Miyahara, an ornate red-brick historic shopfront with arched windows"
+        ],
+        "light": "west",
+        "accessories": "two small round enamel badges with a wordless heart motif on her jacket, a backpack strap over one shoulder, and small hoop earrings",
+        "viewpoint": "standing in the plaza in front of the National Taichung Theater",
+        "viewpoint_sees": "from here the theatre's curved white shell fills the mid-ground with the city's towers around and behind it"
       },
       "todo": [
         "生成 base 底圖",
@@ -888,7 +992,7 @@
       "en": "CHANGHUA",
       "group": "c",
       "poster": "changhua",
-      "base": "changhua-base",
+      "base": null,
       "share": {
         "who": "彰化，代表了",
         "words": [
@@ -936,12 +1040,22 @@
         "hair_basis": "symbols.flower",
         "right_zone": "sea",
         "landmarks_en": [
-          "a large stone seated Buddha statue on a wooded hill",
-          "a long row of coastal wind turbines above oyster flats",
-          "an old temple with layered swallowtail roofs"
+          "Lukang Old Street, a narrow lane of red-brick shophouses and temple eaves",
+          "the great stone seated Buddha of Bagua Mountain on a wooded hill",
+          "the fan-shaped roundhouse at Changhua with locomotives on radiating tracks"
         ],
         "plants_desc": "chrysanthemums: rounded purple blooms of many narrow ray petals layered around a small centre",
-        "flower_shown": "菊花"
+        "flower_shown": "菊花",
+        "hero_landmark": "鹿港老街",
+        "hero_landmark_en": "Lukang Old Street, a narrow lane of red-brick shophouses and temple eaves",
+        "others_en": [
+          "the great stone seated Buddha of Bagua Mountain on a wooded hill",
+          "the fan-shaped roundhouse at Changhua with locomotives on radiating tracks"
+        ],
+        "light": "west",
+        "accessories": "a beaded bracelet, small purple drop earrings, and a plain cloth pouch on her tote strap",
+        "viewpoint": "standing in a lane of Lukang Old Street",
+        "viewpoint_sees": "from here red-brick shophouses and temple eaves layer one behind another down the narrow lane"
       },
       "todo": [
         "查證 symbols.flower（決定髮花）"
@@ -982,7 +1096,7 @@
       "en": "NANTOU",
       "group": "c",
       "poster": "nantou",
-      "base": "nantou-base",
+      "base": null,
       "share": {
         "who": "南投，代表了",
         "words": [
@@ -1031,11 +1145,21 @@
         "right_zone": "sky",
         "landmarks_en": [
           "Sun Moon Lake, a broad mountain lake ringed by forested peaks",
-          "high green pastureland with sheep on a ridge",
-          "a bare alpine mountain road above the treeline"
+          "Qingjing Farm's high green pastureland with sheep on the ridges",
+          "Hehuanshan's bare alpine road above the treeline"
         ],
         "plants_desc": "plum blossoms: five separate rounded white petals with a spray of long stamens, borne directly on a dark gnarled leafless branch",
-        "flower_shown": "梅花"
+        "flower_shown": "梅花",
+        "hero_landmark": "日月潭",
+        "hero_landmark_en": "Sun Moon Lake, a broad mountain lake ringed by forested peaks",
+        "others_en": [
+          "Qingjing Farm's high green pastureland with sheep on the ridges",
+          "Hehuanshan's bare alpine road above the treeline"
+        ],
+        "light": "inland",
+        "accessories": "a red-and-black woven cross-body strap, long red-tasselled drop earrings, and a plain wooden tag on a cord",
+        "viewpoint": "standing at the lakeside pier of Sun Moon Lake",
+        "viewpoint_sees": "from here the lake opens out with forested peaks ringing the far shore and a small boat on the water"
       },
       "todo": [
         "查證 symbols.flower（決定髮花）"
@@ -1074,7 +1198,7 @@
       "en": "YUNLIN",
       "group": "c",
       "poster": "yunlin",
-      "base": "yunlin-base",
+      "base": null,
       "share": {
         "who": "雲林，代表了",
         "words": [
@@ -1121,12 +1245,22 @@
         "hair_basis": "symbols.flower",
         "right_zone": "sea",
         "landmarks_en": [
-          "a vast flat patchwork of farmland to the horizon",
-          "an ornate gilded temple with dragon columns",
-          "a coastal oyster farm of bamboo racks at low tide"
+          "Beigang Chaotian Temple, an ornate gilded temple with dragon columns",
+          "the Xiluo Bridge, a long red steel truss bridge across a wide river",
+          "Janfusun's tall ferris wheel and rides against the hills"
         ],
         "plants_desc": "moth orchid: broad flat white flowers, two wide round upper petals and three narrower sepals with a small yellow-red lip, several along an arching stem",
-        "flower_shown": "蝴蝶蘭"
+        "flower_shown": "蝴蝶蘭",
+        "hero_landmark": "西螺大橋",
+        "hero_landmark_en": "the Xiluo Bridge, a long red steel truss bridge across a wide river",
+        "others_en": [
+          "Beigang Chaotian Temple, an ornate gilded temple with dragon columns",
+          "Janfusun's tall ferris wheel and rides against the hills"
+        ],
+        "light": "west",
+        "accessories": "a woven straw cord bracelet, small gold hoop earrings, and a plain cloth pouch at her hip",
+        "viewpoint": "standing on the bank of the Zhuoshui River beside the Xiluo Bridge",
+        "viewpoint_sees": "from here the long red steel truss bridge crosses the wide braided riverbed with farmland stretching flat behind"
       },
       "todo": [
         "查證 symbols.flower（決定髮花）"
@@ -1168,7 +1302,7 @@
       "en": "CHIAYI CITY",
       "group": "s",
       "poster": "chiayi-county",
-      "base": "chiayi-city-base",
+      "base": null,
       "share": {
         "who": "嘉義，代表了",
         "words": [
@@ -1217,12 +1351,22 @@
         "accessory_basis": "草帽已刪：草帽的依據是農作日曬，那是嘉義縣不是嘉義市。兩者共用一張海報，正好靠這點區分。",
         "right_zone": "sky",
         "landmarks_en": [
-          "a wooden Japanese-era railway station",
-          "a forestry village of dark timber houses",
-          "a narrow-gauge red diesel railcar on mountain tracks"
+          "Hinoki Village, a cluster of dark Japanese-era cypress-timber houses",
+          "Wenhua Road night market's lantern-lit food stalls",
+          "the Sun-Shooting Tower, a tall dark stepped tower above the trees"
         ],
         "plants_desc": "Hong Kong orchid tree blossoms: large magenta-purple flowers of five broad petals, the uppermost streaked deeper, with long curving stamens",
-        "flower_shown": "豔紫荊"
+        "flower_shown": "豔紫荊",
+        "hero_landmark": "檜意森活村",
+        "hero_landmark_en": "Hinoki Village, a cluster of dark Japanese-era cypress-timber houses",
+        "others_en": [
+          "Wenhua Road night market's lantern-lit food stalls",
+          "the Sun-Shooting Tower, a tall dark stepped tower above the trees"
+        ],
+        "light": "inland",
+        "accessories": "a round enamel badge with a wordless timber-house motif, a beaded bracelet, and small stud earrings",
+        "viewpoint": "standing among the timber houses of Hinoki Village",
+        "viewpoint_sees": "from here the dark Japanese-era cypress houses and their gardens layer back, with the stepped Sun-Shooting Tower rising above the trees behind"
       },
       "todo": [
         "生成 base 底圖",
@@ -1263,7 +1407,7 @@
       "en": "CHIAYI COUNTY",
       "group": "s",
       "poster": "chiayi-county",
-      "base": "chiayi-county-base",
+      "base": null,
       "share": {
         "who": "嘉義，代表了",
         "words": [
@@ -1311,12 +1455,22 @@
         "accessory_basis": "草帽：嘉義縣是農業縣（landmarks 含阿里山），草帽是農作日常。與嘉義市的區分點。",
         "right_zone": "sky",
         "landmarks_en": [
-          "Alishan's cypress forest in drifting cloud",
-          "a sea of clouds below a mountain ridge at sunrise",
-          "a narrow-gauge railway curving through tall conifers"
+          "Alishan's giant cypress forest and narrow-gauge red railcar in drifting cloud",
+          "Fenqihu Old Street, a narrow stepped lane of timber shops in the mountains",
+          "Dongshi fishing wharf with oyster racks in shallow water"
         ],
         "plants_desc": "white magnolia: upright ivory flowers of several thick pointed petals, strongly fragrant, on a broad-leaved tree",
-        "flower_shown": "玉蘭花"
+        "flower_shown": "玉蘭花",
+        "hero_landmark": "阿里山",
+        "hero_landmark_en": "Alishan's giant cypress forest and narrow-gauge red railcar in drifting cloud",
+        "others_en": [
+          "Fenqihu Old Street, a narrow stepped lane of timber shops in the mountains",
+          "Dongshi fishing wharf with oyster racks in shallow water"
+        ],
+        "light": "inland",
+        "accessories": "a woven bamboo basket on her arm, a cord bracelet, and small wooden drop earrings",
+        "viewpoint": "standing at a viewing platform high on Alishan",
+        "viewpoint_sees": "from here the sea of clouds fills the valley below, with giant cypress trunks framing the view and the narrow-gauge red railcar curving along the slope"
       },
       "todo": [
         "生成 base 底圖",
@@ -1350,7 +1504,7 @@
       "en": "TAINAN",
       "group": "s",
       "poster": "tainan",
-      "base": "tainan-base",
+      "base": null,
       "share": {
         "who": "台南，代表了",
         "words": [
@@ -1398,12 +1552,22 @@
         "hair_basis": "symbols.tree",
         "right_zone": "sea",
         "landmarks_en": [
-          "a Dutch-era brick fort with an arched gateway",
-          "salt flats laid out in shallow geometric pans",
-          "an ornate temple courtyard with swallowtail eaves"
+          "Chihkan Tower, a Dutch-era red-brick fort with an arched gateway and tiled Chinese pavilion roofs",
+          "Anping Fort's white rampart wall and old banyan roots",
+          "the salt mountain of Cigu, a white cone above shallow geometric salt pans"
         ],
         "plants_desc": "moth orchid: broad flat white flowers, two wide round upper petals and three narrower sepals with a small yellow-red lip, several along an arching stem",
-        "flower_shown": "鳳凰花"
+        "flower_shown": "鳳凰花",
+        "hero_landmark": "赤崁樓",
+        "hero_landmark_en": "Chihkan Tower, a Dutch-era red-brick fort with an arched gateway and tiled Chinese pavilion roofs",
+        "others_en": [
+          "Anping Fort's white rampart wall and old banyan roots",
+          "the salt mountain of Cigu, a white cone above shallow geometric salt pans"
+        ],
+        "light": "west",
+        "accessories": "a beaded bracelet, small gold drop earrings, and a plain cloth pouch hanging from her tote strap",
+        "viewpoint": "standing in the old street in front of Chihkan Tower",
+        "viewpoint_sees": "from here the Dutch-era red-brick fort and its tiled pavilion roofs sit just behind, with the old street's eaves and lanterns to the left"
       },
       "todo": [
         "生成 base 底圖",
@@ -1446,7 +1610,7 @@
       "en": "KAOHSIUNG",
       "group": "s",
       "poster": "kaohsiung",
-      "base": "kaohsiung-base",
+      "base": null,
       "share": {
         "who": "高雄，代表了",
         "words": [
@@ -1494,11 +1658,21 @@
         "hair_basis": "symbols.flower",
         "right_zone": "sea",
         "landmarks_en": [
-          "the 85 Sky Tower's forked silhouette above the harbour",
-          "a curved steel-and-glass waterfront pavilion",
-          "a lagoon lined with pagodas and dragon-tiger towers"
+          "Sizihwan bay at sunset with the harbour mouth and distant ships",
+          "Lotus Pond lined with pagodas and the Dragon and Tiger Towers",
+          "Cijin's lighthouse and long black-sand shore across the harbour"
         ],
-        "flower_shown": "木棉花"
+        "flower_shown": "木棉花",
+        "hero_landmark": "西子灣",
+        "hero_landmark_en": "Sizihwan bay at sunset with the harbour mouth and distant ships",
+        "others_en": [
+          "Lotus Pond lined with pagodas and the Dragon and Tiger Towers",
+          "Cijin's lighthouse and long black-sand shore across the harbour"
+        ],
+        "light": "west",
+        "accessories": "a round enamel badge with a wordless harbour-skyline motif, a beaded bracelet, and small hoop earrings",
+        "viewpoint": "standing on the breakwater at Sizihwan",
+        "viewpoint_sees": "from here the harbour mouth opens out with Cijin's lighthouse across the water and the city's towers along the far shore"
       },
       "todo": [],
       "places": [
@@ -1530,7 +1704,7 @@
       "en": "PINGTUNG",
       "group": "s",
       "poster": "pingtung",
-      "base": "pingtung-base",
+      "base": null,
       "share": {
         "who": "屏東，代表了",
         "words": [
@@ -1578,12 +1752,22 @@
         "accessory_basis": "黃花已刪：不是屏東的任何官方象徵，純湊色。",
         "right_zone": "sea",
         "landmarks_en": [
-          "Eluanbi lighthouse, a white tower on a grassy cape",
-          "a tropical coastline of coral rock and palms",
-          "forested mountain ridges rising inland"
+          "Kenting National Park's tropical coastline of coral rock, palms and turquoise water",
+          "Dapeng Bay, a broad calm lagoon with a white cable-stayed bridge",
+          "Jialeshuei's wind-carved coastal rock formations"
         ],
         "plants_desc": "bougainvillea: dense sprays of papery magenta bracts in threes, each trio surrounding three tiny white tubular flowers, on a thorny climbing stem",
-        "flower_shown": "九重葛"
+        "flower_shown": "九重葛",
+        "hero_landmark": "墾丁國家公園",
+        "hero_landmark_en": "Kenting National Park's tropical coastline of coral rock, palms and turquoise water",
+        "others_en": [
+          "Dapeng Bay, a broad calm lagoon with a white cable-stayed bridge",
+          "Jialeshuei's wind-carved coastal rock formations"
+        ],
+        "light": "west",
+        "accessories": "layered beaded necklaces in red white and orange, a woven cord bracelet, and long beaded earrings",
+        "viewpoint": "standing on the coral rock shore of Kenting",
+        "viewpoint_sees": "from here turquoise water and palms stretch along the coast with the peak of Dajianshan rising inland behind"
       },
       "todo": [
         "生成 base 底圖",
@@ -1618,7 +1802,7 @@
       "en": "HUALIEN",
       "group": "e",
       "poster": "hualien",
-      "base": "hualien-base",
+      "base": null,
       "share": {
         "who": "花蓮，代表了",
         "words": [
@@ -1665,12 +1849,22 @@
         "hair_basis": "symbols.flower",
         "right_zone": "sea",
         "landmarks_en": [
-          "Taroko's sheer marble gorge walls above a river",
-          "a long pebble beach against a wall of green mountains",
-          "terraced rice fields on a coastal plateau"
+          "Taroko Gorge's sheer marble walls above a jade-green river",
+          "the Qingshui Cliffs dropping straight into the Pacific",
+          "Qixingtan, a long curving pebble beach against green mountains"
         ],
         "plants_desc": "lotus: a large pink cup-shaped flower of many pointed petals above a round green seed pod, rising on a tall stalk beside a flat round leaf",
-        "flower_shown": "蓮花"
+        "flower_shown": "蓮花",
+        "hero_landmark": "太魯閣峽谷",
+        "hero_landmark_en": "Taroko Gorge's sheer marble walls above a jade-green river",
+        "others_en": [
+          "the Qingshui Cliffs dropping straight into the Pacific",
+          "Qixingtan, a long curving pebble beach against green mountains"
+        ],
+        "light": "east",
+        "accessories": "layered beaded necklaces with a round metal medallion, woven beaded wrist bands, and long beaded earrings",
+        "viewpoint": "standing on the walkway inside Taroko Gorge",
+        "viewpoint_sees": "from here sheer marble walls rise on both sides above the jade-green river, with a red suspension bridge spanning the gap"
       },
       "todo": [
         "查證 symbols.flower（決定髮花）"
@@ -1706,7 +1900,7 @@
       "en": "TAITUNG",
       "group": "e",
       "poster": "taitung",
-      "base": "taitung-base",
+      "base": null,
       "share": {
         "who": "台東，代表了",
         "words": [
@@ -1753,12 +1947,22 @@
         "hair_basis": "symbols.flower",
         "right_zone": "sea",
         "landmarks_en": [
-          "a lone tree on a grassy ridge above the Pacific",
-          "terraced rice fields on a coastal hill",
-          "a hot spring valley between forested mountains"
+          "Sanxiantai's eight-arched footbridge curving to a rocky island",
+          "Mr. Brown Avenue, a straight lane through open paddy fields with a lone tree",
+          "Zhiben's hot spring valley between forested mountains"
         ],
         "plants_desc": "moth orchid: broad flat white flowers, two wide round upper petals and three narrower sepals with a small yellow-red lip, several along an arching stem",
-        "flower_shown": "蝴蝶蘭"
+        "flower_shown": "蝴蝶蘭",
+        "hero_landmark": "三仙台",
+        "hero_landmark_en": "Sanxiantai's eight-arched footbridge curving to a rocky island",
+        "others_en": [
+          "Mr. Brown Avenue, a straight lane through open paddy fields with a lone tree",
+          "Zhiben's hot spring valley between forested mountains"
+        ],
+        "light": "east",
+        "accessories": "several layered beaded necklaces with a round metal medallion, a woven waist sash, and long beaded earrings",
+        "viewpoint": "standing on the shore at Sanxiantai",
+        "viewpoint_sees": "from here the eight-arched footbridge curves out to the rocky island with the Pacific beyond"
       },
       "todo": [
         "生成 base 底圖",
@@ -1793,7 +1997,7 @@
       "en": "PENGHU",
       "group": "i",
       "poster": "penghu",
-      "base": "penghu-base",
+      "base": null,
       "share": {
         "who": "澎湖，代表了",
         "words": [
@@ -1843,13 +2047,24 @@
         "accessory_basis": "海星、貝殼、海膽殼：對回 landmarks 的雙心石滬——石滬是潮間帶漁法，這些是潮間帶生物，不是泛用的海邊裝飾。",
         "right_zone": "sea",
         "landmarks_en": [
-          "Yuweng Island lighthouse, a white tower on a low headland",
-          "a heart-shaped stone weir fish trap in shallow turquoise water",
-          "a small fishing harbour of low stone quays",
-          "columnar basalt sea cliffs"
+          "Yuweng Island lighthouse, a white tower on a low grassy headland",
+          "the twin-heart stone weir fish trap in shallow turquoise water",
+          "Penghu's small fishing harbour of low stone quays and boats",
+          "columnar basalt sea cliffs rising from the water"
         ],
         "plants_desc": "blanket flower: daisy-like blooms with a ring of yellow-tipped petals over a deep red centre band, on wiry stems in sandy ground",
-        "flower_shown": "天人菊"
+        "flower_shown": "天人菊",
+        "hero_landmark": "雙心石滬",
+        "hero_landmark_en": "the twin-heart stone weir fish trap in shallow turquoise water",
+        "others_en": [
+          "Yuweng Island lighthouse, a white tower on a low grassy headland",
+          "Penghu's small fishing harbour of low stone quays and boats",
+          "columnar basalt sea cliffs rising from the water"
+        ],
+        "light": "west",
+        "accessories": "a cord necklace strung with small shells, a beaded bracelet, and small shell drop earrings",
+        "viewpoint": "standing on the clifftop above the twin-heart stone weir on Qimei",
+        "viewpoint_sees": "from here the heart-shaped fish trap lies in the shallow turquoise water below, with basalt cliffs along the coast"
       },
       "todo": [
         "查證 symbols.flower（決定髮花）"
@@ -1889,7 +2104,7 @@
       "en": "KINMEN",
       "group": "i",
       "poster": "kinmen",
-      "base": "kinmen-base",
+      "base": null,
       "share": {
         "who": "金門，代表了",
         "words": [
@@ -1936,12 +2151,22 @@
         "hair_basis": "symbols.flower",
         "right_zone": "sea",
         "landmarks_en": [
-          "a stone Wind Lion God statue standing in a field",
-          "a southern-Fujian village of red-brick houses with swallowtail roofs",
-          "a granite coastal fort tower"
+          "Juguang Tower, a three-storey Chinese pavilion of yellow tile on a stone base",
+          "Zhaishan Tunnel, a granite sea tunnel with water running through it",
+          "a stone Wind Lion God statue standing guard in a field"
         ],
         "plants_desc": "cymbidium orchid: slender pale flowers with narrow sepals and a spotted lip on an arching spike, with long strap-like leaves",
-        "flower_shown": "四季蘭"
+        "flower_shown": "四季蘭",
+        "hero_landmark": "風獅爺",
+        "hero_landmark_en": "a stone Wind Lion God statue standing guard in a field",
+        "others_en": [
+          "Juguang Tower, a three-storey Chinese pavilion of yellow tile on a stone base",
+          "Zhaishan Tunnel, a granite sea tunnel with water running through it"
+        ],
+        "light": "west",
+        "accessories": "a plain canvas satchel strap across her chest, a beaded bracelet, and small gold stud earrings",
+        "viewpoint": "standing at the edge of a field at a village entrance",
+        "viewpoint_sees": "from here a stone Wind Lion God stands guard in the foreground with a southern-Fujian red-brick village of swallowtail roofs behind"
       },
       "todo": [
         "生成 base 底圖",
@@ -1975,7 +2200,7 @@
       "en": "LIENCHIANG",
       "group": "i",
       "poster": "lienchiang",
-      "base": "lienchiang-base",
+      "base": null,
       "share": {
         "who": "連江，代表了",
         "words": [
@@ -2022,12 +2247,22 @@
         "hair_basis": "symbols.flower",
         "right_zone": "sea",
         "landmarks_en": [
-          "a hillside village of stone houses with tiled roofs above a cove",
-          "a granite sea tunnel opening to the water",
-          "a small green island of grassland and cliffs"
+          "Qinbi village's stone houses with tiled roofs stacked on a hillside above a cove",
+          "Beihai Tunnel, a granite sea cave opening to the water",
+          "Daqiu Island, a small green island of grassland where sika deer roam"
         ],
         "plants_desc": "red spider lily: a bare stem topped by a starburst of six narrow crimson petals curled sharply backward, with very long protruding stamens, no leaves",
-        "flower_shown": "紅花石蒜"
+        "flower_shown": "紅花石蒜",
+        "hero_landmark": "芹壁聚落",
+        "hero_landmark_en": "Qinbi village's stone houses with tiled roofs stacked on a hillside above a cove",
+        "others_en": [
+          "Beihai Tunnel, a granite sea cave opening to the water",
+          "Daqiu Island, a small green island of grassland where sika deer roam"
+        ],
+        "light": "west",
+        "accessories": "a plain rope necklace with a small stone pendant, a beaded bracelet, and small silver drop earrings",
+        "viewpoint": "standing on the slope above Qinbi village",
+        "viewpoint_sees": "from here the stone houses stack down the hillside to the cove, with the open sea and a small green island beyond"
       },
       "todo": [
         "查證 symbols.flower（決定髮花）"

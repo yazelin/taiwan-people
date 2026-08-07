@@ -31,8 +31,21 @@ codex exec -C "$(pwd)" -s workspace-write --skip-git-repo-check \
 
 after=$(mktemp)
 find ~/.codex/generated_images -name '*.png' 2>/dev/null | sort > "$after"
-newest=$(comm -13 "$before" "$after" | xargs -r ls -1t 2>/dev/null | head -1)
+# codex 一次會產生「多個不同的嘗試」，不是「一張逐步改進」——
+# 實測台北那次出了 5 張，最新的那張 101 最小最淡，第 3 張才是最好的。
+# 所以全部留下由人審，取最新的等於每次丟掉 4 個候選而且沒理由相信最後一張最好。
+mapfile -t news < <(comm -13 "$before" "$after" | xargs -r ls -1t 2>/dev/null)
 rm -f "$before" "$after"
 
-[ -z "$newest" ] && { echo "FAIL: codex 沒有產生新的 PNG（prompt 被拒或額度用盡）" >&2; exit 1; }
-cp "$newest" "$out" && echo "OK $out  <-  $(basename "$newest")"
+[ ${#news[@]} -eq 0 ] && { echo "FAIL: codex 沒有產生新的 PNG（prompt 被拒或額度用盡）" >&2; exit 1; }
+
+# 候選全部複製到 <輸出檔>.cand/ 供審查，預設仍先放最新的一張到 <輸出檔>
+cand="${out%.*}.cand"
+rm -rf "$cand"; mkdir -p "$cand"
+i=1
+for f in "${news[@]}"; do
+  cp "$f" "$cand/$(printf '%02d' $i).png"
+  i=$((i+1))
+done
+cp "${news[0]}" "$out"
+echo "OK $out  <-  $(basename "${news[0]}")  （共 ${#news[@]} 個候選在 $cand/）"
