@@ -1,0 +1,56 @@
+Base prompt
+===========
+
+Generated from the project source of truth:
+
+    python3 tools/build_prompt.py 台北市
+
+The script output is the base image specification supplied by the user. Reference
+roles used for the initial generation:
+
+1. data/character/ref-half.png — pose, build, anime rendering, palette and lighting
+2. data/character/face.png — face, brown eyes, hair colour and hair length
+3. img/taipei.webp — Taipei scenery context and old-poster composition only
+
+The written prompt takes precedence over conflicting details in the references.
+
+Selected composition correction prompt
+======================================
+
+Use case: precise-object-edit
+Asset type: final 4:3 Taipei county background illustration
+Input images: Image 1 is the edit target. Image 2 is only the immutable
+face/identity reference.
+
+Change only the spatial composition of Image 1. Preserve the exact same woman,
+warm brown eyes, face, friendly smile, tidy dark shoulder-length hair worn down,
+pink azalea, gold-beaded tassel hairpin, earrings, pose, natural hands, pineapple
+cake and illustrated paper sleeve, black wordless skyline hoodie, white jacket,
+wordless tote, anime style, daylight, colour palette, azalea shrub, fumaroles,
+historic bathhouse and stone stair trail.
+
+Required composition correction:
+
+- Uniformly scale the entire woman and everything she carries to approximately
+  82% of their present size, then move the complete character group left.
+- Her complete silhouette—including outstretched fingertips, hair, jacket, tote,
+  right elbow, sleeve, and pineapple cake—must remain strictly left of the exact
+  vertical midpoint of the canvas, with a narrow clear gap before the midpoint.
+- Keep her head near the upper-left and keep the lower frame cutting across her
+  legs around mid-thigh; do not show feet.
+- Her resulting figure should span about 38% of the full canvas width and about
+  76% of its height. Her head should span about 14% of canvas width. She must
+  remain close and dominant, not distant.
+- The entire right 40% of the canvas must become pale, light negative space from
+  top to bottom: open sky over only very distant, low-contrast, pale-blue ridge
+  layers.
+- Remove the near dark mountain slope and all dark or detailed foreground
+  vegetation from the right 40%, especially the bottom-right corner. No
+  character, buildings, trees, roads, flowers, fumaroles, objects or
+  high-contrast detail in that reserved area.
+- The right half's top 22% remains completely open sky.
+
+Do not change anything else. No sea, water body, words, letters, numbers, symbols
+resembling lettering, borders, panels, logos, flags, emblems, hats, glasses,
+electronics, bubble tea, Taipei 101, train, extra objects, or watermark. Keep one
+seamless 4:3 illustration.

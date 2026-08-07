@@ -51,13 +51,19 @@ def check(c):
 
 def build(c):
     s = c["scene"]
+    hairstyle_lock = (
+        "Use the county-specific hairstyle in IN HER HAIR below; it overrides the default bun. "
+        if s.get("hair") else
+        "Her hair is gathered high into a neat compact bun as described above, tidy and close "
+        "to the head. "
+    )
     return (
         "Repaint the scene from image 1 as one single continuous illustration in exactly the "
         "same anime illustration style, colour palette and lighting. "
         f"THE CHARACTER, locked by the reference sheets: {CARD['card']} "
         "Keep her face, eyes, hair colour and hair length exactly as in the reference sheets — but "
-        "NOT the hairstyle: the sheets show it blown loose by the wind, which is wrong. Her hair is "
-        "gathered high into a neat compact bun as described above, tidy and close to the head. "
+        "NOT the hairstyle: the sheets show it blown loose by the wind, which is wrong. "
+        + hairstyle_lock +
         "Same outstretched left arm and open-hand gesture, same pose. "
         + (f"IN HER HAIR: {s['hair']}. "
            if s.get("hair") else
@@ -84,8 +90,11 @@ def build(c):
         + "; ".join(s.get("landmarks_en") or s["landmarks"]) + ". "
         f"In the lower left corner, {s.get('plants_desc') or s.get('plants_en') or ('blossoms of ' + '、'.join(s['plants']))}, "
         "attached to their own branches and never floating over water. "
-        "COMPOSITION: she stands in the LEFT THIRD of the picture and must not extend past the "
-        "horizontal midpoint — the right 40 percent stays empty. "
+        "COMPOSITION: she stands in the LEFT THIRD of the picture. Her entire silhouette — "
+        "including both hands, hair, clothing, tote and the cup — must fit at or left of the "
+        "horizontal midpoint; hold the cup inward near her chest so its right edge does not cross "
+        "that midpoint. Confine all land, shoreline, cliffs, rocks and vegetation to the left 60 "
+        "percent. From x=60% to the right edge, the right 40 percent stays empty. "
         "GARMENT PRINTS — no lettering anywhere: the T-shirt and the canvas tote each carry a "
         "printed illustration with absolutely no words, letters or Chinese characters. Any label on "
         "what she is holding carries only a small wordless illustration. Every print must be a complete "
@@ -117,12 +126,67 @@ def build(c):
 
 
 def refs(c):
-    """生圖要附的參考圖，順序固定：立繪 → 臉部四視圖 → 該縣市舊海報。"""
-    out = [ROOT / "data" / "character" / "ref-half.png",
-           ROOT / "data" / "character" / "face.png"]
+    """生圖要附的參考圖：image 1 是舊海報，其後才是角色設定圖。"""
+    out = []
     if c.get("poster"):
         out.append(ROOT / "img" / f"{c['poster']}.webp")
+    out.extend([ROOT / "data" / "character" / "ref-half.png",
+                ROOT / "data" / "character" / "face.png"])
     return [str(p) for p in out if p.exists()]
+
+
+def build_composition_fix(c):
+    """既有底圖只重排人物與右側留白，不重畫角色設計。"""
+    return (
+        "Use case: precise-object-edit. Image 1 is the edit target. Change only the spatial "
+        "composition. Preserve the exact character identity, face, warm brown eyes, expression, "
+        "county-specific hairstyle and flower accessory, gold beaded tassel hairpin, outfit, "
+        "jewellery, tote, held item, hand gestures, anime rendering, colour palette and daylight. "
+        "Uniformly scale the whole character with both arms, tote and cup to about 85 percent of "
+        "its current size and shift it left, without cropping the open left hand, until every part "
+        "of the character including the cup's right edge is at or left of x=50 percent. The head "
+        "should span about 14 percent of the canvas width and the lower frame should cut the figure "
+        "at mid-thigh. Recompose only the scenery needed to fill the revealed space naturally. "
+        "Confine every piece of land, shoreline, cliff, rock and vegetation to x=0–60 percent. "
+        "From x=60 percent to the right edge, show only continuous open sea and sky: no land, "
+        "shoreline, rocks, vegetation, buildings, boats, figures or objects. Keep the top 22 percent "
+        "of the right half completely open sky and keep the middle-right water smooth for text. "
+        "Do not change, add or remove any other subject detail. No text, letters, logos, panels, "
+        "borders or watermarks. One continuous 4:3 landscape illustration."
+    )
+
+
+def build_framing_fix(c):
+    """右側留白正確後，只修近距離人物尺度與垂直位置。"""
+    return (
+        "Use case: precise-object-edit. Image 1 is the edit target. Change only the character's "
+        "scale and vertical framing; keep the current left/right scene boundary and every background "
+        "detail exactly unchanged. Preserve the exact face, warm brown eyes, expression, "
+        "county-specific hairstyle and flower accessory, gold beaded tassel hairpin, clothing, "
+        "jewellery, tote, held item, both hand gestures, anime style, palette and lighting. Enlarge "
+        "the entire "
+        "character uniformly to 115 percent of its current size and move it upward so the top of the "
+        "flower crown reaches y=10 percent of the canvas. Continue the lower body naturally beyond "
+        "the canvas so the bottom edge crops her at mid-thigh; do not leave scenery beneath her. "
+        "Keep the open left hand fully visible. The complete silhouette including the cup must remain "
+        "at or left of x=50 percent. Do not alter the open sea and sky from x=60–100 percent. Do not "
+        "change, add or remove any other subject detail. No text, letters, logos, panels, borders or "
+        "watermarks. One continuous 4:3 landscape illustration."
+    )
+
+
+def build_plant_fix(c):
+    """既有底圖只修左下角的縣花植物形態。"""
+    plant = c["scene"].get("plants_desc") or c["scene"].get("plants_en")
+    return (
+        "Use case: precise-object-edit. Image 1 is the edit target. Change only the botanical "
+        "cluster in the lower-left corner so it clearly and accurately contains: " + plant + ". "
+        "Every flower, seed pod, stalk and leaf must be physically connected as one natural plant. "
+        "Preserve the exact character, face, brown eyes, hair, flower accessory, hairpin, outfit, "
+        "jewellery, tote, held item, hands, pose, scenery, left/right composition, open sea and sky, "
+        "anime style, palette and lighting. Do not change, add or remove anything else. No text, "
+        "letters, logos, panels, borders or watermarks. One continuous 4:3 landscape illustration."
+    )
 
 
 if __name__ == "__main__":
@@ -132,5 +196,11 @@ if __name__ == "__main__":
     check(county)
     if "--refs" in sys.argv:
         print("\n".join(refs(county)))
+    elif "--fix-composition" in sys.argv:
+        print(build_composition_fix(county))
+    elif "--fix-framing" in sys.argv:
+        print(build_framing_fix(county))
+    elif "--fix-plant" in sys.argv:
+        print(build_plant_fix(county))
     elif "--check" not in sys.argv:
         print(build(county))

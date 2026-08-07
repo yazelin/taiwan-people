@@ -10,7 +10,7 @@
     "foods": "卡片右欄第二列。**第一項要與 scene.hand 一致**，文字與畫面才會互相印證。",
     "symbols": "不再顯示在右欄。市花保留，因為它決定角色髮上那朵花的種類（同時是恆定記號與地方變數）。",
     "symbols.flower": "該縣市市花。同時決定背景花木與她髮上那朵花。source：official＝已對官方原始出處；wikipedia_cited_gov＝維基且該表附政府引註，未逐一開啟核對；none＝該縣市未指定。",
-    "quote": "阿蕊的短句。句式照高雄原海報最左的直書原句「海風鹹鹹，人情暖暖，高雄是咱的家。」——四字（後兩字疊字）＋四字（後兩字疊字）＋「XX是咱的家」。\n20 張原海報只有南部與離島幾張有這條直書，句式還各不相同，北部那幾張根本沒有，所以其餘 21 句是照高雄的調性重寫的。\n判準：換成任何縣市都成立的話就是空話。每句的兩個名詞都要對得回 scene.landmarks 或 foods，依據寫在 quote_basis。主詞是地方或物產，不是人。",
+    "quote": "阿蕊的短句，**全部取自原海報**，沒有一句是自己編的。\n那句話 20 張都有，只是位置不同：10 張寫在最左直書、新北在識別帶上、新竹在告示上、其餘藏在段落卡的收尾。\n取用原則：挑該張最有辨識度的一句，去掉宣傳腔的收尾（「這就是OO的日常，也是我們的驕傲」這種句型在台北與宜蘭幾乎一字不差，換成任何縣市都成立）。\n曾經把 22 句全部改寫成「XX是咱的家」——那個句型只有高雄那張是這樣寫的，套到全部就是把原本的變化抹平成模板。",
     "scene.hand": "她手上拿的東西，寫成給生圖模型看的英文描述。取自該縣市的 foods。**不要畫任何真實品牌的商標或包裝**，品牌名只出現在文字欄。珍奶屬台灣層級，縣市不要用。",
     "scene.plants": "背景要出現的植物。**預設就是該縣市的市花**，不要憑海報上的圖憑印象填；高雄第一版誤填鳳凰木（台南市樹），生出來的紅花既不是木棉也不是鳳凰花。",
     "scene.plants_desc": "給生圖模型看的植物外觀描述，比只寫花名可靠。要寫出可驗收的具體特徵（花瓣數、顏色、開在什麼樣的枝上、有沒有葉）。沒有這欄就退回只用 plants 的花名。",
@@ -31,7 +31,7 @@
       "en": "KEELUNG",
       "group": "n",
       "poster": "keelung",
-      "base": null,
+      "base": "keelung-base",
       "share": {
         "who": "基隆，代表了",
         "words": [
@@ -42,7 +42,7 @@
         "focus": null
       },
       "tagline": "海的起點・山的懷抱・人情的港灣・雨都的浪漫",
-      "quote": "雨絲綿綿，廟口鬧鬧，基隆是咱的家。",
+      "quote": "基隆，永遠是我們的靠山，也是我們的起點。",
       "symbols": {
         "flower": {
           "value": "紫薇",
@@ -116,7 +116,7 @@
         "廟口小吃",
         "吉古拉"
       ],
-      "quote_basis": "雨都氣候、基隆廟口小吃"
+      "quote_basis": "段落卡收尾原句"
     },
     {
       "id": "taipei",
@@ -124,7 +124,7 @@
       "en": "TAIPEI CITY",
       "group": "n",
       "poster": "taipei",
-      "base": null,
+      "base": "taipei-base",
       "share": {
         "who": "台北，代表了",
         "words": [
@@ -135,7 +135,7 @@
         "focus": null
       },
       "tagline": "多元包容・創新進步・人文薈萃・國際視野・永續宜居",
-      "quote": "硫煙裊裊，湯泉熱熱，台北是咱的家。",
+      "quote": "在這裡，每一天都發生未來。",
       "symbols": {
         "flower": {
           "value": "杜鵑花",
@@ -210,7 +210,7 @@
         "士林夜市",
         "貓空鐵觀音"
       ],
-      "quote_basis": "陽明山硫氣孔、北投溫泉"
+      "quote_basis": "段落卡原句。收尾那句「也是我們的驕傲」與宜蘭幾乎一字不差，不取"
     },
     {
       "id": "new-taipei",
@@ -229,7 +229,7 @@
         "focus": null
       },
       "tagline": "山海交織・多元共榮・人情厚實・活力無限",
-      "quote": "潮聲隆隆，山城層層，新北是咱的家。",
+      "quote": "我的新北，我驕傲。",
       "symbols": {
         "flower": {
           "value": "茶花",
@@ -303,7 +303,7 @@
         "萬里蟹",
         "貢寮鮑"
       ],
-      "quote_basis": "野柳海蝕海岸、九份山城"
+      "quote_basis": "畫面中段識別帶上的直書原句"
     },
     {
       "id": "taoyuan",
@@ -322,7 +322,7 @@
         "focus": null
       },
       "tagline": "航空城・科技城・國門之都・活力桃園・幸福宜居",
-      "quote": "埤塘閃閃，豆干韌韌，桃園是咱的家。",
+      "quote": "連結世界的門戶，也是充滿活力與溫暖的家鄉。",
       "symbols": {
         "flower": {
           "value": "桃花",
@@ -396,7 +396,7 @@
         "石門活魚",
         "忠貞米干"
       ],
-      "quote_basis": "桃園埤塘、大溪豆干"
+      "quote_basis": "段落卡原句，去掉開頭的「桃園是」"
     },
     {
       "id": "hsinchu-city",
@@ -415,7 +415,7 @@
         "focus": null
       },
       "tagline": "科技城・風城・古都・創新・智慧・人文薈萃",
-      "quote": "風聲颼颼，米粉細細，新竹是咱的家。",
+      "quote": "風起新竹，智領未來。",
       "symbols": {
         "flower": {
           "value": "杜鵑花",
@@ -490,7 +490,7 @@
         "貢丸",
         "竹塹餅"
       ],
-      "quote_basis": "風城、新竹米粉（就是靠風吹乾的）"
+      "quote_basis": "畫面中段告示上的直書原句"
     },
     {
       "id": "hsinchu-county",
@@ -509,7 +509,7 @@
         "focus": null
       },
       "tagline": "科技城・風城・古都・創新・智慧・人文薈萃",
-      "quote": "擂茶稠稠，茶山青青，新竹是咱的家。",
+      "quote": "在傳統與未來之間找到平衡。",
       "symbols": {
         "flower": {
           "value": "茶花",
@@ -583,7 +583,7 @@
         "粄條",
         "東方美人茶"
       ],
-      "quote_basis": "客家擂茶、北埔峨眉的東方美人茶山"
+      "quote_basis": "同一張海報的段落卡原句。與新竹市共用海報，各取不同分句以免兩張卡片一字不差"
     },
     {
       "id": "yilan",
@@ -602,7 +602,7 @@
         "focus": null
       },
       "tagline": "山海環繞・純淨生活・人情溫暖・慢活樂天",
-      "quote": "水田亮亮，青蔥直直，宜蘭是咱的家。",
+      "quote": "以謙遜的心，過簡單的生活。",
       "symbols": {
         "flower": {
           "value": "國蘭",
@@ -676,7 +676,7 @@
         "鴨賞",
         "宜蘭牛舌餅"
       ],
-      "quote_basis": "蘭陽平原水田、三星蔥"
+      "quote_basis": "段落卡原句"
     },
     {
       "id": "miaoli",
@@ -695,7 +695,7 @@
         "focus": null
       },
       "tagline": "客家大縣・山城慢活・自然美景・勤儉樸實・人情味濃",
-      "quote": "木香沉沉，草莓紅紅，苗栗是咱的家。",
+      "quote": "有山有海，有客家文化。",
       "symbols": {
         "flower": {
           "value": "桂花",
@@ -771,7 +771,7 @@
         "客家小炒",
         "苗栗粄條"
       ],
-      "quote_basis": "三義木雕、大湖草莓"
+      "quote_basis": "段落卡原句"
     },
     {
       "id": "taichung",
@@ -790,7 +790,7 @@
         "focus": null
       },
       "tagline": "宜居・創新・文化・美食・友善・進步・多元・活力",
-      "quote": "濕地闊闊，餅香酥酥，台中是咱的家。",
+      "quote": "在傳統與現代之間，走出屬於自己的步調。",
       "symbols": {
         "flower": {
           "value": "山櫻花",
@@ -865,7 +865,7 @@
         "太陽餅",
         "逢甲夜市"
       ],
-      "quote_basis": "高美濕地、太陽餅"
+      "quote_basis": "段落卡原句"
     },
     {
       "id": "changhua",
@@ -884,7 +884,7 @@
         "focus": null
       },
       "tagline": "勤奮・樸實・傳承・創新・熱情・堅韌",
-      "quote": "車庫圓圓，肉圓燙燙，彰化是咱的家。",
+      "quote": "美好彰化，希望城市。",
       "symbols": {
         "flower": {
           "value": "菊花",
@@ -957,7 +957,7 @@
         "爌肉飯",
         "王功蚵仔"
       ],
-      "quote_basis": "扇形車庫、彰化肉圓"
+      "quote_basis": "原句。這句偏市政標語，但它是海報上僅有的直書文字"
     },
     {
       "id": "nantou",
@@ -976,7 +976,7 @@
         "focus": null
       },
       "tagline": "好山・好水・好茶・好人情",
-      "quote": "潭水深深，茶香淡淡，南投是咱的家。",
+      "quote": "山水之間，就是我們的家。",
       "symbols": {
         "flower": {
           "value": "梅花",
@@ -1047,7 +1047,7 @@
         "清境農場",
         "合歡山"
       ],
-      "quote_basis": "日月潭、凍頂烏龍茶"
+      "quote_basis": "原句，未改"
     },
     {
       "id": "yunlin",
@@ -1066,7 +1066,7 @@
         "focus": null
       },
       "tagline": "勤奮・樸實・堅韌・熱情・傳承・創新・在地・永續",
-      "quote": "稻浪滾滾，醬缸厚厚，雲林是咱的家。",
+      "quote": "風起雲湧，農業首都，雲林上場。",
       "symbols": {
         "flower": {
           "value": "蝴蝶蘭",
@@ -1109,7 +1109,6 @@
         "plants_desc": "moth orchid: broad flat white flowers, two wide round upper petals and three narrower sepals with a small yellow-red lip, several along an arching stem"
       },
       "todo": [
-        "生成 base 底圖",
         "查證 symbols.flower（決定髮花）"
       ],
       "places": [
@@ -1141,7 +1140,7 @@
         "西螺醬油",
         "雲林花生"
       ],
-      "quote_basis": "農業大縣的稻田、西螺醬油"
+      "quote_basis": "原句，去掉「幸飛揚」（語意不明）"
     },
     {
       "id": "chiayi-city",
@@ -1160,7 +1159,7 @@
         "focus": null
       },
       "tagline": "純樸・熱情・友善・勤奮・堅韌・重情・好客",
-      "quote": "檜香濃濃，雞飯燒燒，嘉義是咱的家。",
+      "quote": "不喜歡說大話，但我們做得到。",
       "symbols": {
         "flower": {
           "value": "豔紫荊",
@@ -1234,7 +1233,7 @@
         "火雞肉飯",
         "林聰明沙鍋魚頭"
       ],
-      "quote_basis": "檜意森活村、火雞肉飯"
+      "quote_basis": "段落卡原句"
     },
     {
       "id": "chiayi-county",
@@ -1253,7 +1252,7 @@
         "focus": null
       },
       "tagline": "純樸・熱情・友善・勤奮・堅韌・重情・好客",
-      "quote": "雲海茫茫，茶園高高，嘉義是咱的家。",
+      "quote": "勇敢，踏實，向前行。",
       "symbols": {
         "flower": {
           "value": "玉蘭花",
@@ -1320,7 +1319,7 @@
         "堅持",
         "誠懇"
       ],
-      "quote_basis": "阿里山雲海、阿里山高山茶"
+      "quote_basis": "同一張海報吊牌上的原句。與嘉義市共用海報，各取不同分句"
     },
     {
       "id": "tainan",
@@ -1339,7 +1338,7 @@
         "focus": null
       },
       "tagline": "熱情・人情味・傳統・慢城・文化・智慧・美食・古都風情",
-      "quote": "古城老老，湯頭清清，台南是咱的家。",
+      "quote": "台南是我們的驕傲，也是我們的日常。",
       "symbols": {
         "flower": {
           "value": "蝴蝶蘭",
@@ -1414,7 +1413,7 @@
         "擔仔麵",
         "虱目魚"
       ],
-      "quote_basis": "赤崁樓與安平古堡、台南牛肉湯"
+      "quote_basis": "原句，未改"
     },
     {
       "id": "kaohsiung",
@@ -1497,7 +1496,7 @@
         "豪爽",
         "打拚"
       ],
-      "quote_basis": "原海報最左直書的原句，未改。"
+      "quote_basis": "原句，未改"
     },
     {
       "id": "pingtung",
@@ -1516,7 +1515,7 @@
         "focus": null
       },
       "tagline": "熱情・純樸・豪爽・慢活・勇敢・包容・善良・樂天",
-      "quote": "日頭辣辣，海水藍藍，屏東是咱的家。",
+      "quote": "山海相擁的土地，人情溫暖的日常。",
       "symbols": {
         "flower": {
           "value": "九重葛",
@@ -1584,7 +1583,7 @@
         "純樸",
         "包容"
       ],
-      "quote_basis": "恆春半島日照、墾丁海域"
+      "quote_basis": "原句，去掉「這就是我們的屏東！」那句自我宣告"
     },
     {
       "id": "hualien",
@@ -1592,7 +1591,7 @@
       "en": "HUALIEN",
       "group": "e",
       "poster": "hualien",
-      "base": null,
+      "base": "hualien-base",
       "share": {
         "who": "花蓮，代表了",
         "words": [
@@ -1603,7 +1602,7 @@
         "focus": null
       },
       "tagline": "山海共生・原鄉文化・人情純樸・慢活樂天",
-      "quote": "峽谷幽幽，海水靜靜，花蓮是咱的家。",
+      "quote": "我們以自然為家。",
       "symbols": {
         "flower": {
           "value": "蓮花",
@@ -1646,7 +1645,6 @@
         "plants_desc": "lotus: a large pink cup-shaped flower of many pointed petals above a round green seed pod, rising on a tall stalk beside a flat round leaf"
       },
       "todo": [
-        "生成 base 底圖",
         "查證 symbols.flower（決定髮花）"
       ],
       "places": [
@@ -1672,7 +1670,7 @@
         "自由",
         "堅韌"
       ],
-      "quote_basis": "太魯閣峽谷、七星潭"
+      "quote_basis": "段落卡原句"
     },
     {
       "id": "taitung",
@@ -1680,7 +1678,7 @@
       "en": "TAITUNG",
       "group": "e",
       "poster": "taitung",
-      "base": null,
+      "base": "taitung-base",
       "share": {
         "who": "台東，代表了",
         "words": [
@@ -1691,7 +1689,7 @@
         "focus": null
       },
       "tagline": "山海之間・慢活樂天・南島原鄉・人情最暖",
-      "quote": "稻香飄飄，海岸長長，台東是咱的家。",
+      "quote": "是旅行的目的地，更是心靈的歸屬地。",
       "symbols": {
         "flower": {
           "value": "蝴蝶蘭",
@@ -1758,7 +1756,7 @@
         "自由",
         "樂觀"
       ],
-      "quote_basis": "池上米與伯朗大道、東海岸"
+      "quote_basis": "段落卡原句"
     },
     {
       "id": "penghu",
@@ -1777,7 +1775,7 @@
         "focus": null
       },
       "tagline": "熱情・純樸・重情・樂天・團結・勇敢・堅韌・包容",
-      "quote": "石滬彎彎，海水清清，澎湖是咱的家。",
+      "quote": "風大但是心暖，澎湖囡仔人情甘甜。",
       "symbols": {
         "flower": {
           "value": "天人菊",
@@ -1852,7 +1850,7 @@
         "小管麵線",
         "仙人掌冰"
       ],
-      "quote_basis": "雙心石滬、澎湖海域"
+      "quote_basis": "原句，句尾驚嘆號改句號"
     },
     {
       "id": "kinmen",
@@ -1871,7 +1869,7 @@
         "focus": null
       },
       "tagline": "堅毅・重情・守護・傳承・勤儉・團結・熱情・豪爽",
-      "quote": "海風硬硬，貢糖甜甜，金門是咱的家。",
+      "quote": "風很硬，心很暖，我們守著家園，也迎接世界。",
       "symbols": {
         "flower": {
           "value": "四季蘭",
@@ -1937,7 +1935,7 @@
         "重情",
         "守護"
       ],
-      "quote_basis": "原海報直書寫「風很硬，心很暖」；金門貢糖"
+      "quote_basis": "原句，未改"
     },
     {
       "id": "lienchiang",
@@ -1956,7 +1954,7 @@
         "focus": null
       },
       "tagline": "堅毅・重情・守望・包容・團結・勤儉・純樸・勇敢・樂天",
-      "quote": "石屋疊疊，海路遠遠，馬祖是咱的家。",
+      "quote": "山海相依，風浪淬鍊，這就是馬祖人的日常。",
       "symbols": {
         "flower": {
           "value": "紅花石蒜",
@@ -2020,7 +2018,7 @@
         "團結",
         "守望"
       ],
-      "quote_basis": "芹壁聚落石屋、離島航程"
+      "quote_basis": "原句，句尾「與驕傲！」較宣傳腔，收在「日常」"
     }
   ],
   "_character": {
