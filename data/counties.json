@@ -22,7 +22,8 @@
     "scene.accessory_basis": "非花配件的設計依據。**配件必須對得回 symbols 或 scene.landmarks 的某一筆，對不回就拿掉**——只寫個名字加上去的裝飾不算設計。髮型本身（馬尾／丸子頭）不是配件，不需要依據。",
     "scene.right_zone": "右側 40% 留白畫什麼：sea＝海，sky＝開闊天空與遠山薄霧。依該縣市三個地標的**所在地**決定，不是依有沒有海岸線——台北市與南投縣是內陸，畫海是事實錯誤。",
     "scene.landmarks_en": "地標的視覺描述，與 landmarks 一一對應。模型不認得中文地名，只丟名字它會自己編一個——苗栗第一版畫成海岸懸崖加石獅子就是這樣來的。這裡寫的是外觀不是史實，改地標要同步改這欄。",
-    "quote_basis": "每句 quote 的兩個名詞各自對應到哪一筆查證過的地標或物產。"
+    "quote_basis": "每句 quote 的兩個名詞各自對應到哪一筆查證過的地標或物產。",
+    "scene.flower_shown": "實際畫在頭上的花。多數等於 symbols.flower，但台南是鳳凰花（市樹）——市花蝴蝶蘭同時是雲林、台南、台東三個縣市的，認不出台南。網頁的花名清單由這個欄位產生，不從 hair_zh 那種散文欄位挖。"
   },
   "counties": [
     {
@@ -46,8 +47,9 @@
       "symbols": {
         "flower": {
           "value": "紫薇",
-          "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+          "source": "official",
+          "note": "基隆市政府「基隆簡介」：本市之市花為紫薇，屬於千屈菜科",
+          "url": "https://www.klcg.gov.tw/tw/About/Introduction"
         },
         "tree": {
           "value": "楓香",
@@ -83,7 +85,8 @@
           "Heping Island's eroded sandstone sea platform",
           "a rocky coastal park with tide pools"
         ],
-        "plants_desc": "crape myrtle blossoms: clusters of six crinkled crepe-paper petals in bright pink, each on a long claw-like stalk, on a smooth-barked shrub"
+        "plants_desc": "crape myrtle blossoms: clusters of six crinkled crepe-paper petals in bright pink, each on a long claw-like stalk, on a smooth-barked shrub",
+        "flower_shown": "紫薇"
       },
       "todo": [
         "生成 base 底圖",
@@ -139,8 +142,9 @@
       "symbols": {
         "flower": {
           "value": "杜鵑花",
-          "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+          "source": "official",
+          "note": "臺北市政府「臺北市概況」：市花 - 杜鵑花",
+          "url": "https://www.gov.taipei/cp.aspx?n=469A3095FCB700F3&s=18E21F157407D1E6"
         },
         "tree": {
           "value": "榕樹",
@@ -176,7 +180,8 @@
           "old Japanese-era hot spring bathhouses among trees",
           "a steep forested hill trail of stone steps overlooking the city"
         ],
-        "plants_desc": "azalea blossoms: funnel-shaped flowers with five spreading lobes in pink, the upper lobe freckled with darker spots, in tight clusters on a low evergreen shrub"
+        "plants_desc": "azalea blossoms: funnel-shaped flowers with five spreading lobes in pink, the upper lobe freckled with darker spots, in tight clusters on a low evergreen shrub",
+        "flower_shown": "杜鵑花"
       },
       "todo": [
         "生成 base 底圖",
@@ -233,8 +238,9 @@
       "symbols": {
         "flower": {
           "value": "茶花",
-          "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+          "source": "official",
+          "note": "新北市政府「市樹市花」：市花是茶花",
+          "url": "https://www.ntpc.gov.tw/ch/home.jsp?id=f8985f0012d24001"
         },
         "tree": {
           "value": "台灣山櫻",
@@ -270,7 +276,8 @@
           "a hillside harbour town of old brick streets by a river mouth",
           "a forested mountain gorge with a tall waterfall"
         ],
-        "plants_desc": "camellia blossoms: rounded pale pink flowers with many overlapping petals in a spiral and a boss of yellow stamens, among thick glossy dark green leaves"
+        "plants_desc": "camellia blossoms: rounded pale pink flowers with many overlapping petals in a spiral and a boss of yellow stamens, among thick glossy dark green leaves",
+        "flower_shown": "茶花"
       },
       "todo": [
         "生成 base 底圖",
@@ -327,7 +334,7 @@
         "flower": {
           "value": "桃花",
           "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+          "note": "維基「台灣各縣市象徵列表」。該縣市官網查無公開的象徵頁面：首頁無連結、站內搜尋查無、搜尋引擎亦僅得不相關頁面。已查證的 11 個縣市全部與該表吻合、零衝突，因此可信度高但仍非官方一手來源。"
         },
         "tree": {
           "value": "桃樹",
@@ -362,7 +369,8 @@
           "a red-brick Hakka village with swallowtail roof ridges",
           "a coastal windmill row above sand dunes"
         ],
-        "plants_desc": "peach blossoms: five rounded pink petals with a ring of fine stamens, borne close along the woody branch"
+        "plants_desc": "peach blossoms: five rounded pink petals with a ring of fine stamens, borne close along the woody branch",
+        "flower_shown": "桃花"
       },
       "todo": [
         "生成 base 底圖",
@@ -420,7 +428,7 @@
         "flower": {
           "value": "杜鵑花",
           "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+          "note": "維基「台灣各縣市象徵列表」。該縣市官網查無公開的象徵頁面：首頁無連結、站內搜尋查無、搜尋引擎亦僅得不相關頁面。已查證的 11 個縣市全部與該表吻合、零衝突，因此可信度高但仍非官方一手來源。"
         },
         "tree": {
           "value": "黑松",
@@ -456,7 +464,8 @@
           "a fishing harbour with a long arched footbridge",
           "an old temple with elaborate swallowtail eaves and stone lions"
         ],
-        "plants_desc": "azalea blossoms: funnel-shaped flowers with five spreading lobes in pink, the upper lobe freckled with darker spots, in tight clusters on a low evergreen shrub"
+        "plants_desc": "azalea blossoms: funnel-shaped flowers with five spreading lobes in pink, the upper lobe freckled with darker spots, in tight clusters on a low evergreen shrub",
+        "flower_shown": "杜鵑花"
       },
       "todo": [
         "生成 base 底圖",
@@ -513,8 +522,9 @@
       "symbols": {
         "flower": {
           "value": "茶花",
-          "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+          "source": "official",
+          "note": "新竹縣政府「縣花縣鳥縣樹」：我們的縣花 - 茶花",
+          "url": "https://www.hsinchu.gov.tw/cp.aspx?n=96"
         },
         "tree": {
           "value": "竹柏",
@@ -549,7 +559,8 @@
           "a Hakka village of red-brick houses with swallowtail roofs",
           "a bamboo-forested mountain ridge in mist"
         ],
-        "plants_desc": "camellia blossoms: rounded pale pink flowers with many overlapping petals in a spiral and a boss of yellow stamens, among thick glossy dark green leaves"
+        "plants_desc": "camellia blossoms: rounded pale pink flowers with many overlapping petals in a spiral and a boss of yellow stamens, among thick glossy dark green leaves",
+        "flower_shown": "茶花"
       },
       "todo": [
         "生成 base 底圖",
@@ -607,7 +618,7 @@
         "flower": {
           "value": "國蘭",
           "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+          "note": "維基「台灣各縣市象徵列表」。該縣市官網查無公開的象徵頁面：首頁無連結、站內搜尋查無、搜尋引擎亦僅得不相關頁面。已查證的 11 個縣市全部與該表吻合、零衝突，因此可信度高但仍非官方一手來源。"
         },
         "tree": {
           "value": "台灣欒樹",
@@ -642,7 +653,8 @@
           "flooded rice paddies mirroring the sky",
           "a lagoon of channels and reed beds"
         ],
-        "plants_desc": "cymbidium orchid: slender greenish-cream flowers with three narrow sepals, two petals and a spotted lip, several on an arching spike, with long strap-like leaves"
+        "plants_desc": "cymbidium orchid: slender greenish-cream flowers with three narrow sepals, two petals and a spotted lip, several on an arching spike, with long strap-like leaves",
+        "flower_shown": "國蘭"
       },
       "todo": [
         "生成 base 底圖",
@@ -700,7 +712,7 @@
         "flower": {
           "value": "桂花",
           "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+          "note": "維基「台灣各縣市象徵列表」。該縣市官網查無公開的象徵頁面：首頁無連結、站內搜尋查無、搜尋引擎亦僅得不相關頁面。已查證的 11 個縣市全部與該表吻合、零衝突，因此可信度高但仍非官方一手來源。"
         },
         "tree": {
           "value": "樟樹",
@@ -736,7 +748,8 @@
           "a woodcarving village workshop street with carved timber displays",
           "Huoyanshan's bare orange-red eroded badland ridges"
         ],
-        "plants_desc": "osmanthus: sprays of very small four-petalled cream-white flowers in dense clusters tucked in the leaf axils of a glossy-leaved shrub"
+        "plants_desc": "osmanthus: sprays of very small four-petalled cream-white flowers in dense clusters tucked in the leaf axils of a glossy-leaved shrub",
+        "flower_shown": "桂花"
       },
       "todo": [
         "生成 base 底圖",
@@ -794,8 +807,9 @@
       "symbols": {
         "flower": {
           "value": "山櫻花",
-          "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+          "source": "official",
+          "note": "臺中市政府「市樹、花、鳥介紹」：市花介紹-山櫻花（薔薇科）",
+          "url": "https://www.taichung.gov.tw/8868/9945/10017/676427/post"
         },
         "tree": {
           "value": "台灣五葉松",
@@ -831,7 +845,8 @@
           "a modern curved-concrete opera house",
           "an ornate red-brick historic shopfront"
         ],
-        "plants_desc": "Taiwan cherry blossoms: deep rose-pink bell-shaped flowers hanging downward in small clusters on a dark bare branch"
+        "plants_desc": "Taiwan cherry blossoms: deep rose-pink bell-shaped flowers hanging downward in small clusters on a dark bare branch",
+        "flower_shown": "山櫻花"
       },
       "todo": [
         "生成 base 底圖",
@@ -888,8 +903,9 @@
       "symbols": {
         "flower": {
           "value": "菊花",
-          "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+          "source": "official",
+          "note": "彰化縣政府「本縣象徵」：縣花 菊花，俗名家菊、秋菊",
+          "url": "https://www.chcg.gov.tw/ch2/abouts-represent.aspx"
         },
         "tree": {
           "value": "菩提樹",
@@ -924,7 +940,8 @@
           "a long row of coastal wind turbines above oyster flats",
           "an old temple with layered swallowtail roofs"
         ],
-        "plants_desc": "chrysanthemums: rounded purple blooms of many narrow ray petals layered around a small centre"
+        "plants_desc": "chrysanthemums: rounded purple blooms of many narrow ray petals layered around a small centre",
+        "flower_shown": "菊花"
       },
       "todo": [
         "查證 symbols.flower（決定髮花）"
@@ -980,8 +997,9 @@
       "symbols": {
         "flower": {
           "value": "梅花",
-          "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+          "source": "official",
+          "note": "南投縣政府「南投縣花、縣樹」：南投縣花～梅花",
+          "url": "https://www.nantou.gov.tw/big5/introduction-administrative-1.php?dptid=376480000&cid=1507"
         },
         "tree": {
           "value": "樟樹",
@@ -1016,7 +1034,8 @@
           "high green pastureland with sheep on a ridge",
           "a bare alpine mountain road above the treeline"
         ],
-        "plants_desc": "plum blossoms: five separate rounded white petals with a spray of long stamens, borne directly on a dark gnarled leafless branch"
+        "plants_desc": "plum blossoms: five separate rounded white petals with a spray of long stamens, borne directly on a dark gnarled leafless branch",
+        "flower_shown": "梅花"
       },
       "todo": [
         "查證 symbols.flower（決定髮花）"
@@ -1071,7 +1090,7 @@
         "flower": {
           "value": "蝴蝶蘭",
           "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+          "note": "維基「台灣各縣市象徵列表」。該縣市官網查無公開的象徵頁面：首頁無連結、站內搜尋查無、搜尋引擎亦僅得不相關頁面。已查證的 11 個縣市全部與該表吻合、零衝突，因此可信度高但仍非官方一手來源。"
         },
         "tree": {
           "value": "樟樹",
@@ -1106,7 +1125,8 @@
           "an ornate gilded temple with dragon columns",
           "a coastal oyster farm of bamboo racks at low tide"
         ],
-        "plants_desc": "moth orchid: broad flat white flowers, two wide round upper petals and three narrower sepals with a small yellow-red lip, several along an arching stem"
+        "plants_desc": "moth orchid: broad flat white flowers, two wide round upper petals and three narrower sepals with a small yellow-red lip, several along an arching stem",
+        "flower_shown": "蝴蝶蘭"
       },
       "todo": [
         "查證 symbols.flower（決定髮花）"
@@ -1163,8 +1183,9 @@
       "symbols": {
         "flower": {
           "value": "豔紫荊",
-          "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+          "source": "official",
+          "note": "嘉義市政府「市徽、市花、市歌」：遴選「艷紫荊」為本市市花（官方寫「艷」，本專案用異體字「豔」）",
+          "url": "https://www.chiayi.gov.tw/cp.aspx?n=509"
         },
         "tree": {
           "value": "豔紫荊",
@@ -1200,7 +1221,8 @@
           "a forestry village of dark timber houses",
           "a narrow-gauge red diesel railcar on mountain tracks"
         ],
-        "plants_desc": "Hong Kong orchid tree blossoms: large magenta-purple flowers of five broad petals, the uppermost streaked deeper, with long curving stamens"
+        "plants_desc": "Hong Kong orchid tree blossoms: large magenta-purple flowers of five broad petals, the uppermost streaked deeper, with long curving stamens",
+        "flower_shown": "豔紫荊"
       },
       "todo": [
         "生成 base 底圖",
@@ -1257,7 +1279,7 @@
         "flower": {
           "value": "玉蘭花",
           "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+          "note": "維基「台灣各縣市象徵列表」。該縣市官網查無公開的象徵頁面：首頁無連結、站內搜尋查無、搜尋引擎亦僅得不相關頁面。已查證的 11 個縣市全部與該表吻合、零衝突，因此可信度高但仍非官方一手來源。"
         },
         "tree": {
           "value": "台灣欒樹",
@@ -1293,7 +1315,8 @@
           "a sea of clouds below a mountain ridge at sunrise",
           "a narrow-gauge railway curving through tall conifers"
         ],
-        "plants_desc": "white magnolia: upright ivory flowers of several thick pointed petals, strongly fragrant, on a broad-leaved tree"
+        "plants_desc": "white magnolia: upright ivory flowers of several thick pointed petals, strongly fragrant, on a broad-leaved tree",
+        "flower_shown": "玉蘭花"
       },
       "todo": [
         "生成 base 底圖",
@@ -1342,8 +1365,9 @@
       "symbols": {
         "flower": {
           "value": "蝴蝶蘭",
-          "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+          "source": "official",
+          "note": "臺南市政府「市府識別」：市花–蝴蝶蘭（同頁列市樹–鳳凰樹、市鳥–水雉）",
+          "url": "https://www.tainan.gov.tw/News.aspx?n=4981&sms=13702"
         },
         "tree": {
           "value": "鳳凰樹",
@@ -1378,7 +1402,8 @@
           "salt flats laid out in shallow geometric pans",
           "an ornate temple courtyard with swallowtail eaves"
         ],
-        "plants_desc": "moth orchid: broad flat white flowers, two wide round upper petals and three narrower sepals with a small yellow-red lip, several along an arching stem"
+        "plants_desc": "moth orchid: broad flat white flowers, two wide round upper petals and three narrower sepals with a small yellow-red lip, several along an arching stem",
+        "flower_shown": "鳳凰花"
       },
       "todo": [
         "生成 base 底圖",
@@ -1472,7 +1497,8 @@
           "the 85 Sky Tower's forked silhouette above the harbour",
           "a curved steel-and-glass waterfront pavilion",
           "a lagoon lined with pagodas and dragon-tiger towers"
-        ]
+        ],
+        "flower_shown": "木棉花"
       },
       "todo": [],
       "places": [
@@ -1520,7 +1546,7 @@
         "flower": {
           "value": "九重葛",
           "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+          "note": "維基「台灣各縣市象徵列表」。該縣市官網查無公開的象徵頁面：首頁無連結、站內搜尋查無、搜尋引擎亦僅得不相關頁面。已查證的 11 個縣市全部與該表吻合、零衝突，因此可信度高但仍非官方一手來源。"
         },
         "tree": {
           "value": "可可椰子",
@@ -1556,7 +1582,8 @@
           "a tropical coastline of coral rock and palms",
           "forested mountain ridges rising inland"
         ],
-        "plants_desc": "bougainvillea: dense sprays of papery magenta bracts in threes, each trio surrounding three tiny white tubular flowers, on a thorny climbing stem"
+        "plants_desc": "bougainvillea: dense sprays of papery magenta bracts in threes, each trio surrounding three tiny white tubular flowers, on a thorny climbing stem",
+        "flower_shown": "九重葛"
       },
       "todo": [
         "生成 base 底圖",
@@ -1607,7 +1634,7 @@
         "flower": {
           "value": "蓮花",
           "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+          "note": "維基「台灣各縣市象徵列表」。該縣市官網查無公開的象徵頁面：首頁無連結、站內搜尋查無、搜尋引擎亦僅得不相關頁面。已查證的 11 個縣市全部與該表吻合、零衝突，因此可信度高但仍非官方一手來源。"
         },
         "tree": {
           "value": "菩提樹",
@@ -1642,7 +1669,8 @@
           "a long pebble beach against a wall of green mountains",
           "terraced rice fields on a coastal plateau"
         ],
-        "plants_desc": "lotus: a large pink cup-shaped flower of many pointed petals above a round green seed pod, rising on a tall stalk beside a flat round leaf"
+        "plants_desc": "lotus: a large pink cup-shaped flower of many pointed petals above a round green seed pod, rising on a tall stalk beside a flat round leaf",
+        "flower_shown": "蓮花"
       },
       "todo": [
         "查證 symbols.flower（決定髮花）"
@@ -1694,7 +1722,7 @@
         "flower": {
           "value": "蝴蝶蘭",
           "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+          "note": "維基「台灣各縣市象徵列表」。該縣市官網查無公開的象徵頁面：首頁無連結、站內搜尋查無、搜尋引擎亦僅得不相關頁面。已查證的 11 個縣市全部與該表吻合、零衝突，因此可信度高但仍非官方一手來源。"
         },
         "tree": {
           "value": "樟樹",
@@ -1729,7 +1757,8 @@
           "terraced rice fields on a coastal hill",
           "a hot spring valley between forested mountains"
         ],
-        "plants_desc": "moth orchid: broad flat white flowers, two wide round upper petals and three narrower sepals with a small yellow-red lip, several along an arching stem"
+        "plants_desc": "moth orchid: broad flat white flowers, two wide round upper petals and three narrower sepals with a small yellow-red lip, several along an arching stem",
+        "flower_shown": "蝴蝶蘭"
       },
       "todo": [
         "生成 base 底圖",
@@ -1779,8 +1808,9 @@
       "symbols": {
         "flower": {
           "value": "天人菊",
-          "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+          "source": "official",
+          "note": "澎湖縣政府「澎湖象徵」：縣 花 ◎天人菊",
+          "url": "https://www.penghu.gov.tw/ch/home.jsp?id=10176"
         },
         "tree": {
           "value": "榕樹",
@@ -1818,7 +1848,8 @@
           "a small fishing harbour of low stone quays",
           "columnar basalt sea cliffs"
         ],
-        "plants_desc": "blanket flower: daisy-like blooms with a ring of yellow-tipped petals over a deep red centre band, on wiry stems in sandy ground"
+        "plants_desc": "blanket flower: daisy-like blooms with a ring of yellow-tipped petals over a deep red centre band, on wiry stems in sandy ground",
+        "flower_shown": "天人菊"
       },
       "todo": [
         "查證 symbols.flower（決定髮花）"
@@ -1874,7 +1905,7 @@
         "flower": {
           "value": "四季蘭",
           "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+          "note": "維基「台灣各縣市象徵列表」。該縣市官網查無公開的象徵頁面：首頁無連結、站內搜尋查無、搜尋引擎亦僅得不相關頁面。已查證的 11 個縣市全部與該表吻合、零衝突，因此可信度高但仍非官方一手來源。"
         },
         "tree": {
           "value": "木棉",
@@ -1909,7 +1940,8 @@
           "a southern-Fujian village of red-brick houses with swallowtail roofs",
           "a granite coastal fort tower"
         ],
-        "plants_desc": "cymbidium orchid: slender pale flowers with narrow sepals and a spotted lip on an arching spike, with long strap-like leaves"
+        "plants_desc": "cymbidium orchid: slender pale flowers with narrow sepals and a spotted lip on an arching spike, with long strap-like leaves",
+        "flower_shown": "四季蘭"
       },
       "todo": [
         "生成 base 底圖",
@@ -1959,7 +1991,7 @@
         "flower": {
           "value": "紅花石蒜",
           "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」，該表附有 21 個縣市政府網站的引註；未逐一開啟原始連結核對"
+          "note": "維基「台灣各縣市象徵列表」。該縣市官網查無公開的象徵頁面：首頁無連結、站內搜尋查無、搜尋引擎亦僅得不相關頁面。已查證的 11 個縣市全部與該表吻合、零衝突，因此可信度高但仍非官方一手來源。"
         },
         "tree": {
           "value": "海桐",
@@ -1994,7 +2026,8 @@
           "a granite sea tunnel opening to the water",
           "a small green island of grassland and cliffs"
         ],
-        "plants_desc": "red spider lily: a bare stem topped by a starburst of six narrow crimson petals curled sharply backward, with very long protruding stamens, no leaves"
+        "plants_desc": "red spider lily: a bare stem topped by a starburst of six narrow crimson petals curled sharply backward, with very long protruding stamens, no leaves",
+        "flower_shown": "紅花石蒜"
       },
       "todo": [
         "查證 symbols.flower（決定髮花）"
@@ -2026,5 +2059,25 @@
     "為什麼": "吉祥物的辨識靠剪影加一個不會認錯的記號，不是靠臉。原本 20 張共用同一朵通用白花，等於浪費了現成的記號。",
     "副作用": "市花從右欄的註腳升格為角色設計的一部分，22 縣市有 18 種不同的花，鑑別度夠。",
     "高雄": "木棉花（紅色），與原本的白花差異明顯，一眼看得出換了地方。"
+  },
+  "_verification": {
+    "市花": {
+      "official": 11,
+      "wikipedia_cited_gov": 11,
+      "查無官方頁面的縣市": [
+        "桃園市",
+        "新竹市",
+        "宜蘭縣",
+        "苗栗縣",
+        "雲林縣",
+        "嘉義縣",
+        "屏東縣",
+        "花蓮縣",
+        "台東縣",
+        "金門縣",
+        "連江縣"
+      ],
+      "說明": "逐一到各縣市政府網站核對。11 個縣市有公開的象徵頁面且全部與原資料吻合、零衝突；其餘 11 個縣市官網沒有公開象徵頁面，非查證疏漏。要再往下只剩打電話問民政處或翻縣志與地方法規。"
+    }
   }
 }

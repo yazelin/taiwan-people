@@ -533,6 +533,7 @@ section:has(>.hero){overflow-x:clip}
   text-shadow:0 2px 3px rgba(2,12,26,1),0 0 12px rgba(2,12,26,.9)}
 .meet-txt p.rule{color:#ffe6ab}
 .flowers{list-style:none;display:flex;flex-wrap:wrap;gap:.3rem .5rem;margin-top:.2rem}
+.flowers li b{font-weight:700;color:var(--gold);margin-right:.35em;letter-spacing:.04em}
 .flowers li{font-size:.72rem;letter-spacing:.08em;color:#cfe3f0;
   padding:.16rem .6rem;border-radius:999px;
   border:1px solid rgba(160,210,235,.3);background:rgba(255,255,255,.06)}
@@ -706,10 +707,10 @@ section:has(>.hero){overflow-x:clip}
          alt="阿蕊：台灣人代表系列的角色">
     <div class="meet-txt">
       <h3>認識阿蕊<small>A-luí</small></h3>
-      <p>她是走遍二十二個縣市的人，不是任何一個縣市的在地人。<br>
-        所以她在高雄、在花蓮、在金門，而不是「她是哪裡人」。</p>
-      <p class="rule">她頭上永遠有一朵花。<br>
-        花的種類，就是她所在縣市的市花。</p>
+      <p>她是台灣人，家鄉是整座島。<br>
+        沒有再往下指定到哪一個縣市——一旦指定，那張臉就成了「某某縣人長這樣」。</p>
+      <p class="rule">她頭上永遠有花，那是認出她的記號。<br>
+        花跟著地方換，多數是當地的市花。</p>
       <ul class="flowers" id="flowers"></ul>
     </div>
   </div>
@@ -960,13 +961,17 @@ addEventListener("keydown",e=>{
 
 /* 髮花＝市花。花會變，人不變 —— 這是角色的識別記號，不是裝飾。
    資料仍待逐一對官方核實，見 data/counties.json 的 source 欄位。 */
-const FLOWERS={"基隆市": "紫薇", "台北市": "杜鵑花", "新北市": "茶花", "桃園市": "桃花", "新竹市": "杜鵑花", "新竹縣": "茶花", "宜蘭縣": "國蘭", "苗栗縣": "桂花", "台中市": "山櫻花", "彰化縣": "菊花", "南投縣": "梅花", "雲林縣": "蝴蝶蘭", "嘉義市": "豔紫荊", "嘉義縣": "玉蘭花", "台南市": "蝴蝶蘭", "高雄市": "木棉花", "屏東縣": "九重葛", "花蓮縣": "蓮花", "台東縣": "蝴蝶蘭", "澎湖縣": "天人菊", "金門縣": "四季蘭", "連江縣": "紅花石蒜"};
+/* 頭上那朵花：**實際畫在圖上的**，由 data/counties.json 的 scene.hair_zh 產生，
+   不是市花表。兩者多數相同但不完全一致——台南用的是市樹鳳凰花，
+   因為市花蝴蝶蘭同時是雲林、台南、台東三個縣市的，認不出台南。
+   原本這裡硬寫了一份市花表的副本，結果跟畫面對不起來，而且只列花名
+   沒標縣市，讀者看不出那排字是什麼。 */
+const HAIR_FLOWERS=[["基隆市", "紫薇"], ["台北市", "杜鵑花"], ["新北市", "茶花"], ["桃園市", "桃花"], ["新竹市", "杜鵑花"], ["新竹縣", "茶花"], ["宜蘭縣", "國蘭"], ["苗栗縣", "桂花"], ["台中市", "山櫻花"], ["彰化縣", "菊花"], ["南投縣", "梅花"], ["雲林縣", "蝴蝶蘭"], ["嘉義市", "豔紫荊"], ["嘉義縣", "玉蘭花"], ["台南市", "鳳凰花"], ["高雄市", "木棉花"], ["屏東縣", "九重葛"], ["花蓮縣", "蓮花"], ["台東縣", "蝴蝶蘭"], ["澎湖縣", "天人菊"], ["金門縣", "四季蘭"], ["連江縣", "紅花石蒜"]];
 (function(){
   const box=document.getElementById("flowers");
-  const seen=new Set();
-  for(const r of R){
-    const f=FLOWERS[r.n]; if(!f||seen.has(f)) continue; seen.add(f);
-    const li=document.createElement("li"); li.textContent=f; li.dataset.f=f;
+  for(const [n,f] of HAIR_FLOWERS){
+    const li=document.createElement("li");
+    li.innerHTML=`<b>${n}</b>${f}`;
     box.appendChild(li);
   }
 })();
