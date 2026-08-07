@@ -31,7 +31,7 @@
       "en": "KEELUNG",
       "group": "n",
       "poster": "keelung",
-      "base": "keelung-base",
+      "base": null,
       "share": {
         "who": "基隆，代表了",
         "words": [
@@ -73,7 +73,7 @@
         "hand_zh": "廟口的吉古拉",
         "outfit_zh": "深藍水手帽（錨徽）、藍白條紋上衣、深藍外套、錨形耳環",
         "outfit": "a navy sailor cap, a navy-and-white striped top under a dark navy jacket, anchor-shaped earrings",
-        "hair": "a sprig of pink crape myrtle tucked into the band of her navy sailor cap; her hair is in the neat high bun, fully contained under the cap with nothing poking through the crown",
+        "hair": "a sprig of pink crape myrtle tucked into the band of her navy sailor cap; her hair is worn DOWN and loose over her shoulders under the cap, not gathered into a bun, with nothing poking through the crown",
         "hair_zh": "水手帽帶插紫薇（基隆市花）、頭髮放下",
         "hair_basis": "symbols.flower",
         "accessory_basis": "水手帽：基隆港是台灣主要國際商港與郵輪母港。**此依據尚未寫入 verified，待查證後補 landmarks**。錨形耳環已刪（與水手帽重複）。",
@@ -102,7 +102,8 @@
       "notes": [
         "海報無「美食代表」欄，改自「物產代表」。廟口小吃取自人情味欄。",
         "吉古拉佐證最強——來源指出「只有基隆人這樣叫，是基隆專屬用語」。基隆嶼、基隆豆干未另找到佐證。",
-        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。"
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
+        "髮型是**放下**不是盤髮——原海報就是這樣。先前一律改成盤髮是錯的，那是看縮圖下的通則判斷，把原本明確不同的四個縣市（基隆、台北、花蓮、台東）也蓋掉了。"
       ],
       "traits": [
         "海派",
@@ -123,7 +124,7 @@
       "en": "TAIPEI CITY",
       "group": "n",
       "poster": "taipei",
-      "base": "taipei-base",
+      "base": null,
       "share": {
         "who": "台北，代表了",
         "words": [
@@ -165,8 +166,8 @@
         "hand_zh": "鳳梨酥",
         "outfit_zh": "黑色連帽上衣（城市剪影印花）＋白色外套、101 造型耳環",
         "outfit": "a black hoodie printed with a wordless city-skyline graphic under a white jacket",
-        "hair_zh": "杜鵑花（台北市花）＋高馬尾",
-        "hair": "a pink azalea pinned beside her neat high bun",
+        "hair_zh": "杜鵑花（台北市花）、頭髮放下",
+        "hair": "a pink azalea pinned in her hair, which is worn DOWN and loose over her shoulders, not gathered into a bun",
         "hair_basis": "symbols.flower",
         "accessory_basis": "101 耳環已刪：台北的 landmarks 是陽明山、北投溫泉、象山，沒有 101，配件對不回任何欄位。",
         "right_zone": "sky",
@@ -195,7 +196,8 @@
         "海報「代表樹 台灣欒樹」有誤，台北市樹是榕樹（台灣欒樹是宜蘭縣與嘉義縣的）。",
         "**發現疑點**：海報列的「文山包種茶」主產地在新北坪林、石碇，台北市貓空產的是鐵觀音。新北那張海報也列了文山包種茶，兩張都可疑。建議台北改用貓空鐵觀音。",
         "**文山包種茶已換成貓空鐵觀音**。查證結果：文山包種茶產區橫跨新北坪林、石碇、深坑等與台北南港、木柵，坪林占全區約67%為最大產區，屬新北；台北市貓空一帶則是鐵觀音的唯一生產茶區。包種茶雖發源於台北南港，但用貓空鐵觀音對台北的專屬性更強。",
-        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。"
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
+        "髮型是**放下**不是盤髮——原海報就是這樣。先前一律改成盤髮是錯的，那是看縮圖下的通則判斷，把原本明確不同的四個縣市（基隆、台北、花蓮、台東）也蓋掉了。"
       ],
       "traits": [
         "多元",
@@ -871,7 +873,7 @@
       "en": "CHANGHUA",
       "group": "c",
       "poster": "changhua",
-      "base": null,
+      "base": "changhua-base",
       "share": {
         "who": "彰化，代表了",
         "words": [
@@ -963,7 +965,7 @@
       "en": "NANTOU",
       "group": "c",
       "poster": "nantou",
-      "base": null,
+      "base": "nantou-base",
       "share": {
         "who": "南投，代表了",
         "words": [
@@ -1053,7 +1055,7 @@
       "en": "YUNLIN",
       "group": "c",
       "poster": "yunlin",
-      "base": null,
+      "base": "yunlin-base",
       "share": {
         "who": "雲林，代表了",
         "words": [
@@ -1147,7 +1149,7 @@
       "en": "CHIAYI CITY",
       "group": "s",
       "poster": "chiayi-county",
-      "base": null,
+      "base": "chiayi-city-base",
       "share": {
         "who": "嘉義，代表了",
         "words": [
@@ -1240,7 +1242,7 @@
       "en": "CHIAYI COUNTY",
       "group": "s",
       "poster": "chiayi-county",
-      "base": null,
+      "base": "chiayi-county-base",
       "share": {
         "who": "嘉義，代表了",
         "words": [
@@ -1326,7 +1328,7 @@
       "en": "TAINAN",
       "group": "s",
       "poster": "tainan",
-      "base": null,
+      "base": "tainan-base",
       "share": {
         "who": "台南，代表了",
         "words": [
@@ -1420,7 +1422,7 @@
       "en": "KAOHSIUNG",
       "group": "s",
       "poster": "kaohsiung",
-      "base": null,
+      "base": "kaohsiung-base",
       "share": {
         "who": "高雄，代表了",
         "words": [
@@ -1503,7 +1505,7 @@
       "en": "PINGTUNG",
       "group": "s",
       "poster": "pingtung",
-      "base": null,
+      "base": "pingtung-base",
       "share": {
         "who": "屏東，代表了",
         "words": [
@@ -1632,8 +1634,8 @@
         "hand_zh": "洛神花茶",
         "outfit_zh": "白色荷葉袖上衣＋織紋滾邊背心（紅、黑、白幾何紋）、多層串珠項鍊與長串珠耳環",
         "outfit": "a white puff-sleeve top under an open vest bordered with woven geometric bands in red, black and white, layered beaded necklaces and long beaded earrings",
-        "hair": "a pink lotus blossom pinned beside her neat high bun, layered beaded necklaces and long beaded earrings",
-        "hair_zh": "蓮花（花蓮縣花）",
+        "hair": "a full flower crown centred on a pink lotus blossom, worn over hair that falls DOWN and loose over her shoulders — not gathered into a bun; layered beaded necklaces and long beaded earrings",
+        "hair_zh": "蓮花花冠（花蓮縣花）、頭髮放下",
         "hair_basis": "symbols.flower",
         "right_zone": "sea",
         "landmarks_en": [
@@ -1662,7 +1664,8 @@
         "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
         "服裝含原住民族織紋，依原海報保留視覺但**不指名族群**——台東就有阿美、卑南、排灣、布農、達悟五族，指錯族群的織紋比指錯市樹嚴重。若要對外正式發佈，這幾張建議先請具代表性的族人或相關單位過目。",
         "髮飾是花冠不是蓮花——蓮花是大型水生花，戴在頭上不合理。這是規則四唯一的例外。",
-        "海報是不指定種類的花冠；改用查證過的縣花蓮花。"
+        "海報是不指定種類的花冠；改用查證過的縣花蓮花。",
+        "髮型是**放下**不是盤髮——原海報就是這樣。先前一律改成盤髮是錯的，那是看縮圖下的通則判斷，把原本明確不同的四個縣市（基隆、台北、花蓮、台東）也蓋掉了。"
       ],
       "traits": [
         "純淨",
@@ -1719,8 +1722,8 @@
         "hand_zh": "台東釋迦",
         "outfit_zh": "黑色長版上衣配紅白幾何織紋滾邊與腰帶、多層串珠項鍊、長串珠耳環",
         "outfit": "a black long tunic bordered with woven geometric bands in red and white at the sleeves, hem and sash, layered beaded necklaces and long beaded earrings",
-        "hair": "a flower crown centred on white moth orchids, with small fruits woven in",
-        "hair_zh": "花冠，主花為蝴蝶蘭（台東縣花）＋果實",
+        "hair": "a flower crown of white moth orchids and small fruits, worn over hair that falls DOWN and loose over her shoulders — not gathered into a bun",
+        "hair_zh": "蝴蝶蘭花冠（台東縣花）、頭髮放下",
         "hair_basis": "symbols.flower",
         "right_zone": "sea",
         "landmarks_en": [
@@ -1747,7 +1750,8 @@
       "notes": [
         "縣花經多方來源交叉確認為蝴蝶蘭（縣樹樟樹）。舊海報底部畫紅色朱槿是海報的錯，不是資料的錯。",
         "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
-        "服裝含原住民族織紋，依原海報保留視覺但**不指名族群**——台東就有阿美、卑南、排灣、布農、達悟五族，指錯族群的織紋比指錯市樹嚴重。若要對外正式發佈，這幾張建議先請具代表性的族人或相關單位過目。"
+        "服裝含原住民族織紋，依原海報保留視覺但**不指名族群**——台東就有阿美、卑南、排灣、布農、達悟五族，指錯族群的織紋比指錯市樹嚴重。若要對外正式發佈，這幾張建議先請具代表性的族人或相關單位過目。",
+        "髮型是**放下**不是盤髮——原海報就是這樣。先前一律改成盤髮是錯的，那是看縮圖下的通則判斷，把原本明確不同的四個縣市（基隆、台北、花蓮、台東）也蓋掉了。"
       ],
       "traits": [
         "包容",
@@ -1762,7 +1766,7 @@
       "en": "PENGHU",
       "group": "i",
       "poster": "penghu",
-      "base": null,
+      "base": "penghu-base",
       "share": {
         "who": "澎湖，代表了",
         "words": [
@@ -1819,7 +1823,6 @@
         "plants_desc": "blanket flower: daisy-like blooms with a ring of yellow-tipped petals over a deep red centre band, on wiry stems in sandy ground"
       },
       "todo": [
-        "生成 base 底圖",
         "查證 symbols.flower（決定髮花）"
       ],
       "places": [
@@ -1942,7 +1945,7 @@
       "en": "LIENCHIANG",
       "group": "i",
       "poster": "lienchiang",
-      "base": null,
+      "base": "lienchiang-base",
       "share": {
         "who": "連江，代表了",
         "words": [

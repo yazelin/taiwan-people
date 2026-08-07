@@ -5,7 +5,7 @@
     "tailo": "A-luí",
     "plain": "A-Lui"
   },
-  "card": "A young Taiwanese woman with warm brown eyes, a friendly open smile, and dark brown-black hair of shoulder length gathered high at the back into a NEAT, COMPACT BUN — a tidy rounded coil that sits close to the head, with only a few short wispy strands at the temples and nape. Small hoop earrings. Anime illustration style, soft painterly shading, natural daylight. She always wears a gold beaded tassel hairpin; that accessory is the same in all twenty-two counties.",
+  "card": "A young Taiwanese woman with warm brown eyes, a friendly open smile, and dark brown-black hair of shoulder length. Her default is a NEAT, COMPACT BUN gathered high at the back — a tidy rounded coil sitting close to the head, with only a few short wispy strands at the temples and nape — but some counties call for it worn down instead; the per-county instruction overrides this default. Small hoop earrings. Anime illustration style, soft painterly shading, natural daylight. She always wears a gold beaded tassel hairpin; that accessory is the same in all twenty-two counties.",
   "bio": "阿蕊走遍二十二個縣市，不是任何一個縣市的在地人。她頭上永遠有一朵花，花的種類就是她所在縣市的市花。",
   "must_not": [
     "綠色或藍色的眼睛——現有海報裡宜蘭是綠眼、花蓮是藍眼，那是生成瑕疵",
@@ -19,8 +19,8 @@
     "照抄立繪上的服裝——立繪只鎖臉與身形，衣服一律以該縣市的 outfit 為準",
     "任何政治標語、口號石碑或國旗——金門、連江的原海報有，對外傳播不畫",
     "被風吹散的長髮——髮絲四散飛出、輪廓比頭大一倍以上的蓬亂髮團",
-    "垂在肩後的長馬尾——她的髮是往上盤成髻，不是綁成一束垂下來",
-    "改變髮色或髮長；髮型的收束方式以本卡為準，不照抄參考圖上被風吹亂的樣子"
+    "改變髮色或髮長；髮型的收束方式以本卡為準，不照抄參考圖上被風吹亂的樣子",
+    "被風吹散、髮絲四散飛出的蓬亂髮團——不論盤起或放下，髮絲都要連續完整"
   ],
   "refs": {
     "ref-half.png": "半身立繪（裁到大腿中段）。生圖時附這張——全身立繪會讓模型連框取一起照抄，人物就變小。",
