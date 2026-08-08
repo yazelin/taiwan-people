@@ -1,5 +1,5 @@
 {
-  "_note": "22 縣市資料表。source 標示可信度：official 已核對官方、wikipedia 僅維基待查、none 該縣市未指定。切勿直接抄原始海報 —— 海報由 AI 生成，已知有錯字與張冠李戴（高雄那張的代表樹與代表鳥其實是台南的）。",
+  "_note": "22 縣市資料表。source 標示可信度：official 已核對官方、wikipedia 僅維基待查、none 該縣市未指定。切勿直接抄原始海報 —— 海報由 AI 生成，已知有錯字與張冠李戴（高雄那張的代表樹與代表鳥其實是台南的）。\n\n通用版的服裝不准出現對不回依據的族群織紋。原本花蓮、台東、屏東、南投四筆是「依原海報保留原住民族織紋但不指名族群」，那等於畫出一件不屬於任何族的族服——光花蓮就有阿美、太魯閣、撒奇萊雅、噶瑪蘭、賽德克、布農六族。這四筆已改成當代日常穿著，族服交給有 culture 的那些筆去承擔，那時每一項都對得回 data/costume.json。",
   "_fields": {
     "share.who": "分享圖右上引導句。主詞刻意用地方而非人，避免對群體貼標籤。",
     "share.words": "三個特質詞，取自海報標語，仍待逐一斟酌。",
@@ -28,7 +28,10 @@
     "scene.light": "光線配方，依地理決定：west＝西部面海的夕照、east＝東部面海的晨光、inland＝內陸午後斜光掠過山稜。先前沒指定光源，每張的光向都不一樣，物件像各自貼上去的。",
     "scene.accessories": "人物身上的次要配件，讀自原海報的人物區。\n原則跟背景一樣：主識別（髮花＋金珠流蘇髮簪）清楚，配件豐富但視覺權重低。\n先前 prompt 只寫服裝、帆布袋、手持物、髮花，徽章與吊牌全部沒寫，模型就自己簡化了。\n**有字的一律改成無字版本**——底圖不能有文字，所以「宜蘭尚青」木牌變成無字木牌、「I♥台中」徽章變成無字愛心徽章。",
     "scene.viewpoint": "她站在哪個具體位置。**畫面裡只能出現從那裡真的看得到的東西。**\n少了這條，模型會把不同地方的地標拼在同一格——台北那張就是陽明山（北邊山上）、北投（山腳）、101（市中心盆地）三者同框，地理上沒有任何位置能同時看到。\n結果 101 從雲海裡獨自聳立、旁邊接一條山城老街，變成地理拼貼。",
-    "scene.right_zone_desc": "留白區的逐縣市覆寫。right_zone 的幾種通則有時全都不對——花蓮的視點在太魯閣峽谷內，留白既不是海也不是天空遠山，是峽谷自身的岩壁與霧。"
+    "scene.right_zone_desc": "留白區的逐縣市覆寫。right_zone 的幾種通則有時全都不對——花蓮的視點在太魯閣峽谷內，留白既不是海也不是天空遠山，是峽谷自身的岩壁與霧。",
+    "culture": "該筆造型指名的族群，值為 data/costume.json 的 peoples[].id。**留空＝通用版**。通用版是「阿蕊在這個地方」，不宣稱代表任何族群；有 culture 的是「阿蕊穿某族的服飾」，那是對外宣稱，每一項都要對得回 costume.json。",
+    "county": "有 culture 的那些筆才需要，指出它屬於哪一個縣市（網站要靠它把造型掛回地圖）。通用版不必填，name 就是縣市名。",
+    "scene.costume_basis": "服裝對回 data/costume.json 的哪些欄位，或說明為什麼把某些東西拿掉。**只要 outfit 或 accessories 出現族群織紋、族服名稱，這一欄就必須有東西**，build_prompt.py 會擋。"
   },
   "counties": [
     {
@@ -602,8 +605,8 @@
         ],
         "hand": "a bowl of hakka lei-cha, thick pale-green ground tea, with a small dish of puffed rice",
         "hand_zh": "客家擂茶",
-        "outfit_zh": "客家藍衫（立領盤扣、白色小花印花）",
-        "outfit": "an indigo hakka blue tunic with a mandarin collar, cloth knot buttons and small white floral print",
+        "outfit_zh": "北部客家大襟衫（水藍素面、右開大襟、黑色鑲緄加提花織帶、直布扣）、大襠褲",
+        "outfit": "a northern Hakka da-jin-shan tunic in plain pale sky-blue cotton with NO printed pattern anywhere on the cloth: it fastens to the RIGHT, the opening curving from a low mandarin collar across the chest to the right underarm, that edge bound with a wide black border finished on its outer edge with a narrow woven jacquard tape, five straight cloth-knot buttons down the opening, loose sleeves to the wrist, hem at hip level, worn over loose wide-crotch trousers",
         "hair": "a pale pink camellia pinned beside her neat high bun",
         "hair_zh": "茶花（新竹縣花）",
         "hair_basis": "symbols.flower",
@@ -622,11 +625,14 @@
           "Smangus, a remote cypress-forested mountain village in cloud"
         ],
         "light": "inland",
-        "accessories": "a woven Hakka-patterned cord bracelet, small jade drop earrings, and a plain cloth pouch at her hip",
+        "accessories": "a plain cloth pouch at her hip, small jade drop earrings, and a cord with a plain wooden tag",
         "viewpoint": "standing in the lane of Beipu Old Street",
-        "viewpoint_sees": "from here red-brick Hakka shophouses and tea rooms line both sides with tiled roofs layered behind and hills beyond"
+        "viewpoint_sees": "from here red-brick Hakka shophouses and tea rooms line both sides with tiled roofs layered behind and hills beyond",
+        "costume_basis": "依客委會《台灣客家服飾民間收藏調查研究》（鄭惠美，2007）的北客大襟衫調查：右開大襟、直布扣、鑲緄從領緣沿大襟至腋下、外緣加提花織帶、衣長蓋過臀部（比六堆藍衫短 15-20 公分）、北客用色不限藍黑，年輕婦女常見白、米、淡綠、水藍。改掉兩處錯誤：一、原本寫「白色小花印花」，傳統大襟衫是素面，印花是把 1960 年代的花布誤當客家傳統（見 costume.json 的 _redlines 第四條）；二、原本寫「立領盤扣」，盤扣是對襟的做法，大襟衫用的是直布扣。另外新竹屬北客，不該叫「藍衫」——藍衫是南部六堆的稱法。配件的「客家紋樣編織手環」已刪：那是自己發明的，調查報告裡沒有這種東西。"
       },
-      "todo": [],
+      "todo": [
+        "底圖與資料已不符（服裝欄改過），img/<id>-base.webp 需要重生"
+      ],
       "places": [
         "內灣老街",
         "北埔老街",
@@ -806,12 +812,11 @@
         ],
         "hand": "a small punnet of bright red strawberries",
         "hand_zh": "大湖草莓",
-        "outfit_zh": "深藍客家藍衫（立領盤扣、白色小花印花）＋藍花頭巾",
-        "outfit": "a navy hakka blue tunic with a mandarin collar and small white floral print, a blue floral headscarf",
-        "hair": "a white-and-orange sprig of osmanthus tucked above the blue floral headscarf",
-        "hair_zh": "桂花（苗栗縣花）＋藍花頭巾",
+        "outfit_zh": "北部客家大襟衫（米色素面、右開大襟、黑色鑲緄加提花織帶、直布扣）、大襠褲",
+        "outfit": "a northern Hakka da-jin-shan tunic in plain cream cotton with NO printed pattern anywhere on the cloth: it fastens to the RIGHT, the opening curving from a low mandarin collar across the chest to the right underarm, that edge bound with a wide black border finished on its outer edge with a narrow woven jacquard tape, five straight cloth-knot buttons down the opening, loose sleeves to the wrist, hem at hip level, worn over loose wide-crotch trousers",
+        "hair": "a white-and-orange sprig of osmanthus tucked into her hair, worn in a compact high bun with no headscarf",
+        "hair_zh": "桂花（苗栗縣花）",
         "hair_basis": "symbols.flower",
-        "accessory_basis": "藍花頭巾：搭客家藍衫的傳統頭巾，苗栗是客家人口占多數的縣。**此依據尚未寫入 verified，待查證後補**。",
         "right_zone": "sky",
         "landmarks_en": [
           "Nanzhuang Old Street of wooden shopfronts under red lanterns",
@@ -827,12 +832,14 @@
           "Sanyi's woodcarving workshops with carved timber displays along the street"
         ],
         "light": "inland",
-        "accessories": "long dangling silver earrings, a white cross-body cloth strap, and cloth-knot buttons at her collar",
+        "accessories": "a plain cloth pouch at her hip, small silver drop earrings, and a white cross-body cloth strap",
         "viewpoint": "standing on the dry bed of the Da'an River below Huoyanshan",
-        "viewpoint_sees": "from here the bare orange-red eroded ridges rise straight up across the river with pale hills behind"
+        "viewpoint_sees": "from here the bare orange-red eroded ridges rise straight up across the river with pale hills behind",
+        "costume_basis": "依客委會《台灣客家服飾民間收藏調查研究》（鄭惠美，2007）的北客大襟衫調查：右開大襟、直布扣、鑲緄從領緣沿大襟延伸至後片與小襟、外緣加提花織帶、衣長蓋過臀部、北客用色不限藍黑（年輕婦女常見白、米、淡綠、水藍）。苗栗取米色、新竹縣取水藍，兩縣才不會長得一樣。\n改掉三處：一、原本寫「白色小花印花」，傳統大襟衫是素面，印花是把 1960 年代的花布誤當客家傳統（見 costume.json 的 _redlines 第四條）；二、原本寫「立領盤扣」，盤扣是對襟的做法，大襟衫用直布扣；三、苗栗屬北客，該叫大襟衫而非藍衫，藍衫是南部六堆的稱法。\n**藍花頭巾已刪。** 原本的 accessory_basis 寫著「待查證」，這次查了：客委會那份調查報告沒有頭飾專章，本次也沒找到台灣客家頭飾的官方專論。查不到就不畫，這是查證結果不是疏漏。"
       },
       "todo": [
-        "查證 symbols.flower（決定髮花）"
+        "查證 symbols.flower（決定髮花）",
+        "底圖與資料已不符（服裝欄改過），img/<id>-base.webp 需要重生"
       ],
       "places": [
         "南庄老街",
@@ -1122,8 +1129,8 @@
         ],
         "hand": "a small ceramic cup of amber oolong tea, steam rising",
         "hand_zh": "凍頂烏龍茶",
-        "outfit_zh": "米白上衣＋紅黑幾何織紋長版背心",
-        "outfit": "a cream top under a long open vest bordered with woven geometric bands in deep red and black",
+        "outfit_zh": "墨綠色薄襯衫、米白T",
+        "outfit": "a deep-green open shirt over a cream tee",
         "hair": "white plum blossoms beside her neat high bun",
         "hair_zh": "梅花（南投縣花）",
         "hair_basis": "symbols.flower",
@@ -1142,11 +1149,14 @@
           "Hehuanshan's bare alpine road above the treeline"
         ],
         "light": "inland",
-        "accessories": "a red-and-black woven cross-body strap, long red-tasselled drop earrings, and a plain wooden tag on a cord",
+        "accessories": "a plain cloth tea pouch at her hip, a cord with a plain wooden tag, and small stud earrings",
         "viewpoint": "standing at the lakeside pier of Sun Moon Lake",
-        "viewpoint_sees": "from here the lake opens out with forested peaks ringing the far shore and a small boat on the water"
+        "viewpoint_sees": "from here the lake opens out with forested peaks ringing the far shore and a small boat on the water",
+        "costume_basis": "原本是「米白上衣＋紅黑幾何織紋長版背心、紅黑織紋斜背帶、長紅流蘇耳環」，讀自原海報，對不回任何一族。南投境內有泰雅、賽德克、布農、鄒、邵五族，泰雅光是群就分五個、各群色彩偏好都不同（馬利巴群是全泰雅唯一在單色菱紋裡用黃的），紅黑幾何滾邊看似泛用其實誰都不是。改成茶鄉山區的當代日常。"
       },
-      "todo": [],
+      "todo": [
+        "底圖與資料已不符（服裝欄改過），img/<id>-base.webp 需要重生"
+      ],
       "places": [
         "日月潭",
         "清境農場",
@@ -1735,8 +1745,8 @@
         ],
         "hand": "a bowl of mung-bean dessert with shaved ice",
         "hand_zh": "恆春綠豆蒜",
-        "outfit_zh": "彩色幾何織紋襯衫（橘、綠、藍條帶）、白T",
-        "outfit": "an open shirt with colourful woven geometric bands in orange, green and blue over a white tee",
+        "outfit_zh": "珊瑚橘短袖襯衫、白T",
+        "outfit": "an open coral-orange short-sleeve shirt over a white tee",
         "hair": "a bright magenta bougainvillea pinned beside her neat high bun",
         "hair_zh": "九重葛（屏東縣花）",
         "hair_basis": "symbols.flower",
@@ -1756,12 +1766,14 @@
           "Jialeshuei's wind-carved coastal rock formations"
         ],
         "light": "west",
-        "accessories": "layered beaded necklaces in red white and orange, a woven cord bracelet, and long beaded earrings",
+        "accessories": "a cord necklace with a small shell, a plain cloth pouch on her tote strap, and small stud earrings",
         "viewpoint": "standing on the coral rock shore of Kenting",
-        "viewpoint_sees": "from here turquoise water and palms stretch along the coast with the peak of Dajianshan rising inland behind"
+        "viewpoint_sees": "from here turquoise water and palms stretch along the coast with the peak of Dajianshan rising inland behind",
+        "costume_basis": "原本是「彩色幾何織紋襯衫（橘綠藍條帶）＋多層串珠項鍊、長串珠耳環」，讀自原海報，對不回任何一族。屏東的排灣與魯凱都是階級社會，人形紋、人頭紋、百步蛇紋屬頭目與貴族，把類似的織紋當裝飾畫上去，等於在畫面上偽造一個身分（見 costume.json 的 _redlines 第一條）。改成南國海邊的當代日常。"
       },
       "todo": [
-        "查證 symbols.flower（決定髮花）"
+        "查證 symbols.flower（決定髮花）",
+        "底圖與資料已不符（服裝欄改過），img/<id>-base.webp 需要重生"
       ],
       "places": [
         "墾丁國家公園",
@@ -1832,8 +1844,8 @@
         ],
         "hand": "a clear cup of deep red roselle tea with ice",
         "hand_zh": "洛神花茶",
-        "outfit_zh": "白色荷葉袖上衣＋織紋滾邊背心（紅、黑、白幾何紋）、多層串珠項鍊與長串珠耳環",
-        "outfit": "a white puff-sleeve top under an open vest bordered with woven geometric bands in red, black and white, layered beaded necklaces and long beaded earrings",
+        "outfit_zh": "米白長袖上衣＋卡其色薄外套",
+        "outfit": "a cream long-sleeve top under a light khaki outdoor jacket",
         "hair": "a full flower crown centred on a pink lotus blossom, worn over hair that falls DOWN and loose over her shoulders — not gathered into a bun; layered beaded necklaces and long beaded earrings",
         "hair_zh": "蓮花花冠（花蓮縣花）、頭髮放下",
         "hair_basis": "symbols.flower",
@@ -1852,13 +1864,15 @@
           "Qixingtan, a long curving pebble beach against green mountains"
         ],
         "light": "inland",
-        "accessories": "layered beaded necklaces with a round metal medallion, woven beaded wrist bands, and long beaded earrings",
+        "accessories": "a plain canvas water-bottle pouch clipped at her hip, a cord with a plain wooden tag, and small stud earrings",
         "viewpoint": "standing on the walkway inside Taroko Gorge",
         "viewpoint_sees": "from here sheer marble walls rise on both sides above the jade-green river, with a red suspension bridge spanning the gap and the gorge receding into mist upstream. The sea is not visible from inside the gorge and must not appear",
-        "right_zone_desc": "The right 40 percent is the gorge itself receding upstream: pale marble walls dissolving layer behind layer into bright mist, values compressed almost to white, with a thin band of sky visible high between the cliff tops. Quiet and low-detail because text goes over it, but real rock and mist with depth and gradation, NOT an empty flat area. There is NO SEA anywhere in the picture."
+        "right_zone_desc": "The right 40 percent is the gorge itself receding upstream: pale marble walls dissolving layer behind layer into bright mist, values compressed almost to white, with a thin band of sky visible high between the cliff tops. Quiet and low-detail because text goes over it, but real rock and mist with depth and gradation, NOT an empty flat area. There is NO SEA anywhere in the picture.",
+        "costume_basis": "原本是「白色荷葉袖上衣＋紅黑白幾何織紋滾邊背心＋多層串珠項鍊與長串珠耳環」，讀自原海報，對不回任何一族。花蓮境內有阿美、太魯閣、撒奇萊雅、噶瑪蘭、賽德克、布農六族，各族織紋差異很大（太魯閣是白底單獨菱紋的素淨風格，撒奇萊雅是土金與暗紅），混成一件「泛原住民風」等於六族都畫錯。改成戶外山行的當代日常，花蓮的族服造型另立 culture 欄的筆數處理。"
       },
       "todo": [
-        "查證 symbols.flower（決定髮花）"
+        "查證 symbols.flower（決定髮花）",
+        "底圖與資料已不符（服裝欄改過），img/<id>-base.webp 需要重生"
       ],
       "places": [
         "太魯閣峽谷",
@@ -1933,8 +1947,8 @@
         ],
         "hand": "a whole green sugar-apple (custard apple) with its distinctive knobbly skin",
         "hand_zh": "台東釋迦",
-        "outfit_zh": "黑色長版上衣配紅白幾何織紋滾邊與腰帶、多層串珠項鍊、長串珠耳環",
-        "outfit": "a black long tunic bordered with woven geometric bands in red and white at the sleeves, hem and sash, layered beaded necklaces and long beaded earrings",
+        "outfit_zh": "淺灰藍防風外套、白T",
+        "outfit": "a pale slate-blue windbreaker worn open over a white tee",
         "hair": "a flower crown of white moth orchids and small fruits, worn over hair that falls DOWN and loose over her shoulders — not gathered into a bun",
         "hair_zh": "蝴蝶蘭花冠（台東縣花）、頭髮放下",
         "hair_basis": "symbols.flower",
@@ -1957,12 +1971,14 @@
           "the island's low coral-reef shore, sparse coastal plants and a few distant walkers on the shore path"
         ],
         "light": "east",
-        "accessories": "several layered beaded necklaces with a round metal medallion, a woven waist sash, and long beaded earrings",
+        "accessories": "a plain cloth pouch at her hip, a cord necklace with a small pale wooden bead, and small stud earrings",
         "viewpoint": "standing on the shore at Sanxiantai",
-        "viewpoint_sees": "from here the eight-arched footbridge curves out to the rocky island with the Pacific beyond"
+        "viewpoint_sees": "from here the eight-arched footbridge curves out to the rocky island with the Pacific beyond",
+        "costume_basis": "原本是「黑色長版上衣配紅白幾何織紋滾邊與腰帶、多層串珠項鍊、長串珠耳環」，讀自原海報，對不回任何一族。台東境內有卑南、阿美、排灣、布農、達悟、魯凱、噶瑪蘭七族，達悟是白黑藏青的簡樸系統、卑南是紅黃綠加花環，兩者放進同一件衣服就是兩族都錯。改成海邊的當代日常。台東的族服造型見 culture 欄的筆數。"
       },
       "todo": [
-        "查證 symbols.flower（決定髮花）"
+        "查證 symbols.flower（決定髮花）",
+        "底圖與資料已不符（服裝欄改過），img/<id>-base.webp 需要重生"
       ],
       "places": [
         "三仙台",
@@ -2281,6 +2297,31 @@
         "守望"
       ],
       "quote_basis": "原句，句尾「與驕傲！」較宣傳腔，收在「日常」。潤稿：與屏東都以『山海』起頭太像，調換語序讓開頭不同；並刪去『這就是馬祖人的日常』那句宣告。"
+    },
+    {
+      "id": "taitung-pinuyumayan",
+      "name": "台東縣・卑南族",
+      "en": "TAITUNG / PINUYUMAYAN",
+      "county": "台東縣",
+      "culture": "pinuyumayan",
+      "group": "e",
+      "poster": "taitung",
+      "base": null,
+      "scene": {
+        "outfit_zh": "卑南族女子服飾：長袖短身上衣 makiteng、內搭黑底胸兜 pakelrep、貼身裙 tubilr 外罩方布裙 lrabit、素面護腿布片 katring",
+        "outfit": "Pinuyumayan women's dress: a short-bodied long-sleeved top (makiteng) over a black chest-cloth (pakelrep) whose lower half carries a stitched-on pocket embroidered with small geometric motifs; below, a fitted wrap skirt (tubilr) with its embroidered panel at her RIGHT side and both cloth edges overlapping on the LEFT, covered by an outer square-cloth skirt (lrabit); on her lower legs plain leg-cloths (katring) of a black centre band flanked by red, yellow and green trim with a plain blue outer band, carrying NO woven or embroidered figure motifs; the geometric ornament throughout is flower-and-leaf, square, diamond and triangle forms in red, yellow and green, arranged as repeating bands",
+        "hair": "a flower crown (aputr) plaited from real fresh flowers including white moth orchids, worn over hair that falls DOWN and loose over her shoulders",
+        "hair_zh": "卑南族鮮花花環 aputr，用台東縣花蝴蝶蘭編製、頭髮放下",
+        "accessories": "no beaded necklaces and no metal medallion; only the flower crown and the woven waist tie that fastens the skirts",
+        "costume_basis": "逐項對 data/costume.json 的 pinuyumayan：female 欄的花環 aputr、長袖短身上衣 makiteng、胸兜 pakelrep（黑或白底、下半部貼縫口袋、早期刺繡集中在口袋表面）、貼身裙 tubilr（繡片置於右側、兩布邊於左側重疊）、方布外裙 lrabit、護腿布片 katring（黑底素布條為中心、兩側紅黃綠三色飾邊、最外層藍底素花布條）；palette 的紅黃綠；motifs 的花草紋、四方紋、菱形紋、三角形紋，二方或四方連續排列。\n刻意做的兩個限制：\n一、護腿布片畫成素面、不加織繡圖紋。rank 欄寫著「成年或已婚女性方可穿著帶有織繡圖紋的護腿布片」，阿蕊的角色卡沒有設定婚姻狀態，所以取不會出錯的那一邊。\n二、拿掉原通用版的多層串珠項鍊與金屬圓牌，costume.json 的卑南族女子服飾沒有這兩項。\n花環同時滿足 AGENTS.md 硬規則四（頭上的花＝該縣市市花）：aputr 傳統以鮮花編製，這裡編的是台東縣花蝴蝶蘭。"
+      },
+      "todo": [
+        "底圖尚未生成",
+        "對外發表前應請卑南族人或相關單位過目"
+      ],
+      "notes": [
+        "示範用的第一筆指名族群造型。服裝每一項都對得回 data/costume.json，沒有一項是自己發明的。"
+      ]
     }
   ],
   "_character": {

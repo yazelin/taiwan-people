@@ -746,6 +746,21 @@ section:has(>.hero){overflow-x:clip}
     aspect-ratio:685/900;object-position:top center}
   .flowers{justify-content:center}
 }
+/* 服飾依據的入口。跟 .foot 一樣要避開左側的阿蕊，所以共用那個左內距。 */
+/* 服飾依據的入口。住在 .meet-txt 裡面，不要自己算左邊要閃開阿蕊多少——
+   之前用 margin-left:calc(var(--figw)+…) 寫在外層，但 --figw 在那一層拿不到值，
+   calc 整條失效退回 auto，結果就置中疊到人物身上。跟著文字欄走就不會有這問題。
+   高度也刻意壓成一行：這一段本來就比視窗高，再塞一塊大的會把市花清單推更遠。 */
+.basis{display:flex;align-items:baseline;flex-wrap:wrap;gap:.3rem .8rem;
+  margin:1rem 0 0;padding:.55rem 1rem;
+  border:1px solid rgba(243,195,87,.4);
+  border-radius:10px;background:rgba(8,32,58,.72);text-decoration:none;color:inherit;
+  text-align:left;transition:.18s}
+.basis:hover{border-color:var(--gold);background:rgba(243,195,87,.12)}
+.basis b{font-family:var(--display);font-weight:900;letter-spacing:.06em;
+  color:var(--gold);font-size:.94rem;flex:none}
+.basis span{font-size:.82rem;color:#dceaf4;flex:1 1 16rem;min-width:0}
+.basis em{font-style:normal;font-size:.76rem;letter-spacing:.1em;color:var(--surf);flex:none}
 /* 阿蕊佔住左側，置中的收尾句前半會被擋到，用同一個左內距把它推進文字欄 */
 .foot{text-align:center;font-size:.8rem;letter-spacing:.18em;color:#d8eaf6;
   padding-left:calc(var(--figw) + 1.2rem);max-width:58rem;margin:0 auto;
@@ -790,6 +805,7 @@ section:has(>.hero){overflow-x:clip}
     <li><a href="#home">首頁</a></li>
     <li><a href="#explore">探索各地代表</a></li>
     <li><a href="#about">關於系列</a></li>
+    <li><a href="costume.html">服飾依據</a></li>
   </ul>
   <button id="mus" class="mus" aria-label="播放背景音樂" aria-pressed="false" title="背景音樂">
     <svg class="i-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -933,6 +949,11 @@ section:has(>.hero){overflow-x:clip}
       <p class="rule">她頭上永遠有花，那是認出她的記號。<br>
         花跟著地方換，多數是當地的市花。</p>
       <ul class="flowers" id="flowers"></ul>
+      <a class="basis" href="costume.html">
+        <b>服飾依據</b>
+        <span>二十三個族群的傳統服飾整理，每一筆都附官方或博物館出處</span>
+        <em>翻開資料集 →</em>
+      </a>
     </div>
   </div>
   <p class="foot">台灣，不只是地理上的位置，更是一種生活的態度。</p>

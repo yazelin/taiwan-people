@@ -7,7 +7,13 @@ prompt 由資料產生就不會再發生——資料錯要改資料，不能繞�
 
 用法：
     python3 tools/build_prompt.py 高雄市
-    python3 tools/build_prompt.py 高雄市 --check   # 只檢查資料完整，不輸出 prompt
+    python3 tools/build_prompt.py 高雄市 --check       # 只檢查資料完整，不輸出 prompt
+    python3 tools/build_prompt.py 台東縣・卑南族        # 指名族群的造型
+    python3 tools/build_prompt.py 台東縣・卑南族 --checklist   # 出圖後的驗收清單
+
+指名族群的造型（有 culture 欄的那些筆）只寫要覆寫的欄位，地標、市花、視點、光向
+全部繼承所屬縣市。服裝的形制、色彩、紋樣、階級限制直接從 data/costume.json 讀進 prompt，
+不必也不准手打。
 """
 import json
 import pathlib
@@ -16,6 +22,8 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = json.loads((ROOT / "data" / "counties.json").read_text(encoding="utf-8"))
 CARD = json.loads((ROOT / "data" / "character" / "card.json").read_text(encoding="utf-8"))
+COSTUME = json.loads((ROOT / "data" / "costume.json").read_text(encoding="utf-8"))
+PEOPLES = {p["id"]: p for p in COSTUME["peoples"]}
 
 REQUIRED = [
     ("scene.landmarks", lambda c: c.get("scene", {}).get("landmarks")),
@@ -25,12 +33,43 @@ REQUIRED = [
     ("scene.outfit", lambda c: c.get("scene", {}).get("outfit")),
 ]
 
+# 出現這些字眼就代表衣服在宣稱某個族群的傳統服飾。宣稱就要有依據，
+# 所以 scene.costume_basis 必須有東西。這條擋的是花蓮那次的錯誤形狀：
+# 「保留織紋但不指名族群」＝畫出一件不屬於任何族的族服。
+CLAIM_WORDS = [
+    "woven geometric", "geometric band", "tribal", "indigenous",
+    "hakka", "da-jin-shan", "lan-shan",
+    "織紋", "族服", "藍衫", "大襟衫", "圖騰",
+]
+
 
 def find(name):
+    """通用版與指名族群的造型放在同一個陣列，靠 name 區分。
+
+    這樣 gen_all.sh、verify_base.py、register_base.py、review.py、pick.py
+    都不必知道有兩種紀錄——它們本來就只認 name 與 id。
+    """
     for c in DATA["counties"]:
         if c["name"] == name:
-            return c
-    sys.exit(f"找不到縣市：{name}")
+            return resolve(c)
+    sys.exit(f"找不到：{name}\n"
+             f"可用的有：{'、'.join(x['name'] for x in DATA['counties'])}")
+
+
+def resolve(c):
+    """指名族群的那些筆只寫要覆寫的欄位，其餘全部繼承所屬縣市。
+
+    沒有繼承的話，每加一筆造型就要把地標、市花、視點、光向整份抄一次，
+    抄錯了就是又一個「憑印象覆蓋既有資料」的案例。
+    """
+    if not c.get("culture"):
+        return c
+    parent = next((x for x in DATA["counties"] if x["name"] == c["county"]), None)
+    if parent is None:
+        sys.exit(f"{c['name']}：county 欄寫的「{c['county']}」在資料裡找不到。")
+    merged = {**parent, **{k: v for k, v in c.items() if k != "scene"}}
+    merged["scene"] = {**parent.get("scene", {}), **c.get("scene", {})}
+    return merged
 
 
 def check(c):
@@ -47,6 +86,62 @@ def check(c):
     if c["symbols"]["flower"]["source"] != "official":
         print(f"（提醒：{c['name']} 的市花來源是 "
               f"{c['symbols']['flower']['source']}，尚未對官方核實）", file=sys.stderr)
+    check_costume(c)
+
+
+def check_costume(c):
+    s = c["scene"]
+    blob = " ".join([s.get("outfit", ""), s.get("accessories", ""),
+                     s.get("outfit_zh", ""), s.get("hair", ""), s.get("hair_zh", "")]).lower()
+    claims = [w for w in CLAIM_WORDS if w.lower() in blob]
+
+    if c.get("culture"):
+        p = PEOPLES.get(c["culture"])
+        if p is None:
+            sys.exit(f"{c['name']}：culture「{c['culture']}」在 data/costume.json 裡沒有這一族。")
+        county = c.get("county") or c["name"]
+        if not any(a.replace("臺", "台") == county.replace("臺", "台") for a in p["areas"]):
+            sys.exit(f"{c['name']}：{p['name']} 的分布縣市是 {p['areas']}，不含 {county}。"
+                     f"確認是不是掛錯縣市。")
+        if not p["female"] and not p["male"]:
+            sys.exit(f"{c['name']}：data/costume.json 的 {p['name']} 沒有逐部位資料"
+                     f"（gaps：{p['gaps']}）。\n"
+                     f"依據不足就不要畫，這是資料集寫明的。")
+        if not s.get("costume_basis"):
+            sys.exit(f"{c['name']}：指名了族群就必須填 scene.costume_basis，"
+                     f"寫明每一項對回 costume.json 的哪一欄。")
+    elif claims and not s.get("costume_basis"):
+        sys.exit(f"{c['name']}：服裝欄出現「{'、'.join(claims)}」，那是在宣稱某個族群的傳統服飾，"
+                 f"但 scene.costume_basis 是空的。\n"
+                 f"要嘛補上對回 data/costume.json 的依據，要嘛改成不宣稱族群的當代穿著。\n"
+                 f"「保留織紋但不指名族群」不是折衷，那等於畫出一件不屬於任何族的族服。")
+
+
+def costume_block(c):
+    """指名族群時，把 costume.json 的色彩、紋樣與階級限制直接寫進 prompt。
+
+    分工是刻意的：**穿哪幾件由人挑**（寫在 scene.outfit，並用 scene.costume_basis
+    交代每一件對回 costume.json 的哪一欄），**色彩紋樣與不准越界的部分由資料灌**。
+    逐部位的完整清單不進 prompt——那份清單含日常／勞動／年長等替代選項
+    （例如卑南族年長女性改穿長褲），整份倒給模型只會讓它把不同情境的東西畫在一起。
+    要看完整清單跑 --checklist。
+    """
+    p = PEOPLES.get(c.get("culture") or "")
+    if p is None:
+        return ""
+    parts = [f"THIS IS {p['name']}（{p['en']}）DRESS, and it must be recognisable as such. "
+             f"Every garment above comes from a cited record; do not substitute, simplify or "
+             f"invent ornament. "]
+    if p["palette"]:
+        parts.append("COLOUR: " + "; ".join(p["palette"]) + ". ")
+    if p["motifs"]:
+        parts.append("MOTIFS, and only these: " + "; ".join(p["motifs"]) + ". ")
+    if p["rank"]:
+        parts.append("RANK AND ELIGIBILITY — this decides what she is allowed to wear: "
+                     + p["rank"] + " ")
+    parts.append("Do not add ornament from any other Taiwanese people: no other people's "
+                 "weave patterns, head-dress, feathers or bead work. ")
+    return "".join(parts)
 
 
 LIGHT = {
@@ -84,7 +179,9 @@ def build(c):
         "but NOT the hairstyle: the sheets show it blown loose by the wind, which is wrong. "
         f"IN HER HAIR: {s['hair']}. "
         f"OUTFIT — do NOT copy the clothes shown in the reference sheets, which lock only her "
-        f"face and build. Dress her instead in: {s['outfit']}. Keep the canvas tote bag. "
+        f"face and build. Dress her instead in: {s['outfit']}. "
+        + costume_block(c)
+        + "Keep the canvas tote bag. "
         f"ON HER: {s.get('accessories', '')}. These small details matter — she should look "
         "lived-in and specific, not stripped down. "
         "If the outfit includes a hat, her hair is fully contained under it, never poking "
@@ -407,7 +504,23 @@ if __name__ == "__main__":
         sys.exit(__doc__)
     county = find(sys.argv[1])
     check(county)
-    if "--refs" in sys.argv:
+    if "--checklist" in sys.argv:
+        p = PEOPLES.get(county.get("culture") or "")
+        if p is None:
+            sys.exit(f"{county['name']} 是通用版，沒有指名族群，沒有族服驗收清單。")
+        print(f"{p['name']} 出圖驗收（出自 data/costume.json）")
+        for x in p["checklist"]:
+            print(f"  □ {x}")
+        if p["pitfalls"]:
+            print("\n已知會畫錯的地方")
+            for x in p["pitfalls"]:
+                print(f"  ! {x}")
+        print("\n出處")
+        for sid in p["sources"]:
+            src = COSTUME["sources"].get(sid)
+            if src:
+                print(f"  - {src['org']}｜{src['t']}\n    {src['url']}")
+    elif "--refs" in sys.argv:
         print("\n".join(refs(county)))
     elif "--fix-composition" in sys.argv:
         print(build_composition_fix(county))
