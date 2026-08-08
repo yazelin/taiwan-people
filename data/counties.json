@@ -213,7 +213,9 @@
         "viewpoint": "standing on the Elephant Mountain trail on the city's south-east edge — the classic Taipei viewpoint",
         "viewpoint_sees": "from here Taipei 101 rises straight out of the dense city basin below, with the whole grid of buildings around its base, and the Yangmingshan ridges lying low along the horizon behind it. Beitou is not visible from here and must not appear"
       },
-      "todo": [],
+      "todo": [
+        "底圖右側太空（結構值 0.0038，門檻 0.010），需要重生。視點與 right_zone 設定本身沒錯，是畫面照舊規格畫得太空。既有候選都不能用：台北的候選沒有 101、新北的候選畫出野柳沒有的瀑布與山城。"
+      ],
       "places": [
         "台北101",
         "陽明山",
@@ -321,7 +323,9 @@
         "viewpoint": "standing on the walkway out along Yehliu Cape",
         "viewpoint_sees": "from here the mushroom rocks and honeycomb sandstone spread across the cape with the open sea beyond; Tamsui and Wulai are far away and must not appear"
       },
-      "todo": [],
+      "todo": [
+        "底圖右側太空（結構值 0.0051，門檻 0.010），需要重生。視點與 right_zone 設定本身沒錯，是畫面照舊規格畫得太空。既有候選都不能用：台北的候選沒有 101、新北的候選畫出野柳沒有的瀑布與山城。"
+      ],
       "places": [
         "野柳",
         "淡水",
@@ -506,7 +510,7 @@
         "hair_zh": "杜鵑花（新竹市花）＋丸子頭",
         "hair_basis": "symbols.flower",
         "accessory_basis": "金髮夾已刪：純裝飾，對不回任何欄位。",
-        "right_zone": "sea",
+        "right_zone": "city_sky",
         "landmarks_en": [
           "Shibajianshan, a low forested hill park of shaded walking paths",
           "Nanliao fishing harbour with its long white arched footbridge",
@@ -523,10 +527,12 @@
         "light": "west",
         "accessories": "a round enamel badge with a wordless circuit-board motif, a cord lanyard with a plain tag, and small stud earrings",
         "viewpoint": "standing in the plaza in front of the Hsinchu City God Temple",
-        "viewpoint_sees": "from here the temple's swallowtail eaves and stone lions fill the mid-ground with food stalls and old shophouses around it"
+        "viewpoint_sees": "from here the temple's swallowtail eaves and stone lions fill the mid-ground with food stalls and old shophouses around it",
+        "right_zone_desc": "The right 40 percent is a plausible quiet opening within this same temple-plaza viewpoint: pale sky above the low tiled roofs and plastered upper storeys of the shophouses that ring the plaza, receding and getting paler with distance, with a string of slack festival lanterns high up as the only detail. Low contrast and gently graded for text. No sea, harbour, bridge, water, shoreline or distant mountains appear in this zone."
       },
       "todo": [
-        "查證 symbols.flower（決定髮花）"
+        "查證 symbols.flower（決定髮花）",
+        "底圖與資料已不符，img/<id>-base.webp 需要重生"
       ],
       "places": [
         "十八尖山",
@@ -541,7 +547,8 @@
       "notes": [
         "海報美食欄的「客家小炒・擂茶」其實是新竹縣客家庄（北埔、竹東）的，不是新竹市。",
         "六項全部確認。台灣光華雜誌明確稱米粉、貢丸、竹塹餅為「新竹三寶」，竹塹為新竹舊名。",
-        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。"
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
+        "現用底圖右側畫著海與港灣拱橋，但視點在城隍廟前廣場，市中心的廟埕看不到海。成因是 right_zone 原本寫 sea。這是地理錯誤不是美感問題，量測抓不到（它有內容、分數 0.0257 通過），是目視抓到的。已改 city_sky 並補 right_zone_desc，需重生。"
       ],
       "traits": [
         "務實",
@@ -1032,7 +1039,7 @@
         "hair": "a cluster of purple chrysanthemums pinned beside her neat high bun",
         "hair_zh": "紫色菊花（彰化縣花）",
         "hair_basis": "symbols.flower",
-        "right_zone": "sea",
+        "right_zone": "city_sky",
         "landmarks_en": [
           "Lukang Old Street, a narrow lane of red-brick shophouses and temple eaves",
           "the great stone seated Buddha of Bagua Mountain on a wooded hill",
@@ -1049,9 +1056,12 @@
         "light": "west",
         "accessories": "a beaded bracelet, small purple drop earrings, and a plain cloth pouch on her tote strap",
         "viewpoint": "standing in a lane of Lukang Old Street",
-        "viewpoint_sees": "from here red-brick shophouses and temple eaves layer one behind another down the narrow lane"
+        "viewpoint_sees": "from here red-brick shophouses and temple eaves layer one behind another down the narrow lane",
+        "right_zone_desc": "The right 40 percent is a plausible quiet opening within this same Lukang lane: pale afternoon sky above the stepped red-brick gable ends and layered clay roof tiles of the shophouses, their ridges receding one behind another and getting paler with distance, with a swallow or two and a slack power line as the only detail. Low contrast and gently graded for text. No sea, water, shoreline, distant mountains or open countryside appear in this zone."
       },
-      "todo": [],
+      "todo": [
+        "底圖與資料已不符，img/<id>-base.webp 需要重生"
+      ],
       "places": [
         "鹿港老街",
         "八卦山大佛",
@@ -1152,7 +1162,8 @@
         "accessories": "a plain cloth tea pouch at her hip, a cord with a plain wooden tag, and small stud earrings",
         "viewpoint": "standing at the lakeside pier of Sun Moon Lake",
         "viewpoint_sees": "from here the lake opens out with forested peaks ringing the far shore and a small boat on the water",
-        "costume_basis": "原本是「米白上衣＋紅黑幾何織紋長版背心、紅黑織紋斜背帶、長紅流蘇耳環」，讀自原海報，對不回任何一族。南投境內有泰雅、賽德克、布農、鄒、邵五族，泰雅光是群就分五個、各群色彩偏好都不同（馬利巴群是全泰雅唯一在單色菱紋裡用黃的），紅黑幾何滾邊看似泛用其實誰都不是。改成茶鄉山區的當代日常。"
+        "costume_basis": "原本是「米白上衣＋紅黑幾何織紋長版背心、紅黑織紋斜背帶、長紅流蘇耳環」，讀自原海報，對不回任何一族。南投境內有泰雅、賽德克、布農、鄒、邵五族，泰雅光是群就分五個、各群色彩偏好都不同（馬利巴群是全泰雅唯一在單色菱紋裡用黃的），紅黑幾何滾邊看似泛用其實誰都不是。改成茶鄉山區的當代日常。",
+        "right_zone_desc": "The right 40 percent is the open surface of Sun Moon Lake seen from this same pier: calm pale water meeting the far shore, where low forested ridges layer one behind another and fade into haze, with a single small boat far out as the only detail. Low contrast and gently graded for text. No sea, no open sky filling the whole zone, no buildings or figures."
       },
       "todo": [
         "底圖與資料已不符（服裝欄改過），img/<id>-base.webp 需要重生"
