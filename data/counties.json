@@ -103,10 +103,7 @@
         "viewpoint": "standing on the rocky coastal path at Chaojing Park on the north shore",
         "viewpoint_sees": "from here the volcanic cone of Keelung Islet sits out on the water, with the eroded sandstone shelf of Heping Island along the shore to the left"
       },
-      "todo": [
-        "生成 base 底圖",
-        "查證 symbols.flower（決定髮花）"
-      ],
+      "todo": [],
       "places": [
         "基隆嶼",
         "和平島",
@@ -213,10 +210,7 @@
         "viewpoint": "standing on the Elephant Mountain trail on the city's south-east edge — the classic Taipei viewpoint",
         "viewpoint_sees": "from here Taipei 101 rises straight out of the dense city basin below, with the whole grid of buildings around its base, and the Yangmingshan ridges lying low along the horizon behind it. Beitou is not visible from here and must not appear"
       },
-      "todo": [
-        "生成 base 底圖",
-        "查證 symbols.flower（決定髮花）"
-      ],
+      "todo": [],
       "places": [
         "台北101",
         "陽明山",
@@ -324,10 +318,7 @@
         "viewpoint": "standing on the walkway out along Yehliu Cape",
         "viewpoint_sees": "from here the mushroom rocks and honeycomb sandstone spread across the cape with the open sea beyond; Tamsui and Wulai are far away and must not appear"
       },
-      "todo": [
-        "生成 base 底圖",
-        "查證 symbols.flower（決定髮花）"
-      ],
+      "todo": [],
       "places": [
         "野柳",
         "淡水",
@@ -428,7 +419,6 @@
         "viewpoint_sees": "from here the green reservoir lake stretches back between forested hills, with the ridges of Lalashan far behind in haze"
       },
       "todo": [
-        "生成 base 底圖",
         "查證 symbols.flower（決定髮花）"
       ],
       "places": [
@@ -533,7 +523,6 @@
         "viewpoint_sees": "from here the temple's swallowtail eaves and stone lions fill the mid-ground with food stalls and old shophouses around it"
       },
       "todo": [
-        "生成 base 底圖",
         "查證 symbols.flower（決定髮花）"
       ],
       "places": [
@@ -637,10 +626,7 @@
         "viewpoint": "standing in the lane of Beipu Old Street",
         "viewpoint_sees": "from here red-brick Hakka shophouses and tea rooms line both sides with tiled roofs layered behind and hills beyond"
       },
-      "todo": [
-        "生成 base 底圖",
-        "查證 symbols.flower（決定髮花）"
-      ],
+      "todo": [],
       "places": [
         "內灣老街",
         "北埔老街",
@@ -742,7 +728,6 @@
         "viewpoint_sees": "from here the turtle-shaped Guishan Island floats offshore, with fishing boats and the dark ridge of the Central Range behind to the west"
       },
       "todo": [
-        "生成 base 底圖",
         "查證 symbols.flower（決定髮花）"
       ],
       "places": [
@@ -957,9 +942,7 @@
         "viewpoint": "standing in the plaza in front of the National Taichung Theater",
         "viewpoint_sees": "from here the theatre's curved white shell fills the mid-ground, with its broad paved entrance plaza, Summer Green Park across Huilai Road, and the modern towers of the Seventh Redevelopment Zone around it. There is no sea here; Gaomei Wetland and Miyahara are far away and must not appear"
       },
-      "todo": [
-        "查證 symbols.flower（決定髮花）"
-      ],
+      "todo": [],
       "places": [
         "高美濕地",
         "台中國家歌劇院",
@@ -1061,9 +1044,7 @@
         "viewpoint": "standing in a lane of Lukang Old Street",
         "viewpoint_sees": "from here red-brick shophouses and temple eaves layer one behind another down the narrow lane"
       },
-      "todo": [
-        "查證 symbols.flower（決定髮花）"
-      ],
+      "todo": [],
       "places": [
         "鹿港老街",
         "八卦山大佛",
@@ -1165,9 +1146,7 @@
         "viewpoint": "standing at the lakeside pier of Sun Moon Lake",
         "viewpoint_sees": "from here the lake opens out with forested peaks ringing the far shore and a small boat on the water"
       },
-      "todo": [
-        "查證 symbols.flower（決定髮花）"
-      ],
+      "todo": [],
       "places": [
         "日月潭",
         "清境農場",
@@ -1376,10 +1355,7 @@
         "viewpoint": "standing among the timber houses of Hinoki Village",
         "viewpoint_sees": "from here the dark Japanese-era cypress houses and their gardens layer back, with the stepped Sun-Shooting Tower rising above the trees behind"
       },
-      "todo": [
-        "生成 base 底圖",
-        "查證 symbols.flower（決定髮花）"
-      ],
+      "todo": [],
       "places": [
         "檜意森活村",
         "文化路夜市",
@@ -1481,7 +1457,6 @@
         "viewpoint_sees": "from here the sea of clouds fills the valley below, with giant cypress trunks framing the view and the narrow-gauge red railcar curving along the slope"
       },
       "todo": [
-        "生成 base 底圖",
         "查證 symbols.flower（決定髮花）"
       ],
       "places": [
@@ -1581,9 +1556,7 @@
         "viewpoint": "standing in the old street in front of Chihkan Tower",
         "viewpoint_sees": "from here the Dutch-era red-brick fort and its tiled pavilion roofs sit just behind, with the old street's eaves and lanterns to the left. Anping Fort, Cigu Salt Mountain and the sea are far away and must not appear"
       },
-      "todo": [
-        "查證 symbols.flower（決定髮花）"
-      ],
+      "todo": [],
       "places": [
         "赤崁樓",
         "安平古堡",
@@ -1788,7 +1761,6 @@
         "viewpoint_sees": "from here turquoise water and palms stretch along the coast with the peak of Dajianshan rising inland behind"
       },
       "todo": [
-        "生成 base 底圖",
         "查證 symbols.flower（決定髮花）"
       ],
       "places": [
@@ -1990,7 +1962,6 @@
         "viewpoint_sees": "from here the eight-arched footbridge curves out to the rocky island with the Pacific beyond"
       },
       "todo": [
-        "生成 base 底圖",
         "查證 symbols.flower（決定髮花）"
       ],
       "places": [
@@ -2092,9 +2063,7 @@
         "viewpoint": "standing on the clifftop above the twin-heart stone weir on Qimei",
         "viewpoint_sees": "from here the heart-shaped fish trap lies in the shallow turquoise water below, with basalt cliffs along the coast"
       },
-      "todo": [
-        "查證 symbols.flower（決定髮花）"
-      ],
+      "todo": [],
       "places": [
         "雙心石滬",
         "七美藍洞",
