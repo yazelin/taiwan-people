@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>服飾依據 ─ 台灣人代表的創作資料庫</title>
+<meta name="description" content="台灣二十三個族群傳統服飾的整理資料。每一筆都附官方或博物館出處，查不到的也照實寫出來。這是「台灣人代表」系列的創作依據，不是憑印象的設計。">
+<meta name="theme-color" content="#fbf8f2">
+<link rel="canonical" href="https://yazelin.github.io/taiwan-people/costume.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="台灣人代表">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://yazelin.github.io/taiwan-people/costume.html">
+<meta property="og:title" content="服飾依據 ─ 台灣人代表的創作資料庫">
+<meta property="og:description" content="台灣二十三個族群傳統服飾的整理資料，每一筆都附官方或博物館出處。查不到的，也照實寫出來。">
+<meta property="og:image" content="https://yazelin.github.io/taiwan-people/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="author" content="林亞澤">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='25' x='2' font-size='24'%3E%E5%8F%B0%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#fbf8f2;        /* 微暖的紙白，純白會太刺眼 */
+  --card:#ffffff;
+  --ink:#16293c;          /* 正文 */
+  --ink2:#5a6d80;         /* 次要說明 */
+  --ink3:#8b9aa8;         /* 標籤、註記 */
+  --line:#e6e0d4;         /* 髮絲線，暖色系才不會跟紙白打架 */
+  --line2:#f0ebe0;
+  --blue:#0f5f8f;         /* 連結與原住民族分類 */
+  --clay:#a8582f;         /* 提醒、平埔族群 */
+  --moss:#5c7a45;         /* 漢人族群 */
+  --amber:#9a7420;        /* 小標籤 */
+  --serif:"Noto Serif CJK TC","Source Han Serif TC","Noto Serif TC",
+          "PingFang TC","蘋方-繁","Microsoft JhengHei",serif;
+  --sans:"Noto Sans CJK TC","Source Han Sans TC","PingFang TC",
+         "Microsoft JhengHei","Helvetica Neue",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);
+  line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:var(--blue);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--clay)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:3px}
+.wrap{width:min(1080px,92vw);margin-inline:auto}
+
+/* ── nav ─────────────────────────────────────────────── */
+.nav{position:sticky;top:0;z-index:40;background:rgba(251,248,242,.92);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:1rem;padding:.7rem 0;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:.55rem;text-decoration:none;color:var(--ink)}
+.brand img{height:24px;width:auto;max-width:none;flex:none}
+.brand small{font-size:.6rem;letter-spacing:.2em;color:var(--ink3);font-weight:600}
+.nav nav{display:flex;gap:1.2rem;font-size:.86rem;flex-wrap:wrap}
+.nav nav a{color:var(--ink2);text-decoration:none}
+.nav nav a:hover{color:var(--blue)}
+
+/* ── hero ─────────────────────────────────────────────── */
+.hero{padding:clamp(3rem,8vw,6rem) 0 clamp(1.6rem,3vw,2.4rem)}
+.kicker{font-size:.72rem;font-weight:700;letter-spacing:.3em;color:var(--amber);margin-bottom:1.1rem}
+h1{font-family:var(--serif);font-weight:900;line-height:1.22;letter-spacing:.02em;
+  font-size:clamp(2.1rem,5.4vw,3.5rem)}
+.lede{font-family:var(--serif);font-size:clamp(1rem,1.42vw,1.16rem);
+  max-width:42em;margin-top:1.3rem;color:#2c4257}
+.lede + .lede{margin-top:.8rem}
+.stats{display:flex;flex-wrap:wrap;gap:1.6rem;margin-top:2.2rem;
+  padding-top:1.4rem;border-top:1px solid var(--line)}
+.stat b{display:block;font-family:var(--serif);font-size:1.6rem;font-weight:900;line-height:1.2}
+.stat span{font-size:.76rem;letter-spacing:.1em;color:var(--ink3)}
+
+/* ── sections ─────────────────────────────────────────── */
+section{padding:clamp(2.4rem,5vw,3.6rem) 0}
+.sechead{margin-bottom:1.8rem;padding-bottom:1rem;border-bottom:1px solid var(--line)}
+.sechead h2{font-family:var(--serif);font-weight:900;letter-spacing:.03em;
+  font-size:clamp(1.45rem,2.6vw,2rem)}
+.sechead p{color:var(--ink2);max-width:46em;margin-top:.5rem;font-size:.94rem}
+
+.disclaim{border:1px solid var(--line);border-radius:4px;background:var(--card);
+  padding:1.15rem 1.35rem;font-size:.92rem;color:var(--ink2);max-width:52em}
+.disclaim b{color:var(--ink)}
+
+/* ── redlines：不用色塊也不用左邊條，用編號與髮絲線分隔 ── */
+.redlines{display:grid;gap:0}
+.rl{display:grid;grid-template-columns:2.6rem 1fr;gap:0 1.1rem;
+  padding:1.3rem 0;border-bottom:1px solid var(--line2)}
+.rl:last-child{border-bottom:0}
+.rl .no{font-family:var(--serif);font-size:1.5rem;font-weight:900;color:var(--clay);
+  line-height:1;padding-top:.15rem}
+.rl h3{font-family:var(--serif);font-size:1.06rem;font-weight:800;margin-bottom:.35rem}
+.rl p{font-size:.93rem;color:var(--ink2);max-width:46em}
+.rl .refs{margin-top:.6rem;display:flex;flex-wrap:wrap;gap:.9rem;font-size:.78rem}
+
+/* ── filter ───────────────────────────────────────────── */
+.filters{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;margin-bottom:1.5rem}
+.chip{border:1px solid var(--line);border-radius:999px;padding:.32rem 1rem;
+  font-size:.85rem;background:var(--card);color:var(--ink2);transition:.15s}
+.chip:hover{border-color:var(--ink3);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:700}
+select{font:inherit;font-size:.85rem;color:var(--ink);background:var(--card);
+  border:1px solid var(--line);border-radius:999px;padding:.32rem 1rem}
+.count{font-size:.8rem;color:var(--ink3);margin-left:auto}
+
+/* ── cards ────────────────────────────────────────────── */
+/* align-items:start：展開一張卡片時，同一列的其他卡片預設會被拉到一樣高，
+   變成幾個空盒子。這行讓每張卡片只佔自己的高度。 */
+.grid{display:grid;gap:1rem;align-items:start;
+  grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr))}
+.card{border:1px solid var(--line);border-radius:6px;background:var(--card);overflow:hidden}
+.card > summary{list-style:none;cursor:pointer;padding:1.2rem 1.3rem;display:block}
+.card > summary::-webkit-details-marker{display:none}
+.card:hover{border-color:var(--ink3)}
+.card[open]{border-color:var(--ink3);box-shadow:0 2px 16px -6px rgba(22,41,60,.14)}
+.card h3{font-family:var(--serif);font-weight:900;font-size:1.24rem;letter-spacing:.02em;
+  display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;line-height:1.4}
+.card h3 span{font-size:.72rem;font-weight:600;letter-spacing:.06em;color:var(--ink3);font-family:var(--sans)}
+.tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.55rem}
+.tag{font-size:.71rem;line-height:1.7;border:1px solid var(--line);border-radius:3px;
+  padding:0 .4rem;color:var(--ink2);background:var(--paper)}
+.tag.cat-indigenous{border-color:#bcd6e6;color:var(--blue);background:#f2f8fc}
+.tag.cat-pingpu{border-color:#e6cdbe;color:var(--clay);background:#fdf5f0}
+.tag.cat-han{border-color:#cdd9c1;color:var(--moss);background:#f5f8f1}
+.tag.warn{border-color:#e6cdbe;color:var(--clay);background:#fdf5f0}
+.peek{font-size:.85rem;color:var(--ink2);margin-top:.7rem;line-height:1.8}
+.more{font-size:.76rem;color:var(--blue);margin-top:.9rem;letter-spacing:.08em}
+.card[open] .more{display:none}
+
+.body{padding:0 1.3rem 1.5rem;border-top:1px solid var(--line2);margin-top:.4rem}
+.blk{margin-top:1.25rem}
+.blk > h4{font-size:.7rem;font-weight:800;letter-spacing:.2em;color:var(--amber);
+  margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:1px solid var(--line2)}
+.blk ul{list-style:none;display:grid;gap:.42rem}
+.blk li{font-size:.885rem;line-height:1.8;padding-left:.95rem;position:relative;color:#243a4d}
+.blk li::before{content:"";position:absolute;left:0;top:.72em;width:4px;height:4px;
+  border-radius:50%;background:#b7c4ce}
+.blk.check li::before{background:var(--blue)}
+.blk.pit li::before{background:var(--clay)}
+.blk p{font-size:.885rem;line-height:1.85;color:#243a4d}
+.vari{margin-top:.7rem}
+.vari b{font-family:var(--serif);font-size:.92rem}
+.vari p{font-size:.855rem;color:var(--ink2);margin-top:.1rem}
+.gap{font-size:.865rem;color:#5c4a33;background:#faf5e9;border:1px solid #ede2c9;
+  border-radius:4px;padding:.75rem .9rem;line-height:1.8}
+.srcs{display:grid;gap:.3rem}
+.srcs a{font-size:.78rem;color:var(--ink2);text-decoration:none;line-height:1.65}
+.srcs a:hover{color:var(--blue);text-decoration:underline}
+.srcs a i{font-style:normal;color:var(--ink3)}
+.two{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+
+/* ── source table ─────────────────────────────────────── */
+.srctable{border:1px solid var(--line);border-radius:6px;overflow-x:auto;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:.87rem}
+th,td{text-align:left;padding:.65rem .9rem;border-bottom:1px solid var(--line2);vertical-align:top}
+th{font-size:.7rem;letter-spacing:.16em;color:var(--ink3);white-space:nowrap;
+  border-bottom-color:var(--line)}
+tr:last-child td{border-bottom:0}
+td:last-child{color:var(--ink2);white-space:nowrap}
+.kind{font-size:.71rem;line-height:1.7;border-radius:3px;padding:0 .4rem;border:1px solid var(--line);white-space:nowrap}
+.kind.official{color:var(--blue);border-color:#bcd6e6;background:#f2f8fc}
+.kind.museum{color:var(--amber);border-color:#e7dcbd;background:#fbf7ea}
+.kind.research{color:var(--clay);border-color:#e6cdbe;background:#fdf5f0}
+
+/* ── gaps list ────────────────────────────────────────── */
+.gaps{display:grid;gap:0}
+.gapitem{padding:1.15rem 0;border-bottom:1px solid var(--line2)}
+.gapitem:last-child{border-bottom:0}
+.gapitem h3{font-family:var(--serif);font-size:1rem;font-weight:800;margin-bottom:.25rem}
+.gapitem p{font-size:.88rem;color:var(--ink2);max-width:52em}
+
+footer{border-top:1px solid var(--line);padding:2.2rem 0 3.2rem;color:var(--ink3);font-size:.83rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
+code{font-size:.92em;background:#f2eee4;border-radius:3px;padding:.05em .35em}
+
+@media (max-width:640px){
+  .nav nav{font-size:.8rem;gap:.85rem}
+  .count{width:100%;margin-left:0}
+  .stats{gap:1.1rem}
+  .rl{grid-template-columns:1.9rem 1fr;gap:0 .8rem}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="img/logo.webp" alt="台灣人代表"><small>PEOPLE OF TAIWAN</small></a>
+    <nav>
+      <a href="#redlines">紅線</a>
+      <a href="#peoples">族群</a>
+      <a href="#sources">出處</a>
+      <a href="#gaps">缺口</a>
+      <a href="index.html">回首頁</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <p class="kicker">創作依據 ／ RESEARCH BASIS</p>
+    <h1>服飾依據</h1>
+    <p class="lede">這個系列原本只有畫面。角色身上的織紋好看，但指不出是哪一族、哪一群，也說不出依據在哪裡。那樣的東西不管畫得多漂亮，本質上就是憑印象拼貼。</p>
+    <p class="lede">所以先把資料補上。這頁整理台灣各族群傳統服飾的形制、色彩、紋樣與穿戴規範，每一筆都對得回政府機關、公立博物館或政府委託之學術調查的原始出處。查得到的寫進來，查不到的也照實寫出來，不用「大概是這樣」補洞。</p>
+    <p class="lede">之後畫任何一個地方的代表，都從這裡出發。</p>
+    <div class="stats" id="stats"></div>
+  </div>
+
+  <div class="wrap">
+    <p class="disclaim">
+      <b>先講清楚立場。</b>
+      這是一份二手整理，來源是公開的官方與典藏資料，整理者不是族人。它可以用來擋掉明顯的錯誤，不能用來代替族人的話。
+      任何要對外發表、商業使用或實體重製的東西，都必須另外徵詢該族群的意見。這頁上的內容也還沒有經過各族群代表或相關單位審閱。
+    </p>
+  </div>
+
+  <section id="redlines" class="wrap">
+    <div class="sechead">
+      <h2>五條紅線</h2>
+      <p>這五條不是風格建議，是踩到就會出事的地方。有些是文化規範，有些是法律，有些兩者都是。</p>
+    </div>
+    <div class="redlines" id="redlines-list"></div>
+  </section>
+
+  <section id="peoples" class="wrap">
+    <div class="sechead">
+      <h2>族群資料</h2>
+      <p>依縣市篩選，就能知道畫某個地方的代表時，該對照哪幾份資料。點開卡片看逐部位的形制、群別差異、階級規範，以及出圖後的驗收清單。</p>
+    </div>
+    <div class="filters">
+      <button class="chip" data-cat="all" aria-pressed="true">全部</button>
+      <button class="chip" data-cat="indigenous" aria-pressed="false">原住民族</button>
+      <button class="chip" data-cat="pingpu" aria-pressed="false">平埔族群</button>
+      <button class="chip" data-cat="han" aria-pressed="false">漢人族群</button>
+      <select id="area"><option value="">所有縣市</option></select>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="sources" class="wrap">
+    <div class="sechead">
+      <h2>出處總表</h2>
+      <p>官方＝政府機關；典藏＝公立博物館；調查＝政府委託或補助之學術調查。整份資料集沒有引用任何來源不明的網路轉述。各頁原文另存一份在 <code>data/sources/</code>，因為政府網站的連結會爛。</p>
+    </div>
+    <div class="srctable">
+      <table>
+        <thead><tr><th>類別</th><th>來源</th><th>單位</th></tr></thead>
+        <tbody id="srcbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="gaps" class="wrap">
+    <div class="sechead">
+      <h2>還缺什麼</h2>
+      <p>查證結果本身也是資料。這裡列出每一族查不到的東西，沒有靠推測補上。</p>
+    </div>
+    <div class="gaps" id="gaplist"></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>資料檔：<code>data/costume.json</code>。內容有誤或有補充，歡迎指正。</span>
+    <span><a href="index.html">回台灣人代表</a></span>
+  </div>
+</footer>
+
+<script>
+const CAT = {indigenous:'原住民族', pingpu:'平埔族群', han:'漢人族群'};
+const KIND = {official:'官方', museum:'典藏', research:'調查'};
+const esc = (s) => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+let DATA = null, filterCat = 'all', filterArea = '';
+
+fetch('data/costume.json').then(r => r.json()).then(d => { DATA = d; render(); })
+  .catch(() => {
+    document.getElementById('grid').innerHTML =
+      '<p class="disclaim">讀不到 <code>data/costume.json</code>。這頁用 fetch 取資料，必須透過 http 開啟；' +
+      '直接用 file:// 開會被瀏覽器的跨來源限制擋下來。本機請跑 <code>python3 -m http.server 8901</code>。</p>';
+  });
+
+function render(){
+  const n = c => DATA.peoples.filter(p => p.category === c).length;
+  document.getElementById('stats').innerHTML = [
+    ['族群', DATA.peoples.length], ['官方認定原住民族', n('indigenous')],
+    ['平埔族群', n('pingpu')], ['漢人族群', n('han')],
+    ['引用出處', Object.keys(DATA.sources).length]
+  ].map(([k,v]) => `<span class="stat"><b>${v}</b><span>${k}</span></span>`).join('');
+
+  document.getElementById('redlines-list').innerHTML = DATA._redlines.map((r,i) => `
+    <article class="rl">
+      <div class="no">${i+1}</div>
+      <div>
+        <h3>${esc(r.title)}</h3>
+        <p>${esc(r.body)}</p>
+        ${r.sources.length ? `<div class="refs">${r.sources.map(srcLink).join('')}</div>` : ''}
+      </div>
+    </article>`).join('');
+
+  const areas = [...new Set(DATA.peoples.flatMap(p => p.areas))].sort((a,b)=>a.localeCompare(b,'zh-Hant'));
+  document.getElementById('area').insertAdjacentHTML('beforeend',
+    areas.map(a => `<option value="${esc(a)}">${esc(a)}</option>`).join(''));
+
+  document.getElementById('srcbody').innerHTML = Object.values(DATA.sources)
+    .sort((a,b) => a.kind.localeCompare(b.kind) || a.org.localeCompare(b.org,'zh-Hant'))
+    .map(s => `<tr>
+      <td><span class="kind ${s.kind}">${KIND[s.kind]||s.kind}</span></td>
+      <td><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.t)}</a></td>
+      <td>${esc(s.org)}</td></tr>`).join('');
+
+  document.getElementById('gaplist').innerHTML = DATA.peoples.filter(p => p.gaps).map(p => `
+    <article class="gapitem"><h3>${esc(p.name)}</h3><p>${esc(p.gaps)}</p></article>`).join('');
+
+  drawGrid();
+}
+
+function srcLink(id){
+  const s = DATA.sources[id];
+  return s ? `<a href="${esc(s.url)}" target="_blank" rel="noopener" title="${esc(s.t)}">${esc(s.org)}</a>` : '';
+}
+
+function list(title, items, cls){
+  if (!items || !items.length) return '';
+  return `<div class="blk ${cls||''}"><h4>${title}</h4><ul>${
+    items.map(i => `<li>${esc(i)}</li>`).join('')}</ul></div>`;
+}
+
+function drawGrid(){
+  const rows = DATA.peoples.filter(p =>
+    (filterCat === 'all' || p.category === filterCat) &&
+    (!filterArea || p.areas.includes(filterArea)));
+
+  document.getElementById('count').textContent = `顯示 ${rows.length} / ${DATA.peoples.length} 個族群`;
+
+  document.getElementById('grid').innerHTML = rows.map(p => {
+    const thin = !p.male.length && !p.female.length;
+    const mat = [...(p.material.traditional||[]), ...(p.material.later||[])];
+    return `
+    <details class="card">
+      <summary>
+        <h3>${esc(p.name)}<span>${esc(p.en)}</span></h3>
+        <div class="tags">
+          <span class="tag cat-${p.category}">${CAT[p.category]}</span>
+          ${p.areas.map(a => `<span class="tag">${esc(a)}</span>`).join('')}
+          ${thin ? '<span class="tag warn">資料不足</span>' : ''}
+        </div>
+        <p class="peek">${esc(p.areas_detail || '')}</p>
+        <p class="more">展開 ▾</p>
+      </summary>
+      <div class="body">
+        ${p.system ? `<div class="blk"><h4>結構系統</h4><p>${esc(p.system)}</p></div>` : ''}
+        ${list('材質', mat)}
+        <div class="two">${list('男子', p.male)}${list('女子', p.female)}</div>
+        ${list('色彩', p.palette)}
+        ${list('紋樣', p.motifs)}
+        ${list('技法', p.techniques)}
+        ${p.variants && p.variants.length ? `<div class="blk"><h4>群／部落差異</h4>${
+          p.variants.map(v => `<div class="vari"><b>${esc(v.name)}</b>${
+            v.areas ? `<p>${esc(v.areas)}</p>` : ''}<p>${esc(v.note)}</p></div>`).join('')}</div>` : ''}
+        ${p.rank ? `<div class="blk"><h4>階級與資格</h4><p>${esc(p.rank)}</p></div>` : ''}
+        ${list('出圖驗收', p.checklist, 'check')}
+        ${list('已知會畫錯的地方', p.pitfalls, 'pit')}
+        ${p.gaps ? `<div class="blk"><h4>查不到什麼</h4><div class="gap">${esc(p.gaps)}</div></div>` : ''}
+        <div class="blk"><h4>出處</h4><div class="srcs">${
+          p.sources.map(id => {
+            const s = DATA.sources[id];
+            return s ? `<a href="${esc(s.url)}" target="_blank" rel="noopener"><i>${esc(s.org)}</i>　${esc(s.t)}</a>` : '';
+          }).join('')}</div></div>
+      </div>
+    </details>`;
+  }).join('');
+}
+
+document.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.chip').forEach(x => x.setAttribute('aria-pressed', x === b));
+  filterCat = b.dataset.cat; drawGrid();
+}));
+document.getElementById('area').addEventListener('change', e => {
+  filterArea = e.target.value; drawGrid();
+});
+</script>
+</body>
+</html>
