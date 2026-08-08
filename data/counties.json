@@ -29,7 +29,7 @@
     "scene.accessories": "人物身上的次要配件，讀自原海報的人物區。\n原則跟背景一樣：主識別（髮花＋金珠流蘇髮簪）清楚，配件豐富但視覺權重低。\n先前 prompt 只寫服裝、帆布袋、手持物、髮花，徽章與吊牌全部沒寫，模型就自己簡化了。\n**有字的一律改成無字版本**——底圖不能有文字，所以「宜蘭尚青」木牌變成無字木牌、「I♥台中」徽章變成無字愛心徽章。",
     "scene.viewpoint": "她站在哪個具體位置。**畫面裡只能出現從那裡真的看得到的東西。**\n少了這條，模型會把不同地方的地標拼在同一格——台北那張就是陽明山（北邊山上）、北投（山腳）、101（市中心盆地）三者同框，地理上沒有任何位置能同時看到。\n結果 101 從雲海裡獨自聳立、旁邊接一條山城老街，變成地理拼貼。",
     "scene.right_zone_desc": "留白區的逐縣市覆寫。right_zone 的幾種通則有時全都不對——花蓮的視點在太魯閣峽谷內，留白既不是海也不是天空遠山，是峽谷自身的岩壁與霧。",
-    "culture": "該筆造型指名的族群，值為 data/costume.json 的 peoples[].id。**留空＝通用版**。通用版是「阿蕊在這個地方」，不宣稱代表任何族群；有 culture 的是「阿蕊穿某族的服飾」，那是對外宣稱，每一項都要對得回 costume.json。",
+    "culture": "該筆造型指名的族群，值為 data/costume.json 的 peoples[].id。**留空＝普通版**。\n普通版是「阿蕊在這個地方」，一律當代穿著，不穿任何族群的傳統服飾，不對任何族群下宣稱。\n特別版是「阿蕊穿某族的服飾」，那是對外宣稱，每一項都要對得回 costume.json，而且網頁上要標明族群與依據連結——不標族名就會退回「有織紋但不指名族群」那個病灶，依據藏起來也就沒辦法被檢視。",
     "county": "有 culture 的那些筆才需要，指出它屬於哪一個縣市（網站要靠它把造型掛回地圖）。通用版不必填，name 就是縣市名。",
     "scene.costume_basis": "服裝對回 data/costume.json 的哪些欄位，或說明為什麼把某些東西拿掉。**只要 outfit 或 accessories 出現族群織紋、族服名稱，這一欄就必須有東西**，build_prompt.py 會擋。"
   },
@@ -612,8 +612,8 @@
         ],
         "hand": "a bowl of hakka lei-cha, thick pale-green ground tea, with a small dish of puffed rice",
         "hand_zh": "客家擂茶",
-        "outfit_zh": "北部客家大襟衫（水藍素面、右開大襟、黑色鑲緄加提花織帶、直布扣）、大襠褲",
-        "outfit": "a northern Hakka da-jin-shan tunic in plain pale sky-blue cotton with NO printed pattern anywhere on the cloth: it fastens to the RIGHT, the opening curving from a low mandarin collar across the chest to the right underarm, that edge bound with a wide black border finished on its outer edge with a narrow woven jacquard tape, five straight cloth-knot buttons down the opening, loose sleeves to the wrist, hem at hip level, worn over loose wide-crotch trousers",
+        "outfit_zh": "淺駝色針織開襟外套、白T",
+        "outfit": "a soft camel-coloured knitted cardigan worn open over a white tee",
         "hair": "a pale pink camellia pinned beside her neat high bun",
         "hair_zh": "茶花（新竹縣花）",
         "hair_basis": "symbols.flower",
@@ -635,9 +635,10 @@
         "accessories": "a plain cloth pouch at her hip, small jade drop earrings, and a cord with a plain wooden tag",
         "viewpoint": "standing in the lane of Beipu Old Street",
         "viewpoint_sees": "from here red-brick Hakka shophouses and tea rooms line both sides with tiled roofs layered behind and hills beyond",
-        "costume_basis": "依客委會《台灣客家服飾民間收藏調查研究》（鄭惠美，2007）的北客大襟衫調查：右開大襟、直布扣、鑲緄從領緣沿大襟至腋下、外緣加提花織帶、衣長蓋過臀部（比六堆藍衫短 15-20 公分）、北客用色不限藍黑，年輕婦女常見白、米、淡綠、水藍。改掉兩處錯誤：一、原本寫「白色小花印花」，傳統大襟衫是素面，印花是把 1960 年代的花布誤當客家傳統（見 costume.json 的 _redlines 第四條）；二、原本寫「立領盤扣」，盤扣是對襟的做法，大襟衫用的是直布扣。另外新竹屬北客，不該叫「藍衫」——藍衫是南部六堆的稱法。配件的「客家紋樣編織手環」已刪：那是自己發明的，調查報告裡沒有這種東西。"
+        "costume_basis": "原本是北部客家大襟衫，已移到特別版（新竹縣・客家）。普通版一律當代穿著、不穿任何族群的傳統服飾：普通版說的是「阿蕊在這個地方」，不對任何族群下宣稱；要穿傳統服飾就得指名族群、附依據，那是特別版的事。"
       },
       "todo": [
+        "底圖與資料已不符（服裝欄改過），img/<id>-base.webp 需要重生",
         "底圖與資料已不符（服裝欄改過），img/<id>-base.webp 需要重生"
       ],
       "places": [
@@ -819,8 +820,8 @@
         ],
         "hand": "a small punnet of bright red strawberries",
         "hand_zh": "大湖草莓",
-        "outfit_zh": "北部客家大襟衫（米色素面、右開大襟、黑色鑲緄加提花織帶、直布扣）、大襠褲",
-        "outfit": "a northern Hakka da-jin-shan tunic in plain cream cotton with NO printed pattern anywhere on the cloth: it fastens to the RIGHT, the opening curving from a low mandarin collar across the chest to the right underarm, that edge bound with a wide black border finished on its outer edge with a narrow woven jacquard tape, five straight cloth-knot buttons down the opening, loose sleeves to the wrist, hem at hip level, worn over loose wide-crotch trousers",
+        "outfit_zh": "灰藍色薄外套、米白T",
+        "outfit": "a slate-grey-blue light jacket worn open over a cream tee",
         "hair": "a white-and-orange sprig of osmanthus tucked into her hair, worn in a compact high bun with no headscarf",
         "hair_zh": "桂花（苗栗縣花）",
         "hair_basis": "symbols.flower",
@@ -842,10 +843,11 @@
         "accessories": "a plain cloth pouch at her hip, small silver drop earrings, and a white cross-body cloth strap",
         "viewpoint": "standing on the dry bed of the Da'an River below Huoyanshan",
         "viewpoint_sees": "from here the bare orange-red eroded ridges rise straight up across the river with pale hills behind",
-        "costume_basis": "依客委會《台灣客家服飾民間收藏調查研究》（鄭惠美，2007）的北客大襟衫調查：右開大襟、直布扣、鑲緄從領緣沿大襟延伸至後片與小襟、外緣加提花織帶、衣長蓋過臀部、北客用色不限藍黑（年輕婦女常見白、米、淡綠、水藍）。苗栗取米色、新竹縣取水藍，兩縣才不會長得一樣。\n改掉三處：一、原本寫「白色小花印花」，傳統大襟衫是素面，印花是把 1960 年代的花布誤當客家傳統（見 costume.json 的 _redlines 第四條）；二、原本寫「立領盤扣」，盤扣是對襟的做法，大襟衫用直布扣；三、苗栗屬北客，該叫大襟衫而非藍衫，藍衫是南部六堆的稱法。\n**藍花頭巾已刪。** 原本的 accessory_basis 寫著「待查證」，這次查了：客委會那份調查報告沒有頭飾專章，本次也沒找到台灣客家頭飾的官方專論。查不到就不畫，這是查證結果不是疏漏。"
+        "costume_basis": "原本是北部客家大襟衫，已移到特別版（苗栗縣・客家）。普通版一律當代穿著、不穿任何族群的傳統服飾：普通版說的是「阿蕊在這個地方」，不對任何族群下宣稱；要穿傳統服飾就得指名族群、附依據，那是特別版的事。"
       },
       "todo": [
         "查證 symbols.flower（決定髮花）",
+        "底圖與資料已不符（服裝欄改過），img/<id>-base.webp 需要重生",
         "底圖與資料已不符（服裝欄改過），img/<id>-base.webp 需要重生"
       ],
       "places": [
@@ -2332,6 +2334,50 @@
       ],
       "notes": [
         "示範用的第一筆指名族群造型。服裝每一項都對得回 data/costume.json，沒有一項是自己發明的。"
+      ]
+    },
+    {
+      "id": "hsinchu-county-hakka",
+      "name": "新竹縣・客家",
+      "en": "HSINCHU COUNTY / HAKKA",
+      "county": "新竹縣",
+      "culture": "hakka",
+      "group": "n",
+      "poster": "hsinchu-city",
+      "base": null,
+      "scene": {
+        "outfit_zh": "北部客家大襟衫（水藍素面、右開大襟、黑色鑲緄加提花織帶、直布扣）、大襠褲",
+        "outfit": "a northern Hakka da-jin-shan tunic in plain pale sky-blue cotton with NO printed pattern anywhere on the cloth: it fastens to the RIGHT, the opening curving from a low mandarin collar across the chest to the right underarm, that edge bound with a wide black border finished on its outer edge with a narrow woven jacquard tape, five straight cloth-knot buttons down the opening, loose sleeves to the wrist, hem at hip level, worn over loose wide-crotch trousers",
+        "accessories": "a plain cloth pouch at her hip and small jade drop earrings",
+        "costume_basis": "依客委會《台灣客家服飾民間收藏調查研究》（鄭惠美，2007，實地丈量 200 件文物，含北部客家大襟衫 25 件）的北客大襟衫調查：右開大襟、直布扣、鑲緄從領緣沿大襟延伸至後片與小襟、外緣加提花織帶（寬約 1-2.5 公分）、衣長蓋過臀部（比六堆藍衫短 15-20 公分）、下身大襠褲。北客用色不限藍黑，年輕婦女常見白、米、淡綠、水藍。\n避開三個常見錯誤：一、大襟衫是素面，全身不得有印花——現在通稱的「客家花布」是 1960 年代不分族群使用的印花被單布，不是客家傳統服飾（見 costume.json 的 _redlines 第四條）；二、大襟衫用直布扣，盤扣是對襟的做法；三、桃竹苗屬北客，該叫大襟衫，「藍衫」是南部六堆的稱法。\n頭飾不畫：客委會那份調查沒有頭飾專章，本次也沒找到台灣客家頭飾的官方專論。查不到就不畫。\n新竹取水藍、苗栗取米色，兩縣的特別版才不會長得一樣。"
+      },
+      "todo": [
+        "底圖尚未生成"
+      ],
+      "notes": [
+        "由普通版移過來的。普通版不穿任何族群的傳統服飾，客家大襟衫改由這一筆承擔。"
+      ]
+    },
+    {
+      "id": "miaoli-hakka",
+      "name": "苗栗縣・客家",
+      "en": "MIAOLI / HAKKA",
+      "county": "苗栗縣",
+      "culture": "hakka",
+      "group": "c",
+      "poster": "miaoli",
+      "base": null,
+      "scene": {
+        "outfit_zh": "北部客家大襟衫（米色素面、右開大襟、黑色鑲緄加提花織帶、直布扣）、大襠褲",
+        "outfit": "a northern Hakka da-jin-shan tunic in plain cream cotton with NO printed pattern anywhere on the cloth: it fastens to the RIGHT, the opening curving from a low mandarin collar across the chest to the right underarm, that edge bound with a wide black border finished on its outer edge with a narrow woven jacquard tape, five straight cloth-knot buttons down the opening, loose sleeves to the wrist, hem at hip level, worn over loose wide-crotch trousers",
+        "accessories": "a plain cloth pouch at her hip and small silver drop earrings",
+        "costume_basis": "依客委會《台灣客家服飾民間收藏調查研究》（鄭惠美，2007，實地丈量 200 件文物，含北部客家大襟衫 25 件）的北客大襟衫調查：右開大襟、直布扣、鑲緄從領緣沿大襟延伸至後片與小襟、外緣加提花織帶（寬約 1-2.5 公分）、衣長蓋過臀部（比六堆藍衫短 15-20 公分）、下身大襠褲。北客用色不限藍黑，年輕婦女常見白、米、淡綠、水藍。\n避開三個常見錯誤：一、大襟衫是素面，全身不得有印花——現在通稱的「客家花布」是 1960 年代不分族群使用的印花被單布，不是客家傳統服飾（見 costume.json 的 _redlines 第四條）；二、大襟衫用直布扣，盤扣是對襟的做法；三、桃竹苗屬北客，該叫大襟衫，「藍衫」是南部六堆的稱法。\n頭飾不畫：客委會那份調查沒有頭飾專章，本次也沒找到台灣客家頭飾的官方專論。查不到就不畫。\n苗栗取米色、新竹取水藍，兩縣的特別版才不會長得一樣。"
+      },
+      "todo": [
+        "底圖尚未生成"
+      ],
+      "notes": [
+        "由普通版移過來的。普通版不穿任何族群的傳統服飾，客家大襟衫改由這一筆承擔。"
       ]
     }
   ],
