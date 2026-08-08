@@ -119,10 +119,20 @@ python3 tools/register_base.py            # 驗收過後把 base 欄位寫回資
 python3 tools/sync_split.py               # 資料同步進 index.html
 ```
 
-`verify_base.py` 量三件事，都是會真的出事的：文字區的亮度與局部起伏
-（底圖太暗或太雜，疊上去的字就讀不到）、人物的橫向範圍
-（太小失去主體感、越過中線會壓到文字）。量測區的座標不是猜的，
-是用瀏覽器量 `.split-top` 與 `.split-side` 的實際位置換算回來的。
+`verify_base.py` 量文字區的亮度與局部起伏——底圖太暗或太雜，疊上去的字就讀不到。
+量測區的座標不是猜的，是用瀏覽器量 `.split-top` 與 `.split-side` 的實際位置換算回來的。
+
+**codex 一次會產生多個候選（實測 2–9 張），全部都要看。** 它不是逐步改進，
+是產生多個不同的嘗試——最新的那張不代表最好。`gen.sh` 會把全部候選存到
+`<輸出檔>.cand/`，用審查頁挑：
+
+```bash
+python3 tools/review.py                          # 產生 review/index.html
+python3 tools/pick.py 桃園市 04 --note "理由"     # 換上並自動量測、同步、重建審查頁
+```
+
+83 張候選逐一比對後，16 個縣市的預設選擇被換掉，全部是同一個原因：**右邊有東西的比較好看**。
+美術指導的六條與量測門檻的演變寫在 [AGENTS.md](AGENTS.md)。
 
 ## 背景音樂與海面互動
 

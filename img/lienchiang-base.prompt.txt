@@ -1,0 +1,51 @@
+# Built-in imagegen prompt set
+
+## Base generation
+
+Use case: stylized-concept
+Asset type: final 4:3 landscape county base illustration for the Taiwan People website
+Input images: Image 1 is the old Lienchiang poster, used only as the style, colour palette, painterly shading, local scene, and outfit reference; do not copy any text, flags, political symbols, panels, border, or poster layout. Image 2 is the locked half-body reference for the same character's identity, face, warm brown eyes, body proportions, signature welcoming pose, and general scale; do not copy its clothes, drink, or windblown hairstyle. Image 3 is the locked face reference for facial identity, warm brown eyes, dark brown-black shoulder-length hair, and small-scale character details; do not copy its windblown hairstyle.
+
+Create an anime illustration in the same style, colour palette and painterly shading as Image 1. A single continuous scene — not a collage, not a panel of separate items.
+
+THE CHARACTER, locked by Images 2 and 3: A young Taiwanese woman with warm brown eyes, a friendly open smile, and dark brown-black hair of shoulder length. Her hair is gathered into a NEAT, COMPACT BUN high at the back: a tidy rounded coil close to the head, with only a few short wispy strands at the temples and nape. Keep her face, eyes, hair colour, hair length, and build exactly as in Images 2 and 3, but NOT their windblown hairstyle. She always wears the same gold beaded tassel hairpin. Beside the bun is one botanically recognisable red spider lily: a starburst of six narrow crimson petals curled sharply backward, with very long protruding stamens. No generic white flower. Dress her in a denim shirt worn open over a white tee printed with a complete wordless blue stone-village illustration. Keep a plain canvas tote bag with a complete wordless printed illustration. Add a plain rope necklace with a small stone pendant, a beaded bracelet, and small silver drop earrings. No hat.
+
+FRAMING: This is a character portrait with scenery behind her, NOT a landscape with a small person. Her head alone spans about 14% of picture width; figure about 38% of width and 76% of height; top of hair enters the upper 12%. Bottom edge cuts her legs at mid-thigh. She stands in the LEFT THIRD and her entire silhouette stays at or left of the horizontal midpoint.
+
+POSE: Her LEFT arm reaches toward the viewer at chest height, open welcoming palm facing up, fingers spread and foreshortened in the foreground. Exactly four fingers and one thumb, natural knuckles, no extra or fused fingers. Her RIGHT hand is raised beside her shoulder holding one round sesame-topped flatbread with a hole in the middle, recognisable and appetising.
+
+VIEWPOINT AND SCENE: She stands on the slope above Qinbi village. From this one continuous viewpoint, stone houses stack down the hillside to the cove, with open sea and a small green island beyond. Do not assemble disconnected landmarks or impossible geography. The ONE HERO LANDMARK is Qinbi village's stone houses with tiled roofs, stacked on a hillside above a cove. It sits in the MID-GROUND behind and beside her, large and readable, the most sharply lit and highest-contrast element after her face, the second thing the eye lands on.
+
+A rich supporting world, all at LOWER contrast than the hero: a granite sea-cave opening to the water that evokes Beihai Tunnel only if it fits naturally into this single viewpoint; a small green grassland island beyond that evokes Daqiu Island, with any sika deer extremely small and distant. Fill the left 60% with real local texture belonging to this spot: layered rooflines, stone lanes, one lantern or sign-shaped object with no writing, two or three tiny distant figures, sparse coastal vegetation and a small boat or scooter. Many elements are wanted, each softer, paler, and lower contrast than the hero. Depth comes from distance haze.
+
+FOUR DEPTH PLANES: (1) lower-left foreground: a dark, slightly out-of-focus red spider lily on a bare stem, with six narrow crimson recurved petals and very long stamens, no leaves; (2) character sharp and highest contrast; (3) Qinbi and local life clear but lower contrast; (4) distant sea/island/sky compressed toward haze.
+
+LIGHTING: One low late-afternoon sun from the LEFT, warm golden light, water catching light low near the horizon. Consistent shadows everywhere.
+
+NEGATIVE SPACE: The right 40% is quiet, smooth, low-detail real atmosphere, not blank: only calm open water meeting soft hazy sky. Absolutely no buildings, figures, objects, islands, land, shoreline, rocks, vegetation, birds, or boats in the right 40%. Sun glitter remains low near the horizon; the middle stays smooth for later HTML text. The top 22% of the right half is unobstructed open sky. Her hair may reach the top on the left.
+
+NO TEXT ANYWHERE: no headline, captions, panels, photo tiles, badges, bars, frame, watermark, symbols, letters, numbers, Chinese characters, or readable signs. T-shirt and tote prints are finished wordless graphics with no empty rectangles, blank patches, stickers, or label zones.
+
+Landscape 4:3.
+
+MUST NOT APPEAR: green or blue eyes; bubble tea; any real brand logo or branded packaging; any text or letters in clothing/tote prints; blank rectangles or unlabeled patches; official county emblem; anything implying she is a local resident of a particular county; model-added hat, glasses, or electronics; clothes copied from Images 2 or 3; flags, political slogans, slogan stones, propaganda, or military insignia; windblown loose hair, exploding hair mass, flyaway hair silhouette, changed hair colour or hair length; generic white blossom; collage or poster layout.
+
+## Targeted right-zone and lighting correction
+
+Use case: precise-object-edit. Preserve the character and Qinbi exactly. Remove every island, hill, tunnel, building, human figure, boat, shoreline, rock, plant, and object from the rightmost 40%; continue calm open water and hazy sky naturally, with no erased seam. Keep sunlight glitter low and subtle. Change the single light source to low warm late-afternoon sunlight from off-canvas left, with no visible sun disk. Do not alter anything else; no text, symbols, flags, panels, borders, or watermark.
+
+## Targeted negative-space correction
+
+Use case: precise-object-edit. Preserve the character and everything in the left 55% exactly. Starting at 55% of canvas width, replace every stone house, tiled roof, wall, hillside, shoreline, rock, plant, and object with a seamless continuation of calm open sea and hazy sky. The coastline must terminate before the 55% line. The rightmost 45% contains only open water and sky, with no land silhouette or objects and no visible seam. Do not change anything else.
+
+## Targeted foreground-flower restoration
+
+Use case: precise-object-edit. Add only one foreground botanical element. In the extreme lower-left corner, add one dark, slightly out-of-focus red spider lily on a bare curved stem: exactly six narrow crimson petals curled sharply backward, very long thin protruding stamens, no leaves. It occupies about 8–10% of the canvas and is cropped by the bottom and left edges, behind the extended hand. Preserve everything else exactly, especially the character, village, lighting, and open-water right 45%. No text, flags, symbols, panels, borders, or watermark.
+
+## Targeted earring correction
+
+Use case: precise-object-edit. Change only the visible earring: replace the small gold hoop/drop with one understated small silver drop earring, a tiny silver hook and short simple silver teardrop pendant. If the other ear is hidden by hair, leave it hidden. Preserve absolutely everything else, including the face, warm brown eyes, compact bun, red spider lily, gold beaded tassel hairpin, necklace, bracelet, outfit, tote, hands, flatbread, pose, foreground flower, Qinbi village, open sea and sky, lighting, palette, painterly rendering, and 4:3 framing. No text, flags, symbols, panels, borders, or watermark.
+
+## Targeted final lighting correction
+
+Use case: lighting-weather. Change only the direction and distribution of illumination. Preserve all geometry, drawing, composition, character details, accessories, hands, flatbread, flowers, Qinbi village, sea, horizon, textures, focus, and framing. Make the single low late-afternoon light source come unmistakably from off-canvas left: warm highlights strike left-facing edges, shadows fall toward the right, and the left sky near the horizon is the warmest and most luminous area. Keep the right sea and sky softly warm but slightly cooler and darker, with no sun disk, glare band, or conflicting right-side rim light. The rightmost 45% remains smooth open sea and hazy sky for text. No text, flags, symbols, panels, borders, or watermark.

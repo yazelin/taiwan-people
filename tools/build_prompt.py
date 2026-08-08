@@ -53,6 +53,7 @@ LIGHT = {
     "west": "low late-afternoon sun coming from the LEFT, warm and golden, the water catching the light",
     "east": "clear morning light coming from the RIGHT over the ocean, fresh and slightly cool",
     "inland": "low late-afternoon sun raking across the ridges from the LEFT, warm and golden",
+    "urban_west": "low late-afternoon sun coming from the LEFT, warm and golden across the old brick, roof tiles and plaster",
 }
 
 
@@ -105,8 +106,9 @@ def build(c):
         f"VIEWPOINT — she is {s['viewpoint']}. {s['viewpoint_sees']}. "
         "EVERYTHING in the picture must be something genuinely visible from this one spot. "
         "Do not assemble landmarks from different parts of the county into one frame. "
+        + (s.get("foreground_layout", "") + ". " if s.get("foreground_layout") else "")
         # ── 主角 ──
-        f"ONE HERO LANDMARK: {s['hero_landmark_en']}. It sits in the MID-GROUND behind and "
+        + f"ONE HERO LANDMARK: {s['hero_landmark_en']}. It sits in the MID-GROUND behind and "
         "beside her, large enough to read clearly, the most sharply lit and highest-contrast "
         "thing after her face — the single thing the eye lands on second. "
         # ── 豐富的配角 ──
@@ -126,13 +128,32 @@ def build(c):
         # ── 光 ──
         f"ONE LIGHT SOURCE: {LIGHT[s.get('light', 'west')]}. Every element casts consistent shadows. "
         # ── 留白 ──
-        "NEGATIVE SPACE IS MADE OF SOMETHING. The right 40 percent is quiet and low-detail, "
-        "but it is real sky and atmosphere with gradation, NOT an empty flat area. "
-        + ("This county is INLAND — there is NO SEA anywhere in the picture. The right 40 "
+        # 留白＝安靜，不是空。要求右側「幾乎無細節」會讓畫面空洞——
+        # 文字的可讀性由網頁那層很淡的漸層負責，不必犧牲畫面。
+        "THE RIGHT SIDE IS QUIET, NOT EMPTY. The scene continues naturally into the right 40 "
+        "percent — water, sky, a distant shoreline, a far ridge, whatever genuinely belongs at "
+        "this viewpoint. Keep it lower in contrast and slightly lower in saturation than the "
+        "left, with no figures, vehicles, signs or busy detail competing for attention, and no "
+        "hard dark shapes. It should read as calm depth, not as a blank area. "
+        # right_zone 只有幾種通則，但有些地方全都不對——
+        # 花蓮的視點在太魯閣峽谷內，留白既不是海也不是「天空與遠山」，
+        # 是峽谷自身層層退去的岩壁與霧。逐縣市覆寫優先。
+        + (s["right_zone_desc"] + " " if s.get("right_zone_desc") else
+           "The right 40 percent is a plausible quiet opening within this same old-street viewpoint: "
+           "soft pale sky above a low, sunlit old plaster courtyard wall, both low-detail and gently "
+           "graded for text. No sea, water, salt pans, mountains, distant landmarks, figures, vehicles, "
+           "signs, lanterns, trees or roof silhouettes appear in this zone. "
+           if s.get("right_zone") == "city_sky" else
+           "This county is INLAND — there is NO SEA anywhere in the picture. The right 40 "
            "percent contains no buildings, figures, objects, rooftops, nearby trees, vegetation "
            "or dark foreground slopes. It is open sky over only low, pale receding ridges fading "
            "into haze, layer behind layer, staying pale and light from top to bottom. "
            if s.get("right_zone", "sea") == "sky" else
+           "The right 40 percent contains no buildings, figures, objects, land, shoreline, rocks "
+           "or vegetation. It is calm open river water meeting a soft hazy sky. Any sunlight "
+           "glitter stays LOW near the horizon; the middle stays smooth and even because text "
+           "goes over it. "
+           if s.get("right_zone") == "river" else
            "The right 40 percent contains no buildings, figures, objects, land, shoreline, rocks "
            "or vegetation. It is calm open water meeting a soft hazy sky. Any sunlight glitter "
            "stays LOW near the horizon; the middle stays smooth and even because text goes over it. ")
@@ -159,11 +180,19 @@ def refs(c):
 def build_composition_fix(c):
     """既有底圖只重排人物與右側留白，不重畫角色設計。"""
     s = c["scene"]
+    zone = s.get("right_zone", "sea")
     right_zone = (
+        "From x=60 percent to the right edge, show only pale open sky above a low, sunlit old "
+        "plaster courtyard wall belonging to this same viewpoint: no sea, water, salt pans, mountains, "
+        "distant landmarks, figures, vehicles, signs, lanterns, trees or roof silhouettes. "
+        if zone == "city_sky" else
         "From x=60 percent to the right edge, show only open sky above low, pale receding "
         "ridges dissolving into haze: no buildings, figures, objects, rooftops, nearby trees, "
         "vegetation or dark foreground slopes, and no sea anywhere. "
-        if s.get("right_zone", "sea") == "sky" else
+        if zone == "sky" else
+        "From x=60 percent to the right edge, show only continuous open river water and sky: "
+        "no land, shoreline, rocks, vegetation, buildings, boats, figures or objects. "
+        if zone == "river" else
         "From x=60 percent to the right edge, show only continuous open sea and sky: no land, "
         "shoreline, rocks, vegetation, buildings, boats, figures or objects. "
     )
@@ -194,9 +223,14 @@ def build_composition_fix(c):
 def build_framing_fix(c):
     """右側留白正確後，只修近距離人物尺度與垂直位置。"""
     s = c["scene"]
+    zone = s.get("right_zone", "sea")
     right_zone = (
+        "Keep the pale open sky and low sunlit old plaster courtyard wall from x=60–100 percent exactly unchanged. "
+        if zone == "city_sky" else
         "Keep the pale open sky and hazy receding ridges from x=60–100 percent exactly unchanged. "
-        if s.get("right_zone", "sea") == "sky" else
+        if zone == "sky" else
+        "Keep the open river water and sky from x=60–100 percent exactly unchanged. "
+        if zone == "river" else
         "Keep the open sea and sky from x=60–100 percent exactly unchanged. "
     )
     return (
@@ -232,11 +266,125 @@ def build_plant_fix(c):
     )
 
 
+def build_hair_flower_fix(c):
+    """既有底圖只修髮花的物種形態，不動前景植物或角色造型。"""
+    s = c["scene"]
+    flower = s.get("hair_flower_desc") or s["hair"]
+    return (
+        "Use case: precise-object-edit. Image 1 is the edit target. Change only the single "
+        "flower worn in the character's hair. Redraw it as: " + flower + ". Keep its current "
+        "position, scale and red-orange colour family. Preserve exactly the character's face, "
+        "warm brown eyes, expression, compact high bun, dark brown-black hair, gold beaded tassel "
+        "hairpin, earrings, clothing, badge, bracelet, tote, burger, hands, pose, body scale and "
+        "placement. Preserve every foreground kapok branch and flower, every background detail, "
+        "the lighthouse, harbour, open right-side sea and sky, lighting, palette, painterly anime "
+        "rendering and 4:3 framing. Do not change, add or remove anything else. No text, letters, "
+        "logos, panels, borders or watermarks anywhere."
+    )
+
+
+def build_tote_print_fix(c):
+    """既有底圖只修提袋印花，內容必須能對回該縣市資料。"""
+    s = c["scene"]
+    motif = s.get("tote_print") or ("a complete wordless illustration of " + s["hero_landmark_en"])
+    return (
+        "Use case: precise-object-edit. Image 1 is the edit target. Change only the printed "
+        "illustration on the canvas tote, replacing its current motif with: " + motif + ". The "
+        "new print must be a seamless finished illustration integrated into the fabric, with no "
+        "text, letters, pseudo-letters, characters, logo, label, sticker or blank rectangular patch. "
+        "Preserve exactly the tote's shape, seams, folds, strap, position and colour. Preserve every "
+        "other detail exactly: the character's face, warm brown eyes, expression, county-specific "
+        "hairstyle and flower accessory, gold beaded tassel hairpin, earrings, clothing, jewellery, "
+        "held item, hands, pose, body scale and placement; every foreground plant and background "
+        "detail, the hero landmark, open right-side sky and water, lighting, palette, painterly anime "
+        "rendering and 4:3 framing. Do not "
+        "change, add or remove anything else. No text, letters, logos, panels, borders or watermarks anywhere."
+    )
+
+
+def build_right_zone_cleanup(c):
+    """既有底圖只清空右側文字區的離散物件，保留原本水天漸層。"""
+    return (
+        "Use case: precise-object-edit. Image 1 is the edit target. Remove only the few tiny dark "
+        "cargo-ship silhouettes sitting directly on the far horizon at x=64–100 percent. Inpaint each "
+        "tiny removed silhouette locally with the immediately surrounding pale hazy horizon colour. "
+        "Do not repaint or change the open sea, sky, horizon height, sunlight glitter, clouds or colour "
+        "gradation around them. Everything at x=0–64 percent is outside the edit and must remain exactly "
+        "unchanged, especially Cijin Lighthouse and its wooded headland near x=54 percent, the harbour "
+        "breakwater, ferries, character, both hands, burger, five-petalled kapok hair flower, tote and "
+        "its lighthouse print, foreground flowers and seawall. Preserve every pixel except the tiny "
+        "far-horizon ship silhouettes at x=64–100 percent. Do not change composition, scale, palette, "
+        "lighting, painterly anime style or 4:3 framing. No text, letters, logos, panels, borders or watermarks."
+    )
+
+
+def build_landmark_boundary_fix(c):
+    """既有底圖只把主地標收進左 60%，不重畫角色或右側文字區。"""
+    s = c["scene"]
+    return (
+        "Use case: precise-object-edit. Image 1 is the edit target. Change only the complete hero "
+        "landmark group — " + s["hero_landmark_en"] + " — by translating that existing group "
+        "uniformly about four percent of the canvas width to the LEFT without changing its scale, "
+        "shape, architecture, lighting, focus or contrast. Its lighthouse should sit near x=52–54 "
+        "percent and the rightmost edge of its wooded headland and shoreline must end at or before "
+        "x=59 percent. Locally fill only the narrow vacated strip with the immediately adjacent calm "
+        "sea and hazy sky. Preserve the complete character, face, five-petalled kapok hair flower, "
+        "hairpin, clothing, both hands, burger, badge, bracelet, tote and its lighthouse print, every "
+        "foreground kapok flower, harbour building, ferry, breakwater and seawall exactly unchanged. "
+        "Keep the entire rightmost 40 percent as uninterrupted open sea and sky with no ships, land "
+        "or objects. Do not change composition, palette, lighting, painterly anime style or 4:3 framing. "
+        "No text, letters, logos, panels, borders or watermarks."
+    )
+
+
+def build_bottom_right_cleanup(c):
+    """既有底圖只清除右下文字區的近景障礙物。"""
+    return (
+        "Use case: precise-object-edit. Image 1 is the edit target. Image 2 is the same image with a "
+        "translucent magenta rectangle marking the only editable region; magenta is markup only and "
+        "must not appear in the result. Change only the marked bottom-right rectangle x=60–100 percent "
+        "and y=50–100 percent. Remove the concrete seawall, breakwater, "
+        "tetrapods and rocks that intrude into that rectangle, and locally continue the immediately "
+        "adjacent calm open sea through the removed area with matching perspective, small wave texture, "
+        "warm reflection and colour. Do not alter anything above y=50 percent. Keep everything at "
+        "x=0–60 percent exactly unchanged, including the complete character and clothing, both hands, "
+        "burger, five-petalled kapok hair flower, tote with lighthouse print, foreground flowers, "
+        "harbour buildings, ferries, Cijin Lighthouse and its wooded headland. Preserve the current "
+        "open sky, horizon height, lighting, palette, painterly anime style and 4:3 framing. The entire "
+        "rightmost 40 percent must finish as uninterrupted open sea and sky with no land, shoreline, "
+        "rocks, structures, boats, figures or objects. No text, letters, logos, panels, borders or watermarks."
+    )
+
+
+def build_print_fix(c):
+    """既有底圖只清掉衣物與提袋印花裡的偽字。"""
+    s = c["scene"]
+    return (
+        "Use case: precise-object-edit. Image 1 is the edit target. Change only the printed "
+        "graphics on the white T-shirt and canvas tote. Remove every text-like mark, pseudo-letter, "
+        "character, logo and tiny typographic stroke from both prints. Rebuild each affected area "
+        f"as a complete, seamless, finished wordless illustration of {s['hero_landmark_en']}, "
+        f"consistent with this verified view: {s['viewpoint_sees']}. Do not introduce a generic "
+        "landscape or any remote county landmark. Leave no blank patch, rectangle, sticker or label "
+        "shape. Preserve exactly the character's face, warm brown eyes, "
+        "expression, hair, moth orchid, gold beaded tassel hairpin, outfit construction and colours, "
+        "jewellery, bracelet, pouch, coffee cup, hands, pose, body scale and placement. Preserve every "
+        "background detail, the Xiluo Bridge, river, open right-side sky and water, composition, anime "
+        "rendering, colour palette and lighting. Do not change, add or remove anything else. No text, "
+        "letters, logos, panels, borders or watermarks anywhere. One continuous 4:3 landscape illustration."
+    )
+
+
 def build_hand_framing_fix(c):
     """人物尺度正確後，只把伸出的左手完整收進畫面。"""
+    zone = c["scene"].get("right_zone", "sea")
     right_zone = (
+        "pale open sky and a low sunlit old plaster courtyard wall"
+        if zone == "city_sky" else
         "pale open sky and hazy receding ridges"
-        if c["scene"].get("right_zone", "sea") == "sky" else
+        if zone == "sky" else
+        "open river water and sky"
+        if zone == "river" else
         "open sea and sky"
     )
     return (
@@ -267,6 +415,18 @@ if __name__ == "__main__":
         print(build_framing_fix(county))
     elif "--fix-plant" in sys.argv:
         print(build_plant_fix(county))
+    elif "--fix-hair-flower" in sys.argv:
+        print(build_hair_flower_fix(county))
+    elif "--fix-tote-print" in sys.argv:
+        print(build_tote_print_fix(county))
+    elif "--cleanup-right-zone" in sys.argv:
+        print(build_right_zone_cleanup(county))
+    elif "--fix-landmark-boundary" in sys.argv:
+        print(build_landmark_boundary_fix(county))
+    elif "--cleanup-bottom-right" in sys.argv:
+        print(build_bottom_right_cleanup(county))
+    elif "--fix-print" in sys.argv:
+        print(build_print_fix(county))
     elif "--fix-hand-framing" in sys.argv:
         print(build_hand_framing_fix(county))
     elif "--check" not in sys.argv:

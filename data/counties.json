@@ -27,7 +27,8 @@
     "scene.hero_landmark": "那張圖的視覺主角，只有它畫清楚，其餘退到霧裡。先前三個地標等權重並列，等於把資料表畫成圖，眼睛不知道看哪。",
     "scene.light": "光線配方，依地理決定：west＝西部面海的夕照、east＝東部面海的晨光、inland＝內陸午後斜光掠過山稜。先前沒指定光源，每張的光向都不一樣，物件像各自貼上去的。",
     "scene.accessories": "人物身上的次要配件，讀自原海報的人物區。\n原則跟背景一樣：主識別（髮花＋金珠流蘇髮簪）清楚，配件豐富但視覺權重低。\n先前 prompt 只寫服裝、帆布袋、手持物、髮花，徽章與吊牌全部沒寫，模型就自己簡化了。\n**有字的一律改成無字版本**——底圖不能有文字，所以「宜蘭尚青」木牌變成無字木牌、「I♥台中」徽章變成無字愛心徽章。",
-    "scene.viewpoint": "她站在哪個具體位置。**畫面裡只能出現從那裡真的看得到的東西。**\n少了這條，模型會把不同地方的地標拼在同一格——台北那張就是陽明山（北邊山上）、北投（山腳）、101（市中心盆地）三者同框，地理上沒有任何位置能同時看到。\n結果 101 從雲海裡獨自聳立、旁邊接一條山城老街，變成地理拼貼。"
+    "scene.viewpoint": "她站在哪個具體位置。**畫面裡只能出現從那裡真的看得到的東西。**\n少了這條，模型會把不同地方的地標拼在同一格——台北那張就是陽明山（北邊山上）、北投（山腳）、101（市中心盆地）三者同框，地理上沒有任何位置能同時看到。\n結果 101 從雲海裡獨自聳立、旁邊接一條山城老街，變成地理拼貼。",
+    "scene.right_zone_desc": "留白區的逐縣市覆寫。right_zone 的幾種通則有時全都不對——花蓮的視點在太魯閣峽谷內，留白既不是海也不是天空遠山，是峽谷自身的岩壁與霧。"
   },
   "counties": [
     {
@@ -36,7 +37,7 @@
       "en": "KEELUNG",
       "group": "n",
       "poster": "keelung",
-      "base": null,
+      "base": "keelung-base",
       "share": {
         "who": "基隆，代表了",
         "words": [
@@ -362,7 +363,7 @@
       "en": "TAOYUAN",
       "group": "n",
       "poster": "taoyuan",
-      "base": null,
+      "base": "taoyuan-base",
       "share": {
         "who": "桃園，代表了",
         "words": [
@@ -466,7 +467,7 @@
       "en": "HSINCHU CITY",
       "group": "n",
       "poster": "hsinchu-city",
-      "base": null,
+      "base": "hsinchu-city-base",
       "share": {
         "who": "新竹，代表了",
         "words": [
@@ -571,7 +572,7 @@
       "en": "HSINCHU COUNTY",
       "group": "n",
       "poster": "hsinchu-city",
-      "base": null,
+      "base": "hsinchu-county-base",
       "share": {
         "who": "新竹，代表了",
         "words": [
@@ -676,7 +677,7 @@
       "en": "YILAN",
       "group": "n",
       "poster": "yilan",
-      "base": null,
+      "base": "yilan-base",
       "share": {
         "who": "宜蘭，代表了",
         "words": [
@@ -1099,7 +1100,7 @@
       "en": "NANTOU",
       "group": "c",
       "poster": "nantou",
-      "base": null,
+      "base": "nantou-base",
       "share": {
         "who": "南投，代表了",
         "words": [
@@ -1201,7 +1202,7 @@
       "en": "YUNLIN",
       "group": "c",
       "poster": "yunlin",
-      "base": null,
+      "base": "yunlin-base",
       "share": {
         "who": "雲林，代表了",
         "words": [
@@ -1246,7 +1247,7 @@
         "hair": "a white moth orchid beside her neat high bun",
         "hair_zh": "蝴蝶蘭（雲林縣花）",
         "hair_basis": "symbols.flower",
-        "right_zone": "sea",
+        "right_zone": "river",
         "landmarks_en": [
           "Beigang Chaotian Temple, an ornate gilded temple with dragon columns",
           "the Xiluo Bridge, a long red steel truss bridge across a wide river",
@@ -1260,10 +1261,14 @@
           "Beigang Chaotian Temple, an ornate gilded temple with dragon columns",
           "Janfusun's tall ferris wheel and rides against the hills"
         ],
+        "viewpoint_support_en": [
+          "the broad braided Zhuoshui riverbed and low floodplain farmland beyond the bridge",
+          "the riverside levee path with sparse trees and two or three tiny distant cyclists or scooters"
+        ],
         "light": "west",
         "accessories": "a woven straw cord bracelet, small gold hoop earrings, and a plain cloth pouch at her hip",
         "viewpoint": "standing on the bank of the Zhuoshui River beside the Xiluo Bridge",
-        "viewpoint_sees": "from here the long red steel truss bridge crosses the wide braided riverbed with farmland stretching flat behind"
+        "viewpoint_sees": "from here the long red steel truss bridge crosses the wide braided riverbed with farmland stretching flat behind. Beigang Chaotian Temple and Janfusun Fancyworld are far away and must not appear"
       },
       "todo": [
         "查證 symbols.flower（決定髮花）"
@@ -1305,7 +1310,7 @@
       "en": "CHIAYI CITY",
       "group": "s",
       "poster": "chiayi-county",
-      "base": null,
+      "base": "chiayi-city-base",
       "share": {
         "who": "嘉義，代表了",
         "words": [
@@ -1410,7 +1415,7 @@
       "en": "CHIAYI COUNTY",
       "group": "s",
       "poster": "chiayi-county",
-      "base": null,
+      "base": "chiayi-county-base",
       "share": {
         "who": "嘉義，代表了",
         "words": [
@@ -1507,7 +1512,7 @@
       "en": "TAINAN",
       "group": "s",
       "poster": "tainan",
-      "base": null,
+      "base": "tainan-base",
       "share": {
         "who": "台南，代表了",
         "words": [
@@ -1553,7 +1558,7 @@
         "hair": "a red flame-tree blossom beside her neat high bun",
         "hair_zh": "鳳凰花",
         "hair_basis": "symbols.tree",
-        "right_zone": "sea",
+        "right_zone": "city_sky",
         "landmarks_en": [
           "Chihkan Tower, a Dutch-era red-brick fort with an arched gateway and tiled Chinese pavilion roofs",
           "Anping Fort's white rampart wall and old banyan roots",
@@ -1567,13 +1572,16 @@
           "Anping Fort's white rampart wall and old banyan roots",
           "the salt mountain of Cigu, a white cone above shallow geometric salt pans"
         ],
-        "light": "west",
+        "viewpoint_support_en": [
+          "the old street's layered low tile eaves, red lanterns, brick paving and courtyard trees around Chihkan Tower",
+          "two or three small distant pedestrians and a parked scooter along the old street"
+        ],
+        "light": "urban_west",
         "accessories": "a beaded bracelet, small gold drop earrings, and a plain cloth pouch hanging from her tote strap",
         "viewpoint": "standing in the old street in front of Chihkan Tower",
-        "viewpoint_sees": "from here the Dutch-era red-brick fort and its tiled pavilion roofs sit just behind, with the old street's eaves and lanterns to the left"
+        "viewpoint_sees": "from here the Dutch-era red-brick fort and its tiled pavilion roofs sit just behind, with the old street's eaves and lanterns to the left. Anping Fort, Cigu Salt Mountain and the sea are far away and must not appear"
       },
       "todo": [
-        "生成 base 底圖",
         "查證 symbols.flower（決定髮花）"
       ],
       "places": [
@@ -1613,7 +1621,7 @@
       "en": "KAOHSIUNG",
       "group": "s",
       "poster": "kaohsiung",
-      "base": null,
+      "base": "kaohsiung-base",
       "share": {
         "who": "高雄，代表了",
         "words": [
@@ -1654,8 +1662,10 @@
         "hand": "a Taiwanese-style crispy fried chicken burger held in a plain unbranded paper wrapper",
         "hand_zh": "炸雞腿堡（無品牌包裝）",
         "plants_desc": "kapok (Bombax ceiba) blossoms: large orange-red flowers with five thick fleshy petals and prominent stamens, growing directly on BARE LEAFLESS branches of a sturdy thick-trunked tree — the kapok flowers before its leaves appear, so there must be no green foliage on the flowering branches",
+        "hair_flower_desc": "one botanically recognisable kapok (Bombax ceiba) blossom with exactly five thick orange-red fleshy petals radiating from one centre and a prominent upright cluster of stamens; no extra petals and no green leaves",
         "outfit_zh": "淺藍丹寧襯衫、白T、木棉花髮飾",
         "outfit": "a light denim shirt worn open over a white tee",
+        "tote_print": "a complete wordless blue illustration of the Sizihwan harbour mouth with Cijin Lighthouse",
         "hair": "a red kapok blossom beside her neat high bun",
         "hair_zh": "木棉花",
         "hair_basis": "symbols.flower",
@@ -1672,10 +1682,15 @@
           "Lotus Pond lined with pagodas and the Dragon and Tiger Towers",
           "Cijin's lighthouse and long black-sand shore across the harbour"
         ],
+        "viewpoint_support_en": [
+          "Cijin Lighthouse on its wooded headland across the harbour mouth",
+          "the harbour breakwaters with small ferries, fishing boats and distant cargo ships"
+        ],
         "light": "west",
         "accessories": "a round enamel badge with a wordless harbour-skyline motif, a beaded bracelet, and small hoop earrings",
         "viewpoint": "standing on the breakwater at Sizihwan",
-        "viewpoint_sees": "from here the harbour mouth opens out with Cijin's lighthouse across the water and the city's towers along the far shore"
+        "viewpoint_sees": "from here the harbour mouth opens out with Cijin's lighthouse across the water and the city's towers along the far shore",
+        "foreground_layout": "The foreground breakwater and every concrete block are confined entirely to x=0–56 percent beneath and left of her, then exit through the bottom edge before x=56 percent. From x=60 percent all the way down to the bottom-right corner there is uninterrupted open water with no seawall, tetrapod, rock or other object"
       },
       "todo": [],
       "places": [
@@ -1707,7 +1722,7 @@
       "en": "PINGTUNG",
       "group": "s",
       "poster": "pingtung",
-      "base": null,
+      "base": "pingtung-base",
       "share": {
         "who": "屏東，代表了",
         "words": [
@@ -1805,7 +1820,7 @@
       "en": "HUALIEN",
       "group": "e",
       "poster": "hualien",
-      "base": null,
+      "base": "hualien-base",
       "share": {
         "who": "花蓮，代表了",
         "words": [
@@ -1850,7 +1865,7 @@
         "hair": "a full flower crown centred on a pink lotus blossom, worn over hair that falls DOWN and loose over her shoulders — not gathered into a bun; layered beaded necklaces and long beaded earrings",
         "hair_zh": "蓮花花冠（花蓮縣花）、頭髮放下",
         "hair_basis": "symbols.flower",
-        "right_zone": "sea",
+        "right_zone": "sky",
         "landmarks_en": [
           "Taroko Gorge's sheer marble walls above a jade-green river",
           "the Qingshui Cliffs dropping straight into the Pacific",
@@ -1864,10 +1879,11 @@
           "the Qingshui Cliffs dropping straight into the Pacific",
           "Qixingtan, a long curving pebble beach against green mountains"
         ],
-        "light": "east",
+        "light": "inland",
         "accessories": "layered beaded necklaces with a round metal medallion, woven beaded wrist bands, and long beaded earrings",
         "viewpoint": "standing on the walkway inside Taroko Gorge",
-        "viewpoint_sees": "from here sheer marble walls rise on both sides above the jade-green river, with a red suspension bridge spanning the gap"
+        "viewpoint_sees": "from here sheer marble walls rise on both sides above the jade-green river, with a red suspension bridge spanning the gap and the gorge receding into mist upstream. The sea is not visible from inside the gorge and must not appear",
+        "right_zone_desc": "The right 40 percent is the gorge itself receding upstream: pale marble walls dissolving layer behind layer into bright mist, values compressed almost to white, with a thin band of sky visible high between the cliff tops. Quiet and low-detail because text goes over it, but real rock and mist with depth and gradation, NOT an empty flat area. There is NO SEA anywhere in the picture."
       },
       "todo": [
         "查證 symbols.flower（決定髮花）"
@@ -1888,7 +1904,9 @@
         "服裝含原住民族織紋，依原海報保留視覺但**不指名族群**——台東就有阿美、卑南、排灣、布農、達悟五族，指錯族群的織紋比指錯市樹嚴重。若要對外正式發佈，這幾張建議先請具代表性的族人或相關單位過目。",
         "髮飾是花冠不是蓮花——蓮花是大型水生花，戴在頭上不合理。這是規則四唯一的例外。",
         "海報是不指定種類的花冠；改用查證過的縣花蓮花。",
-        "髮型是**放下**不是盤髮——原海報就是這樣。先前一律改成盤髮是錯的，那是看縮圖下的通則判斷，把原本明確不同的四個縣市（基隆、台北、花蓮、台東）也蓋掉了。"
+        "髮型是**放下**不是盤髮——原海報就是這樣。先前一律改成盤髮是錯的，那是看縮圖下的通則判斷，把原本明確不同的四個縣市（基隆、台北、花蓮、台東）也蓋掉了。",
+        "視點在太魯閣峽谷內，但先前 right_zone 設成 sea——峽谷裡看不到海，模型只好把場景改成濱海斷崖，四個候選全部畫成清水斷崖而不是峽谷。**視點與留白規則必須相容**：內陸視點就要 right_zone=sky。",
+        "留白改用峽谷自身的霧，不套「內陸＝天空與遠山」那個通則——峽谷裡看不到起伏的遠山，看到的是層層退去的大理石岩壁與霧。"
       ],
       "traits": [
         "純淨",
@@ -1903,7 +1921,7 @@
       "en": "TAITUNG",
       "group": "e",
       "poster": "taitung",
-      "base": null,
+      "base": "taitung-base",
       "share": {
         "who": "台東，代表了",
         "words": [
@@ -1962,6 +1980,10 @@
           "Mr. Brown Avenue, a straight lane through open paddy fields with a lone tree",
           "Zhiben's hot spring valley between forested mountains"
         ],
+        "viewpoint_support_en": [
+          "Sanxiantai's broad andesite-pebble beach and wave-worn volcanic breccia rocks",
+          "the island's low coral-reef shore, sparse coastal plants and a few distant walkers on the shore path"
+        ],
         "light": "east",
         "accessories": "several layered beaded necklaces with a round metal medallion, a woven waist sash, and long beaded earrings",
         "viewpoint": "standing on the shore at Sanxiantai",
@@ -1985,7 +2007,8 @@
         "縣花經多方來源交叉確認為蝴蝶蘭（縣樹樟樹）。舊海報底部畫紅色朱槿是海報的錯，不是資料的錯。",
         "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
         "服裝含原住民族織紋，依原海報保留視覺但**不指名族群**——台東就有阿美、卑南、排灣、布農、達悟五族，指錯族群的織紋比指錯市樹嚴重。若要對外正式發佈，這幾張建議先請具代表性的族人或相關單位過目。",
-        "髮型是**放下**不是盤髮——原海報就是這樣。先前一律改成盤髮是錯的，那是看縮圖下的通則判斷，把原本明確不同的四個縣市（基隆、台北、花蓮、台東）也蓋掉了。"
+        "髮型是**放下**不是盤髮——原海報就是這樣。先前一律改成盤髮是錯的，那是看縮圖下的通則判斷，把原本明確不同的四個縣市（基隆、台北、花蓮、台東）也蓋掉了。",
+        "三仙台視點配角依交通部觀光署東部海岸國家風景區管理處資料：八拱橋、離岸島、安山岩礫石灘、火山集塊岩與珊瑚礁海岸可同框；伯朗大道與知本溫泉保留在縣級 landmarks，但不可進入此視點。"
       ],
       "traits": [
         "包容",
@@ -2000,7 +2023,7 @@
       "en": "PENGHU",
       "group": "i",
       "poster": "penghu",
-      "base": null,
+      "base": "penghu-base",
       "share": {
         "who": "澎湖，代表了",
         "words": [
@@ -2107,7 +2130,7 @@
       "en": "KINMEN",
       "group": "i",
       "poster": "kinmen",
-      "base": null,
+      "base": "kinmen-base",
       "share": {
         "who": "金門，代表了",
         "words": [
@@ -2172,7 +2195,6 @@
         "viewpoint_sees": "from here a stone Wind Lion God stands guard in the foreground with a southern-Fujian red-brick village of swallowtail roofs behind"
       },
       "todo": [
-        "生成 base 底圖",
         "查證 symbols.flower（決定髮花）"
       ],
       "places": [
@@ -2203,7 +2225,7 @@
       "en": "LIENCHIANG",
       "group": "i",
       "poster": "lienchiang",
-      "base": null,
+      "base": "lienchiang-base",
       "share": {
         "who": "連江，代表了",
         "words": [

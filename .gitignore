@@ -6,3 +6,4 @@ img/*-v[0-9].webp
 # 產線暫存
 /tmp/
 *.tmp
+review/
