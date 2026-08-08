@@ -34,6 +34,18 @@ ZONES = [("縣市名", .58, .93, .03, .13, 0.42),
 # 可讀性該用合成手段解決，不是靠犧牲畫面。
 MAX_VAR = 0.055
 
+# 右側 40% 的結構下限。上面那個 MAX_VAR 是上限（太雜，文字讀不到），
+# 一直缺的是下限（太空，畫面空洞）。AGENTS.md 第六條「留白是安靜，不是空」
+# 說了很久，但沒有東西在量它，所以四張空的一路留到現在。
+#
+# 0.010 不是猜的：22 張實測，最低四張是 0.0031/0.0038/0.0043/0.0051，
+# 次低的一批從 0.0122 起跳，中間有兩倍以上的斷層，門檻放在斷層裡。
+# 目視也同意：那四張右側有大片沒有內容的霧，其餘 18 張都看得出是什麼地方。
+#
+# 量的是右側 40% 整個高度、16×16 區塊亮度標準差的中位數。用中位數是因為
+# 少數幾個高對比物件（一根桅杆、一隻鳥）不該讓整片空白過關。
+MIN_DETAIL = 0.010
+
 
 def measure(path):
     a = np.asarray(Image.open(path).convert("RGB"), float)
@@ -49,7 +61,13 @@ def measure(path):
     col = g.mean(axis=0)
     idx = np.where(col > col.mean() + col.std() * .5)[0]
     right = (idx.max() / W) if len(idx) else 0.0
-    return out, right
+    # 右側 40% 有沒有東西。刻意不只量文字帶——文字帶本來就該安靜，
+    # 「缺乏景色」是整片右側的問題，只量文字帶會漏掉「上半真空、下半有山」那種。
+    rz = lum[:, int(.60 * W):]
+    rh, rw = rz.shape
+    rb = rz[:rh // 16 * 16, :rw // 16 * 16].reshape(rh // 16, 16, -1, 16)
+    detail = float(np.median(rb.std(axis=(1, 3))))
+    return out, right, detail
 
 
 def main():
@@ -62,9 +80,11 @@ def main():
         p = ROOT / "img" / f"{c.get('base') or c['id'] + '-base'}.webp"
         if not p.exists():
             continue
-        zones, right = measure(p)
+        zones, right, detail = measure(p)
         probs = [f"{n.strip()} 亮度{l:.2f}" for n, l, v, f in zones if l < f]
         probs += [f"{n.strip()} 起伏{v:.3f}" for n, l, v, f in zones if v > MAX_VAR]
+        if detail < MIN_DETAIL:
+            probs.append(f"右側太空 {detail:.4f}<{MIN_DETAIL}")
         # 「右緣」這個指標已停用，只保留數字供參考。
         # 它本來要量「人物延伸到多右」，實際量的是「邊緣密度超過門檻的最右一欄」——
         # 舊的美術方向要求右側留空，那個數字才約等於人物邊界。
@@ -73,10 +93,10 @@ def main():
         mark = "✔" if not probs else "✘"
         if probs:
             bad += 1
-        detail = "  ".join(f"{n}{l:.2f}/{v:.3f}" for n, l, v, f in zones)
-        print(f"{mark} {c['name']:<4}{detail}  右緣 {right:.0%}"
+        cols = "  ".join(f"{n}{l:.2f}/{v:.3f}" for n, l, v, f in zones)
+        print(f"{mark} {c['name']:<4}{cols}  右側{detail:.4f}  右緣 {right:.0%}"
               + ("   ← " + "、".join(probs) if probs else ""))
-    print(f"\n需要重生 {bad} 張" if bad else "\n全部通過")
+    print(f"\n不合格 {bad} 張" if bad else "\n全部通過")
     return 1 if bad else 0
 
 
