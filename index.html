@@ -415,7 +415,11 @@ section:has(>.hero){overflow-x:clip}
   mix-blend-mode:soft-light}
 /* 20 張海報畫面裡自帶的裝飾外框（線色、內縮、轉角形狀各不同）已統一裁掉 36px，
    現在全部滿版，圓角可以由我們自己定義而不會裁到誰。 */
-.poster{position:relative;border-radius:18px;overflow:hidden;background:#0a2a48;
+/* 背景層放「上一張」，換圖時新圖從它上面淡入，透出來的不會是深藍底色。
+   100% auto ＋ top center 讓它跟 img 的框完全對齊：桌機的 .poster 本身就是
+   1400/1120，手機的 img 是 width:100% 配同一個 aspect-ratio，兩邊算出來一樣高。 */
+.poster{position:relative;border-radius:18px;overflow:hidden;
+  background:#0a2a48 top center/100% auto no-repeat;
   aspect-ratio:1400/1120;
   box-shadow:0 2px 10px rgba(2,16,34,.45),inset 0 0 0 1px rgba(255,255,255,.22)}
 /* 拆分版：底圖無字，文字疊在右緣刻意留白的海面上。
@@ -439,20 +443,33 @@ section:has(>.hero){overflow-x:clip}
    留白該是「安靜」不是「沒有東西」。改成讓畫面自然延伸到右邊，
    文字的可讀性用這層漸層解決：從右緣往左淡出，只壓在文字帶上，
    不像整片濾鏡那樣把人物一起洗白。 */
-.split::after{content:"";position:absolute;inset:0;pointer-events:none;
-  /* 只壓在文字實際佔的那條帶（y 2%–62%），而且很淡。
-     整片壓會把右半洗成灰白，畫面的層次全沒了——那正是先前被打回的做法。
-     多數底圖本來就讀得到，這層只是保險。 */
-  background:linear-gradient(to left,
-      rgba(247,251,254,.34) 0%, rgba(247,251,254,.22) 34%,
-      rgba(247,251,254,.08) 58%, rgba(247,251,254,0) 74%);
-  -webkit-mask-image:linear-gradient(to bottom,
-      transparent 0%, #000 4%, #000 56%, transparent 66%);
-  mask-image:linear-gradient(to bottom,
-      transparent 0%, #000 4%, #000 56%, transparent 66%)}
+/* 薄紗改成「貼著文字塊」而不是「壓整個右半」。
+   舊做法是一條從右緣往左淡出的橫向漸層，在文字左緣只剩 17% 白、右緣 34%，
+   等於幾乎沒作用——實測雲林、花蓮、台南的文字帶背景高頻雜訊是台北的 3 倍，
+   字踩在西螺大橋的桁架、太魯閣的岩壁上，對比再高也讀不順。
+   把它縮到文字自己的框上、強度拉到 .72，其餘畫面完全不動，
+   就不會重蹈「整片壓成灰白」的覆轍。closest-side 讓四邊自然歸零。 */
+/* 主力是 backdrop-filter 的模糊，不是加白。
+   讓字難讀的不是「背景太暗」——實測 22 張最差對比都有 6.3:1——而是背景在
+   筆畫的尺度上太吵：西螺大橋的桁架、太魯閣的岩壁，那些邊緣跟筆畫的邊緣競爭。
+   再加白只會多一塊白斑；把那一小片背景糊掉才是對症。
+   輕微的 brightness 與淡白底負責把對比再拉開一點，遮罩讓四邊自然消失，
+   模糊池不會有可見的方框。 */
+.split-top::before,.split-side::before{content:"";position:absolute;
+  inset:-14% -12%;z-index:-1;pointer-events:none;
+  -webkit-backdrop-filter:blur(7px) brightness(1.07);
+  backdrop-filter:blur(7px) brightness(1.07);
+  background:rgba(249,252,254,.4);
+  /* 橢圓中心貼右緣：模糊在右側維持全強度，直接跑出海報邊界，
+     那一側就沒有界線可看。置中的遮罩會在右邊留一道「糊→清晰」的接縫，
+     西螺大橋橫跨過去時特別明顯。 */
+  -webkit-mask-image:radial-gradient(100% 50% at 96% 50%,
+    #000 0%,#000 46%,rgba(0,0,0,.5) 78%,transparent 100%);
+  mask-image:radial-gradient(100% 50% at 96% 50%,
+    #000 0%,#000 46%,rgba(0,0,0,.5) 78%,transparent 100%)}
 .split-top,.split-side{z-index:1}
 .split-side{position:absolute;right:3.4%;top:20%;width:37%;
-  display:flex;flex-direction:column;gap:1.1cqw;
+  display:flex;flex-direction:column;gap:2.2cqw;
   font-size:clamp(.6rem,1.5cqw,.95rem)}
 .split-side .grp{color:#0a2437;
   text-shadow:0 0 6px rgba(255,255,255,1),0 0 14px rgba(255,255,255,.95),
@@ -463,16 +480,39 @@ section:has(>.hero){overflow-x:clip}
   letter-spacing:.22em;font-size:.86em;color:#0f3a5c;margin-bottom:.3em;
   text-shadow:0 0 6px rgba(255,255,255,1),0 0 13px rgba(255,255,255,.98),
               0 0 26px rgba(255,255,255,.8)}
-.split-side .grp b{font-family:var(--serif);font-size:1.3em;letter-spacing:.04em;line-height:1.5}
-.split-side .q{margin-top:1.15em;font-family:var(--serif);font-weight:500;line-height:1.95;
+/* keep-all 讓中文不在字與字之間斷行，只在「・」處斷。
+   沒有它會出現「瑞穗文旦・洛神花・金／針花」這種把一個詞劈成兩行的斷法。 */
+.split-side .grp b{font-family:var(--serif);font-size:1.3em;letter-spacing:.04em;line-height:1.5;
+  word-break:keep-all}
+/* 句子是這張海報的結語，不是註腳。加一道細線把它和上面三組分開 */
+.split-side .q{position:relative;margin-top:.6em;padding-top:1.1em;
+  font-family:var(--serif);font-weight:500;line-height:1.95;
   color:#0d2740;font-size:1.06em;letter-spacing:.04em;
   text-shadow:0 0 6px rgba(255,255,255,1),0 0 14px rgba(255,255,255,.95),
               0 0 30px rgba(255,255,255,.8)}
+.split-side .q::before{content:"";position:absolute;left:0;top:0;width:3.2em;height:1px;
+  background:linear-gradient(to right,rgba(15,58,92,.7),rgba(15,58,92,0))}
 @media (max-width:960px){.split-side{top:17%;width:42%;right:2.6%}}
-/* 手機上切換鈕改到左下。海報縮到 338px 寬時，字級被 clamp 的下限擋住不再縮，
-   文字塊因此往下長到離下緣只剩 36px（桌機是 263px），句子最後一行正好壓在
-   右下角那兩顆鈕上。左下是岩石與花，不是人物的臉。 */
-@media (max-width:760px){.poster .steps{left:3.2%;right:auto}}
+/* 手機：文字排到圖下方，不再疊在畫面上。
+   海報縮到 338px 寬時字級被 clamp 的下限擋住不再縮，等於文字相對海報放大了
+   一倍——實測 22 個縣市在 360px 下多數的文字塊會超出海報下緣被裁掉，
+   嘉義市溢出 55px，整句結語看不到，項目還被迫斷成三行。
+   排到圖下方之後：不裁字、不擋畫面，背景可讀性的問題在手機上也一併消失。 */
+@media (max-width:760px){
+  .poster{aspect-ratio:auto;display:flex;flex-direction:column}
+  .poster>img{aspect-ratio:1400/1120;height:auto;flex:none}
+  .split{position:static;container-type:normal;
+    background:linear-gradient(180deg,#f8fbfe,#e9f2f9);
+    padding:.9rem 1.05rem 4rem}   /* 下方預留切換鈕的位置（鈕 42px＋上下間隙） */
+  .split-top::before,.split-side::before{display:none}
+  .split-top{position:static;width:auto;text-align:left;
+    display:flex;align-items:baseline;gap:.65rem}
+  .split-top h3{font-size:1.35rem}
+  .split-top span{margin-top:0;font-size:.6rem}
+  .split-side{position:static;width:auto;top:auto;right:auto;
+    gap:.7rem;margin-top:.7rem;font-size:.84rem}
+  .split-side .q{margin-top:.15em}
+}
 .poster img[hidden]{display:none}
 /* 極慢的推近漂移，讓海報不是一張死圖；換圖時 fade 與 drift 一起跑 */
 .poster img{width:100%;height:100%;object-fit:cover;cursor:zoom-in;
@@ -531,6 +571,9 @@ section:has(>.hero){overflow-x:clip}
   -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
   box-shadow:0 4px 14px -4px rgba(3,26,52,.4)}
 .poster .steps button:hover{background:var(--gold);border-color:var(--gold);color:#10263c}
+/* 手機：鈕貼在文字面板右下角，面板的 padding-bottom 就是為它留的。
+   這條必須放在上面那條基準規則「之後」——兩者權重相同，順序決定勝負。 */
+@media (max-width:760px){.poster .steps{left:auto;right:.8rem;bottom:.75rem}}
 .steps{display:flex;gap:.5rem;margin-bottom:.35rem}
 .steps button{width:38px;height:38px;border-radius:50%;border:1px solid rgba(160,210,235,.4);
   display:grid;place-content:center;transition:.25s}
@@ -609,7 +652,16 @@ section:has(>.hero){overflow-x:clip}
   /* 手機：她退成低透明度的背景，文字置中 */
   .meet{text-align:center;padding-left:0}
   .foot{padding-left:0}
-  .meet-fig{--figh:48vh;left:50%;translate:-50% 0;opacity:.18}
+  /* 她維持不透明，改排到文字下方。
+     桌機是她在左、字在右，兩者錯開；手機沒有橫向空間，原本的做法是把她降到
+     opacity .18 當背景——那讓她看起來像鬼魂。壓一層薄紗也不夠：她佔到段落
+     下緣，結語與頁尾都不在 .meet-txt 裡，罩不到，字會壓在她身上。
+     排到下方就三個問題一起解決：她整個人看得到、字全部有乾淨底、頁尾在她下面。 */
+  .meet{display:flex;flex-direction:column}
+  .meet-txt{order:1}
+  .meet-fig{order:2;position:static;left:auto;translate:none;
+    width:min(62%,240px);height:auto;margin:1.3rem auto 0;
+    aspect-ratio:685/900;object-position:top center}
   .flowers{justify-content:center}
 }
 /* 阿蕊佔住左側，置中的收尾句前半會被擋到，用同一個左內距把它推進文字欄 */
@@ -990,15 +1042,43 @@ function pick(name,scroll){
     document.getElementById("dQuote").textContent=sp.quote||"";
   }
   if(sp||r.s){
-    dPend.hidden=true; dImg.hidden=false;
-    dImg.classList.remove("swap"); void dImg.offsetWidth; dImg.classList.add("swap");
-    dImg.src="img/"+(sp?sp.b:r.s)+".webp";
-    dImg.alt=sp ? r.n+"代表角色：背景與人物"
-                : r.n+"代表角色海報，包含自然景觀、文化信仰、美食、物產與生活態度代表。";
+    swapPoster("img/"+(sp?sp.b:r.s)+".webp",
+      sp ? r.n+"代表角色：背景與人物"
+         : r.n+"代表角色海報，包含自然景觀、文化信仰、美食、物產與生活態度代表。", i);
   }else{
     dImg.hidden=true; dPend.hidden=false;
   }
   if(scroll) document.getElementById("explore").scrollIntoView({behavior:"smooth"});
+}
+
+/* 換圖：先把新圖解碼完，再換 src。
+   原本是直接改 src——瀏覽器立刻丟掉舊圖，露出卡片的深藍底 #0a2a48，
+   淡入動畫又從 opacity 0 開始，所以看起來是「黑一下，然後圖突然跳出來」。
+   這跟有沒有做成 PWA 無關：Service Worker 只在「再次造訪」時才幫得上忙，
+   第一次點每個縣市照樣要下載，還是會閃。真正的問題是換的時機。
+   保留舊圖直到新圖 decode() 完成，換的那一刻就能立刻畫出來。 */
+const posterCache=new Map();
+const preloadPoster=src=>{
+  let im=posterCache.get(src);
+  if(!im){im=new Image();im.src=src;posterCache.set(src,im);}
+  return im;
+};
+let swapSeq=0;
+async function swapPoster(src,alt,idx){
+  const mine=++swapSeq;
+  try{ await preloadPoster(src).decode(); }catch(e){ /* 解碼失敗就照舊直接換 */ }
+  if(mine!==swapSeq) return;          // 使用者已經又切到別的縣市
+  // 目前這張先退到卡片背景，等一下新圖就是從它上面淡入，而不是從深藍底淡入
+  const prev=dImg.getAttribute("src");
+  dImg.parentElement.style.backgroundImage=prev?`url("${prev}")`:"";
+  dPend.hidden=true; dImg.hidden=false;
+  dImg.classList.remove("swap"); void dImg.offsetWidth; dImg.classList.add("swap");
+  dImg.src=src; dImg.alt=alt;
+  // 順手把左右鄰居抓進快取：切換多半是連續按上下一個
+  for(const d of [1,-1]){
+    const nb=R[(idx+d+R.length)%R.length], s=SPLIT[nb.n];
+    if(s||nb.s) preloadPoster("img/"+(s?s.b:nb.s)+".webp");
+  }
 }
 document.addEventListener("click",e=>{
   const t=e.target.closest("[data-n]"); if(t) pick(t.dataset.n);
