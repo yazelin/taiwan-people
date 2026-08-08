@@ -185,11 +185,27 @@ section{min-height:100svh;scroll-snap-align:start;position:relative;
    窄視窗下整頁因此多出橫向捲軸。用 overflow-x:clip 而不是 overflow:hidden——
    後者會強制另一軸變成 auto，把段落之間刻意做的垂直暈染裁掉。 */
 section:has(>.hero){overflow-x:clip}
-/* 手機：沿用「認識阿蕊」那段既有的做法——她退成低透明度背景，文字佔滿全寬。
-   原本她在手機上是滿版不透明，整段字疊在她身上讀不到。 */
+/* 手機：她維持不透明。
+   桌機靠幾何錯開——米色薄紗在左、人在右，兩者不重疊。手機只有 390px 寬，
+   錯不開，文字塊又已經佔掉視窗 77%，底下擺不進一個人。
+   所以改成只在文字帶後面鋪一層米色柔光：她的臉、頭髮、手都在光暈之外，
+   完全不受影響，被壓淡的只有正好在字底下的軀幹與腿。
+   （先前這裡是把整個人降到 opacity .2，那讓她看起來像鬼魂。） */
 @media (max-width:760px){
   .hero>div:first-child{max-width:100%;text-align:center}
-  .hero .figure{--figop:.2;right:50%;translate:50% 0;height:112vh}
+  /* z-index:1 讓這個 div 自成堆疊脈絡，裡面的 ::before 用 -1 就會落在
+     文字之下、人物（z-index:0）之上——正好是薄紗該待的那一層 */
+  /* closest-side：橢圓半徑等於到最近邊的距離，漸層正好在方框邊界歸零，
+     左右與下緣不會有硬邊。上緣的方框離第一行字只有幾十 px，沒有空間讓漸層
+     自己淡完，所以另外用遮罩淡入——先前用固定半徑，方框上緣在畫面 18% 處
+     割出一條橫跨全寬的硬邊。 */
+  .hero>div:first-child::before{content:"";position:absolute;inset:-30% -10% -13%;z-index:-1;
+    pointer-events:none;
+    background:radial-gradient(closest-side at 50% 40%,rgba(252,249,241,.97) 0%,
+      rgba(252,249,241,.93) 46%,rgba(252,249,241,.62) 74%,transparent 100%);
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 17%);
+    mask-image:linear-gradient(to bottom,transparent 0,#000 17%)}
+  .hero .figure{right:50%;translate:50% 0;height:112vh}
   .nav{gap:.8rem;padding:.7rem 1rem}
   .nav ul{gap:.1rem;font-size:.72rem;flex-wrap:nowrap}
   /* 垂直 padding 撐到 44px 觸控高度；水平不動，390px 螢幕塞三個連結沒有餘裕 */
