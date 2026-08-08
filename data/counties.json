@@ -885,7 +885,7 @@
       "en": "TAICHUNG",
       "group": "c",
       "poster": "taichung",
-      "base": null,
+      "base": "taichung-base",
       "share": {
         "who": "台中，代表了",
         "words": [
@@ -957,7 +957,6 @@
         "viewpoint_sees": "from here the theatre's curved white shell fills the mid-ground, with its broad paved entrance plaza, Summer Green Park across Huilai Road, and the modern towers of the Seventh Redevelopment Zone around it. There is no sea here; Gaomei Wetland and Miyahara are far away and must not appear"
       },
       "todo": [
-        "生成 base 底圖",
         "查證 symbols.flower（決定髮花）"
       ],
       "places": [
@@ -996,7 +995,7 @@
       "en": "CHANGHUA",
       "group": "c",
       "poster": "changhua",
-      "base": null,
+      "base": "changhua-base",
       "share": {
         "who": "彰化，代表了",
         "words": [
