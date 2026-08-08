@@ -95,9 +95,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   padding:.9rem clamp(1rem,4vw,3.2rem);
   background:none}
 /* align-items 預設 stretch 會把 logo 橫向拉寬到跟副標齊寬，wordmark 會被壓扁 */
+/* flex:none 與 max-width:none 是一組，缺一個 logo 在窄視窗就會被壓扁：
+   .brand 是 flex item，預設 flex-shrink:1 會被導覽列的連結擠窄，
+   全域的 img{max-width:100%} 接著把圖寬夾到那個寬度，高卻固定在 2.6rem。
+   實測 390px 螢幕上 logo 變成 87×42（正確是 153×42，橫向少 43%），360px 只剩 57×42。 */
 .brand{display:flex;flex-direction:column;align-items:flex-start;line-height:1.1;
-  font-family:var(--display);font-weight:900}
-.brand img{display:block;height:2.6rem;width:auto;margin-bottom:.22rem}
+  font-family:var(--display);font-weight:900;flex:none}
+.brand img{display:block;height:2.6rem;width:auto;max-width:none;margin-bottom:.22rem}
 /* 墨色 logo 在深色區塊會看不見，翻成白色筆跡 */
 .brand img{filter:drop-shadow(0 2px 7px rgba(4,30,60,.55))}
 .brand small{font-size:.52rem;letter-spacing:.52em;color:#fff;padding-left:.15rem;
@@ -206,11 +210,22 @@ section:has(>.hero){overflow-x:clip}
     -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 17%);
     mask-image:linear-gradient(to bottom,transparent 0,#000 17%)}
   .hero .figure{right:50%;translate:50% 0;height:112vh}
-  .nav{gap:.8rem;padding:.7rem 1rem}
-  .nav ul{gap:.1rem;font-size:.72rem;flex-wrap:nowrap}
+  /* logo 不能被壓扁，所以它佔的寬是實打實的 153px（2.6rem 高）。
+     390px 螢幕塞不下 logo＋三個連結＋音樂鈕，只能一起縮：
+     logo 降到 1.75rem（103px）、連結字級與左右留白同時收。 */
+  .nav{gap:.5rem;padding:.7rem .6rem}
+  .brand img{height:1.75rem}
+  .nav ul{gap:0;font-size:.68rem;flex-wrap:nowrap}
   /* 垂直 padding 撐到 44px 觸控高度；水平不動，390px 螢幕塞三個連結沒有餘裕 */
   .nav a{padding:.72rem .5rem;white-space:nowrap}
   .mus{width:44px;height:44px;flex:0 0 44px;margin-left:.4rem}
+}
+/* 更窄的機型（360 以下到 320）再收一階。垂直 padding 不動，觸控高度維持 45px。 */
+@media (max-width:400px){
+  .brand img{height:1.5rem}
+  .nav{padding:.7rem .35rem;gap:.3rem}
+  .nav ul{font-size:.63rem}
+  .nav a{padding:.78rem .4rem}   /* 字級縮了，垂直 padding 補回來維持 44px 觸控高 */
 }
 .hero>div:first-child{position:relative;z-index:1;max-width:min(54%,760px)}
 .hero h1{line-height:0}
@@ -582,13 +597,6 @@ section:has(>.hero){overflow-x:clip}
   display:grid;place-content:center;transition:.25s}
 .steps button:hover{background:var(--gold);color:#10263c;border-color:var(--gold)}
 .steps svg{width:15px;height:15px}
-/* 手機的海面要用 cover。
-   122% auto 是「寬度取容器的 122%、高度按比例」——sea.webp 是 1033×1523 的直幅，
-   桌機容器 1440×926，算出來 1757×2591 綽綽有餘；手機容器只有 390 寬卻 1571 高，
-   算出來 476×702，上下各露出約 434px 的頁面底色。cover 會同時蓋滿兩個方向。 */
-@media (max-width:960px){
-  #explore::before,#about::before{background-size:100% 100%,cover}
-}
 @media (max-width:960px){
   #explore{padding-top:6rem}
   .explore{grid-template-columns:1fr}
@@ -669,6 +677,16 @@ section:has(>.hero){overflow-x:clip}
 @keyframes sea-sway-deep{
   0%,100%{background-position:50% 50%,50.6% 50.3%}
   50%{background-position:50% 50%,49.4% 49.7%}}
+/* 手機的海面要用 cover。
+   122% auto 是「寬度取容器的 122%、高度按比例」——sea.webp 是 1033×1523 的直幅，
+   桌機容器 1440×926，算出來 1757×2591 綽綽有餘；手機容器只有 390 寬卻上千 px 高，
+   算出來只有 476×702，上下各露出好幾百 px 的頁面底紋。cover 同時蓋滿兩個方向。
+   **這條必須放在 #explore::before 與 #about::before 兩個定義之後。**
+   background 簡寫會重設 background-size，權重相同時由順序決勝——
+   先前放在中間，結果只有 explore 吃到，about 被後面的簡寫蓋回 122%。 */
+@media (max-width:960px){
+  #explore::before,#about::before{background-size:100% 100%,cover}
+}
 .about-in{max-width:44rem;margin:0 auto;text-align:center}
 .about-in h2{font-family:var(--display);font-weight:900;font-size:clamp(1.7rem,3.2vw,2.6rem);
   letter-spacing:.08em;

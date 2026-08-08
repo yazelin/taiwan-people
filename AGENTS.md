@@ -320,3 +320,28 @@ cd /home/ct/taiwan-people && python3 -m http.server 8901
   兩次量測數字一字不差還以為是快取。要藏就藏「子元素」：`.x>*`。
 - **`display:none` 的元素 `getBBox()` 全部回 0。** 靠面積排序疊放順序的程式
   在手機上等於沒排（地圖平時是 none）。改成面板開啟、真的有版面時才排。
+
+### 兩個反覆咬人的 CSS 形狀
+
+各自已經發生兩次，看到就先懷疑這兩件事。
+
+**一、`height` 固定＋`width:auto`＋全域 `img{max-width:100%}` ＝ 圖被壓扁。**
+只要容器被擠窄（絕對定位的 shrink-to-fit、flex item 的 flex-shrink），
+寬就被夾住而高不變。發生過：首頁人物（390px 上橫向少 56%）、
+導覽列 logo（390px 少 43%、360px 少 63%）。
+修法一律是 `max-width:none` 再加「別讓容器被擠窄」（`width:max-content` 或 `flex:none`），
+兩個要一起，缺一個沒用。
+
+改完跑一次全站比例稽核：對每張 `document.images` 比 `getBoundingClientRect`
+與 `naturalWidth/naturalHeight` 的比值，偏差超過 1.5% 就是被壓扁
+（`object-fit:cover/contain` 的要排除，那是刻意裁切）。
+
+**二、同權重時由「順序」決勝，media query 不加權重。**
+`@media` 裡的 `.x{...}` 跟外面的 `.x{...}` 權重相同，寫在後面的贏。
+發生過：`.poster .steps` 的手機覆寫（放在基準規則之前，完全沒生效，
+先前那次「移到左下」其實是意外奏效——基準規則剛好沒設 `left`）、
+`#about::before` 的 `background-size`（覆寫夾在兩個定義中間，
+只有 `#explore` 吃到，`#about` 被後面的 `background` 簡寫重設回去）。
+
+**手機覆寫一律放在被覆寫的規則之後**，而且 `background` 簡寫會重設
+`background-size`／`background-position`，覆寫要留意這點。
