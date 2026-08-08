@@ -515,7 +515,10 @@ section:has(>.hero){overflow-x:clip}
 }
 .poster img[hidden]{display:none}
 /* 極慢的推近漂移，讓海報不是一張死圖；換圖時 fade 與 drift 一起跑 */
+/* user-drag:none 是滑動手勢的前提：在圖片上拖曳會啟動瀏覽器原生的圖片拖放，
+   pointerup 就再也不會送到頁面，手勢永遠判定不出來 */
 .poster img{width:100%;height:100%;object-fit:cover;cursor:zoom-in;
+  -webkit-user-drag:none;user-select:none;
   animation:poster-drift 30s ease-in-out infinite}
 .poster img.swap{animation:fade .55s ease,poster-drift 30s ease-in-out infinite}
 @keyframes poster-drift{
@@ -579,6 +582,13 @@ section:has(>.hero){overflow-x:clip}
   display:grid;place-content:center;transition:.25s}
 .steps button:hover{background:var(--gold);color:#10263c;border-color:var(--gold)}
 .steps svg{width:15px;height:15px}
+/* 手機的海面要用 cover。
+   122% auto 是「寬度取容器的 122%、高度按比例」——sea.webp 是 1033×1523 的直幅，
+   桌機容器 1440×926，算出來 1757×2591 綽綽有餘；手機容器只有 390 寬卻 1571 高，
+   算出來 476×702，上下各露出約 434px 的頁面底色。cover 會同時蓋滿兩個方向。 */
+@media (max-width:960px){
+  #explore::before,#about::before{background-size:100% 100%,cover}
+}
 @media (max-width:960px){
   #explore{padding-top:6rem}
   .explore{grid-template-columns:1fr}
@@ -587,6 +597,60 @@ section:has(>.hero){overflow-x:clip}
   .maparea{grid-template-columns:1fr}
   .inset{width:84px}
 }
+
+/* ── 手機的第二段：一次一個縣市，左右滑動；地圖收成全螢幕的挑選面板 ──
+   為什麼不是把桌機版縮小：地圖當選擇器在手機是壞的，不是小而是不能用。
+   實測 390px 螢幕上嘉義市的可點區只有 13×10px（建議值是 44×44），
+   基隆 19×15、新竹市 17×17、台北 23×30，22 個裡有 4 個按不準。
+   而且拇指不是滑鼠——沒有 hover，也不適合瞄準。
+   改成：卡片全出血、左右滑動換縣市，要跳去特定地方才開地圖，
+   那時地圖佔滿整個螢幕，而且每個縣市都補一個 48px 的圓形命中區。
+   返回鍵＝關閉面板（pushState／popstate）。 */
+.deckbar{display:none}
+.m-only{display:none}
+.pickclose{display:none}
+@media (max-width:760px){
+  .d-only{display:none}
+  .m-only{display:inline}
+  /* 地圖平時不在版面裡，只在挑選面板出現 */
+  .maparea{display:none}
+  .deckbar{display:flex;align-items:center;justify-content:space-between;
+    gap:.6rem;margin:0 0 .6rem}
+  .deckpos{font-family:var(--display);font-weight:700;font-size:.78rem;letter-spacing:.18em;
+    color:#cfe6f5;text-shadow:0 1px 4px rgba(2,14,30,.95)}
+  .deckpick{display:inline-flex;align-items:center;gap:.45rem;font:inherit;
+    font-size:.8rem;font-weight:700;letter-spacing:.1em;cursor:pointer;
+    padding:.6rem 1rem;min-height:44px;border-radius:999px;
+    color:#10263c;border:0;
+    background:linear-gradient(135deg,#ffe9a8,var(--gold) 58%,var(--gold-d));
+    box-shadow:0 8px 20px -8px rgba(243,195,87,.75),inset 0 1px 0 rgba(255,255,255,.6)}
+  .deckpick svg{width:17px;height:17px}
+  /* 卡片全出血：留白讓給畫面 */
+  #explore{padding-left:0;padding-right:0}
+  .sechead,.deckbar{padding-inline:1rem}
+  .frame{border-radius:0;border-left:0;border-right:0;padding:0}
+  .poster{border-radius:0}
+  /* 橫向給滑動用，縱向照常捲頁 */
+  .poster{touch-action:pan-y}
+
+  /* 挑選面板 */
+  body.picking{overflow:hidden}
+  body.picking .maparea{display:block;position:fixed;inset:0;z-index:80;
+    padding:3.6rem .5rem 1rem;overflow:auto;
+    background:linear-gradient(180deg,rgba(9,40,68,.93),rgba(5,24,44,.96));
+    /* 模糊而不是全不透明：後面的頁面看不清楚，但還在，面板才有「疊上去」的層次 */
+    -webkit-backdrop-filter:blur(14px) saturate(1.1);backdrop-filter:blur(14px) saturate(1.1)}
+  body.picking .mainmap{height:min(66vh,620px)}
+  body.picking .insets{margin-top:.6rem}
+  body.picking .pickclose{position:fixed;top:.7rem;right:.7rem;z-index:81;
+    display:grid;place-content:center;width:44px;height:44px;border-radius:50%;
+    color:#dbeaf5;border:1px solid rgba(160,210,235,.45);background:rgba(8,32,58,.75);
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);cursor:pointer}
+  body.picking .pickclose svg{width:19px;height:19px}
+  /* 放大命中區只在面板裡生效；桌機維持照縣界點選 */
+  body.picking .bighit{pointer-events:auto;cursor:pointer}
+}
+.bighit{fill:transparent;pointer-events:none}
 
 /* ── about ──────────────────────────────────────────────── */
 #about{--figh:min(62vh,560px);--figw:calc(var(--figh) * 0.733);
@@ -755,8 +819,14 @@ section:has(>.hero){overflow-x:clip}
 <section id="explore">
   <div class="explore">
     <div>
-      <div class="sechead"><h2>探索各地代表</h2><p>點地圖，看阿蕊在當地的樣子</p></div>
+      <div class="sechead"><h2>探索各地代表</h2>
+        <p><span class="d-only">點地圖，看阿蕊在當地的樣子</span><span
+           class="m-only">左右滑動換縣市，或點「挑一個地方」開地圖</span></p></div>
       <div class="maparea">
+        <button class="pickclose" id="pickClose" type="button" aria-label="關閉地圖">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+               stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
         <img class="seadeco" src="img/deco-dolphin.webp"    alt="" style="left:2%;top:6%;width:11%">
         <img class="seadeco" src="img/deco-gulls.webp"      alt="" style="right:1%;top:3%;width:10%">
         <img class="seadeco" src="img/deco-sailboat.webp"   alt="" style="left:5%;bottom:9%;width:6%">
@@ -768,9 +838,18 @@ section:has(>.hero){overflow-x:clip}
       </div>
     </div>
     <div class="detail">
+      <div class="deckbar">
+        <span class="deckpos" id="deckPos">1 / 22</span>
+        <button class="deckpick" id="deckPick" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 4 3 6.5v13L9 17l6 3 6-2.5v-13L15 7z"/><path d="M9 4v13M15 7v13"/>
+          </svg>挑一個地方
+        </button>
+      </div>
       <div class="frame">
       <div class="poster">
-        <img id="dImg" alt="" width="1402" height="1122">
+        <img id="dImg" alt="" width="1402" height="1122" draggable="false">
         <div class="steps">
           <button id="prev" aria-label="上一個縣市"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></button>
           <button id="next" aria-label="下一個縣市"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></button>
@@ -977,6 +1056,16 @@ const svgEl=(t,a)=>{const e=document.createElementNS("http://www.w3.org/2000/svg
       class:"lbl"+(d?" tiny":"")+(SEA_LBL.has(n)?" sea":""),"data-n":n});
     t.textContent=n; svg.appendChild(t);
   }
+  /* 放大命中區：每個縣市在標籤位置補一個透明圓，直徑 48px。
+     只在手機的挑選面板生效（CSS 的 .bighit 預設 pointer-events:none）——
+     桌機的地圖夠大，照縣界點選才準確。
+     疊放順序（小的要在上面）由 sizeBigHits() 在面板開啟時才決定：
+     地圖平時 display:none，這裡呼叫 getBBox() 全部量到 0，排不出來。 */
+  for(const n in m.labels){
+    const [x,y]=m.labels[n], d=NUDGE[n];
+    svg.appendChild(svgEl("circle",{cx:x+(d?d[0]:0),cy:y+(d?d[1]:0),
+      r:0,class:"bighit","data-n":n,"aria-hidden":"true"}));
+  }
   document.getElementById("mainmap").appendChild(svg);
   document.getElementById("ghostPath").setAttribute("d",Object.values(m.paths).join(""));
 })();
@@ -1026,6 +1115,7 @@ function pick(name,scroll){
   tag.textContent=r.t||"代表角色籌備中，敬請期待";
   tag.hidden=!!SPLIT[r.n];   // 拆分版的「這裡的人」已經有特質，不要重複
   document.getElementById("dPendName").textContent=r.n+"的代表還在路上";
+  document.getElementById("deckPos").textContent=(i+1)+" / "+R.length;
   CUR=r;                       // 無條件更新，否則切到非拆分版時會停在前一個縣市
   const sp=SPLIT[r.n];
   document.getElementById("dSplit").hidden=!sp;
@@ -1081,8 +1171,48 @@ async function swapPoster(src,alt,idx){
   }
 }
 document.addEventListener("click",e=>{
-  const t=e.target.closest("[data-n]"); if(t) pick(t.dataset.n);
+  const t=e.target.closest("[data-n]"); if(!t) return;
+  pick(t.dataset.n);
+  if(document.body.classList.contains("picking")) closePicker();
 });
+
+/* ── 手機的挑選面板 ──────────────────────────────────────
+   照 ai-brain-site 的做法：開面板時 pushState，返回鍵就等於關閉，
+   這是手機使用者的直覺。用 X 關閉時走 history.back()，兩條路徑收在同一處。 */
+const bigHits=[...document.querySelectorAll(".bighit")];
+function sizeBigHits(){
+  const svg=document.querySelector("#mainmap svg"), m=svg&&svg.getScreenCTM();
+  if(!m||!m.a) return;
+  // 小縣市的圓要疊在大縣市上面，否則嘉義市會被嘉義縣蓋掉。
+  // 只能等面板開啟、地圖真的有版面時才量得到面積，量到就定案不再重排。
+  if(!sizeBigHits.sorted){
+    const ranked=bigHits.map(c=>{
+      const p=svg.querySelector(`.hit[data-n="${c.dataset.n}"]`);
+      let a=0; try{const b=p.getBBox(); a=b.width*b.height;}catch(e){}
+      return [c,a];
+    }).sort((x,y)=>y[1]-x[1]);
+    if(ranked.every(([,a])=>a>0)){
+      ranked.forEach(([c])=>svg.appendChild(c));   // 重新 append＝移到最後
+      sizeBigHits.sorted=true;
+    }
+  }
+  const r=24/m.a;                    // 24 CSS px 半徑 → SVG 使用者單位
+  bigHits.forEach(c=>c.setAttribute("r",r));
+}
+function openPicker(){
+  document.body.classList.add("picking");
+  requestAnimationFrame(sizeBigHits);  // 要等面板的新尺寸算完才量得到縮放比
+  history.pushState({picker:1},"");
+}
+function closePicker(){
+  if(!document.body.classList.contains("picking")) return;
+  document.body.classList.remove("picking");
+  if(history.state&&history.state.picker) history.back();
+}
+document.getElementById("deckPick").addEventListener("click",openPicker);
+document.getElementById("pickClose").addEventListener("click",closePicker);
+addEventListener("popstate",()=>{document.body.classList.remove("picking");});
+addEventListener("resize",()=>{if(document.body.classList.contains("picking")) sizeBigHits();});
 document.addEventListener("keydown",e=>{
   if(e.key!=="Enter"&&e.key!==" ") return;
   const t=e.target.closest?.("path[data-n]"); if(!t) return;
@@ -1091,6 +1221,23 @@ document.addEventListener("keydown",e=>{
 const step=d=>pick(R[(cur+d+R.length)%R.length].n);
 document.getElementById("prev").onclick=()=>step(-1);
 document.getElementById("next").onclick=()=>step(1);
+
+/* 左右滑動換縣市。門檻 48px 並要求橫向位移大於縱向的 1.5 倍，
+   否則捲頁時手指的細微橫移會誤觸換圖。 */
+(function(){
+  const po=document.querySelector(".poster");
+  let x0=0,y0=0,on=false;
+  po.addEventListener("pointerdown",e=>{
+    if(e.target.closest("button")) return;
+    x0=e.clientX; y0=e.clientY; on=true;
+  },{passive:true});
+  po.addEventListener("pointerup",e=>{
+    if(!on) return; on=false;
+    const dx=e.clientX-x0, dy=e.clientY-y0;
+    if(Math.abs(dx)>=48&&Math.abs(dx)>Math.abs(dy)*1.5) step(dx<0?1:-1);
+  },{passive:true});
+  po.addEventListener("pointercancel",()=>{on=false},{passive:true});
+})();
 pick("高雄市");
 
 /* 滑鼠停在地圖上時顯示地名 */
