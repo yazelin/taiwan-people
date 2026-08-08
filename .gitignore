@@ -8,3 +8,4 @@ img/*-v[0-9].webp
 *.tmp
 review/
 img/*.prompt.txt
+output/
