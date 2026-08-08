@@ -189,10 +189,12 @@ section:has(>.hero){overflow-x:clip}
    原本她在手機上是滿版不透明，整段字疊在她身上讀不到。 */
 @media (max-width:760px){
   .hero>div:first-child{max-width:100%;text-align:center}
-  .hero .figure{opacity:.2;right:50%;translate:50% 0;height:112vh}
+  .hero .figure{--figop:.2;right:50%;translate:50% 0;height:112vh}
   .nav{gap:.8rem;padding:.7rem 1rem}
   .nav ul{gap:.1rem;font-size:.72rem;flex-wrap:nowrap}
-  .nav a{padding:.32rem .5rem;white-space:nowrap}
+  /* 垂直 padding 撐到 44px 觸控高度；水平不動，390px 螢幕塞三個連結沒有餘裕 */
+  .nav a{padding:.72rem .5rem;white-space:nowrap}
+  .mus{width:44px;height:44px;flex:0 0 44px;margin-left:.4rem}
 }
 .hero>div:first-child{position:relative;z-index:1;max-width:min(54%,760px)}
 .hero h1{line-height:0}
@@ -226,9 +228,17 @@ section:has(>.hero){overflow-x:clip}
              0 0 0 5px rgba(255,255,255,.18)}
 .cta svg{width:.8em;height:.8em}
 /* 人物高過一個視窗：第一段看到頭到半大腿，小腿露在第二段，捲動時視差移出 */
+/* width:max-content 與 max-width:none 是一組，缺一個手機上人物就會被壓扁：
+   .figure 是 absolute 且只給 right，寬度走 shrink-to-fit——手機上 right:50%
+   把可用寬限成視窗一半（390px 螢幕只剩 195px），而全域的 img{max-width:100%}
+   會把圖寬夾到 195px，高又被 height:100% 撐滿，實測橫向縮到正確值的 44%。 */
+/* 透明度由兩個值相乘：--figop 是版面基準（桌機 1、手機淡化），--fade 是捲動淡出，
+   由 JS 寫入。JS 原本直接寫 style.opacity，inline style 蓋掉 media query 的
+   opacity:.2，手機淡化因此從來沒生效過。分成兩個變數，兩邊各管一件事就不會互蓋。 */
 .figure{position:absolute;right:clamp(-30px,1vw,40px);top:0;bottom:auto;
-  height:185vh;width:auto;z-index:0;pointer-events:none;will-change:transform}
-.figure img{height:100%;width:auto;display:block;
+  height:185vh;width:max-content;z-index:0;pointer-events:none;will-change:transform;
+  --figop:1;opacity:calc(var(--figop) * var(--fade,1))}
+.figure img{height:100%;width:auto;max-width:none;display:block;
   filter:drop-shadow(0 2px 3px rgba(8,28,52,.55))
          drop-shadow(-6px 6px 10px rgba(8,28,52,.32))
          drop-shadow(-20px 18px 38px rgba(8,30,60,.3))}
@@ -443,6 +453,10 @@ section:has(>.hero){overflow-x:clip}
   text-shadow:0 0 6px rgba(255,255,255,1),0 0 14px rgba(255,255,255,.95),
               0 0 30px rgba(255,255,255,.8)}
 @media (max-width:960px){.split-side{top:17%;width:42%;right:2.6%}}
+/* 手機上切換鈕改到左下。海報縮到 338px 寬時，字級被 clamp 的下限擋住不再縮，
+   文字塊因此往下長到離下緣只剩 36px（桌機是 263px），句子最後一行正好壓在
+   右下角那兩顆鈕上。左下是岩石與花，不是人物的臉。 */
+@media (max-width:760px){.poster .steps{left:3.2%;right:auto}}
 .poster img[hidden]{display:none}
 /* 極慢的推近漂移，讓海報不是一張死圖；換圖時 fade 與 drift 一起跑 */
 .poster img{width:100%;height:100%;object-fit:cover;cursor:zoom-in;
@@ -750,7 +764,7 @@ section:has(>.hero){overflow-x:clip}
     <div class="meet-txt">
       <h3>認識阿蕊<small>A-luí</small></h3>
       <p>她是台灣人，家鄉是整座島。<br>
-        沒有再往下指定到哪一個縣市——一旦指定，那張臉就成了「某某縣人長這樣」。</p>
+        沒有再往下指定到哪一個縣市。一旦指定，那張臉就成了「某某縣人長這樣」。</p>
       <p class="rule">她頭上永遠有花，那是認出她的記號。<br>
         花跟著地方換，多數是當地的市花。</p>
       <ul class="flowers" id="flowers"></ul>
@@ -1246,7 +1260,8 @@ addEventListener("keydown",e=>{if(e.key==="Escape") lb.removeAttribute("open")})
     queued=false;
     const vh=innerHeight, y=scrollY;
     fig.style.transform="translateY("+(y*0.28).toFixed(1)+"px)";
-    fig.style.opacity=String(Math.max(0,Math.min(1,1-(y-vh*0.45)/(vh*0.55))));
+    // 寫 --fade 不寫 opacity：CSS 才能保有各斷點的基準透明度（見 .figure）
+    fig.style.setProperty("--fade",String(Math.max(0,Math.min(1,1-(y-vh*0.45)/(vh*0.55)))));
   }
   addEventListener("scroll",()=>{if(!queued){queued=true;requestAnimationFrame(frame)}},{passive:true});
   addEventListener("resize",frame); frame();
