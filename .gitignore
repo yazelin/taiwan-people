@@ -7,3 +7,4 @@ img/*-v[0-9].webp
 /tmp/
 *.tmp
 review/
+img/*.prompt.txt
