@@ -551,6 +551,22 @@ section:has(>.hero){overflow-x:clip}
 .poster .pending svg{width:64px;height:64px;justify-self:center;opacity:.55;
   animation:float 5s ease-in-out infinite}
 /* 拆分版的下載按鈕。原圖是創作素材不是成品，所以不開燈箱，直接給檔案 */
+/* 版本切換。只有台東、新竹縣、苗栗這三個有特別版的縣市會出現。 */
+.editions{margin-top:.9rem}
+.editions[hidden]{display:none}
+.edtabs{display:inline-flex;gap:.2rem;padding:.22rem;border-radius:999px;
+  background:rgba(8,32,58,.72);border:1px solid rgba(191,234,245,.18)}
+.edtabs button{font:inherit;font-size:.78rem;font-weight:600;letter-spacing:.08em;
+  padding:.34rem 1rem;border-radius:999px;color:#bcd8ea;transition:.15s}
+.edtabs button:hover{color:var(--cream)}
+.edtabs button[aria-selected="true"]{background:rgba(243,195,87,.18);color:var(--gold);
+  box-shadow:inset 0 0 0 1px rgba(243,195,87,.45)}
+.edbasis{margin-top:.5rem;font-size:.78rem;line-height:1.8;color:#9fc4dc}
+.edbasis[hidden]{display:none}
+.edbasis b{color:var(--cream);font-weight:600}
+.edbasis a{color:var(--surf)}
+.edbasis a:hover{color:var(--gold)}
+
 .acts{display:flex;align-items:center;gap:.6rem;margin-top:.9rem;flex-wrap:wrap}
 .acts[hidden]{display:none}
 .acts button{font:inherit;font-size:.82rem;font-weight:600;letter-spacing:.12em;cursor:pointer;
@@ -910,6 +926,10 @@ section:has(>.hero){overflow-x:clip}
         </div>
       </div>
       </div>
+      <div class="editions" id="dEditions" hidden>
+        <div class="edtabs" id="dEdTabs" role="tablist" aria-label="版本"></div>
+        <p class="edbasis" id="dEdBasis" hidden></p>
+      </div>
       <div class="acts" id="dActs" hidden>
         <button id="dlShare">下載社群方形圖</button>
         <button id="dlRaw" class="ghost">下載原圖</button>
@@ -1032,6 +1052,9 @@ const SEA_LBL=new Set(["基隆市","新竹市","嘉義市"]);
 /* pick() 在載入時就會執行並寫入 CUR，宣告必須在它之前，否則 TDZ 會中斷整段腳本 */
 let CUR=null;
 const SPLIT={"基隆市": {"b": "keelung-base", "places": ["基隆嶼", "和平島", "潮境公園"], "foods": ["廟口小吃", "吉古拉", "基隆豆干"], "traits": ["海派", "浪漫", "念舊"], "quote": "基隆，永遠是我們的靠山，也是我們的起點。"}, "台北市": {"b": "taipei-base", "places": ["台北101", "陽明山", "北投溫泉"], "foods": ["士林夜市", "鳳梨酥", "貓空鐵觀音"], "traits": ["多元", "包容", "講究"], "quote": "未來，每天都在這裡發生。"}, "新北市": {"b": "new-taipei-base", "places": ["野柳", "淡水", "烏來"], "foods": ["萬里蟹", "貢寮鮑", "金山地瓜"], "traits": ["實在", "勤懇", "山海兼容"], "quote": "我的新北，我驕傲。"}, "桃園市": {"b": "taoyuan-base", "places": ["拉拉山", "石門水庫", "大溪老街"], "foods": ["大溪豆干", "石門活魚", "忠貞米干"], "traits": ["移民城市", "有拼勁", "多族群"], "quote": "桃園是連結世界的門戶，也是充滿活力的家鄉。"}, "新竹市": {"b": "hsinchu-city-base", "places": ["十八尖山", "南寮漁港", "新竹都城隍廟"], "foods": ["新竹米粉", "貢丸", "竹塹餅"], "traits": ["務實", "低調", "有遠見"], "quote": "風起新竹，智領未來。"}, "新竹縣": {"b": "hsinchu-county-base", "places": ["內灣老街", "北埔老街", "司馬庫斯"], "foods": ["客家擂茶", "粄條", "東方美人茶"], "traits": ["客家硬頸", "念祖", "勤儉"], "quote": "務實創新，用知識改變世界。"}, "宜蘭縣": {"b": "yilan-base", "places": ["龜山島", "太平山", "冬山河"], "foods": ["三星蔥", "鴨賞", "宜蘭牛舌餅"], "traits": ["純淨", "慢活", "樂天"], "quote": "以謙遜的心，過簡單的生活。"}, "苗栗縣": {"b": "miaoli-base", "places": ["南庄老街", "三義木雕村", "火炎山"], "foods": ["大湖草莓", "客家小炒", "苗栗粄條"], "traits": ["客家魂", "山城心", "人情味"], "quote": "有山有海，有客家文化。"}, "台中市": {"b": "taichung-base", "places": ["高美濕地", "台中國家歌劇院", "宮原眼科"], "foods": ["珍珠奶茶", "太陽餅", "逢甲夜市"], "traits": ["溫暖", "努力", "有品味"], "quote": "在傳統與現代之間，走出屬於自己的步調。"}, "彰化縣": {"b": "changhua-base", "places": ["鹿港老街", "八卦山大佛", "扇形車庫"], "foods": ["彰化肉圓", "爌肉飯", "王功蚵仔"], "traits": ["樸實", "勤儉", "重傳承"], "quote": "腳踏實地，代代傳承。"}, "南投縣": {"b": "nantou-base", "places": ["日月潭", "清境農場", "合歡山"], "foods": ["凍頂烏龍茶", "南投意麵", "竹山番薯"], "traits": ["誠實", "勤奮", "和諧"], "quote": "山水之間，就是我們的家。"}, "雲林縣": {"b": "yunlin-base", "places": ["北港朝天宮", "西螺大橋", "劍湖山"], "foods": ["古坑咖啡", "雲林花生", "西螺醬油"], "traits": ["腳踏實地", "好客", "有責任感"], "quote": "風起雲湧，農業首都。"}, "嘉義市": {"b": "chiayi-city-base", "places": ["檜意森活村", "文化路夜市", "射日塔"], "foods": ["火雞肉飯", "林聰明沙鍋魚頭", "方塊酥"], "traits": ["慢慢來", "重人情", "講義氣"], "quote": "不喜歡說大話，但我們做得到。"}, "嘉義縣": {"b": "chiayi-county-base", "places": ["阿里山", "奮起湖老街", "東石漁人碼頭"], "foods": ["阿里山高山茶", "東石鮮蚵", "梅山茶"], "traits": ["純樸", "堅持", "誠懇"], "quote": "勇敢，踏實，向前行。"}, "台南市": {"b": "tainan-base", "places": ["赤崁樓", "安平古堡", "七股鹽山"], "foods": ["台南牛肉湯", "擔仔麵", "虱目魚"], "traits": ["古都風華", "慢活", "重人情"], "quote": "台南是我們的驕傲，也是我們的日常。"}, "高雄市": {"b": "kaohsiung-base", "places": ["西子灣", "蓮池潭", "旗津"], "foods": ["丹丹漢堡", "木瓜牛奶", "旗山香蕉冰"], "traits": ["熱情", "豪爽", "打拚"], "quote": "海風鹹鹹，人情暖暖，高雄是咱的家。"}, "屏東縣": {"b": "pingtung-base", "places": ["墾丁國家公園", "東港大鵬灣", "佳樂水"], "foods": ["東港黑鮪魚", "萬巒豬腳", "恆春綠豆蒜"], "traits": ["樂天", "純樸", "包容"], "quote": "山海相擁，人情溫暖。"}, "花蓮縣": {"b": "hualien-base", "places": ["太魯閣峽谷", "清水斷崖", "七星潭"], "foods": ["瑞穗文旦", "洛神花", "金針花"], "traits": ["純淨", "自由", "堅韌"], "quote": "我們以自然為家。"}, "台東縣": {"b": "taitung-base", "places": ["三仙台", "伯朗大道", "知本溫泉"], "foods": ["台東釋迦", "池上米", "鹿野紅烏龍"], "traits": ["包容", "自由", "樂觀"], "quote": "台東是旅行的目的地，更是心靈的歸屬地。"}, "澎湖縣": {"b": "penghu-base", "places": ["雙心石滬", "七美藍洞", "澎湖天后宮"], "foods": ["小管麵線", "仙人掌冰", "花枝丸"], "traits": ["熱情", "團結", "勇敢"], "quote": "風大心暖，澎湖囡仔人情甘甜。"}, "金門縣": {"b": "kinmen-base", "places": ["莒光樓", "翟山坑道", "風獅爺"], "foods": ["金門貢糖", "廣東粥", "金門高粱酒"], "traits": ["堅毅", "重情", "守護"], "quote": "風很硬，心很暖，我們守著家園，也迎接世界。"}, "連江縣": {"b": "lienchiang-base", "places": ["芹壁聚落", "北海坑道", "大坵島"], "foods": ["繼光餅", "老酒麵線", "馬祖淡菜"], "traits": ["堅毅", "團結", "守望"], "quote": "風浪淬鍊，山海相依。"}};
+/* 特別版：有 culture 欄的那些造型。鍵是縣市名，沒有特別版的縣市不會出現在這裡。
+   由 tools/sync_split.py 產生，不要手改。 */
+const VARIANTS={"台東縣": [{"b": "taitung-pinuyumayan-base", "label": "卑南族", "culture": "pinuyumayan"}], "新竹縣": [{"b": "hsinchu-county-hakka-base", "label": "客家", "culture": "hakka"}], "苗栗縣": [{"b": "miaoli-hakka-base", "label": "客家", "culture": "hakka"}]};
 const NUDGE={"基隆市":[86,-40],"台北市":[2,-74],"新竹市":[-128,-30],"嘉義市":[-150,-30]};
 /* 由北到南排：連江(馬祖) 26.2°N → 金門 24.4°N → 澎湖 23.6°N */
 const INSET={matsu:"連江縣",kinmen:"金門縣",penghu:"澎湖縣"};
@@ -1156,6 +1179,7 @@ function pick(name,scroll){
   document.getElementById("dPendName").textContent=r.n+"的代表還在路上";
   document.getElementById("deckPos").textContent=(i+1)+" / "+R.length;
   CUR=r;                       // 無條件更新，否則切到非拆分版時會停在前一個縣市
+  ED=null;                     // 換縣市一律回到普通版，否則會停在上一個縣市的特別版
   const sp=SPLIT[r.n];
   document.getElementById("dSplit").hidden=!sp;
   document.getElementById("dActs").hidden=!sp;
@@ -1170,6 +1194,7 @@ function pick(name,scroll){
     document.getElementById("dTopEn").textContent=r.en;
     document.getElementById("dQuote").textContent=sp.quote||"";
   }
+  drawEditions(r);
   if(sp||r.s){
     swapPoster("img/"+(sp?sp.b:r.s)+".webp",
       sp ? r.n+"代表角色：背景與人物"
@@ -1178,6 +1203,39 @@ function pick(name,scroll){
     dImg.hidden=true; dPend.hidden=false;
   }
   if(scroll) document.getElementById("explore").scrollIntoView({behavior:"smooth"});
+}
+
+/* 版本切換：普通版是「阿蕊在這個地方」，特別版是「阿蕊穿某族的服飾」。
+   特別版一定要把族名與依據連結標出來——不標族名等於用一族代表整個縣市，
+   依據藏起來則等於整份 data/costume.json 白做。規則寫在 AGENTS.md 硬規則一之一。 */
+let ED=null;
+
+function drawEditions(r){
+  const box=document.getElementById("dEditions");
+  const tabs=document.getElementById("dEdTabs");
+  const vs=VARIANTS[r.n]||[];
+  const sp=SPLIT[r.n];
+  if(!sp||!vs.length){ box.hidden=true; tabs.innerHTML=""; return; }
+  box.hidden=false;
+  tabs.innerHTML="";
+  const mk=(label,v)=>{
+    const b=document.createElement("button");
+    b.type="button"; b.textContent=label; b.setAttribute("role","tab");
+    b.setAttribute("aria-selected", String((ED&&ED.b)===(v&&v.b)));
+    b.onclick=()=>{ ED=v; drawEditions(r);
+      swapPoster("img/"+((v&&v.b)||sp.b)+".webp",
+        v ? r.n+"："+v.label+"服飾" : r.n+"代表角色：背景與人物", -1); };
+    tabs.appendChild(b);
+  };
+  mk("普通版", null);
+  vs.forEach(v=>mk(v.label, v));
+  const basis=document.getElementById("dEdBasis");
+  if(ED){
+    basis.hidden=false;
+    basis.innerHTML='<b>'+ED.label+'服飾</b>　依據：<a href="costume.html#'+ED.culture+
+      '" target="_blank" rel="noopener">官方與典藏出處</a>　'+
+      '<span>尚未經該族群代表或相關單位審閱</span>';
+  }else{ basis.hidden=true; }
 }
 
 /* 換圖：先把新圖解碼完，再換 src。
@@ -1337,12 +1395,13 @@ document.getElementById("dlRaw").onclick=async()=>{
 
 document.getElementById("dlShare").onclick=async(ev)=>{
   const sp=CUR&&SPLIT[CUR.n]; if(!sp) return;
+  const shareBase=ED?ED.b:sp.b;
   const btn=ev.currentTarget, was=btn.textContent;
   btn.disabled=true; btn.textContent="產生中…";
   try{
   const S=1080, cv=document.createElement("canvas"); cv.width=cv.height=S;
   const g=cv.getContext("2d");
-  const art=await loadImg("img/"+sp.b+".webp");
+  const art=await loadImg("img/"+shareBase+".webp");
   const side=Math.min(art.width,art.height);
   const sx=Math.max(0,Math.min(art.width-side,art.width*0.26-side/2));
   g.drawImage(art,sx,0,side,side,0,0,S,S);

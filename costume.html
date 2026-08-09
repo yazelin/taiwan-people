@@ -313,6 +313,7 @@ function render(){
     <article class="gapitem"><h3>${esc(p.name)}</h3><p>${esc(p.gaps)}</p></article>`).join('');
 
   drawGrid();
+  openFromHash();
 }
 
 function srcLink(id){
@@ -337,7 +338,7 @@ function drawGrid(){
     const thin = !p.male.length && !p.female.length;
     const mat = [...(p.material.traditional||[]), ...(p.material.later||[])];
     return `
-    <details class="card">
+    <details class="card" id="${esc(p.id)}">
       <summary>
         <h3>${esc(p.name)}<span>${esc(p.en)}</span></h3>
         <div class="tags">
@@ -379,6 +380,26 @@ document.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () =
 document.getElementById('area').addEventListener('change', e => {
   filterArea = e.target.value; drawGrid();
 });
+
+// 首頁的特別版會連過來（costume.html#pinuyumayan），直接展開那一族並捲到定位。
+// 沒有這段的話點過來只會停在頁首，等於還是要自己找。
+function openFromHash(){
+  const id = decodeURIComponent(location.hash.slice(1));
+  if (!id) return;
+  const card = document.getElementById(id);
+  if (!card) return;
+  card.open = true;
+  // 卡片剛展開、版面還沒定下來就捲會捲不動（實測 scrollY 停在 0）。
+  // 等一個 frame，並直接算絕對位置，不用 scrollIntoView 再 scrollBy 兩段——
+  // 那兩段會被 html{scroll-behavior:smooth} 的動畫互相打斷。
+  // 60ms 而不是一個 frame：展開卡片會改變它上方那些卡片的高度，
+  // 太早量到的位置是舊版面的，換 hash 時會停在半路（實測差 700 多 px）。
+  setTimeout(() => {
+    const y = card.getBoundingClientRect().top + window.scrollY - 76;  // 讓開 sticky 導覽列
+    window.scrollTo({top: Math.max(0, y), behavior: 'auto'});
+  }, 60);
+}
+window.addEventListener('hashchange', openFromHash);
 </script>
 </body>
 </html>
