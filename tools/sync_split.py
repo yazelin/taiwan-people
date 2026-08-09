@@ -12,9 +12,26 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 d = json.loads((ROOT / "data" / "counties.json").read_text(encoding="utf-8"))
 # 只同步通用版（沒有 culture 欄的那些）。指名族群的造型是同一個縣市底下的另一張圖，
 # 地圖上仍然只有 22 個可點區域，直接倒進 SPLIT 會讓地圖與資料對不起來。
+# 新住民人數。這一欄不是文案是統計，由 tools/fetch_immigration_stats.py 抓來，
+# 網頁上「一起住」那一行直接顯示原始數字，不做四捨五入也不改寫。
+nc = json.loads((ROOT / "data" / "newcomers.json").read_text(encoding="utf-8"))
+
+
+def newcomers(name):
+    c = nc["counties"].get(name)
+    if not c:
+        return None
+    # 「其他」是統計上的殘差桶，不是一個地方，列進來會讀成「有 2,540 人來自其他」
+    top = sorted(((k, v) for k, v in c["by_origin"].items() if k != "其他"),
+                 key=lambda kv: -kv[1])
+    return {"t": c["total"], "n": c["naturalized"],
+            "top": [[k, v] for k, v in top[:3] if v]}
+
+
 split = {
     c["name"]: {"b": c["base"], "places": c["places"], "foods": c["foods"],
-                "traits": c["traits"], "quote": c["quote"]}
+                "traits": c["traits"], "quote": c["quote"],
+                "nc": newcomers(c["name"])}
     for c in d["counties"] if c.get("base") and not c.get("culture")
 }
 # 特別版：有 culture 欄的那些造型，掛在所屬縣市底下。
@@ -46,6 +63,18 @@ s2, m = re.subn(r"const HAIR_FLOWERS=\[.*?\];",
                 s2, count=1, flags=re.S)
 assert m == 1, "在 index.html 找不到 HAIR_FLOWERS 常數"
 
+s2, j = re.subn(r"const NC_SRC=\{.*?\};\n",
+                "const NC_SRC=" + json.dumps(
+                    # 表名寫全稱會在版面上佔掉兩行小字，這裡只給單位與期別，
+                    # 全稱與完整期間留在 data/newcomers.json 與存檔的 TSV 裡
+                    {"table": nc["source"]["agency"] + "統計",
+                     "period": "截至 %s 年 %d 月" % (
+                         int(nc["as_of"][:4]) - 1911, int(nc["as_of"][5:])),
+                     "url": nc["source"]["url"]},
+                    ensure_ascii=False) + ";\n",
+                s2, count=1, flags=re.S)
+assert j == 1, "在 index.html 找不到 NC_SRC 常數"
+
 s2, k = re.subn(r"const VARIANTS=\{.*?\};\n",
                 "const VARIANTS=" + json.dumps(variants, ensure_ascii=False) + ";\n",
                 s2, count=1, flags=re.S)
@@ -53,5 +82,6 @@ assert k == 1, "在 index.html 找不到 VARIANTS 常數"
 
 p.write_text(s2, encoding="utf-8")
 print(f"已同步 {len(split)} 個縣市與 {len(flowers)} 筆髮花：{'、'.join(split)}")
+print(f"新住民數字 {nc['period']}，共 {nc['total']['total']:,} 人")
 print(f"特別版 {sum(len(v) for v in variants.values())} 筆："
       + "；".join(f"{k}→" + "、".join(x["label"] for x in v) for k, v in variants.items()))
