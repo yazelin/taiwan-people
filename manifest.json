@@ -1,0 +1,24 @@
+{
+  "id": "/taiwan-people/",
+  "name": "台灣人代表",
+  "short_name": "台灣人代表",
+  "description": "二十二個縣市，二十二種活法。同一個角色走過每一個地方——以及她身上每一件衣服的依據。",
+  "lang": "zh-Hant-TW",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#04162b",
+  "theme_color": "#07203c",
+  "icons": [
+    { "src": "icon-v1-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-v1-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-v1-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "服飾依據", "short_name": "服飾依據", "url": "costume.html",
+      "icons": [{ "src": "icon-v1-192.png", "sizes": "192x192" }] }
+  ]
+}

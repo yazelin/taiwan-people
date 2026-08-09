@@ -1,0 +1,4 @@
+{
+  "ignore": ["review/index.html"],
+  "sharedOrigin": true
+}

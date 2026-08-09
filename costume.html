@@ -13,10 +13,514 @@
 <meta property="og:url" content="https://yazelin.github.io/taiwan-people/costume.html">
 <meta property="og:title" content="服飾依據 ─ 台灣人代表的創作資料庫">
 <meta property="og:description" content="台灣二十三個族群傳統服飾的整理資料，每一筆都附官方或博物館出處。查不到的，也照實寫出來。">
-<meta property="og:image" content="https://yazelin.github.io/taiwan-people/img/og.jpg">
+<meta property="og:image" content="https://yazelin.github.io/taiwan-people/img/og-costume.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="服飾依據頁：台灣二十三個族群的傳統服飾資料與出處">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="服飾依據 ─ 台灣人代表的創作資料庫">
+<meta name="twitter:description" content="二十三個族群的傳統服飾整理，五十筆官方與典藏出處。查不到的，也照實寫出來。">
+<meta name="twitter:image" content="https://yazelin.github.io/taiwan-people/img/og-costume.jpg">
 <meta name="author" content="林亞澤">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='25' x='2' font-size='24'%3E%E5%8F%B0%3C/text%3E%3C/svg%3E">
+<!-- 每個可能被單獨開啟或分享的頁都是入口，manifest / icon / SW 三樣都要各自掛。
+     只掛首頁的話，從分享連結進來的人完全看不到安裝選項。 -->
+<link rel="manifest" href="manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="台灣人代表">
+<link rel="apple-touch-icon" href="icon-v1-192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-v1-192.png">
+<!-- 宣告成 Dataset 而不是 Article：這頁的內容是有引用來源的資料集，不是意見文章。
+     Dataset 才會帶出 creator / license / distribution / citation 與那 50 筆出處。
+     disambiguatingDescription 寫明它不宣稱權威——搜尋引擎讀得到，人也讀得到。
+     內容由 data/costume.json 產生，改資料要跟著重產（tools/build_ld.py）。 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "台灣族群傳統服飾資料集",
+  "alternateName": "服飾依據 ─ 台灣人代表的創作資料庫",
+  "description": "台灣二十三個族群傳統服飾的整理資料：官方認定十六族原住民族、四個平埔族群、客家、閩南漢人與馬祖閩東。逐部位形制、群別差異、色彩、紋樣、階級規範，每一筆都對得回政府機關、公立博物館或政府委託之學術調查的原始出處。查證不到的內容不填補，直接記為缺口。",
+  "url": "https://yazelin.github.io/taiwan-people/costume.html",
+  "inLanguage": "zh-Hant-TW",
+  "keywords": [
+    "台灣原住民族",
+    "傳統服飾",
+    "客家",
+    "平埔族群",
+    "織紋",
+    "文化資產"
+  ],
+  "creator": {
+    "@type": "Person",
+    "name": "林亞澤",
+    "url": "https://yazelin.github.io/"
+  },
+  "isAccessibleForFree": true,
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "encodingFormat": "application/json",
+      "contentUrl": "https://yazelin.github.io/taiwan-people/data/costume.json"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "番社采風圖（原題《臺番圖說》，臺灣監察御史六十七 1744-1747 年巡臺期間命工繪製；風俗圖十七幅、地圖一幅）",
+      "publisher": {
+        "@type": "Organization",
+        "name": "中央研究院歷史語言研究所歷史文物陳列館"
+      },
+      "url": "https://museum.sinica.edu.tw/exhibitions/169/"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "大武壠族頭布纏法：不包髮／帶纏花（建檔單位：國立臺灣歷史博物館；撰寫者：南島之眼文化工作室）",
+      "publisher": {
+        "@type": "Organization",
+        "name": "國家文化記憶庫"
+      },
+      "url": "https://tcmb.culture.tw/zh-tw/detail?indexCode=Culture_Invisible&id=732668"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "典藏介紹－排灣族",
+      "publisher": {
+        "@type": "Organization",
+        "name": "國立自然科學博物館"
+      },
+      "url": "https://www.nmns.edu.tw/ch/research/specimen/featured/Collection-000127/"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "典藏介紹－魯凱族",
+      "publisher": {
+        "@type": "Organization",
+        "name": "國立自然科學博物館"
+      },
+      "url": "https://www.nmns.edu.tw/ch/research/specimen/featured/Collection-000119/"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "《重現泰雅：泛泰雅傳統服飾重製圖錄》（2005-2007 年重製泛泰雅八個系統的穿著服飾，共 217 件服飾與文物標本）",
+      "publisher": {
+        "@type": "Organization",
+        "name": "國立臺灣史前文化博物館"
+      },
+      "url": "https://collections.culture.tw/nmp_collectionsweb/search.aspx"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "《太魯閣族人的知識與織藝：花蓮水源部落家藏織品調查報告》（方鈞瑋、陳怡方主編，2019）",
+      "publisher": {
+        "@type": "Organization",
+        "name": "國立臺灣史前文化博物館"
+      },
+      "url": "https://collections.culture.tw/nmp_collectionsweb/search.aspx"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "《穿上彩虹衣：館藏卑南族衣飾》（王勁之、林娜鈴，2015；精選三十餘件館藏）",
+      "publisher": {
+        "@type": "Organization",
+        "name": "國立臺灣史前文化博物館"
+      },
+      "url": "https://collections.culture.tw/nmp_collectionsweb/search.aspx"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "綻放繽紛－大武壠族復振繡品於人類學博物館展出",
+      "publisher": {
+        "@type": "Organization",
+        "name": "國立臺灣大學"
+      },
+      "url": "https://sec.ntu.edu.tw/epaper/article.asp?num=1584&sn=23919"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "臺灣女人－傳統漢人女裝的特色與變遷",
+      "publisher": {
+        "@type": "Organization",
+        "name": "國立臺灣歷史博物館"
+      },
+      "url": "https://women.nmth.gov.tw/?p=1908"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "噶瑪蘭族女子服飾（典藏編號 2008.110207.006；材質：布、塑膠珠、棉線、亮片；來源地點：花蓮縣一帶）",
+      "publisher": {
+        "@type": "Organization",
+        "name": "臺南市原住民文物館／臺南市政府原住民族事務委員會，發佈於開放博物館"
+      },
+      "url": "https://openmuseum.tw/muse/digi_object/7f721b0f1525f35b8523245b0d4c24f1"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "拉阿魯哇族服飾（逐件形制說明，內容引自原住民族傳統智慧創作專用權申請書說明書 案號 1080722000009／證號 拉H000073）",
+      "publisher": {
+        "@type": "Organization",
+        "name": "臺南市札哈木會館／臺南市政府原住民族事務委員會，發佈於開放博物館"
+      },
+      "url": "https://openmuseum.tw/muse/digi_object/b5bf7b2af4db68b44ef065776c3d8652"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "原住民族傳統智慧創作保護條例",
+      "publisher": {
+        "@type": "Organization",
+        "name": "全國法規資料庫"
+      },
+      "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0130021"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "原住民族16族簡介－阿美族",
+      "publisher": {
+        "@type": "Organization",
+        "name": "原住民族委員會"
+      },
+      "url": "https://www.cip.gov.tw/zh-tw/tribe/grid-list/DBADF0287998968BD0636733C6861689/info.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "原住民族16族簡介－泰雅族",
+      "publisher": {
+        "@type": "Organization",
+        "name": "原住民族委員會"
+      },
+      "url": "https://www.cip.gov.tw/zh-tw/tribe/grid-list/8C87B4AF56B788EED0636733C6861689/info.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "原住民族16族簡介－排灣族",
+      "publisher": {
+        "@type": "Organization",
+        "name": "原住民族委員會"
+      },
+      "url": "https://www.cip.gov.tw/zh-tw/tribe/grid-list/67E3CC5AE2F10A8BD0636733C6861689/info.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "原住民族16族簡介－布農族",
+      "publisher": {
+        "@type": "Organization",
+        "name": "原住民族委員會"
+      },
+      "url": "https://www.cip.gov.tw/zh-tw/tribe/grid-list/F39C8394699DD2D6D0636733C6861689/info.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "原住民族16族簡介－卑南族",
+      "publisher": {
+        "@type": "Organization",
+        "name": "原住民族委員會"
+      },
+      "url": "https://www.cip.gov.tw/zh-tw/tribe/grid-list/913F9B9D35D49AC3D0636733C6861689/info.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "原住民族16族簡介－魯凱族",
+      "publisher": {
+        "@type": "Organization",
+        "name": "原住民族委員會"
+      },
+      "url": "https://www.cip.gov.tw/zh-tw/tribe/grid-list/409F703B4E592A82D0636733C6861689/info.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "原住民族16族簡介－鄒族",
+      "publisher": {
+        "@type": "Organization",
+        "name": "原住民族委員會"
+      },
+      "url": "https://www.cip.gov.tw/zh-tw/tribe/grid-list/AE6EE12F5F284D59D0636733C6861689/info.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "原住民族16族簡介－賽夏族",
+      "publisher": {
+        "@type": "Organization",
+        "name": "原住民族委員會"
+      },
+      "url": "https://www.cip.gov.tw/zh-tw/tribe/grid-list/8DF9561F4FCC6AF4D0636733C6861689/info.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "原住民族16族簡介－雅美族",
+      "publisher": {
+        "@type": "Organization",
+        "name": "原住民族委員會"
+      },
+      "url": "https://www.cip.gov.tw/zh-tw/tribe/grid-list/5839F78F6C869EE4D0636733C6861689/info.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "原住民族16族簡介－邵族",
+      "publisher": {
+        "@type": "Organization",
+        "name": "原住民族委員會"
+      },
+      "url": "https://www.cip.gov.tw/zh-tw/tribe/grid-list/3343FD21497CA007D0636733C6861689/info.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "原住民族16族簡介－噶瑪蘭族",
+      "publisher": {
+        "@type": "Organization",
+        "name": "原住民族委員會"
+      },
+      "url": "https://www.cip.gov.tw/zh-tw/tribe/grid-list/7088C08FB51F3383D0636733C6861689/info.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "原住民族16族簡介－太魯閣族",
+      "publisher": {
+        "@type": "Organization",
+        "name": "原住民族委員會"
+      },
+      "url": "https://www.cip.gov.tw/zh-tw/tribe/grid-list/F0736660B8023670D0636733C6861689/info.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "原住民族16族簡介－撒奇萊雅族",
+      "publisher": {
+        "@type": "Organization",
+        "name": "原住民族委員會"
+      },
+      "url": "https://www.cip.gov.tw/zh-tw/tribe/grid-list/588FAD20D4E16D65D0636733C6861689/info.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "原住民族16族簡介－賽德克族",
+      "publisher": {
+        "@type": "Organization",
+        "name": "原住民族委員會"
+      },
+      "url": "https://www.cip.gov.tw/zh-tw/tribe/grid-list/F35F3EBC7CE2E1BCD0636733C6861689/info.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "原住民族16族簡介－拉阿魯哇族",
+      "publisher": {
+        "@type": "Organization",
+        "name": "原住民族委員會"
+      },
+      "url": "https://www.cip.gov.tw/zh-tw/tribe/grid-list/DE7E75BDD1F53F90D0636733C6861689/info.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "原住民族16族簡介－卡那卡那富族",
+      "publisher": {
+        "@type": "Organization",
+        "name": "原住民族委員會"
+      },
+      "url": "https://www.cip.gov.tw/zh-tw/tribe/grid-list/91A2A514F76BAEACD0636733C6861689/info.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "原住民族傳統智慧創作專用權查詢系統",
+      "publisher": {
+        "@type": "Organization",
+        "name": "原住民族委員會"
+      },
+      "url": "https://www.titic.cip.gov.tw/app/index"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "民俗文物小常識－大襟衫",
+      "publisher": {
+        "@type": "Organization",
+        "name": "國史館臺灣文獻館"
+      },
+      "url": "https://www.th.gov.tw/Epaper_Content/237/5318/"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "民俗文物小常識－大襟衫〈大裪衫〉",
+      "publisher": {
+        "@type": "Organization",
+        "name": "國史館臺灣文獻館"
+      },
+      "url": "https://www.th.gov.tw/Epaper_Content/237/5646/"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "臺灣原住民族事典－阿美族服飾（撰寫者：林易蓉 Tipus Hafay）",
+      "publisher": {
+        "@type": "Organization",
+        "name": "教育部"
+      },
+      "url": "https://aborgpedia.alcd.center/detail?id=11728"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "臺灣原住民族事典－泰雅族服飾（撰寫者：方鈞瑋）",
+      "publisher": {
+        "@type": "Organization",
+        "name": "教育部"
+      },
+      "url": "https://aborgpedia.alcd.center/detail?id=10045"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "臺灣原住民族事典－排灣族服飾（撰寫者：西格希・卡里多愛、亞崗・達里瑪奧）",
+      "publisher": {
+        "@type": "Organization",
+        "name": "教育部"
+      },
+      "url": "https://aborgpedia.alcd.center/detail?id=11756"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "臺灣原住民族事典－布農族服飾（撰寫者：方鈞瑋）",
+      "publisher": {
+        "@type": "Organization",
+        "name": "教育部"
+      },
+      "url": "https://aborgpedia.alcd.center/detail?id=10046"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "臺灣原住民族事典－卑南族服飾（撰寫者：王勁之）",
+      "publisher": {
+        "@type": "Organization",
+        "name": "教育部"
+      },
+      "url": "https://aborgpedia.alcd.center/detail?id=10047"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "臺灣原住民族事典－賽夏族服飾（撰寫者：林淑莉）",
+      "publisher": {
+        "@type": "Organization",
+        "name": "教育部"
+      },
+      "url": "https://aborgpedia.alcd.center/detail?id=10048"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "臺灣原住民族事典－雅美族服飾",
+      "publisher": {
+        "@type": "Organization",
+        "name": "教育部"
+      },
+      "url": "https://aborgpedia.alcd.center/detail?id=10049"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "臺灣原住民族事典－太魯閣族服飾（撰寫者：方鈞瑋）",
+      "publisher": {
+        "@type": "Organization",
+        "name": "教育部"
+      },
+      "url": "https://aborgpedia.alcd.center/detail?id=10051"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "臺灣原住民族事典－撒奇萊雅族服飾",
+      "publisher": {
+        "@type": "Organization",
+        "name": "教育部"
+      },
+      "url": "https://aborgpedia.alcd.center/detail?id=10052"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "臺灣原住民族事典－四社熟番（撰寫者：簡文敏）",
+      "publisher": {
+        "@type": "Organization",
+        "name": "教育部"
+      },
+      "url": "https://aborgpedia.alcd.center/detail?id=11906"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "馬祖民俗文物館（館藏民俗歷史文物 3,761 件）",
+      "publisher": {
+        "@type": "Organization",
+        "name": "文化部　博物之島"
+      },
+      "url": "https://museums.moc.gov.tw/MusData/Detail?museumsId=aa6a584a-9a17-4d01-bbd5-917f22c7b40e"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "西拉雅族部落工藝老師陳怡君復振十字繡，盼透過服飾強化族群認同",
+      "publisher": {
+        "@type": "Organization",
+        "name": "臺南市政府"
+      },
+      "url": "https://www.tainan.gov.tw/news_content.aspx?n=13370&s=8781506"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "臺灣原住民──西拉雅族",
+      "publisher": {
+        "@type": "Organization",
+        "name": "臺南市政府原住民族事務委員會"
+      },
+      "url": "https://web.tainan.gov.tw/nation/News_Content.aspx?n=934&s=5752"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "民俗文物館",
+      "publisher": {
+        "@type": "Organization",
+        "name": "連江縣政府"
+      },
+      "url": "https://www.matsu.gov.tw/chhtml/newslist/371040100A/2121"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "客家服飾",
+      "publisher": {
+        "@type": "Organization",
+        "name": "高雄市政府客家事務委員會"
+      },
+      "url": "https://chakcg.kcg.gov.tw/cp.aspx?n=D5BE87506A7C6242"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "西拉雅族／西拉雅族的傳統文化",
+      "publisher": {
+        "@type": "Organization",
+        "name": "中央研究院民族學研究所數位典藏"
+      },
+      "url": "https://www.ianthro.org/p/69"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "熊鷹（赫氏角鷹）物種介紹",
+      "publisher": {
+        "@type": "Organization",
+        "name": "台灣猛禽研究會"
+      },
+      "url": "https://raptor.org.tw/raptors/content/227"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "頭目文化有助熊鷹保育　魯凱、排灣族人現身說法",
+      "publisher": {
+        "@type": "Organization",
+        "name": "環境資訊中心"
+      },
+      "url": "https://e-info.org.tw/node/103293"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "《台灣客家服飾民間收藏調查研究》報告書（鄭惠美，2007；調查文物 200 件，含北部客家大襟衫 25 件、六堆客家藍衫 26 件）",
+      "publisher": {
+        "@type": "Organization",
+        "name": "行政院客家委員會研究獎助客家學術研究計畫"
+      },
+      "url": "https://cloud.hakka.gov.tw/Attachment/1/841717122771.pdf"
+    }
+  ],
+  "disambiguatingDescription": "二手整理，整理者非族人，尚未經各族群代表或相關單位審閱。不宣稱權威或完整，僅提供可查證的起點。"
+}
+</script>
 <style>
 :root{
   --paper:#fbf8f2;        /* 微暖的紙白，純白會太刺眼 */
@@ -400,6 +904,29 @@ function openFromHash(){
   }, 60);
 }
 window.addEventListener('hashchange', openFromHash);
+</script>
+<script>
+/* 自動重載要監聽 controllerchange，不是 state === "installed"——後者新 SW 還沒接管，
+   這時 reload 仍然被舊 SW 控制、拿到舊快取。而且只在「已經有舊 SW 時偵測到新版」
+   才重載，首次造訪不要，否則第一次開就莫名其妙閃一下。 */
+if ("serviceWorker" in navigator) {
+  addEventListener("load", async () => {
+    try {
+      const reg = await navigator.serviceWorker.register("sw.js");
+      let reloading = false;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (reloading) return;
+        reloading = true;
+        location.reload();
+      });
+      reg.addEventListener("updatefound", () => {
+        const sw = reg.installing;
+        if (!sw || !navigator.serviceWorker.controller) return;   // 首次造訪不重載
+        sw.addEventListener("statechange", () => {});
+      });
+    } catch (_) { /* 不支援或被封鎖時照常運作，只是沒有離線 */ }
+  });
+}
 </script>
 </body>
 </html>
