@@ -66,6 +66,8 @@ python3 -m http.server 8901
 | `tools/verify_base.py` | 量測底圖版面是否合規 |
 | `tools/register_base.py` | 驗收過後把 base 欄位寫回資料 |
 | `tools/sync_split.py` | 資料同步進 index.html |
+| `tools/fetch_immigration_stats.py` | 抓移民署每月的新住民統計，存原文並產 `data/newcomers.json` |
+| `data/newcomers.json` | 各縣市新住民人數，卡片上「一起住」那一行的來源。**腳本產生，不要手改** |
 | `robots.txt` / `sitemap.xml` | 網址寫死在裡面，換網域要一起改 |
 | `AGENTS.md` | **動這個 repo 之前先讀**：硬規則與驗證方式 |
 | `data/character.md` | 角色阿蕊的設定：名字、她跟地方的關係、髮花規則、恆定項 |
@@ -85,6 +87,7 @@ python3 -m http.server 8901
 | `base` | 底圖檔名，`register_base.py` 寫入 |
 | `symbols` | 市花／市樹／市鳥，各自帶 `source` 標可信度 |
 | `places` / `foods` / `traits` | 卡片上那三欄 |
+| （無欄位）「一起住」 | 新住民人數，不在 counties.json，由 `data/newcomers.json` 帶進來 |
 | `quote` | 卡片下方的短句 |
 | `scene.landmarks` / `landmarks_en` | 背景地標，英文是給模型看的外觀描述 |
 | `scene.plants` / `plants_desc` | 前景植物，描述寫到瓣數與花序 |
@@ -132,6 +135,13 @@ bash tools/gen_all.sh 澎湖縣 金門縣        # 只生指定的
 python3 tools/verify_base.py              # 量測版面是否合規
 python3 tools/register_base.py            # 驗收過後把 base 欄位寫回資料
 python3 tools/sync_split.py               # 資料同步進 index.html
+```
+
+新住民數字每月更新，跟生圖是兩條線：
+
+```bash
+python3 tools/fetch_immigration_stats.py  # 抓最新一期，存原文＋產 newcomers.json
+python3 tools/sync_split.py               # 數字才會進 index.html
 ```
 
 `verify_base.py` 量四件事：文字區的亮度與局部起伏（太暗或太雜，疊上去的字就讀不到）、
