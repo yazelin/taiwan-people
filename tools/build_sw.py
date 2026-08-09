@@ -14,6 +14,7 @@
 import hashlib
 import pathlib
 import re
+import subprocess
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -37,6 +38,18 @@ for f in files:
 if missing:
     sys.exit(f"precache 清單裡有檔案不存在：{'、'.join(missing)}\n"
              f"清單錯了就修清單，不要讓它靜靜地裝不起來。")
+
+# 這支腳本算的是**工作區**的內容，但部署出去的是**commit 進去**的內容。
+# 只要 precache 清單裡有檔案還沒 commit，算出來的版號就對應不到將來部署的那份，
+# 而症狀完全沒有徵兆：本機一切正常，線上使用者卻永遠停在舊版。
+# 這個坑實際踩過一次——data/counties.json 當時在清單裡且有未 commit 的改動。
+dirty = subprocess.run(["git", "diff", "--name-only", "--"] + [
+    ("index.html" if f == "./" else f) for f in files],
+    cwd=ROOT, capture_output=True, text=True).stdout.split()
+if dirty:
+    sys.exit("precache 清單裡有檔案還沒 commit：" + "、".join(dirty) + "\n"
+             "先 commit 再產版號，否則算出來的版號對應不到部署出去的內容。\n"
+             "（真的要先看版號，可以 git stash 之後再跑，但別把結果 commit 進去。）")
 
 ver = "shell-" + h.hexdigest()[:7]
 new, n = re.subn(r'const SHELL_V = "[^"]*";', f'const SHELL_V = "{ver}";', src, count=1)

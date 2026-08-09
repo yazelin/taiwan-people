@@ -1881,15 +1881,20 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 </script>
 <script>
 /* 自動重載要監聽 controllerchange，不是 state === "installed"——後者新 SW 還沒接管，
-   這時 reload 仍被舊 SW 控制、拿到舊快取。而且只在「已有舊 SW 時偵測到新版」才重載，
-   首次造訪不要，否則第一次開就莫名其妙閃一下。 */
+   這時 reload 仍被舊 SW 控制、拿到舊快取。
+
+   但光監聽 controllerchange 不夠：sw.js 在 install 呼叫 skipWaiting、activate 呼叫
+   clients.claim，所以**第一次造訪**的頁面會從「沒有 SW 控制」變成「被控制」，
+   controllerchange 照樣會觸發，於是剛載完就整頁重載一次，捲動位置與展開的卡片全沒了。
+   所以要在 register 之前先記下當時有沒有 controller，沒有就代表是首次造訪，不重載。 */
 if ("serviceWorker" in navigator) {
   addEventListener("load", async () => {
+    const hadController = !!navigator.serviceWorker.controller;
     try {
-      const reg = await navigator.serviceWorker.register("sw.js");
+      await navigator.serviceWorker.register("sw.js");
       let reloading = false;
       navigator.serviceWorker.addEventListener("controllerchange", () => {
-        if (reloading) return;
+        if (!hadController || reloading) return;   // 首次造訪不重載
         reloading = true;
         location.reload();
       });

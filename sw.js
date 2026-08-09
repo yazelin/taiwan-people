@@ -8,7 +8,7 @@
  * SHELL_V 由 tools/build_sw.py 依 precache 清單的內容 hash 產生，不要手改。
  * 手動 bump 的遲早會忘記，而忘記的症狀是「使用者永遠看不到新版」，沒有任何徵兆。
  */
-const SHELL_V = "shell-bc03371";
+const SHELL_V = "shell-2c42057";
 const ASSET_V = "asset-v1";
 
 // 前綴要跨專案唯一。CacheStorage 是 per-origin，yazelin.github.io 底下所有專案
@@ -19,14 +19,19 @@ const ASSET = PREFIX + ASSET_V;
 const KEEP = [SHELL, ASSET];
 
 /* 開場一定會用到的排前面。重資產排最後等於最容易掉的就是它們，
-   而底圖根本不進 precache——8MB 會讓安裝變得很久，改成看過才留。 */
+   而底圖根本不進 precache——8MB 會讓安裝變得很久，改成看過才留。
+
+   data/counties.json 刻意不在這裡（156KB，約佔 shell 的 15%）：
+   它被 sync_split.py 內嵌進 index.html 的 SPLIT 常數，執行期沒有任何一頁 fetch 它。
+   放進來每個訪客都白抓一次。而且它進 precache 還會製造版號漂移——
+   build_sw.py 算的是工作區內容，部署的卻是 commit 的內容，
+   只要它有未 commit 的改動，出去的 SHELL_V 就是錯的。 */
 const PRECACHE = [
   "./",
   "index.html",
   "costume.html",
   "manifest.json",
   "data/costume.json",
-  "data/counties.json",
   "icon-v1-192.png",
   "icon-v1-512.png",
   "icon-v1-maskable-512.png",
@@ -64,15 +69,43 @@ const isAsset = (url) =>
    ignoreSearch 是必要的：preview.html?x=1 這種帶 query 的路由離線時會 miss。 */
 const MATCH = { ignoreSearch: true, ignoreVary: true };
 
+/* 一律只查自己的兩個快取。caches.match 不帶 cacheName 會掃過同 origin 的每一個快取——
+   activate 那邊費力保護不刪別站，讀的時候卻可能讀到別站的舊副本，而且無從失效。
+   兩個都要查：asset 分支會命中放在 SHELL precache 裡的 icon。 */
+async function ownMatch(req) {
+  for (const name of [SHELL, ASSET]) {
+    const c = await caches.open(name);
+    const hit = await c.match(req, MATCH);
+    if (hit) return hit;
+  }
+  return undefined;
+}
+
 /* 從快取回應帶 Range 的請求要自己合成 206。回「200 但沒有 Content-Range」
    有些媒體端會直接拒收，症狀是斷網時 MEDIA_ELEMENT_ERROR: Format error。 */
 async function rangeResponse(res, range) {
   const buf = await res.arrayBuffer();
+  const total = buf.byteLength;
   const m = /bytes=(\d*)-(\d*)/.exec(range || "");
   if (!m) return new Response(buf, { status: 200, headers: res.headers });
-  const total = buf.byteLength;
-  const start = m[1] ? parseInt(m[1], 10) : 0;
-  const end = m[2] ? parseInt(m[2], 10) : total - 1;
+
+  let start, end;
+  if (m[1] === "" && m[2] !== "") {
+    // bytes=-500 是「最後 500 個位元組」，不是「0 到 500」
+    start = Math.max(0, total - parseInt(m[2], 10));
+    end = total - 1;
+  } else {
+    start = m[1] ? parseInt(m[1], 10) : 0;
+    // 不夾住的話，播放器要 bytes=3000000-4000000 而檔案只有 3044163 時，
+    // 標頭會寫成 bytes 3000000-4000000/3044163（末位元組 ≥ 總長，格式不合法）
+    // 而 body 只有 44163 位元組，標頭與內容對不上——那正是這段想防的 Format error。
+    end = Math.min(m[2] ? parseInt(m[2], 10) : total - 1, total - 1);
+  }
+  if (start >= total || start > end) {
+    return new Response(null, { status: 416, statusText: "Range Not Satisfiable",
+      headers: { "Content-Range": `bytes */${total}` } });
+  }
+
   const slice = buf.slice(start, end + 1);
   const h = new Headers(res.headers);
   h.set("Content-Range", `bytes ${start}-${end}/${total}`);
@@ -102,11 +135,16 @@ self.addEventListener("fetch", (e) => {
     e.respondWith((async () => {
       try {
         const res = await fetch(req);
-        await put(SHELL, req, res);
+        // 一定要檢查再存。Pages 重佈期間根目錄會回 404，無條件存下去等於把
+        // precache 的 "./" 蓋成 404，之後離線 fallback 就一直吐那個 404，
+        // 直到下次 SHELL_V 換版為止。
+        // redirected 也要擋：從沒有尾斜線的網址進來會拿到轉址過的回應，
+        // 把它存起來、之後拿它服務導覽會直接失敗（Response ... has redirected flag set）。
+        if (res.ok && !res.redirected) await put(SHELL, req, res);
         return res;
       } catch (_) {
-        return (await caches.match(req, MATCH))
-            || (await caches.match("index.html", MATCH))
+        return (await ownMatch(req))
+            || (await ownMatch(new Request("index.html")))
             || Response.error();
       }
     })());
@@ -116,9 +154,25 @@ self.addEventListener("fetch", (e) => {
   // 圖與音：cache-first，看過就留著。內容換了就換檔名（底圖本來就是這個慣例）。
   if (isAsset(url)) {
     e.respondWith((async () => {
-      const hit = await caches.match(req, MATCH);
       const range = req.headers.get("range");
+      const hit = await ownMatch(req);
       if (hit) return range ? rangeResponse(hit, range) : hit;
+
+      // <audio> 的第一個請求就帶 Range: bytes=0-，伺服器回 206，
+      // 而 Cache.put 對 206 直接丟 TypeError（實測 Chrome:
+      // "Failed to execute 'put' on 'Cache': Partial response (status code 206)"）。
+      // put() 把錯誤吞掉，所以症狀是「音檔永遠進不了快取」而且完全沒有徵兆，
+      // 下面那段 206 合成也就永遠走不到。
+      // 解法是另外抓一份不帶 Range 的完整檔存快取，再自己切一段回給播放器。
+      if (range) {
+        const full = await fetch(new Request(url.href, { credentials: "omit" }));
+        if (full && full.ok) {
+          await put(ASSET, new Request(url.href), full);
+          return rangeResponse(full, range);
+        }
+        return fetch(req);
+      }
+
       const res = await fetch(req);
       if (res && res.ok) await put(ASSET, req, res);
       return res;
@@ -133,7 +187,7 @@ self.addEventListener("fetch", (e) => {
       if (res && res.ok) await put(SHELL, req, res);
       return res;
     } catch (_) {
-      return (await caches.match(req, MATCH)) || Response.error();
+      return (await ownMatch(req)) || Response.error();
     }
   })());
 });
@@ -146,7 +200,7 @@ self.addEventListener("message", (e) => {
     const want = PRECACHE.concat(e.data.extra || []);
     const have = [];
     for (const u of want) {
-      if (await caches.match(new Request(u), MATCH)) have.push(u);
+      if (await ownMatch(new Request(u))) have.push(u);
     }
     (e.source || (await self.clients.matchAll())[0])?.postMessage({
       type: "offline-status", have: have.length, want: want.length,

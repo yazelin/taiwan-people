@@ -49,8 +49,12 @@ ld = {
 
 p = ROOT / "costume.html"
 s = p.read_text(encoding="utf-8")
+# 出處標題或單位名稱裡只要出現 </script 或 <!--，就會把 script 區塊提早關掉、
+# 把頁面弄壞，而且下一次跑這支腳本會連自己的區塊都比對不到。
+# JSON 裡的 \u003c 跟 < 等價，跳脫掉不影響語意。
+payload = json.dumps(ld, ensure_ascii=False, indent=2).replace("<", "\\u003c")
 new, n = re.subn(r'(<script type="application/ld\+json">\n).*?(\n</script>)',
-                 lambda m: m.group(1) + json.dumps(ld, ensure_ascii=False, indent=2) + m.group(2),
+                 lambda m: m.group(1) + payload + m.group(2),
                  s, count=1, flags=re.S)
 if n != 1:
     sys.exit("在 costume.html 裡找不到 JSON-LD 區塊")
