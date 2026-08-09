@@ -8,10 +8,12 @@
 
     python3 tools/build_sw.py
 
-它只動 sw.js 裡 SHELL_V 那一行。ASSET_V 是手動的，因為底圖採「換內容就換檔名」
+它動 sw.js 裡的 SHELL_V 那一行，以及 ASSET_LIST（離線包清單，由 counties.json 產生
+——那份清單手抄的話，新增一個特別版就會靜靜地漏在離線包外）。ASSET_V 是手動的，因為底圖採「換內容就換檔名」
 的慣例，同名檔內容變動很少見；真的變了再自己 bump。
 """
 import hashlib
+import json
 import pathlib
 import re
 import subprocess
@@ -21,6 +23,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SW = ROOT / "sw.js"
 
 src = SW.read_text(encoding="utf-8")
+orig = src
 m = re.search(r"const PRECACHE = \[(.*?)\];", src, re.S)
 if not m:
     sys.exit("在 sw.js 裡找不到 PRECACHE 清單")
@@ -51,6 +54,22 @@ if dirty:
              "先 commit 再產版號，否則算出來的版號對應不到部署出去的內容。\n"
              "（真的要先看版號，可以 git stash 之後再跑，但別把結果 commit 進去。）")
 
+# 離線包清單：所有底圖 + 音檔。這些不進 precache（9.8MB），
+# 使用者按「下載離線包」才暖，但清單得跟著 counties.json 走。
+counties = json.loads((ROOT / "data" / "counties.json").read_text(encoding="utf-8"))["counties"]
+assets = [f"img/{c['base']}.webp" for c in counties if c.get("base")]
+assets += [str(a.relative_to(ROOT)) for a in sorted((ROOT / "audio").glob("*.mp3"))]
+gone = [a for a in assets if not (ROOT / a).exists()]
+if gone:
+    sys.exit("counties.json 指到不存在的底圖：" + "、".join(gone))
+body = "\n".join(f'  "{a}",' for a in assets)
+src, n = re.subn(r"const ASSET_LIST = \[.*?\];",
+                 f"const ASSET_LIST = [\n{body}\n];", src, count=1, flags=re.S)
+if n != 1:
+    sys.exit("在 sw.js 裡找不到 ASSET_LIST")
+mb = sum((ROOT / a).stat().st_size for a in assets) / 1e6
+print(f"ASSET_LIST → {len(assets)} 個檔、{mb:.1f} MB")
+
 ver = "shell-" + h.hexdigest()[:7]
 new, n = re.subn(r'const SHELL_V = "[^"]*";', f'const SHELL_V = "{ver}";', src, count=1)
 if n != 1:
@@ -59,5 +78,8 @@ if n != 1:
 if new == src:
     print(f"版號未變：{ver}（precache 的檔案內容都沒動）")
 else:
-    SW.write_text(new, encoding="utf-8")
     print(f"SHELL_V → {ver}（{len(files)} 個檔）")
+# 比對的是**最原始**的檔案內容。只比 new==src 的話，版號沒變但 ASSET_LIST 變了
+# 就整份不寫出去，新增的特別版會靜靜地漏在離線包外。
+if new != orig:
+    SW.write_text(new, encoding="utf-8")

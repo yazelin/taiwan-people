@@ -8,7 +8,7 @@
  * SHELL_V 由 tools/build_sw.py 依 precache 清單的內容 hash 產生，不要手改。
  * 手動 bump 的遲早會忘記，而忘記的症狀是「使用者永遠看不到新版」，沒有任何徵兆。
  */
-const SHELL_V = "shell-2c42057";
+const SHELL_V = "shell-349b17b";
 const ASSET_V = "asset-v1";
 
 // 前綴要跨專案唯一。CacheStorage 是 per-origin，yazelin.github.io 底下所有專案
@@ -36,6 +36,46 @@ const PRECACHE = [
   "icon-v1-512.png",
   "icon-v1-maskable-512.png",
   "favicon-32.png",
+];
+
+/* 離線包的清單。由 tools/build_sw.py 從 data/counties.json 產生，不要手改。
+   這些**不進 precache**——33 張底圖 9.8MB，安裝時全抓會讓第一次開站等很久。
+   改成使用者自己按「下載離線包」才暖，而完成度由下面的 offline-status 逐項實查。 */
+const ASSET_LIST = [
+  "img/keelung-base.webp",
+  "img/taipei-base.webp",
+  "img/new-taipei-base.webp",
+  "img/taoyuan-base.webp",
+  "img/hsinchu-city-base.webp",
+  "img/hsinchu-county-base.webp",
+  "img/yilan-base.webp",
+  "img/miaoli-base.webp",
+  "img/taichung-base.webp",
+  "img/changhua-base.webp",
+  "img/nantou-base.webp",
+  "img/yunlin-base.webp",
+  "img/chiayi-city-base.webp",
+  "img/chiayi-county-base.webp",
+  "img/tainan-base.webp",
+  "img/kaohsiung-base.webp",
+  "img/pingtung-base.webp",
+  "img/hualien-base.webp",
+  "img/taitung-base.webp",
+  "img/penghu-base.webp",
+  "img/kinmen-base.webp",
+  "img/lienchiang-base.webp",
+  "img/taitung-pinuyumayan-base.webp",
+  "img/hsinchu-county-hakka-base.webp",
+  "img/miaoli-hakka-base.webp",
+  "img/hualien-truku-base.webp",
+  "img/nantou-thao-base.webp",
+  "img/kaohsiung-hlaalua-base.webp",
+  "img/pingtung-paiwan-base.webp",
+  "img/yilan-kavalan-base.webp",
+  "img/hsinchu-county-saysiyat-base.webp",
+  "img/hsinchu-county-tayal-base.webp",
+  "img/chiayi-county-cou-base.webp",
+  "audio/theme.mp3",
 ];
 
 self.addEventListener("install", (e) => {
@@ -193,18 +233,47 @@ self.addEventListener("fetch", (e) => {
 });
 
 /* 離線完整度不准自我宣告：頁面問「裝好了沒」時，回頭逐項 cache.match 實查，
-   不是回報 fetch 成功幾次。實測撞過 ready=true 但快取只有 151/160 的情況。 */
+   不是回報 fetch 成功幾次。fetch 回 200 但 cache.put 因配額或 SW 被回收而失敗時，
+   數 fetch 成功次數會謊報——實測撞過 ready=true 但快取只有 151/160 的情況。 */
+async function statusOf() {
+  const want = PRECACHE.concat(ASSET_LIST);
+  const missing = [];
+  for (const u of want) {
+    if (!(await ownMatch(new Request(u)))) missing.push(u);
+  }
+  return { type: "offline-status", want: want.length,
+           have: want.length - missing.length, missing };
+}
+
+const reply = async (e, msg) =>
+  (e.source || (await self.clients.matchAll())[0])?.postMessage(msg);
+
 self.addEventListener("message", (e) => {
-  if (!e.data || e.data.type !== "offline-status") return;
-  e.waitUntil((async () => {
-    const want = PRECACHE.concat(e.data.extra || []);
-    const have = [];
-    for (const u of want) {
-      if (await ownMatch(new Request(u))) have.push(u);
-    }
-    (e.source || (await self.clients.matchAll())[0])?.postMessage({
-      type: "offline-status", have: have.length, want: want.length,
-      missing: want.filter((u) => !have.includes(u)),
-    });
-  })());
+  const t = e.data && e.data.type;
+
+  if (t === "offline-status") {
+    e.waitUntil((async () => reply(e, await statusOf()))());
+    return;
+  }
+
+  // 暖快取。開場會用到的排前面（PRECACHE 已經在了，這裡只補資產），
+  // 一次一個而不是全部並發：並發到三十幾個請求在手機上很容易撞到配額或被中斷，
+  // 而中斷的那些不會有任何徵兆。
+  if (t === "offline-warm") {
+    e.waitUntil((async () => {
+      let done = 0;
+      for (const u of ASSET_LIST) {
+        if (!(await ownMatch(new Request(u)))) {
+          try {
+            const res = await fetch(new Request(u, { credentials: "omit" }));
+            if (res && res.ok) await put(ASSET, new Request(u), res);
+          } catch (_) { /* 單一檔失敗不擋住其餘的 */ }
+        }
+        done++;
+        await reply(e, { type: "offline-progress", done, total: ASSET_LIST.length });
+      }
+      // 暖完不直接說「好了」，回頭實查一次再回報
+      await reply(e, await statusOf());
+    })());
+  }
 });

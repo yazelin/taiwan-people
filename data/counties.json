@@ -2380,6 +2380,207 @@
       "notes": [
         "由普通版移過來的。普通版不穿任何族群的傳統服飾，客家大襟衫改由這一筆承擔。"
       ]
+    },
+    {
+      "id": "hualien-truku",
+      "name": "花蓮縣・太魯閣族",
+      "en": "HUALIEN / TRUKU",
+      "county": "花蓮縣",
+      "culture": "truku",
+      "group": "e",
+      "poster": "hualien",
+      "base": "hualien-truku-base",
+      "scene": {
+        "outfit_zh": "太魯閣族女子服飾：無袖短衣＋套袖、片裙（左右各圍一片、腰帶繫綁）、護腳布。白色苧麻為底，僅局部小菱紋",
+        "outfit": "Truku women's dress in the people's characteristic light, thin, plain and clean manner. A sleeveless SHORT top over a separate pair of arm-sleeves (they are separate tubes, not set-in sleeves). Below, a wrap skirt made of TWO cloth panels, one wrapped from the left and one from the right, held by a woven waist tie. On the lower legs, leg-cloths. The ground of every piece is undyed WHITE ramie; colour appears only as small SEPARATE diamond motifs in black, red or deep pink and blue, scattered with clear white space between them — the cloth must NOT be covered edge to edge in pattern.",
+        "hair": "a lotus flower tucked into her hair, which is worn DOWN and loose over her shoulders, with no beaded cap, no feather head-dress and no head-cloth",
+        "hair_zh": "蓮花（花蓮縣花）、頭髮放下、不戴貝珠帽飾",
+        "accessories": "a plain woven waist tie and small stud earrings; no shell-bead garments, no bells",
+        "costume_basis": "逐項對 data/costume.json 的 truku：female 欄的無袖短衣、套袖、片裙（左右各圍一片、以腰帶繫綁固定）、護腳布；palette 的「輕、薄、素、淨」與白色苧麻為底、局部織色線；motifs 的菱紋為主且以單獨形式出現。\n刻意做的兩個限制：\n一、**不畫貝珠衣、銅鈴長衣**。rank 欄寫著那些是特殊禮服，穿著者通常是社群領袖、善獵者或具獵首功績者，只在特殊祭儀場合穿。阿蕊沒有這些身分設定，取不會出錯的一邊。\n二、**紋樣必須是彼此分開的小菱形、留白要看得出來**。太魯閣族的美學是留白，把菱紋鋪滿就變成泰雅或賽德克，那是三族最容易被混掉的地方（三族已於 2004、2008 年分別正名）。\n**不畫貝珠帽飾**：那是功績性的特殊禮服。太魯閣族沒有記載女性的固定頭飾，因此戴花蓮縣花蓮花。族群沒有記載女性固定頭飾時，沿用該縣市的市花（AGENTS.md 硬規則四）——那是阿蕊的識別記號，不因為換成特別版就拿掉。有記載的則以族群為準。特別版的頭飾一律跟著族群走，不套縣市花規則（AGENTS.md 硬規則四對特別版不適用）。族群有記載的就畫記載的；沒記載的就**什麼都不戴**，不用縣花補位——縣花是普通版的角色識別記號，把它戴到族服上等於在族群造型裡混進一個不屬於它的東西。"
+      },
+      "todo": [
+        "底圖尚未生成",
+        "對外發表前應請該族群或相關單位過目"
+      ],
+      "notes": [
+        "太魯閣族的識別特徵是留白，不是織紋密度。出圖時若右側織紋鋪滿，那張就是錯的。"
+      ]
+    },
+    {
+      "id": "nantou-thao",
+      "name": "南投縣・邵族",
+      "en": "NANTOU / THAU",
+      "county": "南投縣",
+      "culture": "thao",
+      "group": "c",
+      "poster": "nantou",
+      "base": "nantou-thao-base",
+      "scene": {
+        "outfit_zh": "邵族女子服飾：頭巾與花草頭冠、有袖上衣、胸衣、腰裙、腰帶、膝布。深淺褐、藍、灰、黑，幾何紋",
+        "outfit": "Thao women's dress. A head-cloth wound round the hair, and over it a head-band woven from fresh leaves and small flowers. A SLEEVED upper garment over a separate chest-cloth, a waist skirt held by a woven sash, and knee-cloths on the lower legs. The palette is muted throughout: dark and light brown, blue, grey and black, with NO bright red or orange. All ornament is GEOMETRIC — bands, squares, stepped lines — and there are no figures, snakes, human heads or sun motifs anywhere.",
+        "hair": "a head-band plaited from fresh leaves and small flowers, worn over a wound head-cloth, her hair gathered underneath",
+        "hair_zh": "花草頭冠（邵族女子服飾記載的形制）、內襯頭巾",
+        "accessories": "a woven waist sash and small stud earrings; no feathers and no bead breastplates",
+        "costume_basis": "逐項對 data/costume.json 的 thao：female 欄的頭巾、有袖上衣、胸衣、腰裙、腰帶、膝布、花草製作的頭冠；palette 的深淺褐、藍、灰、黑；motifs 的幾何形花紋。\n頭冠取 female 欄記載的「花草製作的頭冠」，材料不指定成南投縣花梅花——特別版的頭飾一律跟著族群走，不套縣市花規則（AGENTS.md 硬規則四對特別版不適用）。族群有記載的就畫記載的；沒記載的就**什麼都不戴**，不用縣花補位——縣花是普通版的角色識別記號，把它戴到族服上等於在族群造型裡混進一個不屬於它的東西。\n**刻意不畫達戈紋。** 那是麻線加狗毛織成的布匹，清代《皇清職貢圖》即有記載，但 costume.json 的 gaps 寫著「達戈紋的具體織紋形貌未見官方圖示說明」——查不到長什麼樣就不畫，只保留低彩度與幾何紋的整體調性。"
+      },
+      "todo": [
+        "底圖尚未生成",
+        "對外發表前應請該族群或相關單位過目"
+      ],
+      "notes": [
+        "邵族不是鮮豔系。畫成大紅大綠就錯了。"
+      ]
+    },
+    {
+      "id": "kaohsiung-hlaalua",
+      "name": "高雄市・拉阿魯哇族",
+      "en": "KAOHSIUNG / HLA'ALUA",
+      "county": "高雄市",
+      "culture": "hlaalua",
+      "group": "s",
+      "poster": "kaohsiung",
+      "base": "kaohsiung-hlaalua-base",
+      "scene": {
+        "outfit_zh": "拉阿魯哇族女子服飾（排剪社）：黑帽飾插公雞羽毛髮髻、藍色長袖短上衣、米白腰帶、黑片裙（過膝）、黑藍護腿布",
+        "outfit": "Hla'alua women's dress of the Paiciana community. On the head, a black cap with a cock's tail-feather hair ornament and ribbons of red, yellow, green, white and blue. A BLUE long-sleeved SHORT jacket with a long tie fastened behind the waist; its collar, both front edges, hem and cuffs are bound with contrast cloth and edged with one or two rows of cross-stitched colour bands; a strip of coloured cloth hangs from below each shoulder down to the skirt hem. A long narrow off-white waist sash embroidered at both ends. A BLACK wrap skirt made of two panels, one from the left and one from the right, its three edges bound with white and embroidered — the hem must fall BELOW THE KNEE. Black and blue leg-cloths with bound edges and embroidery, covering the calves.",
+        "hair": "a black cap with a cock's tail-feather hair ornament and ribbons of red, yellow, green, white and blue, her hair gathered under it",
+        "hair_zh": "黑色帽飾插公雞羽毛髮髻＋紅黃綠白藍彩帶（族群明確記載的形制）",
+        "accessories": "a bone or seed bead necklace and bone-and-shell ear ornaments; no eagle feathers and no hawk feathers anywhere",
+        "costume_basis": "逐項對 data/costume.json 的 hlaalua female 欄，該欄的形制出自原住民族傳統智慧創作專用權申請書說明書（案號 1080722000009／證號 拉H000073），由開放博物館轉錄，是整份資料集裡法律依據最明確的一筆。\n取排剪社（高中里）：女性上衣藍色、腰帶兩端習以三角形製作，是四社中唯一。雁爾社是深藍、美瓏與那爾瓦是白色，三者不可混。\n片裙長度必須過膝：族人視露體為不德，這是形制的一部分不是比例問題。\n**公雞羽毛不是鷹羽**，典故是紀念神話中幫助族人與太陽談判成功的公雞。\n頭飾以族群記載為準、不套縣花規則。特別版的頭飾一律跟著族群走，不套縣市花規則（AGENTS.md 硬規則四對特別版不適用）。族群有記載的就畫記載的；沒記載的就**什麼都不戴**，不用縣花補位——縣花是普通版的角色識別記號，把它戴到族服上等於在族群造型裡混進一個不屬於它的東西。"
+      },
+      "todo": [
+        "底圖尚未生成",
+        "對外發表前應請該族群或相關單位過目"
+      ],
+      "notes": [
+        "這是資料集裡法律依據最明確的一筆，形制錯了特別難看。出圖必跑 --checklist。"
+      ]
+    },
+    {
+      "id": "pingtung-paiwan",
+      "name": "屏東縣・排灣族",
+      "en": "PINGTUNG / PAIWAN",
+      "county": "屏東縣",
+      "culture": "paiwan",
+      "group": "s",
+      "poster": "pingtung",
+      "base": "pingtung-paiwan-base",
+      "scene": {
+        "outfit_zh": "排灣族女子服飾（北排 Vuculj 本群、平民）：圓領開右襟筒袖長衣 lungpau（衣脇至衣襬 A 型開叉）、單片式長裙至腳踝上方、護腳布 cacavu。黑底，紅黃綠幾何與植物紋",
+        "outfit": "Paiwan women's dress of the northern Vuculj group, as worn by a COMMONER. A round-neck long tunic (lungpau) fastening to the RIGHT with tube sleeves, its side seam opening into a shallow A-shaped slit from the underarm down to the hem; the body hangs fairly straight and long. A single-panel long skirt reaching just above the ankle. Rectangular leg-cloths (cacavu) wound round the shins. The ground cloth is BLACK with some deep blue. Ornament is embroidery and glass-bead work in bright red, yellow and green, arranged as bands along the collar, the right-hand opening, the cuffs and the hem. The motifs are GEOMETRIC and plant forms ONLY.",
+        "hair": "a bougainvillea blossom tucked into her hair, which is gathered in a compact high bun, and absolutely NO feathered head-dress of any kind",
+        "hair_zh": "九重葛（屏東縣花）、丸子頭。**不戴任何羽冠**",
+        "accessories": "a woven sash and small glass-bead earrings; no eagle feathers, no clouded-leopard fur, no metal chest plates",
+        "costume_basis": "逐項對 data/costume.json 的 paiwan：北排 Raval／Vuculj 本群的 female 形制（圓領或立領開右襟筒袖長衣 lungpau、衣脇至衣襬 A 型開叉、展度較直衣身較長、裙長至腳踝上方、長方形護腳布 cacavu 纏於脛部）；palette 的北排主黑次藍、色彩運用偏亮的紅黃綠；techniques 的刺繡與珠繡。\n**這一筆刻意設定為平民，並避開全部三條與階級有關的紅線：**\n一、不畫熊鷹羽毛頭冠。rank 欄寫著那是頭目與貴族專屬，且熊鷹依野生動物保育法為瀕臨絕種保育類（_redlines 第一、二條）。\n二、不畫人形紋、人頭紋、百步蛇紋。那些在傳統規範中屬頭目與貴族，平民需經納貢或授予儀式才能使用。太陽紋雖然晚近已開放，但為求保守也不畫。\n三、不畫雲豹皮無袖長上衣，那是貴族在常服外加穿的。\n紋樣只用幾何與植物形，那是 costume.json 明列且無階級限制的部分。\n**絕對不畫羽冠**：有記載的熊鷹羽頭冠是頭目與貴族專屬，且熊鷹是瀕臨絕種保育類。東排平民的草與萬壽菊花環屬東排不屬北排，也不用。北排女性平民頭飾未見記載，因此戴屏東縣花九重葛。族群沒有記載女性固定頭飾時，沿用該縣市的市花（AGENTS.md 硬規則四）——那是阿蕊的識別記號，不因為換成特別版就拿掉。有記載的則以族群為準。特別版的頭飾一律跟著族群走，不套縣市花規則（AGENTS.md 硬規則四對特別版不適用）。族群有記載的就畫記載的；沒記載的就**什麼都不戴**，不用縣花補位——縣花是普通版的角色識別記號，把它戴到族服上等於在族群造型裡混進一個不屬於它的東西。"
+      },
+      "todo": [
+        "底圖尚未生成",
+        "對外發表前應請該族群或相關單位過目"
+      ],
+      "notes": [
+        "排灣族是階級社會。這一筆設定為平民，任何羽冠、人頭紋、百步蛇紋出現在圖上都是錯的。",
+        "五個群的形制差異很大，這一筆只代表北排 Vuculj 本群，不能當成「排灣族的樣子」。"
+      ]
+    },
+    {
+      "id": "yilan-kavalan",
+      "name": "宜蘭縣・噶瑪蘭族",
+      "en": "YILAN / KEBALAN",
+      "county": "宜蘭縣",
+      "culture": "kavalan",
+      "group": "n",
+      "poster": "yilan",
+      "base": "yilan-kavalan-base",
+      "scene": {
+        "outfit_zh": "噶瑪蘭族女子服飾（現行常見形制）：上半方衣系統（兩幅布縫合）、下半一塊布裹身，黑白為主；配香蕉絲斜背袋",
+        "outfit": "Kavalan women's dress in the form commonly worn today. The upper garment belongs to the square-cloth system: TWO widths of cloth seamed together, hanging straight with no tailoring, no darts and no set-in sleeves. The lower body is wrapped in a single length of cloth. The palette is BLACK AND WHITE only, in broad bands and simple stripes. Over her shoulder, a bag woven from BANANA-STEM FIBRE — a pale straw-gold cloth with a visible coarse horizontal weave and a slight sheen, clearly different in texture from cotton or ramie.",
+        "hair": "an orchid tucked into her hair, which is gathered in a compact high bun",
+        "hair_zh": "國蘭（宜蘭縣花）、丸子頭",
+        "accessories": "a banana-fibre shoulder bag and small stud earrings; no brass bells, no agate or glass-bead strands",
+        "costume_basis": "逐項對 data/costume.json 的 kavalan：female 欄與 palette 的「目前常見的傳統服裝形式，上半部是方衣系統、用兩幅布縫合而成，下半身則以一塊布料裹身，以黑色、白色為主」；material 的香蕉絲（蕉布較輕薄，涼爽易乾，可製背袋、檳榔袋）。\n**兩個刻意的取捨：**\n一、取現行常見形制（黑白），不取十九世紀馬偕蒐藏那套紅藍黃挑織的結婚服飾。後者是特定場合的禮服、且資料只記到色彩與紋路（菱形、米字、曲折形、八瓣花葉形），沒有逐部位形制，畫出來會有很大的推測成分。palette 欄同時記著這兩套，不可混用。\n二、**不畫祭典盛裝的銅鈴垂飾與瑪瑙、琉璃珠、貝珠手環腳環**。那是「每當慶典祭儀不拘大小必著盛裝」時的配件，不是日常。\n香蕉絲是噶瑪蘭最獨特的識別物，這一筆用在斜背袋上而不是衣服上，因為 material 欄寫的是「蕉布適合男性於熱天時穿著，也可以製作背袋、檳榔袋等配件」。\nfemale 欄雖列有「頭飾」但未描述形制，十九世紀馬偕蒐藏那套也只記到有頭飾、沒記形貌，形貌查不到就不自創，因此戴宜蘭縣花國蘭。族群沒有記載女性固定頭飾時，沿用該縣市的市花（AGENTS.md 硬規則四）——那是阿蕊的識別記號，不因為換成特別版就拿掉。有記載的則以族群為準。特別版的頭飾一律跟著族群走，不套縣市花規則（AGENTS.md 硬規則四對特別版不適用）。族群有記載的就畫記載的；沒記載的就**什麼都不戴**，不用縣花補位——縣花是普通版的角色識別記號，把它戴到族服上等於在族群造型裡混進一個不屬於它的東西。"
+      },
+      "todo": [
+        "底圖尚未生成",
+        "對外發表前應請該族群或相關單位過目"
+      ],
+      "notes": [
+        "掛在宜蘭是因為蘭陽平原是噶瑪蘭族的原鄉。但十九世紀起族人陸續南遷，香蕉絲織布等活的技藝目前主要在花蓮新社。要改掛花蓮也說得通，見對話紀錄。"
+      ]
+    },
+    {
+      "id": "hsinchu-county-saysiyat",
+      "name": "新竹縣・賽夏族",
+      "en": "HSINCHU COUNTY / SAYSIYAT",
+      "county": "新竹縣",
+      "culture": "saysiyat",
+      "group": "n",
+      "poster": "hsinchu-city",
+      "base": "hsinchu-county-saysiyat-base",
+      "scene": {
+        "outfit_zh": "賽夏族女子服飾（北賽夏／五峰）：無袖長衣外加無袖短上衣、菱形胸衣、橫式細條紋腰裙、披風 hoepong。白底、紅為主紋、黑作配色。**衣背必須有不對稱的雷女紋**",
+        "outfit": "Saisiyat women's dress of the northern group. A narrow sleeveless LONG robe of the square-cloth system, with a sleeveless SHORT jacket worn over it. Under them a chest-cloth cut roughly as a diamond. A waist skirt made of two or three rectangular cloths seamed together, patterned with fine HORIZONTAL stripes. Over the shoulders a cape (hoepong) of three rectangular cloths seamed side by side. The colour scheme is strictly THREE colours: a WHITE ground, RED as the main pattern colour, BLACK used only to outline and separate the red. The patterning sits on the LOWER HALF and is strongest on the BACK. The BACK of the long robe MUST carry the hinobi:wa'an thunder-goddess motif: two crossing lightning strokes, drawn ASYMMETRICALLY like a lightning flash or a letter Z, in red outlined with black. It is not optional and it is not a symmetrical diamond — it is the one motif that tells this people apart from the Atayal, whose clothing is otherwise very similar. Arrange it so at least part of it is visible from the front three-quarter view, on the shoulder or the side of the robe.",
+        "hair": "a camellia flower tucked into her hair, which is gathered in a compact high bun",
+        "hair_zh": "茶花（新竹縣花）、丸子頭",
+        "accessories": "a woven waist tie and small stud earrings; white four-hole buttons may edge the chest-cloth",
+        "costume_basis": "逐項對 data/costume.json 的 saysiyat：female 欄的無袖長衣、無袖短上衣、胸衣（約呈菱形的織布）、腰裙（2-3 塊布縫成的長方形、紋樣多以橫式細條紋為主）、披風 hoepong（三塊不經剪裁的長方形織布橫向平行縫合）；palette 的白底、紅為花紋主色、黑用來凸顯花紋作配色；長衣裝飾集中在下半部且強調背面。\n取北賽夏（新竹五峰，大隘村與花園村），巴斯達隘祭典屬北祭團。\n**雷女紋 hinobi:wa'an 是賽夏獨有的識別特徵**，形制像兩道閃電交錯、有順時針與逆時針兩種，過去是不對稱的。**第一輪四個候選全都沒有雷女紋**，成因是我把規格寫成「若出現」——太鬆。現在改成必須出現：畫在長衣背面，兩道交錯的閃電、不對稱、像閃電或 Z 字，紅色描黑邊。對稱化是後來的事，不可畫成對稱菱形。並要求至少露出一部分在四分之三側面看得到的位置（肩上或衣側），否則正面構圖永遠看不到它。\n北賽夏的服裝形式與泰雅族頗為相似，這正是最容易被混掉的地方：**分辨點是雷女紋（泰雅沒有）與白紅黑三色的嚴格配色**。\n頭飾沿用縣花規則：賽夏族女性的固定頭飾未見記載，查不到就不自創。族群沒有記載女性固定頭飾時，沿用該縣市的市花（AGENTS.md 硬規則四）——那是阿蕊的識別記號，不因為換成特別版就拿掉。有記載的則以族群為準。"
+      },
+      "todo": [
+        "底圖尚未生成",
+        "對外發表前應請該族群或相關單位過目"
+      ],
+      "notes": [
+        "北賽夏與泰雅形制相似，出圖時必須看得出雷女紋或白紅黑三色，否則跟泰雅無從分辨。"
+      ]
+    },
+    {
+      "id": "hsinchu-county-tayal",
+      "name": "新竹縣・泰雅族",
+      "en": "HSINCHU COUNTY / TAYAL",
+      "county": "新竹縣",
+      "culture": "tayal",
+      "group": "n",
+      "poster": "hsinchu-city",
+      "base": "hsinchu-county-tayal-base",
+      "scene": {
+        "outfit_zh": "泰雅族女子服飾（馬里闊丸群／尖石）：胸兜＋無袖長衣（正面胸前一條飾帶、衣背中段大菱紋）、單片前開式片裙、護腳布、披肩",
+        "outfit": "Atayal women's dress of the Mrqwang group. A chest-cloth under a sleeveless LONG robe of the square-cloth system — the long robe is the main garment. On the FRONT it carries a single narrow decorative band across the chest; on the BACK, through the middle section, LARGE diamond motifs in a simple, boldly scaled arrangement, not a dense allover field. Below, a single-panel wrap skirt opening at the FRONT, and leg-cloths on the shins. Over the shoulders a shawl patterned with small diamonds, diagonal lines and stripes alternating in bands, plain and unshowy. Ground cloth is undyed WHITE ramie; pattern colour is chiefly RED.",
+        "hair": "a camellia flower tucked into her hair, which is gathered in a compact high bun",
+        "hair_zh": "茶花（新竹縣花）、丸子頭",
+        "accessories": "a woven waist tie and small stud earrings; no shell-bead garments and no bells",
+        "costume_basis": "逐項對 data/costume.json 的 tayal：variants 欄馬里闊丸群（Mrqwang，大漢溪上游馬里闊丸溪兩側，即新竹尖石一帶）的形制——男女上身穿胸兜與無袖長衣、無袖長衣為主要服飾、正面約於胸前處有一條飾帶、衣背中段的大菱紋組成較為單純構圖較大、女子穿片裙（單片式、採前開式穿法）與護腳布、披肩以小菱紋斜紋與條紋間隔出現、沒有過於華麗的裝飾呈現單純與樸質的風格；system 的方衣系統與白色苧麻為底、紅色為主要紋樣色。\n**五個群不可混。** 選馬里闊丸群是因為它分布在新竹縣尖石。北勢群在苗栗與台中、南澳群在宜蘭、大嵙崁群在新北桃園宜蘭、馬利巴群在南投。各群色彩偏好都不同（例如只有馬利巴群在單色菱紋組合中使用黃色）。\n**不畫貝珠衣與無袖短上衣**：rank 欄寫著那是具特別功績者與獵首成功男子的特殊禮服。\n頭飾沿用縣花規則：馬里闊丸群女性的固定頭飾未見記載（南澳群有大量白色四孔鈕釦裝飾的額飾，但那屬南澳群），查不到就不自創。族群沒有記載女性固定頭飾時，沿用該縣市的市花（AGENTS.md 硬規則四）——那是阿蕊的識別記號，不因為換成特別版就拿掉。有記載的則以族群為準。"
+      },
+      "todo": [
+        "底圖尚未生成",
+        "對外發表前應請該族群或相關單位過目"
+      ],
+      "notes": [
+        "泰雅五群形制與色彩差異很大，這一筆只代表馬里闊丸群，不能當成「泰雅族的樣子」。"
+      ]
+    },
+    {
+      "id": "chiayi-county-cou",
+      "name": "嘉義縣・鄒族",
+      "en": "CHIAYI COUNTY / COU",
+      "county": "嘉義縣",
+      "culture": "cou",
+      "group": "s",
+      "poster": "chiayi-county",
+      "base": "chiayi-county-cou-base",
+      "scene": {
+        "outfit_zh": "鄒族女子服飾：黑色頭巾、胸兜、長袖短上衣、單片長裙、護腳布。棉布絲綢緞，紅白黑藍",
+        "outfit": "Tsou women's dress. A BLACK head-cloth wound round the hair. A chest-cloth under a long-sleeved SHORT jacket. Below, a single-panel long skirt and leg-cloths on the shins. The cloth is cotton, silk or satin with a soft sheen — NOT the coarse ramie or hide used for the men's clothing. The palette is red, white, black and blue. Ornament is restrained: bands along the collar, cuffs, jacket hem and skirt edge, no allover field of pattern.",
+        "hair": "a BLACK head-cloth wound round her head and covering her hair — a real wrapped cloth, NOT a hairpin, NOT a flower and NOT an uncovered bun. Her hair is gathered underneath it and only a little shows at the nape.",
+        "hair_zh": "黑色頭巾纏髮並包住頭髮（鄒族女子服飾 female 欄第一項），不是髮簪也不是花",
+        "accessories": "a woven waist tie and small stud earrings; no feathers, no hide cap, no boar-tusk ornaments",
+        "costume_basis": "逐項對 data/costume.json 的 cou：female 欄的黑色頭巾、胸兜、長袖短上衣、長裙、護腳布；material 的女性用棉布、絲或綢緞；palette 的紅白黑藍。\n頭飾以族群記載為準：female 欄第一項就是黑色頭巾，因此不套縣花規則。\n**第一輪出圖畫成了丸子頭插金珠流蘇髮簪，頭巾完全沒出現**，所以現在把它寫成否定句：是纏起來的布，不是髮簪、不是花、不是露出來的髮髻。族群沒有記載女性固定頭飾時，沿用該縣市的市花（AGENTS.md 硬規則四）——那是阿蕊的識別記號，不因為換成特別版就拿掉。有記載的則以族群為準。\n**不畫獸皮帽與羽毛**：那是男子服飾，而且帽飾具重要意義——戴上獸皮帽代表成年，盛裝時插鷹、藍腹鷴、帝雉、鷲羽毛數根彰顯勇敢英武，帽前緣的紅色紋飾帶更是傳統領袖或征帥等具勇士資格者才有。那一整套都不屬於女性日常。\n**這一筆的出處只有 1 筆**（原住民族委員會族群介紹頁），是全資料集裡最薄的族之一——教育部臺灣原住民族事典的鄒族服飾詞條目前無法開啟。對外發表前尤其需要族人過目。"
+      },
+      "todo": [
+        "底圖尚未生成",
+        "對外發表前應請該族群或相關單位過目"
+      ],
+      "notes": [
+        "出處只有 1 筆，是全資料集最薄的族之一。卡片上要標明這一點。"
+      ]
     }
   ],
   "_character": {

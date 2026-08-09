@@ -17,6 +17,16 @@
     { "src": "icon-v1-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
     { "src": "icon-v1-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
+  "screenshots": [
+    { "src": "screenshot-wide-1.webp", "sizes": "1280x720", "type": "image/webp",
+      "form_factor": "wide", "label": "首頁 ─ 二十二個縣市的代表" },
+    { "src": "screenshot-wide-2.webp", "sizes": "1280x720", "type": "image/webp",
+      "form_factor": "wide", "label": "服飾依據 ─ 二十三個族群的傳統服飾資料集" },
+    { "src": "screenshot-narrow-1.webp", "sizes": "780x1328", "type": "image/webp",
+      "form_factor": "narrow", "label": "首頁 ─ 二十二個縣市的代表" },
+    { "src": "screenshot-narrow-2.webp", "sizes": "780x1328", "type": "image/webp",
+      "form_factor": "narrow", "label": "服飾依據 ─ 二十三個族群的傳統服飾資料集" }
+  ],
   "shortcuts": [
     { "name": "服飾依據", "short_name": "服飾依據", "url": "costume.html",
       "icons": [{ "src": "icon-v1-192.png", "sizes": "192x192" }] }

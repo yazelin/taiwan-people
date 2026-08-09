@@ -805,6 +805,19 @@ section:has(>.hero){overflow-x:clip}
    之前用 margin-left:calc(var(--figw)+…) 寫在外層，但 --figw 在那一層拿不到值，
    calc 整條失效退回 auto，結果就置中疊到人物身上。跟著文字欄走就不會有這問題。
    高度也刻意壓成一行：這一段本來就比視窗高，再塞一塊大的會把市花清單推更遠。 */
+.offline{display:flex;align-items:baseline;flex-wrap:wrap;gap:.3rem .8rem;
+  margin:.55rem 0 0;padding:.55rem 1rem;
+  border:1px solid rgba(243,195,87,.4);
+  border-radius:10px;background:rgba(8,32,58,.72);text-align:left}
+.offline b{color:var(--gold);font-weight:700;letter-spacing:.04em}
+.offline span{flex:1 1 14rem;font-size:.88rem;opacity:.82;line-height:1.55}
+.offline button{flex:none;padding:.32rem .9rem;border-radius:999px;cursor:pointer;
+  border:1px solid rgba(243,195,87,.55);background:transparent;color:inherit;
+  font:inherit;font-size:.86rem;transition:.18s}
+.offline button:hover:not(:disabled){background:var(--gold);border-color:var(--gold);color:#10263c}
+.offline button:disabled{opacity:.55;cursor:default}
+.offline.done{border-color:rgba(191,234,245,.42)}
+.offline.done b{color:var(--foam)}
 .basis{display:flex;align-items:baseline;flex-wrap:wrap;gap:.3rem .8rem;
   margin:1rem 0 0;padding:.55rem 1rem;
   border:1px solid rgba(243,195,87,.4);
@@ -1014,6 +1027,11 @@ section:has(>.hero){overflow-x:clip}
         <span>二十三個族群的傳統服飾整理，每一筆都附官方或博物館出處</span>
         <em>翻開資料集 →</em>
       </a>
+      <div class="offline" id="dOffline" hidden>
+        <b id="dOffTitle">帶著走</b>
+        <span id="dOffMsg">下載全部底圖與配樂，之後沒有網路也能看。</span>
+        <button type="button" id="dOffBtn">下載離線包</button>
+      </div>
     </div>
   </div>
   <p class="foot">台灣，不只是地理上的位置，更是一種生活的態度。</p>
@@ -1096,7 +1114,7 @@ const SPLIT={"基隆市": {"b": "keelung-base", "places": ["基隆嶼", "和平�
 const NC_SRC={"table": "內政部移民署統計", "period": "截至 115 年 6 月", "url": "https://www.immigration.gov.tw/5385/7344/7350/8887/?alias=settledown"};
 /* 特別版：有 culture 欄的那些造型。鍵是縣市名，沒有特別版的縣市不會出現在這裡。
    由 tools/sync_split.py 產生，不要手改。 */
-const VARIANTS={"台東縣": [{"b": "taitung-pinuyumayan-base", "label": "卑南族", "culture": "pinuyumayan"}], "新竹縣": [{"b": "hsinchu-county-hakka-base", "label": "客家", "culture": "hakka"}], "苗栗縣": [{"b": "miaoli-hakka-base", "label": "客家", "culture": "hakka"}]};
+const VARIANTS={"台東縣": [{"b": "taitung-pinuyumayan-base", "label": "卑南族", "culture": "pinuyumayan"}], "新竹縣": [{"b": "hsinchu-county-hakka-base", "label": "客家", "culture": "hakka"}, {"b": "hsinchu-county-saysiyat-base", "label": "賽夏族", "culture": "saysiyat"}, {"b": "hsinchu-county-tayal-base", "label": "泰雅族", "culture": "tayal"}], "苗栗縣": [{"b": "miaoli-hakka-base", "label": "客家", "culture": "hakka"}], "花蓮縣": [{"b": "hualien-truku-base", "label": "太魯閣族", "culture": "truku"}], "南投縣": [{"b": "nantou-thao-base", "label": "邵族", "culture": "thao"}], "高雄市": [{"b": "kaohsiung-hlaalua-base", "label": "拉阿魯哇族", "culture": "hlaalua"}], "屏東縣": [{"b": "pingtung-paiwan-base", "label": "排灣族", "culture": "paiwan"}], "宜蘭縣": [{"b": "yilan-kavalan-base", "label": "噶瑪蘭族", "culture": "kavalan"}], "嘉義縣": [{"b": "chiayi-county-cou-base", "label": "鄒族", "culture": "cou"}]};
 const NUDGE={"基隆市":[86,-40],"台北市":[2,-74],"新竹市":[-128,-30],"嘉義市":[-150,-30]};
 /* 由北到南排：連江(馬祖) 26.2°N → 金門 24.4°N → 澎湖 23.6°N */
 const INSET={matsu:"連江縣",kinmen:"金門縣",penghu:"澎湖縣"};
@@ -1901,6 +1919,54 @@ if ("serviceWorker" in navigator) {
     } catch (_) { /* 不支援或被封鎖時照常運作，只是沒有離線 */ }
   });
 }
+
+/* 離線包。底圖 12.9MB 不進 precache（安裝要等很久），改成使用者自己按。
+   完成度一律問 SW 逐項實查——數 fetch 成功次數會謊報：配額不足或 SW 被回收時
+   cache.put 失敗而 fetch 照回 200。 */
+(() => {
+  const box = document.getElementById("dOffline");
+  const btn = document.getElementById("dOffBtn");
+  const msg = document.getElementById("dOffMsg");
+  const ttl = document.getElementById("dOffTitle");
+  if (!box || !("serviceWorker" in navigator)) return;
+
+  const ask = (type) => navigator.serviceWorker.controller?.postMessage({ type });
+
+  navigator.serviceWorker.addEventListener("message", (e) => {
+    const d = e.data || {};
+    if (d.type === "offline-progress") {
+      msg.textContent = `下載中 ${d.done}/${d.total}`;
+      return;
+    }
+    if (d.type !== "offline-status") return;
+    box.hidden = false;
+    const full = d.have >= d.want;
+    box.classList.toggle("done", full);
+    btn.disabled = false;
+    if (full) {
+      ttl.textContent = "已可離線";
+      msg.textContent = `${d.have} 個檔案都在裝置上了，沒有網路也能看。`;
+      btn.hidden = true;
+    } else {
+      ttl.textContent = "帶著走";
+      msg.textContent = btn.dataset.ran
+        ? `${d.have}/${d.want}，還差 ${d.want - d.have} 個沒存進來。`
+        : "下載全部底圖與配樂，之後沒有網路也能看。";
+      btn.hidden = false;
+      btn.textContent = btn.dataset.ran ? "再試一次" : "下載離線包（約 13 MB）";
+    }
+  });
+
+  btn.addEventListener("click", () => {
+    btn.disabled = true;
+    btn.dataset.ran = "1";
+    msg.textContent = "下載中…";
+    ask("offline-warm");
+  });
+
+  // controller 要等 SW 接管才有；首次造訪時 register 之後才會出現。
+  navigator.serviceWorker.ready.then(() => ask("offline-status"));
+})();
 </script>
 </body>
 </html>
