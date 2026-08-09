@@ -104,7 +104,8 @@
         "light": "west",
         "accessories": "a round enamel badge with a wordless anchor motif pinned to her jacket, small anchor-shaped earrings, and a cord lanyard with a plain wooden tag",
         "viewpoint": "standing on the rocky coastal path at Chaojing Park on the north shore",
-        "viewpoint_sees": "from here the volcanic cone of Keelung Islet sits out on the water, with the eroded sandstone shelf of Heping Island along the shore to the left"
+        "viewpoint_sees": "from here the volcanic cone of Keelung Islet sits out on the water, with the eroded sandstone shelf of Heping Island along the shore to the left",
+        "right_zone_desc": "The right 40 percent is the sea off Chaojing Park, built as FOUR depth bands: open sky graded to warm haze in the upper 45 percent with thin cloud bands; a pale haze band on the horizon; the ocean in broad soft value bands with one wide path of low glitter; and at the very bottom edge only, surf over the eroded sandstone shelf. Keelung Islet belongs on the LEFT."
       },
       "todo": [],
       "places": [
@@ -421,7 +422,8 @@
         "light": "west",
         "accessories": "an ID-card lanyard with a blank card at her chest, a small round enamel badge, and a beaded bracelet",
         "viewpoint": "standing on the crest of the Shimen Reservoir dam",
-        "viewpoint_sees": "from here the green reservoir lake stretches back between forested hills, with the ridges of Lalashan far behind in haze"
+        "viewpoint_sees": "from here the green reservoir lake stretches back between forested hills, with the ridges of Lalashan far behind in haze",
+        "right_zone_desc": "The right 40 percent is the Shimen Reservoir lake opening back between the hills, built as FOUR depth bands. (1) Open sky fills the upper 40 percent, graded from soft blue to warm pale haze, with thin cloud bands. (2) Three or four forested ridgelines layered one behind another, each paler than the one in front, with mist pooling in the valleys between them. (3) The lake surface in broad soft value bands, mirroring the ridges as soft pale reflections. (4) Nearest the bottom edge only, the near water with gentle current texture. No dam structures, boats, figures or hard dark shapes; the dam crest belongs on the LEFT."
       },
       "todo": [
         "查證 symbols.flower（決定髮花）"
@@ -634,7 +636,8 @@
         "accessories": "a plain cloth pouch at her hip, small jade drop earrings, and a cord with a plain wooden tag",
         "viewpoint": "standing in the lane of Beipu Old Street",
         "viewpoint_sees": "from here red-brick Hakka shophouses and tea rooms line both sides with tiled roofs layered behind and hills beyond",
-        "costume_basis": "原本是北部客家大襟衫，已移到特別版（新竹縣・客家）。普通版一律當代穿著、不穿任何族群的傳統服飾：普通版說的是「阿蕊在這個地方」，不對任何族群下宣稱；要穿傳統服飾就得指名族群、附依據，那是特別版的事。"
+        "costume_basis": "原本是北部客家大襟衫，已移到特別版（新竹縣・客家）。普通版一律當代穿著、不穿任何族群的傳統服飾：普通版說的是「阿蕊在這個地方」，不對任何族群下宣稱；要穿傳統服飾就得指名族群、附依據，那是特別版的事。",
+        "right_zone_desc": "The right 40 percent is the hills beyond Beipu, built as THREE depth bands: pale sky graded warm toward the horizon in the upper 45 percent with thin cloud bands; three or four tea-covered ridgelines layered one behind another, each paler than the one in front, with mist pooling between them; and nearest the bottom edge only, the last tiled roof ridges of the old street. No large trees or dark foliage masses crossing this zone."
       },
       "todo": [
         "白T上有花卉印花，資料寫的是白T。不影響地理或族群宣稱，下輪再處理。"
@@ -737,7 +740,8 @@
         "light": "east",
         "accessories": "a green jade pendant on a cord, a beaded wrist strand, and a small woven bamboo basket hanging from her arm",
         "viewpoint": "standing on the shore of the Toucheng coast facing the Pacific",
-        "viewpoint_sees": "from here the turtle-shaped Guishan Island floats offshore, with fishing boats and the dark ridge of the Central Range behind to the west"
+        "viewpoint_sees": "from here the turtle-shaped Guishan Island floats offshore, with fishing boats and the dark ridge of the Central Range behind to the west",
+        "right_zone_desc": "The right 40 percent is the Pacific off the Toucheng coast, built as FOUR depth bands. (1) Open sky fills the upper 45 percent, graded from soft blue to warm pale haze, with thin cloud bands. (2) A pale haze band on the horizon; the dark ridge of the Central Range does NOT appear here, it belongs behind the left side. (3) The ocean in broad soft horizontal value bands, paler at the horizon and deeper nearer the viewer, with one wide path of low glitter. (4) At the very bottom edge only, a thin line of surf over dark shore rock. No boats, figures or hard dark shapes; Guishan Island stays on the LEFT with the hero landmark."
       },
       "todo": [
         "查證 symbols.flower（決定髮花）"
@@ -841,7 +845,8 @@
         "accessories": "a plain cloth pouch at her hip, small silver drop earrings, and a white cross-body cloth strap",
         "viewpoint": "standing on the dry bed of the Da'an River below Huoyanshan",
         "viewpoint_sees": "from here the bare orange-red eroded ridges rise straight up across the river with pale hills behind",
-        "costume_basis": "原本是北部客家大襟衫，已移到特別版（苗栗縣・客家）。普通版一律當代穿著、不穿任何族群的傳統服飾：普通版說的是「阿蕊在這個地方」，不對任何族群下宣稱；要穿傳統服飾就得指名族群、附依據，那是特別版的事。"
+        "costume_basis": "原本是北部客家大襟衫，已移到特別版（苗栗縣・客家）。普通版一律當代穿著、不穿任何族群的傳統服飾：普通版說的是「阿蕊在這個地方」，不對任何族群下宣稱；要穿傳統服飾就得指名族群、附依據，那是特別版的事。",
+        "right_zone_desc": "The right 40 percent is the Da'an River bed opening downstream from this same viewpoint, built as FOUR depth bands with clearly different values. (1) Open sky fills the upper 40 percent, graded from soft blue to warm pale haze, with thin cloud bands. (2) Along the horizon, two or three pale hill ridges layered one behind another, each paler than the one in front, with mist pooling between them. (3) The far riverbed, its braided pale channels and gravel bars receding and losing detail with distance. (4) Nearest the bottom edge only, the near gravel with readable stone texture. The orange-red eroded cliffs belong on the LEFT with the hero landmark and must NOT continue across this zone as an even wall of the same texture."
       },
       "todo": [
         "查證 symbols.flower（決定髮花）"
@@ -952,7 +957,8 @@
         "light": "inland",
         "accessories": "two small round enamel badges with a wordless heart motif on her jacket, a backpack strap over one shoulder, and small hoop earrings",
         "viewpoint": "standing in the plaza in front of the National Taichung Theater",
-        "viewpoint_sees": "from here the theatre's curved white shell fills the mid-ground, with its broad paved entrance plaza, Summer Green Park across Huilai Road, and the modern towers of the Seventh Redevelopment Zone around it. There is no sea here; Gaomei Wetland and Miyahara are far away and must not appear"
+        "viewpoint_sees": "from here the theatre's curved white shell fills the mid-ground, with its broad paved entrance plaza, Summer Green Park across Huilai Road, and the modern towers of the Seventh Redevelopment Zone around it. There is no sea here; Gaomei Wetland and Miyahara are far away and must not appear",
+        "right_zone_desc": "The right 40 percent is the plaza opening east from the theatre, built as THREE depth bands: pale sky graded warm in the upper half with thin cloud bands; the low pale silhouette of the Seventh Redevelopment Zone towers along the horizon, flat and hazy with no readable window detail; and nearest the bottom edge only, the paved plaza and the crowns of the street trees. No large single building or high-contrast facade in this zone."
       },
       "todo": [],
       "places": [
@@ -1262,7 +1268,8 @@
         "light": "west",
         "accessories": "a woven straw cord bracelet, small gold hoop earrings, and a plain cloth pouch at her hip",
         "viewpoint": "standing on the bank of the Zhuoshui River beside the Xiluo Bridge",
-        "viewpoint_sees": "from here the long red steel truss bridge crosses the wide braided riverbed with farmland stretching flat behind. Beigang Chaotian Temple and Janfusun Fancyworld are far away and must not appear"
+        "viewpoint_sees": "from here the long red steel truss bridge crosses the wide braided riverbed with farmland stretching flat behind. Beigang Chaotian Temple and Janfusun Fancyworld are far away and must not appear",
+        "right_zone_desc": "The right 40 percent is the Zhuoshui River opening downstream from this same bank, built as FOUR depth bands, and the red truss bridge must NOT extend into it. (1) Open sky fills the upper half, graded from soft blue to warm pale haze, with thin cloud bands and nothing else. (2) A pale haze band on the horizon with the flat far bank and a line of windbreak trees, very low contrast. (3) The wide braided riverbed, its pale sand bars and shallow channels layering back and getting paler with distance. (4) Nearest the bottom edge, the near sand bar with grass tussocks catching low warm light. No bridge, no buildings, no figures and no vehicles in this zone."
       },
       "todo": [
         "查證 symbols.flower（決定髮花）"
@@ -1368,7 +1375,8 @@
         "light": "inland",
         "accessories": "a round enamel badge with a wordless timber-house motif, a beaded bracelet, and small stud earrings",
         "viewpoint": "standing among the timber houses of Hinoki Village",
-        "viewpoint_sees": "from here the dark Japanese-era cypress houses and their gardens layer back, with the stepped Sun-Shooting Tower rising above the trees behind"
+        "viewpoint_sees": "from here the dark Japanese-era cypress houses and their gardens layer back, with the stepped Sun-Shooting Tower rising above the trees behind",
+        "right_zone_desc": "The right 40 percent is a quiet opening within Hinoki Village, built as THREE depth bands. (1) Pale sky fills the upper half, graded warm toward the horizon, with thin cloud bands. (2) The tops of the cypress houses' dark tiled roofs and the crowns of the garden trees, layering back and getting paler with distance, none of them large or high-contrast. (3) Nearest the bottom edge only, the gravel path and low hedge in warm light. The Sun-Shooting Tower and any large single building belong on the LEFT and must not appear here."
       },
       "todo": [],
       "places": [
@@ -1469,7 +1477,8 @@
         "light": "inland",
         "accessories": "a woven bamboo basket on her arm, a cord bracelet, and small wooden drop earrings",
         "viewpoint": "standing at a viewing platform high on Alishan",
-        "viewpoint_sees": "from here the sea of clouds fills the valley below, with giant cypress trunks framing the view and the narrow-gauge red railcar curving along the slope"
+        "viewpoint_sees": "from here the sea of clouds fills the valley below, with giant cypress trunks framing the view and the narrow-gauge red railcar curving along the slope",
+        "right_zone_desc": "The right 40 percent is the sea of clouds filling the valley below Alishan, built as THREE depth bands: pale sky graded warm in the upper third with thin cloud bands; the far ridges rising above the cloud sea as pale flat silhouettes, layered and each paler than the one in front; and the cloud sea itself in broad soft value bands. No cypress trunks, railcar or figures in this zone — those belong on the LEFT."
       },
       "todo": [
         "查證 symbols.flower（決定髮花）"
@@ -1569,7 +1578,8 @@
         "light": "urban_west",
         "accessories": "a beaded bracelet, small gold drop earrings, and a plain cloth pouch hanging from her tote strap",
         "viewpoint": "standing in the old street in front of Chihkan Tower",
-        "viewpoint_sees": "from here the Dutch-era red-brick fort and its tiled pavilion roofs sit just behind, with the old street's eaves and lanterns to the left. Anping Fort, Cigu Salt Mountain and the sea are far away and must not appear"
+        "viewpoint_sees": "from here the Dutch-era red-brick fort and its tiled pavilion roofs sit just behind, with the old street's eaves and lanterns to the left. Anping Fort, Cigu Salt Mountain and the sea are far away and must not appear",
+        "right_zone_desc": "The right 40 percent is a quiet opening within this same old-street viewpoint: pale afternoon sky above the layered tiled roofs and plastered upper storeys of the old town, receding and getting paler with distance, with a slack string of lanterns high up and a swallow or two as the only detail. Low contrast and gently graded for text. NO sea, river, water, salt pans, distant mountains or open countryside appear in this zone — none of those is visible from a street in front of Chihkan Tower."
       },
       "todo": [],
       "places": [
@@ -1678,7 +1688,8 @@
         "accessories": "a round enamel badge with a wordless harbour-skyline motif, a beaded bracelet, and small hoop earrings",
         "viewpoint": "standing on the breakwater at Sizihwan",
         "viewpoint_sees": "from here the harbour mouth opens out with Cijin's lighthouse across the water and the city's towers along the far shore",
-        "foreground_layout": "The foreground breakwater and every concrete block are confined entirely to x=0–56 percent beneath and left of her, then exit through the bottom edge before x=56 percent. From x=60 percent all the way down to the bottom-right corner there is uninterrupted open water with no seawall, tetrapod, rock or other object"
+        "foreground_layout": "The foreground breakwater and every concrete block are confined entirely to x=0–56 percent beneath and left of her, then exit through the bottom edge before x=56 percent. From x=60 percent all the way down to the bottom-right corner there is uninterrupted open water with no seawall, tetrapod, rock or other object",
+        "right_zone_desc": "The right 40 percent is the mouth of Kaohsiung Harbour seen from this same breakwater, built as FOUR depth bands. (1) Open sky fills the upper 45 percent, graded from soft blue at the top edge to warm gold at the horizon, with two or three thin cloud bands. (2) Along the horizon, the far shore of the harbour as ONE continuous pale silhouette of low city towers and gantry cranes, flat and hazy, with no individual building readable. (3) The harbour water, its VALUE shifting in broad soft horizontal bands from pale near the far shore to deeper blue-green nearer the viewer, with one wide path of low sun-glitter running toward the lower right. (4) At the very bottom edge only, the breakwater's concrete blocks catching warm light. No cargo ships, no figures, no hard dark shapes. The water must read as large soft masses of light, NOT as an even allover ripple texture."
       },
       "todo": [],
       "places": [
@@ -1774,7 +1785,8 @@
         "accessories": "a cord necklace with a small shell, a plain cloth pouch on her tote strap, and small stud earrings",
         "viewpoint": "standing on the coral rock shore of Kenting",
         "viewpoint_sees": "from here turquoise water and palms stretch along the coast with the peak of Dajianshan rising inland behind",
-        "costume_basis": "原本是「彩色幾何織紋襯衫（橘綠藍條帶）＋多層串珠項鍊、長串珠耳環」，讀自原海報，對不回任何一族。屏東的排灣與魯凱都是階級社會，人形紋、人頭紋、百步蛇紋屬頭目與貴族，把類似的織紋當裝飾畫上去，等於在畫面上偽造一個身分（見 costume.json 的 _redlines 第一條）。改成南國海邊的當代日常。"
+        "costume_basis": "原本是「彩色幾何織紋襯衫（橘綠藍條帶）＋多層串珠項鍊、長串珠耳環」，讀自原海報，對不回任何一族。屏東的排灣與魯凱都是階級社會，人形紋、人頭紋、百步蛇紋屬頭目與貴族，把類似的織紋當裝飾畫上去，等於在畫面上偽造一個身分（見 costume.json 的 _redlines 第一條）。改成南國海邊的當代日常。",
+        "right_zone_desc": "The right 40 percent is the Kenting coast opening south, built as FOUR depth bands. (1) Open sky fills the upper 45 percent, graded from soft blue to warm pale haze, with thin cloud bands. (2) A pale haze band on the horizon with one far low headland silhouette. (3) The sea in broad soft value bands, turquoise nearer the shore shading to deep blue at the horizon, with one wide path of low glitter. (4) At the very bottom edge only, a thin line of surf over pale coral rock. The coral rock shelf and palms belong on the LEFT and must not continue across this zone."
       },
       "todo": [
         "查證 symbols.flower（決定髮花）",
@@ -1978,7 +1990,8 @@
         "accessories": "a plain cloth pouch at her hip, a cord necklace with a small pale wooden bead, and small stud earrings",
         "viewpoint": "standing on the shore at Sanxiantai",
         "viewpoint_sees": "from here the eight-arched footbridge curves out to the rocky island with the Pacific beyond",
-        "costume_basis": "原本是「黑色長版上衣配紅白幾何織紋滾邊與腰帶、多層串珠項鍊、長串珠耳環」，讀自原海報，對不回任何一族。台東境內有卑南、阿美、排灣、布農、達悟、魯凱、噶瑪蘭七族，達悟是白黑藏青的簡樸系統、卑南是紅黃綠加花環，兩者放進同一件衣服就是兩族都錯。改成海邊的當代日常。台東的族服造型見 culture 欄的筆數。"
+        "costume_basis": "原本是「黑色長版上衣配紅白幾何織紋滾邊與腰帶、多層串珠項鍊、長串珠耳環」，讀自原海報，對不回任何一族。台東境內有卑南、阿美、排灣、布農、達悟、魯凱、噶瑪蘭七族，達悟是白黑藏青的簡樸系統、卑南是紅黃綠加花環，兩者放進同一件衣服就是兩族都錯。改成海邊的當代日常。台東的族服造型見 culture 欄的筆數。",
+        "right_zone_desc": "The right 40 percent is the Pacific off Sanxiantai, built as FOUR depth bands: open sky graded to warm haze in the upper 45 percent with thin cloud bands; a pale haze band on the horizon; the ocean in broad soft value bands with one wide path of low glitter; and at the very bottom edge only, surf over the andesite pebble beach. The eight-arched bridge belongs on the LEFT."
       },
       "todo": [
         "查證 symbols.flower（決定髮花）"
@@ -2080,7 +2093,8 @@
         "light": "west",
         "accessories": "a cord necklace strung with small shells, a beaded bracelet, and small shell drop earrings",
         "viewpoint": "standing on the clifftop above the twin-heart stone weir on Qimei",
-        "viewpoint_sees": "from here the heart-shaped fish trap lies in the shallow turquoise water below, with basalt cliffs along the coast"
+        "viewpoint_sees": "from here the heart-shaped fish trap lies in the shallow turquoise water below, with basalt cliffs along the coast",
+        "right_zone_desc": "The right 40 percent is the shallow water beyond the stone weir, built as THREE depth bands: open sky graded to warm haze in the upper half with thin cloud bands; a pale haze band on the horizon with one far basalt islet silhouette; and the turquoise shallows in broad soft value bands, paler over sand and deeper over the channel. The twin-heart weir belongs on the LEFT."
       },
       "todo": [],
       "places": [
@@ -2180,7 +2194,8 @@
         "light": "west",
         "accessories": "a plain canvas satchel strap across her chest, a beaded bracelet, and small gold stud earrings",
         "viewpoint": "standing at the edge of a field at a village entrance",
-        "viewpoint_sees": "from here a stone Wind Lion God stands guard in the foreground with a southern-Fujian red-brick village of swallowtail roofs behind"
+        "viewpoint_sees": "from here a stone Wind Lion God stands guard in the foreground with a southern-Fujian red-brick village of swallowtail roofs behind",
+        "right_zone_desc": "The right 40 percent is the Taiwan Strait seen across the fields from this same village edge, built as FOUR depth bands. (1) Open sky fills the upper half, graded from soft blue to warm pale haze at the horizon, with two or three thin cloud bands. (2) A pale haze band on the horizon carrying the low flat silhouette of a far islet. (3) The strait's calm water in broad soft horizontal value bands, paler at the horizon and deeper nearer the viewer. (4) Nearest the bottom edge, the last strip of the sorghum field and a low granite field wall, warm and low-contrast. No boats, figures, buildings, military structures, slogans or hard dark shapes."
       },
       "todo": [
         "查證 symbols.flower（決定髮花）"
@@ -2275,7 +2290,8 @@
         "light": "west",
         "accessories": "a plain rope necklace with a small stone pendant, a beaded bracelet, and small silver drop earrings",
         "viewpoint": "standing on the slope above Qinbi village",
-        "viewpoint_sees": "from here the stone houses stack down the hillside to the cove, with the open sea and a small green island beyond"
+        "viewpoint_sees": "from here the stone houses stack down the hillside to the cove, with the open sea and a small green island beyond",
+        "right_zone_desc": "The right 40 percent is the sea beyond Qinbi cove, built as FOUR depth bands: open sky graded to warm haze in the upper 45 percent with thin cloud bands; a pale haze band on the horizon; the sea in broad soft value bands with one wide path of low glitter; and at the very bottom edge only, the last granite roofs stepping down toward the water. The green islet stays low and far."
       },
       "todo": [
         "查證 symbols.flower（決定髮花）"
