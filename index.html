@@ -470,18 +470,41 @@ section:has(>.hero){overflow-x:clip}
    再加白只會多一塊白斑；把那一小片背景糊掉才是對症。
    輕微的 brightness 與淡白底負責把對比再拉開一點，遮罩讓四邊自然消失，
    模糊池不會有可見的方框。 */
-.split-top::before,.split-side::before{content:"";position:absolute;
-  inset:-14% -12%;z-index:-1;pointer-events:none;
-  -webkit-backdrop-filter:blur(7px) brightness(1.07);
-  backdrop-filter:blur(7px) brightness(1.07);
-  background:rgba(249,252,254,.4);
-  /* 橢圓中心貼右緣：模糊在右側維持全強度，直接跑出海報邊界，
-     那一側就沒有界線可看。置中的遮罩會在右邊留一道「糊→清晰」的接縫，
-     西螺大橋橫跨過去時特別明顯。 */
-  -webkit-mask-image:radial-gradient(100% 50% at 96% 50%,
-    #000 0%,#000 46%,rgba(0,0,0,.5) 78%,transparent 100%);
-  mask-image:radial-gradient(100% 50% at 96% 50%,
-    #000 0%,#000 46%,rgba(0,0,0,.5) 78%,transparent 100%)}
+/* 文字帶的底。原本是兩塊各自的橢圓遮罩（.split-top 與 .split-side 各一個），
+   兩個橢圓在中間重疊、上下又各自收邊，密度不均，接縫看得出來。
+   而且用了 backdrop-filter:blur —— 遮罩切到哪裡，「糊」與「清晰」就在那裡斷開，
+   有橫向物件穿過去時特別明顯（西螺大橋那張）。
+
+   改成整片一層、只用漸層、不做模糊：
+   - 一層而不是兩層，中間不會有重疊造成的濃淡
+   - 橫向從 32% 才開始起漸層，到右緣才最濃，跨度夠長就看不出起點
+   - 上下再用一層 mask 讓它在畫面上下緣淡出，避免壓到天空與前景的邊
+   - 不用 blur：沒有模糊就沒有「糊/清晰」的邊界可看 */
+.split::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  /* 橫向：起點與終點的斜率都是 0（smoothstep），所以漸層開始的地方沒有起始線。
+     線性漸層在起點會有斜率突變，眼睛會把那裡讀成一道淡淡的邊。 */
+  background:linear-gradient(to right,
+    rgba(250,253,255,0.000) 28%,
+    rgba(250,253,255,0.027) 36%,
+    rgba(250,253,255,0.098) 44%,
+    rgba(250,253,255,0.202) 52%,
+    rgba(250,253,255,0.325) 60%,
+    rgba(250,253,255,0.455) 68%,
+    rgba(250,253,255,0.578) 76%,
+    rgba(250,253,255,0.682) 84%,
+    rgba(250,253,255,0.753) 92%,
+    rgba(250,253,255,0.780) 100%);
+  /* 縱向：上下都收到完全透明，一樣用 smoothstep 收邊，跟原圖無縫接上 */
+  -webkit-mask-image:linear-gradient(to bottom,
+    rgba(0,0,0,0) 0%,rgba(0,0,0,.104) 2%,rgba(0,0,0,.352) 4%,
+    rgba(0,0,0,.648) 6%,rgba(0,0,0,.896) 8%,#000 10%,
+    #000 86%,rgba(0,0,0,.896) 89%,rgba(0,0,0,.648) 92%,
+    rgba(0,0,0,.352) 94%,rgba(0,0,0,.104) 97%,rgba(0,0,0,0) 100%);
+  mask-image:linear-gradient(to bottom,
+    rgba(0,0,0,0) 0%,rgba(0,0,0,.104) 2%,rgba(0,0,0,.352) 4%,
+    rgba(0,0,0,.648) 6%,rgba(0,0,0,.896) 8%,#000 10%,
+    #000 86%,rgba(0,0,0,.896) 89%,rgba(0,0,0,.648) 92%,
+    rgba(0,0,0,.352) 94%,rgba(0,0,0,.104) 97%,rgba(0,0,0,0) 100%)}
 .split-top,.split-side{z-index:1}
 .split-side{position:absolute;right:3.4%;top:20%;width:37%;
   display:flex;flex-direction:column;gap:2.2cqw;
@@ -519,7 +542,7 @@ section:has(>.hero){overflow-x:clip}
   .split{position:static;container-type:normal;
     background:linear-gradient(180deg,#f8fbfe,#e9f2f9);
     padding:.9rem 1.05rem 4rem}   /* 下方預留切換鈕的位置（鈕 42px＋上下間隙） */
-  .split-top::before,.split-side::before{display:none}
+  .split::after{display:none}          /* 手機文字在圖外，不需要這層 */
   .split-top{position:static;width:auto;text-align:left;
     display:flex;align-items:baseline;gap:.65rem}
   .split-top h3{font-size:1.35rem}
