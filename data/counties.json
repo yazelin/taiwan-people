@@ -211,7 +211,8 @@
         "light": "inland",
         "accessories": "two small round enamel badges with wordless city-skyline motifs on her jacket, and small hoop earrings",
         "viewpoint": "standing on the Elephant Mountain trail on the city's south-east edge — the classic Taipei viewpoint",
-        "viewpoint_sees": "from here Taipei 101 rises straight out of the dense city basin below, with the whole grid of buildings around its base, and the Yangmingshan ridges lying low along the horizon behind it. Beitou is not visible from here and must not appear"
+        "viewpoint_sees": "from here Taipei 101 rises straight out of the dense city basin below, with the whole grid of buildings around its base, and the Yangmingshan ridges lying low along the horizon behind it. Beitou is not visible from here and must not appear",
+        "right_zone_desc": "The right 40 percent is the far side of the Taipei Basin seen from this same trail, and it is built as FOUR clearly separated depth bands, each markedly paler than the one below it. (1) Open sky fills the upper half, graded from soft blue at the top edge to warm pale haze at the horizon, carrying two or three thin horizontal cloud bands and nothing else. (2) Along the horizon, the low Yangmingshan ridgeline as ONE continuous flat silhouette, very pale, with no visible texture, trees or buildings on it. (3) Below the ridge, the far city dissolved into soft grey-lilac haze where individual buildings are NO LONGER readable — a texture of light, not a field of boxes. (4) Only at the very bottom edge, the last few readable rooftops, still far lower in contrast than the left side. The city must get rapidly paler and less distinct with distance. It must NOT continue at full contrast and equal sharpness across this zone, and there must be no large individual towers, no repeated same-sized building blocks and no foreground foliage crossing it."
       },
       "todo": [],
       "places": [
@@ -319,7 +320,8 @@
         "light": "west",
         "accessories": "a cord lanyard with a plain wooden tag hanging at her chest, a beaded bracelet, and small drop earrings",
         "viewpoint": "standing on the walkway out along Yehliu Cape",
-        "viewpoint_sees": "from here the mushroom rocks and honeycomb sandstone spread across the cape with the open sea beyond; Tamsui and Wulai are far away and must not appear"
+        "viewpoint_sees": "from here the mushroom rocks and honeycomb sandstone spread across the cape with the open sea beyond; Tamsui and Wulai are far away and must not appear",
+        "right_zone_desc": "The right 40 percent is the open sea off Yehliu Cape seen from this same walkway, and it is built as FOUR clearly separated depth bands. (1) Open sky fills the upper 45 percent, graded from soft blue at the top edge to warm pale haze at the horizon, carrying two or three thin horizontal cloud bands. (2) A pale haze band sitting on the horizon line, with at most ONE small distant headland silhouette placed low and far to the right. (3) The sea itself, its VALUE shifting in broad soft horizontal bands from pale near the horizon to a deeper blue-green nearer the viewer, with one wide gentle path of reflected light running toward the lower right corner. (4) At the very bottom edge only, a thin line of surf breaking over the cape's rock shelf. The water must read as large soft masses of light and shade. It must NOT be covered edge to edge in a uniform allover ripple texture of the same size and contrast — that reads as stretched wallpaper, not as sea. No boats, figures, buildings or hard dark shapes."
       },
       "todo": [],
       "places": [
