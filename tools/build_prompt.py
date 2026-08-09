@@ -141,6 +141,22 @@ def costume_block(c):
                      + p["rank"] + " ")
     parts.append("Do not add ornament from any other Taiwanese people: no other people's "
                  "weave patterns, head-dress, feathers or bead work. ")
+    # 實測兩張特別版都退回模型熟悉的「民族風／戲服」樣板：卑南族被畫成及地長袍長裙
+    # （短身上衣變長袍、護腿布片被裙子蓋住看不見），客家大襟衫被畫成立領盤扣對襟
+    # ——盤扣正是 costume_basis 裡標記為錯誤的那一項。
+    # 光把正確的形制寫出來不夠，要把錯誤的版本明確否定掉。
+    parts.append(
+        "CONSTRUCTION IS NOT DECORATION — draw the garment shapes exactly as described "
+        "above, not a generic 'ethnic costume' or stage-opera silhouette. "
+        "If a garment is described as short-bodied, it must NOT become a full-length robe. "
+        "If a skirt length is given, it must NOT become floor-length. "
+        "If the front opening is described as asymmetric and fastening to one side, it must "
+        "NOT be drawn as a symmetrical centre-front opening. "
+        "If the fastenings are described as straight cloth-strip buttons, they must NOT be "
+        "drawn as knotted frog closures. "
+        "Every layer named above must remain visible in the finished picture — do not let an "
+        "outer garment cover and hide a layer that was listed, especially leg-cloths and "
+        "chest-cloths. ")
     return "".join(parts)
 
 
@@ -208,6 +224,12 @@ def build(c):
         + f"ONE HERO LANDMARK: {s['hero_landmark_en']}. It sits in the MID-GROUND behind and "
         "beside her, large enough to read clearly, the most sharply lit and highest-contrast "
         "thing after her face — the single thing the eye lands on second. "
+        # 野柳那次：女王頭是單一小物件，剛好落在她舉起的右手旁邊，
+        # 看起來像她手上舉著一塊蜂窩岩。地標大範圍（老街、城市）時不會有這個問題，
+        # 單一物件時一定要把它跟手推開。
+        "The landmark must be clearly SEPARATED from her raised right hand and from whatever "
+        "she is holding — leave open background between them so it never reads as an object "
+        "she is carrying, balancing or holding up. It belongs to the scenery, not to her. "
         # ── 豐富的配角 ──
         + (f"A RICH SUPPORTING WORLD, all at LOWER contrast than the hero: {others}. "
            if others else "A RICH SUPPORTING WORLD, all at LOWER contrast than the hero. ")
@@ -241,19 +263,32 @@ def build(c):
            "graded for text. No sea, water, salt pans, mountains, distant landmarks, figures, vehicles, "
            "signs, lanterns, trees or roof silhouettes appear in this zone. "
            if s.get("right_zone") == "city_sky" else
+           # 這三段原本寫成一連串的「不准有」，模型照做的結果就是一片死白霧。
+           # 台北、台東、新北、新竹縣都栽在這裡。現在改成先要求實質內容再列禁令——
+           # 禁令留著（那是防地理錯誤用的），但不再是全部。
            "This county is INLAND — there is NO SEA anywhere in the picture. The right 40 "
-           "percent contains no buildings, figures, objects, rooftops, nearby trees, vegetation "
-           "or dark foreground slopes. It is open sky over only low, pale receding ridges fading "
-           "into haze, layer behind layer, staying pale and light from top to bottom. "
+           "percent is open sky over low receding ridges, and it must NOT be a flat empty wash. "
+           "Give it real substance at LOW contrast: three or four ridgelines layered one behind "
+           "another, each paler than the one in front, mist pooling in the valleys between them, "
+           "and banded cloud with soft edges in the sky above. No buildings, figures, objects, "
+           "rooftops, nearby trees, vegetation, dark foreground slopes or hard dark shapes. "
+           "It should read as calm depth with things to look at, not as blank paper. "
            if s.get("right_zone", "sea") == "sky" else
-           "The right 40 percent contains no buildings, figures, objects, land, shoreline, rocks "
-           "or vegetation. It is calm open river water meeting a soft hazy sky. Any sunlight "
-           "glitter stays LOW near the horizon; the middle stays smooth and even because text "
-           "goes over it. "
+           "The right 40 percent is calm open river water meeting sky, and it must NOT be a flat "
+           "empty wash. Give it real substance at LOW contrast: banded cloud with soft edges high "
+           "up, a paler haze band along the far bank, gentle current texture on the water and long "
+           "soft reflected light bands. No buildings, figures, boats, objects, land, shoreline, "
+           "rocks, vegetation or hard dark shapes. Any sunlight glitter stays LOW near the horizon "
+           "so the middle stays even for text. "
            if s.get("right_zone") == "river" else
-           "The right 40 percent contains no buildings, figures, objects, land, shoreline, rocks "
-           "or vegetation. It is calm open water meeting a soft hazy sky. Any sunlight glitter "
-           "stays LOW near the horizon; the middle stays smooth and even because text goes over it. ")
+           "The right 40 percent is calm open water meeting sky, and it must NOT be a flat empty "
+           "wash. Give it real substance at LOW contrast: banded cloud layers with soft edges high "
+           "up, a paler haze band at the horizon, gentle swell texture and long soft reflected "
+           "light bands on the water, and — only if it is genuinely visible from this viewpoint — "
+           "one far, pale headland or islet low on the horizon. No figures, boats, vehicles, signs, "
+           "buildings, rocks, vegetation or hard dark shapes. Any sunlight glitter stays LOW near "
+           "the horizon so the middle stays even for text. It should read as calm depth with "
+           "things to look at, not as blank paper. ")
         + "The top 22 percent of the right half is open sky with nothing in it — her hair does "
         "reach the top of the frame on the left, which is intended. "
         "NO TEXT ANYWHERE: no headline, captions, panels, photo tiles, icon badges, coloured "
