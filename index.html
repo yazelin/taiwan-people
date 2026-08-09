@@ -26,7 +26,17 @@
 <meta name="twitter:description" content="二十二個縣市，二十二種活法。同一個角色走過每一個地方。">
 <meta name="twitter:image" content="https://yazelin.github.io/taiwan-people/img/og.jpg">
 <meta name="author" content="林亞澤">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='25' x='2' font-size='24'%3E%E5%8F%B0%3C/text%3E%3C/svg%3E">
+<!-- 每個可能被單獨開啟或分享的頁都是入口，manifest / icon / SW 三樣都要各自掛。
+     mobile-web-app-capable 是 Chrome 認的那個；只放已棄用的 apple- 版不算，
+     症狀是「Android 選單裡根本沒有安裝應用程式這一項」。 -->
+<link rel="manifest" href="manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="台灣人代表">
+<link rel="apple-touch-icon" href="icon-v1-192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-v1-192.png">
 <style>
 /* ── tokens ─────────────────────────────────────────────── */
 :root{
@@ -1868,6 +1878,29 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
     requestAnimationFrame(draw);
   })();
 })();
+</script>
+<script>
+/* 自動重載要監聽 controllerchange，不是 state === "installed"——後者新 SW 還沒接管，
+   這時 reload 仍被舊 SW 控制、拿到舊快取。
+
+   但光監聽 controllerchange 不夠：sw.js 在 install 呼叫 skipWaiting、activate 呼叫
+   clients.claim，所以**第一次造訪**的頁面會從「沒有 SW 控制」變成「被控制」，
+   controllerchange 照樣會觸發，於是剛載完就整頁重載一次，捲動位置與展開的卡片全沒了。
+   所以要在 register 之前先記下當時有沒有 controller，沒有就代表是首次造訪，不重載。 */
+if ("serviceWorker" in navigator) {
+  addEventListener("load", async () => {
+    const hadController = !!navigator.serviceWorker.controller;
+    try {
+      await navigator.serviceWorker.register("sw.js");
+      let reloading = false;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (!hadController || reloading) return;   // 首次造訪不重載
+        reloading = true;
+        location.reload();
+      });
+    } catch (_) { /* 不支援或被封鎖時照常運作，只是沒有離線 */ }
+  });
+}
 </script>
 </body>
 </html>
