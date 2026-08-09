@@ -198,7 +198,11 @@ def build(c):
         f"face and build. Dress her instead in: {s['outfit']}. "
         + costume_block(c)
         + "Keep the canvas tote bag. "
-        f"ON HER: {s.get('accessories', '')}. These small details matter — she should look "
+        # tote_print 原本只有 --fix-tote-print 讀得到，build() 沒用它——
+        # 等於正式生成時提袋印花一律由模型自由發揮。新竹市那次就發明出一張
+        # 像剪貼素材的 IC 晶片示意圖，而且對不回任何一筆 landmarks。
+        + (f"THE TOTE'S PRINT: {s['tote_print']}. " if s.get("tote_print") else "")
+        + f"ON HER: {s.get('accessories', '')}. These small details matter — she should look "
         "lived-in and specific, not stripped down. "
         "If the outfit includes a hat, her hair is fully contained under it, never poking "
         "through the crown. "

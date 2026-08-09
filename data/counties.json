@@ -502,12 +502,12 @@
         ],
         "hand": "a small bowl of clear soup with springy pork meatballs",
         "hand_zh": "貢丸湯",
-        "outfit_zh": "白色棒球外套、黑色帽T（電路板圖案）、金色髮夾",
-        "outfit": "a white varsity jacket over a black hoodie printed with a wordless circuit-board pattern",
+        "outfit_zh": "白色棒球外套、素面黑色帽T",
+        "outfit": "a white varsity jacket with navy trim over a plain black hoodie with no print on it",
         "hair": "a pink azalea tucked into her neat high bun",
         "hair_zh": "杜鵑花（新竹市花）＋丸子頭",
         "hair_basis": "symbols.flower",
-        "accessory_basis": "金髮夾已刪：純裝飾，對不回任何欄位。",
+        "accessory_basis": "金髮夾已刪：純裝飾，對不回任何欄位。\n電路板／IC 晶片圖案已刪（原本出現在帽T、徽章與提袋）：那對回的是科學園區，而新竹市的 landmarks 是十八尖山、南寮漁港、新竹都城隍廟，沒有科學園區——違反硬規則六「配件必須對得回 symbols 或 scene.landmarks，對不回就拿掉」。\n現在徽章與提袋都用城隍廟（hero_landmark），與高雄的旗津燈塔提袋同一套做法。",
         "right_zone": "city_sky",
         "landmarks_en": [
           "Shibajianshan, a low forested hill park of shaded walking paths",
@@ -523,13 +523,15 @@
           "Nanliao fishing harbour with its long white arched footbridge"
         ],
         "light": "west",
-        "accessories": "a round enamel badge with a wordless circuit-board motif, a cord lanyard with a plain tag, and small stud earrings",
+        "accessories": "a round enamel badge printed with a wordless line drawing of a tiered swallowtail temple roof, a cord lanyard with a plain wooden tag, and small stud earrings",
         "viewpoint": "standing in the plaza in front of the Hsinchu City God Temple",
         "viewpoint_sees": "from here the temple's swallowtail eaves and stone lions fill the mid-ground with food stalls and old shophouses around it",
-        "right_zone_desc": "The right 40 percent is a plausible quiet opening within this same temple-plaza viewpoint: pale sky above the low tiled roofs and plastered upper storeys of the shophouses that ring the plaza, receding and getting paler with distance, with a string of slack festival lanterns high up as the only detail. Low contrast and gently graded for text. No sea, harbour, bridge, water, shoreline or distant mountains appear in this zone."
+        "right_zone_desc": "The right 40 percent is a plausible quiet opening within this same temple-plaza viewpoint: pale sky above the low tiled roofs and plastered upper storeys of the shophouses that ring the plaza, receding and getting paler with distance, with a string of slack festival lanterns high up as the only detail. Low contrast and gently graded for text. No sea, harbour, bridge, water, shoreline or distant mountains appear in this zone.",
+        "tote_print": "a complete wordless line illustration of the Hsinchu City God Temple — its tiered swallowtail roof ridges, the carved eaves brackets and one stone lion — drawn in a single ink colour, filling the bag panel as a finished graphic with no text, no letters, no logo, no border and no blank patches"
       },
       "todo": [
-        "查證 symbols.flower（決定髮花）"
+        "查證 symbols.flower（決定髮花）",
+        "底圖與資料已不符（印花欄改過），img/<id>-base.webp 需要重生"
       ],
       "places": [
         "十八尖山",
