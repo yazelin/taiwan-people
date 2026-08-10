@@ -900,8 +900,8 @@ code{font-size:.92em;background:#f2eee4;border-radius:3px;padding:.05em .35em}
 
   <section id="redlines" class="wrap">
     <div class="sechead">
-      <h2>五條紅線</h2>
-      <p>這五條不是風格建議，是踩到就會出事的地方。有些是文化規範，有些是法律，有些兩者都是。</p>
+      <h2 id="rl-title">紅線</h2>
+      <p><span id="rl-count"></span>不是風格建議，是踩到就會出事的地方。有些是文化規範，有些是法律，有些兩者都是。</p>
     </div>
     <div class="redlines" id="redlines-list"></div>
   </section>
@@ -967,6 +967,9 @@ code{font-size:.92em;background:#f2eee4;border-radius:3px;padding:.05em .35em}
 <script>
 const CAT = {indigenous:'原住民族', pingpu:'平埔族群', han:'漢人族群'};
 const KIND = {official:'官方', museum:'典藏', research:'調查'};
+const NUM = ['零','一','二','三','四','五','六','七','八','九','十'];
+// 資料裡用 **粗體** 標重點。一定要先跳脫再轉標籤，反過來等於開了注入口。
+const md = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
 const esc = (s) => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 let DATA = null, filterCat = 'all', filterArea = '';
@@ -991,7 +994,7 @@ function render(){
       <div class="no">${i+1}</div>
       <div>
         <h3>${esc(r.title)}</h3>
-        <p>${esc(r.body)}</p>
+        <p>${md(r.body)}</p>
         ${r.sources.length ? `<div class="refs">${r.sources.map(srcLink).join('')}</div>` : ''}
       </div>
     </article>`).join('');
@@ -1013,7 +1016,11 @@ function render(){
       <td>${esc(c.note || '')}</td></tr>`).join('');
 
   document.getElementById('gaplist').innerHTML = DATA.peoples.filter(p => p.gaps).map(p => `
-    <article class="gapitem"><h3>${esc(p.name)}</h3><p>${esc(p.gaps)}</p></article>`).join('');
+    <article class="gapitem"><h3>${esc(p.name)}</h3><p>${md(p.gaps)}</p></article>`).join('');
+
+  const rlN = DATA._redlines.length;   // 不能叫 n，render() 裡已經有一個了
+  document.getElementById('rl-title').textContent = `${NUM[rlN] || rlN}條紅線`;
+  document.getElementById('rl-count').textContent = `這${NUM[rlN] || rlN}條`;
 
   drawGrid();
   openFromHash();

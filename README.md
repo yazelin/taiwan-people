@@ -49,6 +49,7 @@ python3 -m http.server 8901
 | `index.html` | 整個網站，含資料表、地圖路徑與所有樣式 |
 | `costume.html` | 服飾依據頁。讀 `data/costume.json` 渲染，不用建置 |
 | `newcomers.html` | 新住民人數依據頁。讀 `data/newcomers.json` 渲染，不用建置 |
+| `counties.html` | 縣市查證頁。讀 `data/counties.json` 渲染，象徵逐格標可信度 |
 | `data/costume.json` | 各族群傳統服飾資料集，**創作依據的唯一事實來源** |
 | `data/sources/` | 各官方頁面的原文存檔，防連結爛掉 |
 | `img/<poster>.webp` | 21 張原始海報（22 縣市共用，新竹與嘉義各一對共用） |
