@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>縣市依據 ─ 台灣人代表的查證紀錄</title>
+<meta name="description" content="二十二個縣市的市花、市樹、市鳥查證結果，逐格標示可信度層級；還有髮飾與配件的依據、引句取自海報哪裡改了什麼、以及查不到的部分。">
+<meta name="theme-color" content="#fbf8f2">
+<link rel="canonical" href="https://yazelin.github.io/taiwan-people/counties.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="台灣人代表">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://yazelin.github.io/taiwan-people/counties.html">
+<meta property="og:title" content="縣市依據 ─ 台灣人代表的查證紀錄">
+<meta property="og:description" content="市花市樹市鳥逐格標可信度，配件對不回資料的一律刪掉，引句改了什麼都記著。查不到的也照實寫。">
+<meta property="og:image" content="https://yazelin.github.io/taiwan-people/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="縣市依據頁：各縣市象徵的查證結果與可信度">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="縣市依據 ─ 台灣人代表的查證紀錄">
+<meta name="twitter:description" content="二十二個縣市的象徵查證結果，逐格標示可信度層級，查不到的也照實寫出來。">
+<meta name="twitter:image" content="https://yazelin.github.io/taiwan-people/img/og.jpg">
+<meta name="author" content="林亞澤">
+<!-- 每個可能被單獨開啟或分享的頁都是入口，manifest / icon / SW 三樣都要各自掛。 -->
+<link rel="manifest" href="manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="台灣人代表">
+<link rel="apple-touch-icon" href="icon-v1-192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-v1-192.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "台灣人代表縣市查證紀錄",
+  "alternateName": "縣市依據 ─ 台灣人代表的查證紀錄",
+  "description": "二十二個縣市的市花、市樹、市鳥查證結果，逐格標示可信度層級（已對官方原始出處／維基且附政府引註／僅維基／未指定），並記錄角色髮飾與配件的依據、引句取自原海報何處與改動理由，以及尚未查證的項目。",
+  "url": "https://yazelin.github.io/taiwan-people/counties.html",
+  "inLanguage": "zh-Hant-TW",
+  "keywords": ["縣市象徵", "市花", "市樹", "市鳥", "查證", "資料可信度"],
+  "creator": {"@type": "Person", "name": "林亞澤", "url": "https://yazelin.github.io/"},
+  "isAccessibleForFree": true,
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "encodingFormat": "application/json",
+      "contentUrl": "https://yazelin.github.io/taiwan-people/data/counties.json"
+    }
+  ]
+}
+</script>
+<style>
+:root{
+  --paper:#fbf8f2;
+  --card:#ffffff;
+  --ink:#16293c;
+  --ink2:#5a6d80;
+  --ink3:#8b9aa8;
+  --line:#e6e0d4;
+  --line2:#f0ebe0;
+  --blue:#0f5f8f;
+  --clay:#a8582f;
+  --moss:#5c7a45;
+  --amber:#9a7420;
+  --serif:"Noto Serif CJK TC","Source Han Serif TC","Noto Serif TC",
+          "PingFang TC","蘋方-繁","Microsoft JhengHei",serif;
+  --sans:"Noto Sans CJK TC","Source Han Sans TC","PingFang TC",
+         "Microsoft JhengHei","Helvetica Neue",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);
+  line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:var(--blue);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--clay)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:3px}
+.wrap{width:min(1080px,92vw);margin-inline:auto}
+
+.nav{position:sticky;top:0;z-index:40;background:rgba(251,248,242,.92);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:1rem;padding:.7rem 0;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:.55rem;text-decoration:none;color:var(--ink)}
+.brand img{height:24px;width:auto;max-width:none;flex:none}
+.brand small{font-size:.6rem;letter-spacing:.2em;color:var(--ink3);font-weight:600}
+.nav nav{display:flex;gap:1.2rem;font-size:.86rem;flex-wrap:wrap}
+.nav nav a{color:var(--ink2);text-decoration:none}
+.nav nav a:hover{color:var(--blue)}
+
+.hero{padding:clamp(3rem,8vw,6rem) 0 clamp(1.6rem,3vw,2.4rem)}
+.kicker{font-size:.72rem;font-weight:700;letter-spacing:.3em;color:var(--amber);margin-bottom:1.1rem}
+h1{font-family:var(--serif);font-weight:900;line-height:1.22;letter-spacing:.02em;
+  font-size:clamp(2.1rem,5.4vw,3.5rem)}
+.lede{font-family:var(--serif);font-size:clamp(1rem,1.42vw,1.16rem);
+  max-width:42em;margin-top:1.3rem;color:#2c4257}
+.lede + .lede{margin-top:.8rem}
+.stats{display:flex;flex-wrap:wrap;gap:1.6rem;margin-top:2.2rem;
+  padding-top:1.4rem;border-top:1px solid var(--line)}
+.stat b{display:block;font-family:var(--serif);font-size:1.6rem;font-weight:900;line-height:1.2}
+.stat span{font-size:.76rem;letter-spacing:.1em;color:var(--ink3)}
+
+section{padding:clamp(2.4rem,5vw,3.6rem) 0}
+.sechead{margin-bottom:1.8rem;padding-bottom:1rem;border-bottom:1px solid var(--line)}
+.sechead h2{font-family:var(--serif);font-weight:900;letter-spacing:.03em;
+  font-size:clamp(1.45rem,2.6vw,2rem)}
+.sechead p{color:var(--ink2);max-width:46em;margin-top:.5rem;font-size:.94rem}
+
+.disclaim{border:1px solid var(--line);border-radius:4px;background:var(--card);
+  padding:1.15rem 1.35rem;font-size:.92rem;color:var(--ink2);max-width:52em}
+.disclaim b{color:var(--ink)}
+
+/* 可信度四級。用顏色分，但顏色不是唯一線索——每個籤都帶文字，
+   色盲或列印成黑白時仍然讀得出來。 */
+.lv{font-size:.7rem;line-height:1.7;border:1px solid var(--line);border-radius:3px;
+  padding:0 .4rem;color:var(--ink2);background:var(--paper);white-space:nowrap}
+.lv.official{border-color:#cdd9c1;color:var(--moss);background:#f5f8f1}
+.lv.cited{border-color:#bcd6e6;color:var(--blue);background:#f2f8fc}
+.lv.wiki{border-color:#e8dfc4;color:var(--amber);background:#fbf7ea}
+.lv.none{border-color:#e6cdbe;color:var(--clay);background:#fdf5f0}
+
+.legend{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;margin-top:1.2rem;font-size:.85rem;color:var(--ink2)}
+.legend div{display:flex;align-items:center;gap:.45rem}
+
+.tblwrap{border:1px solid var(--line);border-radius:6px;background:var(--card);overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:620px}
+th,td{padding:.6rem .85rem;text-align:left;border-bottom:1px solid var(--line2);vertical-align:top}
+thead th{position:sticky;top:0;background:var(--card);z-index:1;
+  font-size:.74rem;letter-spacing:.1em;font-weight:800;color:var(--amber);
+  border-bottom:1px solid var(--line)}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:#faf7f0}
+td .v{display:flex;align-items:baseline;gap:.4rem;flex-wrap:wrap}
+.tnote{font-size:.8rem;color:var(--ink3);margin-top:.7rem;max-width:52em}
+
+.filters{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;margin-bottom:1.5rem}
+.chip{border:1px solid var(--line);border-radius:999px;padding:.32rem 1rem;
+  font-size:.85rem;background:var(--card);color:var(--ink2);transition:.15s}
+.chip:hover{border-color:var(--ink3);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:700}
+.count{font-size:.8rem;color:var(--ink3);margin-left:auto}
+
+.grid{display:grid;gap:1rem;align-items:start;
+  grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr))}
+.card{border:1px solid var(--line);border-radius:6px;background:var(--card);overflow:hidden}
+.card > summary{list-style:none;cursor:pointer;padding:1.2rem 1.3rem;display:block}
+.card > summary::-webkit-details-marker{display:none}
+.card:hover{border-color:var(--ink3)}
+.card[open]{border-color:var(--ink3);box-shadow:0 2px 16px -6px rgba(22,41,60,.14)}
+.card h3{font-family:var(--serif);font-weight:900;font-size:1.24rem;letter-spacing:.02em;
+  display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;line-height:1.4}
+.card h3 span{font-size:.72rem;font-weight:600;letter-spacing:.06em;color:var(--ink3);font-family:var(--sans)}
+.tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.55rem}
+.peek{font-size:.85rem;color:var(--ink2);margin-top:.7rem;line-height:1.8}
+.more{font-size:.76rem;color:var(--blue);margin-top:.9rem;letter-spacing:.08em}
+.card[open] .more{display:none}
+.body{padding:0 1.3rem 1.5rem;border-top:1px solid var(--line2);margin-top:.4rem}
+.blk{margin-top:1.25rem}
+.blk > h4{font-size:.7rem;font-weight:800;letter-spacing:.2em;color:var(--amber);
+  margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:1px solid var(--line2)}
+.blk ul{list-style:none;display:grid;gap:.42rem}
+.blk li{font-size:.885rem;line-height:1.8;padding-left:.95rem;position:relative;color:#243a4d}
+.blk li::before{content:"";position:absolute;left:0;top:.72em;width:4px;height:4px;
+  border-radius:50%;background:#b7c4ce}
+.blk.todo li::before{background:var(--clay)}
+.blk p{font-size:.885rem;line-height:1.85;color:#243a4d;white-space:pre-line}
+.blk .sym{font-size:.885rem;line-height:1.8;color:#243a4d;padding-bottom:.5rem}
+.blk .sym + .sym{border-top:1px solid var(--line2);padding-top:.5rem}
+.blk .sym em{font-style:normal;color:var(--ink3);font-size:.8rem;letter-spacing:.1em;margin-right:.5rem}
+.blk .sym small{display:block;color:var(--ink2);font-size:.8rem;line-height:1.7}
+
+.todolist{display:grid;gap:0}
+.td{display:grid;grid-template-columns:11rem 1fr;gap:0 1.1rem;
+  padding:.9rem 0;border-bottom:1px solid var(--line2);font-size:.9rem}
+.td:last-child{border-bottom:0}
+.td dt{font-family:var(--serif);font-weight:800}
+.td dd{color:#243a4d}
+.td dd span{display:block}
+
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;
+  background:#f3efe6;border:1px solid var(--line2);border-radius:3px;padding:.05em .35em}
+footer{border-top:1px solid var(--line);padding:2rem 0 3rem;margin-top:2rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:.8rem 2rem;justify-content:space-between;
+  font-size:.85rem;color:var(--ink2)}
+@media (max-width:560px){
+  .td{grid-template-columns:1fr;gap:.2rem}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="img/logo.webp" alt="台灣人代表"><small>PEOPLE OF TAIWAN</small></a>
+    <nav>
+      <a href="#symbols">象徵</a>
+      <a href="#cards">逐筆依據</a>
+      <a href="#todo">還沒查完</a>
+      <a href="costume.html">服飾依據</a>
+      <a href="newcomers.html">新住民人數</a>
+      <a href="index.html">回首頁</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <p class="kicker">查證紀錄 ／ VERIFICATION LOG</p>
+    <h1>縣市依據</h1>
+    <p class="lede">畫面上的每一朵花、每一件配件、每一句話，都要說得出來自哪裡。這頁是那份紀錄：查到什麼、查到什麼程度、還有什麼查不到。</p>
+    <p class="lede">最容易出事的不是查不到，是「以為自己知道」。高雄那張第一版的紅花畫錯，成因不是模型，是寫規格的人憑印象填了鳳凰木，而那是台南的市樹，旁邊那欄早就查證過寫著木棉花。所以每一格都標可信度，沒對到官方的就明講沒對到。</p>
+    <div class="stats" id="stats"></div>
+  </div>
+
+  <div class="wrap">
+    <p class="disclaim" id="verinote"></p>
+  </div>
+
+  <section id="symbols" class="wrap">
+    <div class="sechead">
+      <h2>市花・市樹・市鳥</h2>
+      <p>市花這一欄特別重要：它同時決定角色髮上那朵花的種類，畫錯了在地人一眼看得出來。市樹與市鳥目前只到維基層級，還沒逐一對官方，這件事寫在表上而不是藏起來。</p>
+    </div>
+    <div class="legend" id="legend"></div>
+    <div class="tblwrap" style="margin-top:1.2rem">
+      <table>
+        <thead><tr><th>縣市</th><th>市花</th><th>市樹</th><th>市鳥</th></tr></thead>
+        <tbody id="symbody"></tbody>
+      </table>
+    </div>
+    <p class="tnote">點下面的卡片可以看每一格的原文與連結。</p>
+  </section>
+
+  <section id="cards" class="wrap">
+    <div class="sechead">
+      <h2>逐筆依據</h2>
+      <p>一筆造型一張卡。點開看象徵的原文出處、髮飾與配件對回哪一欄、那句話取自原海報何處又改了什麼，以及還沒處理的部分。</p>
+    </div>
+    <div class="filters">
+      <button class="chip" data-f="all" aria-pressed="true">全部</button>
+      <button class="chip" data-f="plain" aria-pressed="false">普通版</button>
+      <button class="chip" data-f="culture" aria-pressed="false">特別版</button>
+      <button class="chip" data-f="todo" aria-pressed="false">有待辦</button>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="todo" class="wrap">
+    <div class="sechead">
+      <h2>還沒查完</h2>
+      <p>查證結果本身也是資料。沒查到的不用推測補上，列在這裡等著被處理。</p>
+    </div>
+    <dl class="todolist" id="todolist"></dl>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>資料檔：<code>data/counties.json</code>。內容有誤或有補充，歡迎指正。</span>
+    <span><a href="costume.html">服飾依據</a>　<a href="newcomers.html">新住民人數</a>　<a href="index.html">回台灣人代表</a></span>
+  </div>
+</footer>
+
+<script>
+/* 可信度四級。文案取自 data/counties.json 的 _fields.symbols.flower，
+   那裡是這套分級的定義處，改定義要改那裡不是改這裡。 */
+const LV = {
+  official:            ['official', '已對官方原始出處', '逐一到該縣市政府官網核對過，內容吻合'],
+  wikipedia_cited_gov: ['cited',    '維基，該表附政府引註', '維基的象徵列表，該表附有政府引註，但沒有逐一開啟核對'],
+  wikipedia:           ['wiki',     '僅維基，待對官方', '只有維基一個來源，還沒對官方'],
+  none:                ['none',     '該縣市未指定', '該縣市沒有指定這一項，不是漏查']
+};
+const SYM = [['flower', '市花'], ['tree', '市樹'], ['bird', '市鳥']];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+/* 資料檔裡的說明是寫給開發者看的，帶著 **強調** 的 Markdown 記法。
+   直接吐出來會變成畫面上的星號，所以先跳脫再把那組記法轉成 <b>。
+   順序不能反：先轉再跳脫的話標籤會被跳脫掉。 */
+const md = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+const lvTag = k => {
+  const [cls, txt] = LV[k] || ['none', k || '未標'];
+  return '<span class="lv ' + cls + '">' + esc(txt) + '</span>';
+};
+
+let DATA = null, filter = 'all';
+
+fetch('data/counties.json').then(r => r.json()).then(d => { DATA = d; render(); })
+  .catch(() => {
+    document.getElementById('grid').innerHTML =
+      '<p class="disclaim">讀不到 <code>data/counties.json</code>。這頁用 fetch 取資料，' +
+      '必須透過 http 開啟；直接用 file:// 開會被瀏覽器的跨來源限制擋下來。' +
+      '本機請跑 <code>python3 -m http.server 8901</code>。</p>';
+  });
+
+const plain = () => DATA.counties.filter(c => !c.culture);
+
+function render(){
+  const lvCount = {};
+  plain().forEach(c => SYM.forEach(([k]) => {
+    const s = (c.symbols || {})[k];
+    if (s) lvCount[s.source] = (lvCount[s.source] || 0) + 1;
+  }));
+  const todoN = DATA.counties.reduce((a, c) => a + (c.todo || []).length, 0);
+
+  document.getElementById('stats').innerHTML = [
+    ['造型', DATA.counties.length + ' 筆'],
+    ['縣市', plain().length + ' 個'],
+    ['象徵欄位', Object.values(lvCount).reduce((a, b) => a + b, 0) + ' 格'],
+    ['已對官方原始出處', (lvCount.official || 0) + ' 格'],
+    ['待辦', todoN + ' 件']
+  ].map(([k, v]) => '<div class="stat"><b>' + v + '</b><span>' + k + '</span></div>').join('');
+
+  // 可信度的說明直接引用資料檔裡的原文，不另外改寫，免得兩邊講的不一樣
+  const v = DATA._verification && DATA._verification['市花'];
+  document.getElementById('verinote').innerHTML =
+    '<b>可信度分四級，逐格標。</b>' +
+    (v && v['說明'] ? esc(v['說明']) : '') +
+    ' 市樹與市鳥目前整批停在維基層級，沒有逐一對官方，表上照實標，不假裝已經查過。';
+
+  document.getElementById('legend').innerHTML = Object.entries(LV)
+    .map(([k, [, , why]]) => '<div>' + lvTag(k) + '<span>' + esc(why) + '</span></div>').join('');
+
+  document.getElementById('symbody').innerHTML = plain().map(c =>
+    '<tr><th scope="row">' + esc(c.name) + '</th>' + SYM.map(([k]) => {
+      const s = (c.symbols || {})[k];
+      return '<td>' + (s && s.value
+        ? '<div class="v"><span>' + esc(s.value) + '</span>' + lvTag(s.source) + '</div>'
+        : lvTag('none')) + '</td>';
+    }).join('') + '</tr>').join('');
+
+  const todos = DATA.counties.filter(c => (c.todo || []).length);
+  document.getElementById('todolist').innerHTML = todos.map(c =>
+    '<div class="td"><dt>' + esc(c.name) + '</dt><dd>' +
+    c.todo.map(t => '<span>' + md(t) + '</span>').join('') + '</dd></div>').join('');
+
+  drawCards();
+}
+
+function cardBody(c){
+  const s = c.scene || {}, out = [];
+  if (c.symbols) {
+    out.push('<div class="blk"><h4>象徵的出處</h4>' + SYM.map(([k, label]) => {
+      const x = c.symbols[k];
+      if (!x || !x.value) return '';
+      return '<div class="sym"><em>' + label + '</em>' + esc(x.value) + ' ' + lvTag(x.source) +
+        (x.note ? '<small>' + md(x.note) + '</small>' : '') +
+        (x.url ? '<small><a href="' + esc(x.url) + '" target="_blank" rel="noopener">看原始頁面</a></small>' : '') +
+        '</div>';
+    }).join('') + '</div>');
+  }
+  if (s.hair_zh) {
+    out.push('<div class="blk"><h4>髮上那朵花</h4><p>' + md(s.hair_zh) +
+      (s.hair_basis ? '　依據：<code>' + esc(s.hair_basis) + '</code>' : '') + '</p></div>');
+  }
+  if (s.accessory_basis) {
+    out.push('<div class="blk"><h4>配件依據</h4><p>' + md(s.accessory_basis) + '</p></div>');
+  }
+  if (s.costume_basis) {
+    const link = c.culture
+      ? '　<a href="costume.html#' + esc(c.culture) + '">看服飾依據</a>' : '';
+    out.push('<div class="blk"><h4>服裝依據</h4><p>' + md(s.costume_basis) + link + '</p></div>');
+  }
+  if (c.quote) {
+    out.push('<div class="blk"><h4>那句話</h4><p>「' + esc(c.quote) + '」' +
+      (c.quote_basis ? '\n' + md(c.quote_basis) : '') + '</p></div>');
+  }
+  if ((c.notes || []).length) {
+    out.push('<div class="blk"><h4>查證紀錄</h4><ul>' +
+      c.notes.map(n => '<li>' + md(n) + '</li>').join('') + '</ul></div>');
+  }
+  if ((c.todo || []).length) {
+    out.push('<div class="blk todo"><h4>還沒處理</h4><ul>' +
+      c.todo.map(t => '<li>' + md(t) + '</li>').join('') + '</ul></div>');
+  }
+  return out.join('');
+}
+
+function drawCards(){
+  const rows = DATA.counties.filter(c =>
+    filter === 'all' ? true :
+    filter === 'plain' ? !c.culture :
+    filter === 'culture' ? !!c.culture :
+    (c.todo || []).length > 0);
+
+  document.getElementById('count').textContent = rows.length + ' / ' + DATA.counties.length + ' 筆';
+  document.getElementById('grid').innerHTML = rows.map(c => {
+    const tags = [];
+    if (c.culture) tags.push('<span class="lv cited">特別版</span>');
+    if ((c.todo || []).length) tags.push('<span class="lv none">待辦 ' + c.todo.length + '</span>');
+    const f = (c.symbols || {}).flower;
+    if (f) tags.push(lvTag(f.source));
+    const peek = c.culture
+      ? '對照 data/costume.json 逐項寫明依據。'
+      : (f ? '髮上那朵花：' + esc((c.scene || {}).hair_zh || f.value) : '');
+    return '<details class="card" id="' + esc(c.id) + '">' +
+      '<summary><h3>' + esc(c.name) + ' <span>' + esc(c.en || '') + '</span></h3>' +
+      '<div class="tags">' + tags.join('') + '</div>' +
+      (peek ? '<p class="peek">' + peek + '</p>' : '') +
+      '<p class="more">展開依據 →</p></summary>' +
+      '<div class="body">' + cardBody(c) + '</div></details>';
+  }).join('');
+}
+
+document.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () => {
+  filter = b.dataset.f;
+  document.querySelectorAll('.chip').forEach(x =>
+    x.setAttribute('aria-pressed', String(x === b)));
+  drawCards();
+}));
+</script>
+
+<script>
+/* 每個入口頁都要自己註冊 SW，否則「第一次就從分享連結開這頁」的人沒有離線。
+   register 前先記下有沒有 controller，首次造訪不重載，否則剛載完會整頁刷新一次。 */
+if ("serviceWorker" in navigator) {
+  addEventListener("load", async () => {
+    const hadController = !!navigator.serviceWorker.controller;
+    try {
+      await navigator.serviceWorker.register("sw.js");
+      let reloading = false;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (!hadController || reloading) return;
+        reloading = true;
+        location.reload();
+      });
+    } catch (_) { /* 不支援或被封鎖時照常運作，只是沒有離線 */ }
+  });
+}
+</script>
+</body>
+</html>

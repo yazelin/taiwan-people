@@ -21,19 +21,22 @@ const KEEP = [SHELL, ASSET];
 /* 開場一定會用到的排前面。重資產排最後等於最容易掉的就是它們，
    而底圖根本不進 precache——8MB 會讓安裝變得很久，改成看過才留。
 
-   data/counties.json 刻意不在這裡（156KB，約佔 shell 的 15%）：
-   它被 sync_split.py 內嵌進 index.html 的 SPLIT 常數，執行期沒有任何一頁 fetch 它。
-   放進來每個訪客都白抓一次。而且它進 precache 還會製造版號漂移——
-   build_sw.py 算的是工作區內容，部署的卻是 commit 的內容，
-   只要它有未 commit 的改動，出去的 SHELL_V 就是錯的。 */
+   data/counties.json 原本刻意不在這裡（156KB，約佔 shell 的 15%），理由是
+   它被 sync_split.py 內嵌進 index.html 的 SPLIT 常數，執行期沒有任何一頁 fetch 它，
+   放進來等於每個訪客都白抓一次。**counties.html 上線之後這個前提沒了**——
+   那頁直接 fetch 它，不進清單就是離線打不開。所以現在收進來。
+   當初另一個顧慮仍然成立：它進 precache 就會製造版號漂移，因為 build_sw.py
+   算的是工作區內容而部署的是 commit 的內容。那個由 build_sw.py 的 dirty 檢查擋。 */
 const PRECACHE = [
   "./",
   "index.html",
   "costume.html",
   "newcomers.html",
+  "counties.html",
   "manifest.json",
   "data/costume.json",
   "data/newcomers.json",
+  "data/counties.json",
   "icon-v1-192.png",
   "icon-v1-512.png",
   "icon-v1-maskable-512.png",
