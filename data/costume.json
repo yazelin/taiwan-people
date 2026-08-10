@@ -20,7 +20,8 @@
     "checklist": "出圖後逐項對照的驗收點。寫成可以用眼睛判斷真偽的具體特徵。",
     "pitfalls": "已知會畫錯的地方。多半來自『把某一族的印象套到全部』。",
     "sources": "出處。kind：official＝政府機關；museum＝公立博物館典藏；research＝政府委託或補助之學術調查。",
-    "gaps": "查不到什麼。查證結果本身也是資料，不寫等於假裝全都查過了。"
+    "gaps": "查不到什麼。查證結果本身也是資料，不寫等於假裝全都查過了。",
+    "collections": "看實物的地方。前面的 sources 是文字依據，這裡是影像依據——有色卡的棚拍照才談得上顏色，隔玻璃的展櫃照與插畫都不行。本資料集只放連結、不存圖：各館的圖像重製都要另行申請授權（多數收費），但為了查證而瀏覽不需要申請。"
   },
   "_redlines": [
     {
@@ -2176,6 +2177,80 @@
       "org": "國立自然科學博物館",
       "url": "https://www.nmns.edu.tw/ch/research/specimen/featured/Collection-000126/",
       "kind": "museum"
+    },
+    "shungye-collection": {
+      "t": "典藏品（依族別瀏覽）",
+      "org": "順益台灣原住民博物館",
+      "url": "https://www.museum.org.tw/collections.php",
+      "kind": "museum"
+    },
+    "shungye-costume-exhibit": {
+      "t": "常設展 3F「衣飾與文化」",
+      "org": "順益台灣原住民博物館",
+      "url": "https://www.museum.org.tw/exhibitions.php?id=3",
+      "kind": "museum"
     }
-  }
+  },
+  "collections": [
+    {
+      "name": "藏品查詢（可依族群類別與「器物類→生活衣飾與用品」篩選）",
+      "org": "文化部典藏網",
+      "url": "https://collections.culture.tw/",
+      "note": "一百三十餘萬筆，可指定典藏單位。多館共用的總入口。"
+    },
+    {
+      "name": "藏品查詢",
+      "org": "國立臺灣史前文化博物館",
+      "url": "https://collections.culture.tw/nmp_collectionsweb/search.aspx",
+      "note": "分類有「臺灣南島民族」。棚拍實物照且每張帶登錄號與標準色卡，是目前查到唯一可據以判斷顏色的來源。搜「排灣」一千一百餘筆。"
+    },
+    {
+      "name": "典藏品（依族別瀏覽，十五個族群）",
+      "org": "順益台灣原住民博物館",
+      "url": "https://www.museum.org.tw/collections.php",
+      "note": "原住民族文物一千八百餘件，文物類別以服飾類最多，棚拍水準高。私立館，但每年與單一族群部落合作辦特展。"
+    },
+    {
+      "name": "原住民服飾與飾品（教育主題，串十五個典藏介紹頁）",
+      "org": "國立自然科學博物館",
+      "url": "https://www.nmns.edu.tw/ch/learn/museum-education/theme/Theme-000419/",
+      "note": "文字描述最細，且大量記錄穿戴規範與禁忌，不只外觀。"
+    },
+    {
+      "name": "藏品查詢",
+      "org": "國立臺灣博物館",
+      "url": "https://collections.culture.tw/ntm_collectionsweb/search.aspx",
+      "note": ""
+    },
+    {
+      "name": "典藏網",
+      "org": "國立臺灣歷史博物館",
+      "url": "https://collections.nmth.gov.tw/",
+      "note": ""
+    },
+    {
+      "name": "數位典藏",
+      "org": "中央研究院民族學研究所",
+      "url": "https://c.ianthro.tw/",
+      "note": ""
+    },
+    {
+      "name": "開放博物館",
+      "org": "中央研究院數位文化中心",
+      "url": "https://openmuseum.tw/",
+      "note": "只用策展與典藏內容。plaza 子網域是使用者投稿區，不列為來源：實測其中數族的敘述與科博館官方描述直接衝突，且全頁無參考文獻。"
+    },
+    {
+      "name": "國家文化記憶庫",
+      "org": "文化部",
+      "url": "https://tcmb.culture.tw/",
+      "note": "舊網址 memory.culture.tw 已停用。"
+    },
+    {
+      "name": "國家文化資產網",
+      "org": "文化部文化資產局",
+      "url": "https://nrch.culture.tw/",
+      "note": ""
+    }
+  ]
 }

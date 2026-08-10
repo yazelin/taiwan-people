@@ -321,6 +321,24 @@
     },
     {
       "@type": "CreativeWork",
+      "name": "典藏品（依族別瀏覽）",
+      "publisher": {
+        "@type": "Organization",
+        "name": "順益台灣原住民博物館"
+      },
+      "url": "https://www.museum.org.tw/collections.php"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "常設展 3F「衣飾與文化」",
+      "publisher": {
+        "@type": "Organization",
+        "name": "順益台灣原住民博物館"
+      },
+      "url": "https://www.museum.org.tw/exhibitions.php?id=3"
+    },
+    {
+      "@type": "CreativeWork",
       "name": "原住民族傳統智慧創作保護條例",
       "publisher": {
         "@type": "Organization",
@@ -846,6 +864,7 @@ code{font-size:.92em;background:#f2eee4;border-radius:3px;padding:.05em .35em}
       <a href="#redlines">紅線</a>
       <a href="#peoples">族群</a>
       <a href="#sources">出處</a>
+      <a href="#collections">看實物</a>
       <a href="#gaps">缺口</a>
       <a href="index.html">回首頁</a>
     </nav>
@@ -903,6 +922,19 @@ code{font-size:.92em;background:#f2eee4;border-radius:3px;padding:.05em .35em}
       <table>
         <thead><tr><th>類別</th><th>來源</th><th>單位</th></tr></thead>
         <tbody id="srcbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="collections" class="wrap">
+    <div class="sechead">
+      <h2>看實物的地方</h2>
+      <p>上面那張表是文字依據，這裡是影像依據。有色卡的棚拍照才談得上顏色，隔玻璃的展櫃照與插畫都不行。這裡只放連結、不存圖：各館的圖像重製都要另行申請授權，多數收費，但為了查證而瀏覽不需要申請。</p>
+    </div>
+    <div class="srctable">
+      <table>
+        <thead><tr><th>單位</th><th>入口</th><th>說明</th></tr></thead>
+        <tbody id="colbody"></tbody>
       </table>
     </div>
   </section>
@@ -965,6 +997,11 @@ function render(){
       <td><span class="kind ${s.kind}">${KIND[s.kind]||s.kind}</span></td>
       <td><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.t)}</a></td>
       <td>${esc(s.org)}</td></tr>`).join('');
+
+  document.getElementById('colbody').innerHTML = (DATA.collections || []).map(c => `<tr>
+      <td>${esc(c.org)}</td>
+      <td><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.name)}</a></td>
+      <td>${esc(c.note || '')}</td></tr>`).join('');
 
   document.getElementById('gaplist').innerHTML = DATA.peoples.filter(p => p.gaps).map(p => `
     <article class="gapitem"><h3>${esc(p.name)}</h3><p>${esc(p.gaps)}</p></article>`).join('');
