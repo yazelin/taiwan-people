@@ -317,7 +317,7 @@ function render(){
   const v = DATA._verification && DATA._verification['市花'];
   document.getElementById('verinote').innerHTML =
     '<b>可信度分四級，逐格標。</b>' +
-    (v && v['說明'] ? esc(v['說明']) : '') +
+    (v && v['說明'] ? md(v['說明']) : '') +
     ' 市樹與市鳥目前整批停在維基層級，沒有逐一對官方，表上照實標，不假裝已經查過。';
 
   document.getElementById('legend').innerHTML = Object.entries(LV)
