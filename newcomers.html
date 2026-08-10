@@ -397,5 +397,28 @@ document.querySelectorAll('#ctable thead th').forEach(th => {
   });
 });
 </script>
+
+<script>
+/* 每個入口頁都要自己註冊 SW。只靠首頁註冊的話，「第一次就從分享連結開這頁」的人
+   完全沒有離線，而且沒有任何徵兆——本機測不出來，因為本機早就被別的頁註冊過了。
+
+   register 之前先記下有沒有 controller：sw.js 在 install 呼叫 skipWaiting、
+   activate 呼叫 clients.claim，首次造訪也會觸發 controllerchange，
+   不判斷就會剛載完整頁重載一次，排序與捲動位置全沒了。 */
+if ("serviceWorker" in navigator) {
+  addEventListener("load", async () => {
+    const hadController = !!navigator.serviceWorker.controller;
+    try {
+      await navigator.serviceWorker.register("sw.js");
+      let reloading = false;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (!hadController || reloading) return;   // 首次造訪不重載
+        reloading = true;
+        location.reload();
+      });
+    } catch (_) { /* 不支援或被封鎖時照常運作，只是沒有離線 */ }
+  });
+}
+</script>
 </body>
 </html>
