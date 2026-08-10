@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>新住民人數 ─ 台灣人代表的資料依據</title>
+<meta name="description" content="各縣市新住民人數，逐筆出自內政部移民署的逐月統計表。含歸化與居留的區分、來源地分布、統計口徑說明，以及原始表格的存檔。">
+<meta name="theme-color" content="#fbf8f2">
+<link rel="canonical" href="https://yazelin.github.io/taiwan-people/newcomers.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="台灣人代表">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://yazelin.github.io/taiwan-people/newcomers.html">
+<meta property="og:title" content="新住民人數 ─ 台灣人代表的資料依據">
+<meta property="og:description" content="各縣市新住民人數，逐筆出自內政部移民署的逐月統計表。數字不是手抄的，是腳本抓的，原始表格也留了一份。">
+<meta property="og:image" content="https://yazelin.github.io/taiwan-people/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="新住民人數依據頁：各縣市新住民統計與出處">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="新住民人數 ─ 台灣人代表的資料依據">
+<meta name="twitter:description" content="各縣市新住民人數與來源地分布，逐筆對得回內政部移民署的統計表。">
+<meta name="twitter:image" content="https://yazelin.github.io/taiwan-people/img/og.jpg">
+<meta name="author" content="林亞澤">
+<!-- 每個可能被單獨開啟或分享的頁都是入口，manifest / icon / SW 三樣都要各自掛。
+     只掛首頁的話，從分享連結進來的人完全看不到安裝選項。 -->
+<link rel="manifest" href="manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="台灣人代表">
+<link rel="apple-touch-icon" href="icon-v1-192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-v1-192.png">
+<!-- 跟服飾依據頁一樣宣告成 Dataset：這頁是有出處的統計整理，不是意見文章。
+     內容由 data/newcomers.json 於瀏覽器端讀取，資料本身由
+     tools/fetch_immigration_stats.py 從移民署抓來，不是手寫的。 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "台灣各縣市新住民人數",
+  "alternateName": "新住民人數 ─ 台灣人代表的資料依據",
+  "description": "各縣市新住民（婚姻移民）人數，區分外裔外籍配偶與大陸港澳地區配偶，並標示其中已歸化取得我國國籍者。含原屬國籍分布。資料逐筆出自內政部移民署的逐月統計表，不含移工。",
+  "url": "https://yazelin.github.io/taiwan-people/newcomers.html",
+  "inLanguage": "zh-Hant-TW",
+  "keywords": ["新住民", "婚姻移民", "歸化", "人口統計", "內政部移民署"],
+  "creator": {
+    "@type": "Person",
+    "name": "林亞澤",
+    "url": "https://yazelin.github.io/"
+  },
+  "isAccessibleForFree": true,
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "encodingFormat": "application/json",
+      "contentUrl": "https://yazelin.github.io/taiwan-people/data/newcomers.json"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "各縣市外裔、外籍配偶人數與大陸（含港澳）配偶人數按證件分",
+      "publisher": {"@type": "Organization", "name": "內政部移民署"},
+      "url": "https://www.immigration.gov.tw/5385/7344/7350/8887/?alias=settledown"
+    }
+  ]
+}
+</script>
+<style>
+:root{
+  --paper:#fbf8f2;
+  --card:#ffffff;
+  --ink:#16293c;
+  --ink2:#5a6d80;
+  --ink3:#8b9aa8;
+  --line:#e6e0d4;
+  --line2:#f0ebe0;
+  --blue:#0f5f8f;
+  --clay:#a8582f;
+  --amber:#9a7420;
+  --serif:"Noto Serif CJK TC","Source Han Serif TC","Noto Serif TC",
+          "PingFang TC","蘋方-繁","Microsoft JhengHei",serif;
+  --sans:"Noto Sans CJK TC","Source Han Sans TC","PingFang TC",
+         "Microsoft JhengHei","Helvetica Neue",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);
+  line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:var(--blue);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--clay)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:3px}
+.wrap{width:min(1080px,92vw);margin-inline:auto}
+
+.nav{position:sticky;top:0;z-index:40;background:rgba(251,248,242,.92);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:1rem;padding:.7rem 0;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:.55rem;text-decoration:none;color:var(--ink)}
+.brand img{height:24px;width:auto;max-width:none;flex:none}
+.brand small{font-size:.6rem;letter-spacing:.2em;color:var(--ink3);font-weight:600}
+.nav nav{display:flex;gap:1.2rem;font-size:.86rem;flex-wrap:wrap}
+.nav nav a{color:var(--ink2);text-decoration:none}
+.nav nav a:hover{color:var(--blue)}
+
+.hero{padding:clamp(3rem,8vw,6rem) 0 clamp(1.6rem,3vw,2.4rem)}
+.kicker{font-size:.72rem;font-weight:700;letter-spacing:.3em;color:var(--amber);margin-bottom:1.1rem}
+h1{font-family:var(--serif);font-weight:900;line-height:1.22;letter-spacing:.02em;
+  font-size:clamp(2.1rem,5.4vw,3.5rem)}
+.lede{font-family:var(--serif);font-size:clamp(1rem,1.42vw,1.16rem);
+  max-width:42em;margin-top:1.3rem;color:#2c4257}
+.lede + .lede{margin-top:.8rem}
+.stats{display:flex;flex-wrap:wrap;gap:1.6rem;margin-top:2.2rem;
+  padding-top:1.4rem;border-top:1px solid var(--line)}
+.stat b{display:block;font-family:var(--serif);font-size:1.6rem;font-weight:900;line-height:1.2}
+.stat span{font-size:.76rem;letter-spacing:.1em;color:var(--ink3)}
+
+section{padding:clamp(2.4rem,5vw,3.6rem) 0}
+.sechead{margin-bottom:1.8rem;padding-bottom:1rem;border-bottom:1px solid var(--line)}
+.sechead h2{font-family:var(--serif);font-weight:900;letter-spacing:.03em;
+  font-size:clamp(1.45rem,2.6vw,2rem)}
+.sechead p{color:var(--ink2);max-width:46em;margin-top:.5rem;font-size:.94rem}
+
+.disclaim{border:1px solid var(--line);border-radius:4px;background:var(--card);
+  padding:1.15rem 1.35rem;font-size:.92rem;color:var(--ink2);max-width:52em}
+.disclaim b{color:var(--ink)}
+.disclaim + .disclaim{margin-top:.8rem}
+
+/* 表格：欄位多又都是數字，橫向捲動比硬塞進畫面好讀。
+   數字用 tabular-nums，否則各列的位數對不齊，掃不出大小。 */
+.tblwrap{border:1px solid var(--line);border-radius:6px;background:var(--card);overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:640px}
+th,td{padding:.62rem .85rem;text-align:right;white-space:nowrap;
+  border-bottom:1px solid var(--line2);font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{text-align:left;white-space:normal}
+thead th{position:sticky;top:0;background:var(--card);z-index:1;
+  font-size:.74rem;letter-spacing:.1em;font-weight:800;color:var(--amber);
+  border-bottom:1px solid var(--line)}
+thead th button{width:100%;text-align:inherit;letter-spacing:inherit;
+  font-weight:inherit;color:inherit;padding:0}
+thead th button::after{content:"";opacity:.45;font-size:.9em}
+thead th[aria-sort="descending"] button::after{content:" ↓";opacity:1}
+thead th[aria-sort="ascending"] button::after{content:" ↑";opacity:1}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:#faf7f0}
+tbody th{font-weight:700;text-align:left}
+td.dim{color:var(--ink3)}
+tfoot td{font-weight:800;border-top:1px solid var(--line);background:#faf7f0}
+.tnote{font-size:.8rem;color:var(--ink3);margin-top:.7rem;max-width:52em}
+
+.two{display:grid;gap:1.6rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));
+  align-items:start}
+.note h3{font-family:var(--serif);font-size:1.06rem;font-weight:800;margin-bottom:.4rem}
+.note p{font-size:.92rem;color:var(--ink2);max-width:42em}
+.note p + p{margin-top:.6rem}
+.note + .note{margin-top:1.5rem}
+
+.srclist{display:grid;gap:0}
+.sr{display:grid;grid-template-columns:8.5rem 1fr;gap:0 1.1rem;
+  padding:.9rem 0;border-bottom:1px solid var(--line2);font-size:.9rem}
+.sr:last-child{border-bottom:0}
+.sr dt{font-size:.74rem;letter-spacing:.14em;font-weight:800;color:var(--amber);padding-top:.35rem}
+.sr dd{color:#243a4d;word-break:break-word}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;
+  background:#f3efe6;border:1px solid var(--line2);border-radius:3px;padding:.05em .35em}
+pre{background:#f3efe6;border:1px solid var(--line2);border-radius:4px;
+  padding:.8rem 1rem;overflow-x:auto;margin-top:.7rem}
+pre code{background:none;border:0;padding:0}
+
+footer{border-top:1px solid var(--line);padding:2rem 0 3rem;margin-top:2rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:.8rem 2rem;justify-content:space-between;
+  font-size:.85rem;color:var(--ink2)}
+@media (max-width:560px){
+  .sr{grid-template-columns:1fr;gap:.2rem}
+  .sr dt{padding-top:0}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="img/logo.webp" alt="台灣人代表"><small>PEOPLE OF TAIWAN</small></a>
+    <nav>
+      <a href="#counties">各縣市</a>
+      <a href="#origins">來源地</a>
+      <a href="#scope">口徑</a>
+      <a href="#source">出處</a>
+      <a href="costume.html">服飾依據</a>
+      <a href="index.html">回首頁</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <p class="kicker">人口依據 ／ POPULATION BASIS</p>
+    <h1>新住民人數</h1>
+    <p class="lede">這個系列講的是「台灣人代表」。要講台灣人，就不能只算一部分人。到最新一期統計為止，全台新住民六十二萬人，其中十四萬多人已經歸化取得我國國籍，法律上就是國民。這個數量比原住民族全體還多。</p>
+    <p class="lede">所以每個縣市的卡片上多了一行「一起住」，寫的就是這頁的數字。那一行不是文案，是統計，來自內政部移民署的逐月統計表，由腳本抓、由腳本對帳，不是手抄的。</p>
+    <p class="lede">這頁把整份攤開來，讓數字可以被查、被對、被質疑。</p>
+    <div class="stats" id="stats"></div>
+  </div>
+
+  <div class="wrap">
+    <p class="disclaim">
+      <b>先講清楚這些數字算的是誰。</b>
+      這頁算的是新住民，也就是婚姻移民，包含外裔外籍配偶與大陸港澳地區配偶。
+      <b>不含移工。</b>移工人數更多，但居留性質完全不同，絕大多數不是移民，混在一起講會失準。
+      另外，外裔外籍配偶當中有一部分已經歸化取得我國國籍，他們在法律上是中華民國國民，不是外國人，下表分開列出來。
+    </p>
+  </div>
+
+  <section id="counties" class="wrap">
+    <div class="sechead">
+      <h2>各縣市人數</h2>
+      <p>點欄位標題可以換排序。歸化與居留是同一群人的兩種身分狀態，相加等於外裔外籍配偶；再加上大陸港澳地區配偶，等於總計。</p>
+    </div>
+    <div class="tblwrap">
+      <table id="ctable">
+        <thead>
+          <tr>
+            <th scope="col" data-k="name" aria-sort="none"><button type="button">縣市</button></th>
+            <th scope="col" data-k="total" aria-sort="descending"><button type="button">新住民合計</button></th>
+            <th scope="col" data-k="foreign_spouse" aria-sort="none"><button type="button">外裔外籍配偶</button></th>
+            <th scope="col" data-k="naturalized" aria-sort="none"><button type="button">其中已歸化</button></th>
+            <th scope="col" data-k="residence_permit" aria-sort="none"><button type="button">其中持居留證</button></th>
+            <th scope="col" data-k="prc_hk_macau" aria-sort="none"><button type="button">大陸・港澳</button></th>
+          </tr>
+        </thead>
+        <tbody id="cbody"></tbody>
+        <tfoot id="cfoot"></tfoot>
+      </table>
+    </div>
+    <p class="tnote" id="cnote"></p>
+  </section>
+
+  <section id="origins" class="wrap">
+    <div class="sechead">
+      <h2>來源地</h2>
+      <p>外裔外籍配偶按原屬國籍分，大陸與港澳地區另計。百分比的分母是全台新住民總數。</p>
+    </div>
+    <div class="tblwrap">
+      <table id="otable">
+        <thead>
+          <tr>
+            <th scope="col">來源地</th>
+            <th scope="col">人數</th>
+            <th scope="col">佔全台新住民</th>
+          </tr>
+        </thead>
+        <tbody id="obody"></tbody>
+      </table>
+    </div>
+    <p class="tnote">「其他」是統計表原有的殘差欄，指前列各國以外的所有國籍，不是一個地方。</p>
+  </section>
+
+  <section id="scope" class="wrap">
+    <div class="sechead">
+      <h2>這些數字怎麼用</h2>
+      <p>同一份統計，換個讀法就會得出不一樣的結論。這裡寫清楚我們怎麼讀、以及刻意不做什麼。</p>
+    </div>
+    <div class="two">
+      <div>
+        <div class="note">
+          <h3>歸化不是註腳</h3>
+          <p>外裔外籍配偶裡已歸化的那一群，在法律上就是中華民國國民。把他們一律寫成「外籍」是錯的，所以表上分開列。這個區分也是為什麼這頁的標題是「新住民」而不是「外國人」。</p>
+        </div>
+        <div class="note">
+          <h3>移工是另一回事</h3>
+          <p>移工在台人數比新住民更多，但居留有年限、歸化管道極窄，絕大多數不是移民。把兩群人加在一起講「台灣有多少外籍人口」，數字會變大，意思會變模糊。這頁只處理新住民。</p>
+        </div>
+      </div>
+      <div>
+        <div class="note">
+          <h3>寫進地方，不寫進衣服</h3>
+          <p>有了這些數字之後，最直覺的下一步是給角色穿上越南或印尼的傳統服飾。我們沒有這樣做，理由有三個。</p>
+          <p>一，舉證強度跟不上。<a href="costume.html">服飾依據</a>那份資料集的門檻是每一筆都要對得回政府機關、公立博物館或政府委託之學術調查，而 áo dài、kebaya 的權威出處在越南與印尼，不在台灣的檔案系統裡。用低一級的證據收進同一個檔，整份資料的可信度會一起掉。</p>
+          <p>二，分類是錯的。「越南」是國籍不是族群，越南官方認定五十四個民族，áo dài 是京族的；印尼超過一千三百個族群。把「東南亞服飾」當成一個類別，跟把台灣十六族混成一件「原住民風」是同一個錯誤。</p>
+          <p>三，方向會反掉。新住民在台灣的日常穿著就是當代日常。讓角色穿上 áo dài，等於在說「你要穿得像外國人，我才認得出你是新住民」。</p>
+          <p>所以卡片上那一行只寫人數與來源地，不宣稱他們長什麼樣、穿什麼。這一行是在說這個地方住著誰。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="source" class="wrap">
+    <div class="sechead">
+      <h2>出處與更新</h2>
+      <p>政府網站的連結會爛，所以原始表格另外存了一份純文字進版本庫。數字有疑問，直接比對那份存檔。</p>
+    </div>
+    <dl class="srclist" id="srclist"></dl>
+    <p class="tnote">這頁的數字每月會變。更新的方式是重跑腳本，不是手改：</p>
+    <pre><code>python3 tools/fetch_immigration_stats.py   # 抓最新一期，存原文並產 data/newcomers.json
+python3 tools/sync_split.py                # 數字同步進首頁卡片</code></pre>
+    <p class="tnote">抓下來的表格會先過四道對帳才寫檔：歸化加居留等於外裔外籍配偶、外籍加大陸港澳等於總計、各國籍相加等於外裔外籍配偶、各縣市相加等於總計。任何一道對不起來就中止，不會寫出半對的數字。</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>資料檔：<code>data/newcomers.json</code>。內容有誤或有補充，歡迎指正。</span>
+    <span><a href="costume.html">服飾依據</a>　<a href="index.html">回台灣人代表</a></span>
+  </div>
+</footer>
+
+<script>
+const ORDER = ['大陸', '越南', '港澳', '印尼', '菲律賓', '泰國', '日本', '柬埔寨', '韓國', '其他'];
+const fmt = n => n.toLocaleString('en-US');
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+let DATA = null, sortKey = 'total', sortDir = -1;
+
+fetch('data/newcomers.json').then(r => r.json()).then(d => { DATA = d; render(); })
+  .catch(() => {
+    document.getElementById('cbody').innerHTML =
+      '<tr><td colspan="6">讀不到 <code>data/newcomers.json</code>。這頁用 fetch 取資料，' +
+      '必須透過 http 開啟；直接用 file:// 開會被瀏覽器的跨來源限制擋下來。' +
+      '本機請跑 <code>python3 -m http.server 8901</code>。</td></tr>';
+  });
+
+function render(){
+  const t = DATA.total, y = DATA.as_of.slice(0, 4) - 1911, m = +DATA.as_of.slice(5);
+  document.getElementById('stats').innerHTML = [
+    ['全台新住民', fmt(t.total) + ' 人'],
+    ['已歸化為國民', fmt(t.naturalized) + ' 人'],
+    ['涵蓋縣市', Object.keys(DATA.counties).length + ' 個'],
+    ['統計截止', y + ' 年 ' + m + ' 月']
+  ].map(([k, v]) => '<div class="stat"><b>' + v + '</b><span>' + k + '</span></div>').join('');
+
+  document.title = '新住民人數 ' + fmt(t.total) + ' 人 ─ 台灣人代表的資料依據';
+  drawCounties();
+
+  const ob = ORDER.map(k => [k, t.by_origin[k]]).filter(x => x[1] != null);
+  document.getElementById('obody').innerHTML = ob.map(([k, v]) =>
+    '<tr><th scope="row">' + esc(k) + '</th><td>' + fmt(v) + '</td><td class="dim">' +
+    (v / t.total * 100).toFixed(2) + '%</td></tr>').join('') +
+    '<tr><th scope="row">合計</th><td>' + fmt(t.total) + '</td><td class="dim">100.00%</td></tr>';
+
+  const s = DATA.source;
+  document.getElementById('srclist').innerHTML = [
+    ['統計單位', esc(s.agency)],
+    ['統計表', esc(s.table)],
+    ['統計期間', esc(s.period)],
+    ['原始頁面', '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.url) + '</a>'],
+    ['本站存檔', '<a href="' + esc(s.archive) + '">' + esc(s.archive) + '</a>（ODS 原表轉純文字，一格對一格）'],
+    ['抓取日期', esc(s.fetched)],
+    ['整理後的資料', '<a href="data/newcomers.json">data/newcomers.json</a>']
+  ].map(([k, v]) => '<div class="sr"><dt>' + k + '</dt><dd>' + v + '</dd></div>').join('');
+}
+
+function drawCounties(){
+  const rows = Object.entries(DATA.counties).map(([name, c]) => ({name, ...c}));
+  rows.sort((a, b) => sortKey === 'name'
+    ? a.name.localeCompare(b.name, 'zh-Hant') * sortDir
+    : (a[sortKey] - b[sortKey]) * sortDir);
+  document.getElementById('cbody').innerHTML = rows.map(r =>
+    '<tr><th scope="row">' + esc(r.name) + '</th>' +
+    '<td>' + fmt(r.total) + '</td>' +
+    '<td>' + fmt(r.foreign_spouse) + '</td>' +
+    '<td>' + fmt(r.naturalized) + '</td>' +
+    '<td class="dim">' + fmt(r.residence_permit) + '</td>' +
+    '<td>' + fmt(r.prc_hk_macau) + '</td></tr>').join('');
+
+  const t = DATA.total;
+  document.getElementById('cfoot').innerHTML =
+    '<tr><td>全台合計</td><td>' + fmt(t.total) + '</td><td>' + fmt(t.foreign_spouse) +
+    '</td><td>' + fmt(t.naturalized) + '</td><td>' + fmt(t.residence_permit) +
+    '</td><td>' + fmt(t.prc_hk_macau) + '</td></tr>';
+
+  // 全台合計比 22 個縣市相加多一點，差額是統計表上住址不詳的那一列。
+  // 不講的話，讀者自己加總會發現對不起來，然後合理懷疑整張表。
+  const sum = Object.values(DATA.counties).reduce((a, c) => a + c.total, 0);
+  const gap = t.total - sum;
+  const allVN = rows.every(r => {
+    const o = Object.entries(r.by_origin).filter(([k]) => !['其他', '大陸', '港澳'].includes(k));
+    return o.sort((a, b) => b[1] - a[1])[0][0] === '越南';
+  });
+  document.getElementById('cnote').textContent =
+    (gap > 0 ? '全台合計比二十二個縣市相加多 ' + fmt(gap) +
+               ' 人，差額是統計表上居住地址不詳的部分，原表另列一欄，本站不分配到任何縣市。'
+             : '二十二個縣市相加等於全台合計。') +
+    (allVN ? '　二十二個縣市最大的外籍來源地都是越南，沒有例外，所以表上不另列一欄。' : '');
+}
+
+document.querySelectorAll('#ctable thead th').forEach(th => {
+  th.querySelector('button').addEventListener('click', () => {
+    const k = th.dataset.k;
+    sortDir = (sortKey === k) ? -sortDir : (k === 'name' ? 1 : -1);
+    sortKey = k;
+    document.querySelectorAll('#ctable thead th').forEach(x =>
+      x.setAttribute('aria-sort', x === th ? (sortDir < 0 ? 'descending' : 'ascending') : 'none'));
+    drawCounties();
+  });
+});
+</script>
+</body>
+</html>
