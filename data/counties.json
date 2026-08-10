@@ -539,9 +539,6 @@
         "right_zone_desc": "The right 40 percent is a plausible quiet opening within this same temple-plaza viewpoint: pale sky above the low tiled roofs and plastered upper storeys of the shophouses that ring the plaza, receding and getting paler with distance, with a string of slack festival lanterns high up as the only detail. Low contrast and gently graded for text. No sea, harbour, bridge, water, shoreline or distant mountains appear in this zone.",
         "tote_print": "a complete wordless line illustration of the Hsinchu City God Temple — its tiered swallowtail roof ridges, the carved eaves brackets and one stone lion — drawn in a single ink colour, filling the bag panel as a finished graphic with no text, no letters, no logo, no border and no blank patches"
       },
-      "todo": [
-        "底圖與資料已不符（印花欄改過），img/<id>-base.webp 需要重生"
-      ],
       "places": [
         "十八尖山",
         "南寮漁港",
@@ -556,7 +553,8 @@
         "海報美食欄的「客家小炒・擂茶」其實是新竹縣客家庄（北埔、竹東）的，不是新竹市。",
         "六項全部確認。台灣光華雜誌明確稱米粉、貢丸、竹塹餅為「新竹三寶」，竹塹為新竹舊名。",
         "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
-        "現用底圖右側畫著海與港灣拱橋，但視點在城隍廟前廣場，市中心的廟埕看不到海。成因是 right_zone 原本寫 sea。這是地理錯誤不是美感問題，量測抓不到（它有內容、分數 0.0257 通過），是目視抓到的。已改 city_sky 並補 right_zone_desc，需重生。"
+        "現用底圖右側畫著海與港灣拱橋，但視點在城隍廟前廣場，市中心的廟埕看不到海。成因是 right_zone 原本寫 sea。這是地理錯誤不是美感問題，量測抓不到（它有內容、分數 0.0257 通過），是目視抓到的。已改 city_sky 並補 right_zone_desc，需重生。",
+        "「底圖與資料不符、需要重生」那條待辦是舊的，已移除：印花改成城隍廟線描的那次（commit 9e89850）底圖就跟資料一起重生了。2026-08-11 逐項核對現行底圖：帆布袋是城隍廟線描含石獅、帽T沒有印花、徽章是無字的燕尾屋頂，都與資料一致，verify_base 也全部通過（右側 0.0372、右緣 48%）。"
       ],
       "traits": [
         "務實",
@@ -649,7 +647,7 @@
         "right_zone_desc": "The right 40 percent is the hills beyond Beipu, built as THREE depth bands: pale sky graded warm toward the horizon in the upper 45 percent with thin cloud bands; three or four tea-covered ridgelines layered one behind another, each paler than the one in front, with mist pooling between them; and nearest the bottom edge only, the last tiled roof ridges of the old street. No large trees or dark foliage masses crossing this zone."
       },
       "todo": [
-        "白T上有花卉印花，資料寫的是白T。不影響地理或族群宣稱，下輪再處理。"
+        "白T與帆布袋上的花是茶花（＝縣花，對得回資料），但 outfit 寫的是素白T。兩條路擇一，是決定不是查證：(a) 重生底圖讓衣服變素面；(b) 把 outfit 改寫成「白T印茶花」，承認這張的印花本來就對得回縣花。在那之前不要動圖。"
       ],
       "places": [
         "內灣老街",
