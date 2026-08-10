@@ -34,7 +34,7 @@ DIRS = [("nmns-", "nmns"), ("shungye-", "shungye"), ("om-", "openmuseum"),
         ("th-", "han"), ("nmth-han", "han"),
         ("titic", "titic"), ("law-titic", "titic"),
         ("raptor-", "hawkeagle"), ("einfo-", "hawkeagle"),
-        ("moc-matsu", "matsu"), ("matsu-", "matsu"),
+        ("moc-matsu", "matsu"), ("matsu-", "matsu"), ("taitung-", "taitung"),
         # 平埔族群的資料散在各機關，但用途是同一件事，收在一起才找得到
         ("pingpu", "pingpu"), ("sinica-fanshe", "pingpu"), ("ianthro-siraya", "pingpu"),
         ("tainan-siraya", "pingpu"), ("tcmb-taivoan", "pingpu"), ("ntu-taivoan", "pingpu")]
@@ -95,8 +95,10 @@ def main() -> None:
     for a in added:
         print("  +", a)
     if thin:
-        print(f"\n抓到的內容太少，沒有寫檔（{len(thin)} 筆）。"
-              f"這些多半是純前端渲染，要另外用瀏覽器存渲染後的內容：")
+        print(f"\n抓到的內容太少，沒有寫檔（{len(thin)} 筆）。原因通常是三種之一："
+              f"純前端渲染（要用瀏覽器存渲染後的內容）、"
+              f"網址已死但會轉址到首頁所以還回 200、"
+              f"或者那根本是查詢介面而不是文件（那就不該當 source）：")
         for t in thin:
             print("  -", t)
     if failed:
