@@ -222,7 +222,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.8rem 2rem;justify-content:space-be
   <section id="symbols" class="wrap">
     <div class="sechead">
       <h2>市花・市樹・市鳥</h2>
-      <p>市花這一欄特別重要：它同時決定角色髮上那朵花的種類，畫錯了在地人一眼看得出來。市樹與市鳥目前只到維基層級，還沒逐一對官方，這件事寫在表上而不是藏起來。</p>
+      <p>市花這一欄特別重要：它同時決定角色髮上那朵花的種類，畫錯了在地人一眼看得出來。市樹與市鳥沒有進畫面，但既然官方那一頁本來就寫著，就一起對完；剩下沒對到的照實標在表上，不藏起來。</p>
     </div>
     <div class="legend" id="legend"></div>
     <div class="tblwrap" style="margin-top:1.2rem">
@@ -318,7 +318,8 @@ function render(){
   document.getElementById('verinote').innerHTML =
     '<b>可信度分四級，逐格標。</b>' +
     (v && v['說明'] ? md(v['說明']) : '') +
-    ' 市樹與市鳥目前整批停在維基層級，沒有逐一對官方，表上照實標，不假裝已經查過。';
+    (DATA._verification && DATA._verification['市樹市鳥']
+      ? ' ' + md(DATA._verification['市樹市鳥']['說明']) : '');
 
   document.getElementById('legend').innerHTML = Object.entries(LV)
     .map(([k, [, , why]]) => '<div>' + lvTag(k) + '<span>' + esc(why) + '</span></div>').join('');

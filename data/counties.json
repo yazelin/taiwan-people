@@ -61,13 +61,15 @@
         },
         "tree": {
           "value": "楓香",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "基隆市政府「基隆簡介」：市樹為楓香，屬於金縷梅科楓樹屬之落葉大喬木",
+          "url": "https://www.klcg.gov.tw/tw/About/Introduction"
         },
         "bird": {
           "value": "黑鳶",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "基隆市政府「基隆簡介」：市鳥為老鷹，又名來葉、厲翼、黑鳶",
+          "url": "https://www.klcg.gov.tw/tw/About/Introduction"
         }
       },
       "scene": {
@@ -164,13 +166,15 @@
         },
         "tree": {
           "value": "榕樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "臺北市政府「臺北市概況」：市樹 - 榕樹",
+          "url": "https://www.gov.taipei/cp.aspx?n=469A3095FCB700F3&s=18E21F157407D1E6"
         },
         "bird": {
           "value": "台灣藍鵲",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "臺北市政府「臺北市概況」：市鳥 - 臺灣藍鵲",
+          "url": "https://www.gov.taipei/cp.aspx?n=469A3095FCB700F3&s=18E21F157407D1E6"
         }
       },
       "scene": {
@@ -274,13 +278,14 @@
         },
         "tree": {
           "value": "台灣山櫻",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "新北市政府「市樹市花」：市樹：台灣山櫻",
+          "url": "https://www.ntpc.gov.tw/ch/home.jsp?id=f8985f0012d24001"
         },
         "bird": {
           "value": "鷺鷥",
           "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "note": "僅維基，待對官方核實。新北市政府那一頁叫「市樹市花」，只寫市樹與市花，沒有市鳥"
         }
       },
       "scene": {
@@ -381,13 +386,15 @@
         },
         "tree": {
           "value": "桃樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "《新修桃園縣志──贅錄志》：「(二)縣樹--桃樹」，選桃樹的淵源是薛啟隆在虎茅庄大量種桃",
+          "url": "https://www.tycg.gov.tw/uploaddowndoc?file=publish/201707051340570.pdf&filedisplay=%E6%96%B0%E4%BF%AE%E6%A1%83%E5%9C%92%E7%B8%A3%E5%BF%97%E2%94%80%E2%94%80%E8%B3%B8%E9%8C%84%E5%BF%97.pdf&flag=doc"
         },
         "bird": {
           "value": "台灣藍鵲",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "《新修桃園縣志──贅錄志》：「(四)縣鳥—台灣藍鵲」（同段記台灣藍鵲同時中選為臺北市市鳥與桃園縣縣鳥）",
+          "url": "https://www.tycg.gov.tw/uploaddowndoc?file=publish/201707051340570.pdf&filedisplay=%E6%96%B0%E4%BF%AE%E6%A1%83%E5%9C%92%E7%B8%A3%E5%BF%97%E2%94%80%E2%94%80%E8%B3%B8%E9%8C%84%E5%BF%97.pdf&flag=doc"
         }
       },
       "scene": {
@@ -483,13 +490,15 @@
         },
         "tree": {
           "value": "黑松",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "新竹市政府「市徽.花.樹.鳥」：市樹：黑松",
+          "url": "https://www.hccg.gov.tw/ch/home.jsp?id=35&parentpath=0,18"
         },
         "bird": {
           "value": "喜鵲",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "新竹市政府「市徽.花.樹.鳥」：市鳥：喜鵲",
+          "url": "https://www.hccg.gov.tw/ch/home.jsp?id=35&parentpath=0,18"
         }
       },
       "scene": {
@@ -591,13 +600,15 @@
         },
         "tree": {
           "value": "竹柏",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "新竹縣政府「縣花縣鳥縣樹」：縣樹 - 竹柏，1999 年 3 月 29 日臨時縣務會議通過，同年 6 月 4 日經縣議會第十四屆第三次定期會通過",
+          "url": "https://www.hsinchu.gov.tw/cp.aspx?n=96"
         },
         "bird": {
           "value": "五色鳥",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "新竹縣政府「縣花縣鳥縣樹」：縣鳥 - 五色鳥",
+          "url": "https://www.hsinchu.gov.tw/cp.aspx?n=96"
         }
       },
       "scene": {
@@ -697,13 +708,14 @@
         },
         "tree": {
           "value": "台灣欒樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "宜蘭縣政府「縣樹介紹」：縣樹：台灣欒樹（苦苓舅）。該頁原址 2026-08 已失效，讀 Wayback 存檔",
+          "url": "https://web.archive.org/web/2023/https://www.e-land.gov.tw/cp.aspx?n=3A3E61574AC53193"
         },
         "bird": {
           "value": "彩鷸",
           "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "note": "僅維基，待對官方核實。宜蘭縣政府只有「縣花介紹」與「縣樹介紹」兩頁，沒有縣鳥"
         }
       },
       "scene": {
@@ -799,13 +811,15 @@
         },
         "tree": {
           "value": "樟樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "苗栗縣政府「縣樹」：樟樹為本縣特產之一，其成品之雕刻、樟腦油，均為本縣蓬勃發展之事業",
+          "url": "https://www.miaoli.gov.tw/cp.aspx?n=279"
         },
         "bird": {
           "value": "喜鵲",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "苗栗縣政府「縣鳥」：初選十種本縣較具代表性之鳥類，以通訊票選選出喜鵲作為本縣縣鳥",
+          "url": "https://www.miaoli.gov.tw/cp.aspx?n=282"
         }
       },
       "scene": {
@@ -903,13 +917,15 @@
         },
         "tree": {
           "value": "台灣五葉松",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "臺中市政府「市樹、花、鳥介紹」：市樹介紹-臺灣五葉松（松科）",
+          "url": "https://www.taichung.gov.tw/8868/9945/10017/676427/post"
         },
         "bird": {
           "value": "白耳畫眉",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "臺中市政府「市樹、花、鳥介紹」：市鳥介紹-白耳畫眉（畫眉科）",
+          "url": "https://www.taichung.gov.tw/8868/9945/10017/676427/post"
         }
       },
       "scene": {
@@ -1012,13 +1028,15 @@
         },
         "tree": {
           "value": "菩提樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "彰化縣政府「本縣象徵」：縣樹 菩提樹（學名 Ficus religiosa、桑科）",
+          "url": "https://www.chcg.gov.tw/ch2/abouts-represent.aspx"
         },
         "bird": {
           "value": "灰面鵟鷹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "彰化縣政府「本縣象徵」：縣鳥 灰面鵟鷹，俗稱南路鷹、清明鳥，每年春分前後大量過境八卦山脈",
+          "url": "https://www.chcg.gov.tw/ch2/abouts-represent.aspx"
         }
       },
       "scene": {
@@ -1115,8 +1133,9 @@
         },
         "tree": {
           "value": "樟樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "南投縣政府「南投縣花、縣樹」：南投縣樹～樟樹",
+          "url": "https://www.nantou.gov.tw/big5/introduction-administrative-1.php?dptid=376480000&cid=1507"
         },
         "bird": {
           "value": null,
@@ -1217,13 +1236,15 @@
         },
         "tree": {
           "value": "樟樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "雲林縣政府「咱的標誌」：雲林縣縣樹為樟樹。該站有 Cloudflare 防護，內容取自 Wayback 存檔",
+          "url": "https://www.yunlin.gov.tw/cp.aspx?n=1358"
         },
         "bird": {
           "value": "台灣藍鵲",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "雲林縣政府「咱的標誌」：縣鳥台灣藍鵲。該站有 Cloudflare 防護，內容取自 Wayback 存檔",
+          "url": "https://www.yunlin.gov.tw/cp.aspx?n=1358"
         }
       },
       "scene": {
@@ -1325,7 +1346,7 @@
         "tree": {
           "value": "豔紫荊",
           "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "note": "僅維基，待對官方核實。嘉義市政府那一頁叫「市徽、市花、市歌」，整頁沒有市樹，不是漏查"
         },
         "bird": {
           "value": null,
@@ -1427,13 +1448,15 @@
         },
         "tree": {
           "value": "台灣欒樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "嘉義縣政府「嘉縣標誌」：縣樹臺灣欒樹（無患子科、落葉喬木），民國 89 年由縣民票選產生",
+          "url": "https://www.cyhg.gov.tw/cp.aspx?n=E13057BB37942D3F"
         },
         "bird": {
           "value": "藍腹鷴",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "嘉義縣政府「嘉縣標誌」：縣鳥藍腹鷴，民國 88 年由縣民圈選產生",
+          "url": "https://www.cyhg.gov.tw/cp.aspx?n=E13057BB37942D3F"
         }
       },
       "scene": {
@@ -1522,13 +1545,15 @@
         },
         "tree": {
           "value": "鳳凰樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "臺南市政府「市府識別」：市樹–鳳凰樹",
+          "url": "https://www.tainan.gov.tw/News.aspx?n=4981&sms=13702"
         },
         "bird": {
           "value": "水雉",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "臺南市政府「市府識別」：市鳥–水雉",
+          "url": "https://www.tainan.gov.tw/News.aspx?n=4981&sms=13702"
         }
       },
       "scene": {
@@ -1834,13 +1859,15 @@
         },
         "tree": {
           "value": "菩提樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "花蓮縣政府「縣樹」：菩提樹。民國 78 年吳國棟縣長任內經縣務會議討論通過選定",
+          "url": "https://www.hl.gov.tw/cp.aspx?n=32772"
         },
         "bird": {
           "value": "朱鸝",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "花蓮縣政府「縣鳥」：中名朱鸝（Oriolus traillii），臺灣十一種瀕臨絕種鳥類之一",
+          "url": "https://www.hl.gov.tw/cp.aspx?n=32771"
         }
       },
       "scene": {
@@ -1934,13 +1961,14 @@
         },
         "tree": {
           "value": "樟樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "臺東縣政府「臺東簡介及形象識別標誌」：台東縣樹～樟樹。該站對本機 IP 回 Web Page Blocked，內容取自 2021-02-01 Wayback 存檔",
+          "url": "https://www.taitung.gov.tw/cp.aspx?n=6528E8A41AC41737&themesite=BAA86C8F16BADDE6"
         },
         "bird": {
           "value": "烏頭翁",
           "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "note": "僅維基，待對官方核實。臺東縣政府「臺東簡介及形象識別標誌」只寫縣花與縣樹，沒有縣鳥"
         }
       },
       "scene": {
@@ -2035,13 +2063,15 @@
         },
         "tree": {
           "value": "榕樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "澎湖縣政府「澎湖象徵」：縣樹◎榕樹，最有名的是樹齡三百餘年的通樑古榕",
+          "url": "https://www.penghu.gov.tw/ch/home.jsp?id=10176"
         },
         "bird": {
           "value": "澎湖小雲雀",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "澎湖縣政府「澎湖象徵」：縣鳥◎澎湖小雲雀。縣府請澎湖縣野鳥學會推薦八種鳥票選，澎湖小雲雀得票最高，經縣長公佈為縣鳥",
+          "url": "https://www.penghu.gov.tw/ch/home.jsp?id=10176"
         }
       },
       "scene": {
@@ -2141,8 +2171,9 @@
         },
         "tree": {
           "value": "木棉",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "金門縣政府「認識金門」：縣樹（木棉）別名斑芝樹、棉樹，經由縣民票選成為縣樹。同一頁的縣花欄底下印的卻是縣徽說明，所以市花那一筆另引縣府新聞稿",
+          "url": "https://www.kinmen.gov.tw/cp.aspx?n=B602E31F7317F1AA"
         },
         "bird": {
           "value": null,
@@ -2579,6 +2610,10 @@
       "說明": "第二輪（2026-08-11）把上一輪判定「官網查無象徵頁面」的 11 個縣市重查，其中 9 個其實查得到，只是上一輪的找法碰不到：桃園在《新修桃園縣志》PDF 裡（縣府站有 WAF 擋自動抓取）、雲林被 Cloudflare 擋、台東對本機 IP 回 Web Page Blocked、宜蘭那頁已經失效要讀 Wayback、苗栗與新竹市與嘉義縣則是站內搜尋搜不到但頁面一直都在。**「我抓不到」不等於「它不存在」**，這跟先前「工具用錯不等於做不到」是同一個形狀。",
       "另外抓到兩個錯標": "金門那筆維基引的是「認識金門」，但那頁的縣花欄底下印的是縣徽說明，全頁沒有「四季蘭」；屏東與高雄兩列在維基上根本沒有引註，卻被標成 wikipedia_cited_gov。**引註存在不等於引註支持，要開來讀完才算數。**",
       "存檔": "已核對的原文抄一份在 data/sources/symbols/。"
+    },
+    "市樹市鳥": {
+      "official": "市樹 18 筆、市鳥 13 筆",
+      "說明": "查市花時開的那些官方頁面，多半同一頁就寫著市樹與市鳥，上一輪卻整批停在維基層級——**開了那一頁卻只讀自己要的那一格，等於白開。** 這一輪順手把同頁寫到的都對完。沒升級的都是那一頁真的沒寫：新北與宜蘭、台東的頁面沒有鳥，嘉義市那頁只有市徽市花市歌，南投、嘉義市、金門則是該縣市本來就沒指定縣鳥。高雄、屏東、連江三個縣市整組都還沒有官方出處。"
     }
   }
 }
