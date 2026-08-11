@@ -226,7 +226,11 @@ def build(c):
         f"OUTFIT — do NOT copy the clothes shown in the reference sheets, which lock only her "
         f"face and build. Dress her instead in: {s['outfit']}. "
         + costume_block(c)
-        + "Keep the canvas tote bag. "
+        # 帆布提袋是系列的固定道具，但有些特別版該背的是族群自己的攜物袋
+        # （噶瑪蘭的檳榔袋就是整組服飾的一件），兩個都掛在身上會變成雜物。
+        + ("Keep the canvas tote bag. " if c["scene"].get("tote", True) else
+           "She carries NO canvas tote bag in this picture — the only bag is the traditional one "
+           "described in the outfit above. ")
         # tote_print 原本只有 --fix-tote-print 讀得到，build() 沒用它——
         # 等於正式生成時提袋印花一律由模型自由發揮。新竹市那次就發明出一張
         # 像剪貼素材的 IC 晶片示意圖，而且對不回任何一筆 landmarks。
