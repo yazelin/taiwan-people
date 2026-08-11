@@ -2421,6 +2421,44 @@
       ]
     },
     {
+      "id": "hualien-amis",
+      "name": "花蓮縣・阿美族",
+      "en": "HUALIEN / AMIS",
+      "county": "花蓮縣",
+      "culture": "amis",
+      "group": "e",
+      "poster": "hualien",
+      "base": "hualien-amis-base",
+      "scene": {
+        "outfit_zh": "阿美族女子服飾（花蓮區通則，不採任何部落的識別紋樣）：短上衣（長度至胸下，袖口與下擺有條紋彎邊）、胸巾斜綁於最外層、三片方布片裙且最外層開口在人物左側（＝觀眾視角的右側）、鎳片胸掛、彩色毛線麻花腰帶",
+        "outfit": "Amis (Pangcah) women's dress of the HUALIEN region, in the square-cut cloth system — flat panels of woven cloth, no tailored three-dimensional cutting. A SHORT top ending just below the chest, its cuffs and hem carrying a band of striped curved-edge trim about a hand's width deep; the two ends of the hem are left as cloth ties knotted at the waist. Over it, worn OUTERMOST, a breast cloth tied diagonally across the chest. Below, a wrap skirt of THREE square cloth panels. The outermost panel opens on HER LEFT side, which is the VIEWER'S RIGHT since she faces us: the vertical opening edge of that panel, with its striped trim running top to bottom, must be clearly visible on the viewer's right of the skirt, and there must be NO such vertical opening edge on the viewer's left. At the chest a beaded and nickel-plate ornament hanging over the top's short hem, and at the waist two twisted ropes of coloured wool. The ground colours are DARK — black and deep indigo — with colour appearing only in the trim bands, the wool ropes and the head-dress. This is NOT an all-red costume.",
+        "hair": "white goose feathers set at the front of her hair as the head-dress; her hair is worn DOWN and loose over her shoulders. No lotus, no flower crown, no beaded cap, no head-cloth.",
+        "hair_zh": "白色鵝毛頭飾（阿美族女性有記載的頭飾）、頭髮放下、不戴蓮花",
+        "accessories": "the twisted wool waist ropes and small stud earrings; no man's betel-nut pouch, no lover's bag, no bells",
+        "light": "east",
+        "right_zone": "sea",
+        "hero_landmark": "七星潭",
+        "hero_landmark_en": "Qixingtan, a long curving pebble beach against green mountains",
+        "others_en": [
+          "the Qingshui Cliffs dropping straight into the Pacific far to the north",
+          "the green wall of the Central Mountain Range rising directly behind the coastal plain"
+        ],
+        "viewpoint": "standing on the pebble beach at Qixingtan on the Qilai coastal plain",
+        "viewpoint_sees": "from here the pebble bay curves away north with the open Pacific filling the right of the view and the Qingshui Cliffs faint in the far distance; the mountains rise straight up behind the plain. Taroko Gorge is inland and enclosed and must NOT appear",
+        "right_zone_desc": "The right 40 percent is the open Pacific seen from the beach: a broad band of morning-lit water with long low swells, the horizon high and clean, and the pale silhouette of the Qingshui Cliffs just readable at the far left of that band, getting paler with distance. Quiet and low-contrast because text goes over it, but real water with gradation, NOT a flat empty area.",
+        "costume_basis": "逐項對 data/costume.json 的 amis，**只取 female 欄與花蓮區的通則，不取任何部落的識別紋樣**：\n短上衣（長度至腹部或胸下、下擺兩端留布條環腹綁結、袖口與下擺 10-15 公分條紋彎邊）、胸巾（花蓮區配件，斜綁於胸前並穿在最外層）、三片方布片裙（花蓮為三片，最外層開左側；checklist 第一條「片裙開口是不是在左側」不分地區都向左開）、綁腿布（花蓮為黑底＋白布纏小腿約三圈、綠色三股線綁結，視覺呈 V 形）、胸掛（彩色波浪紋及鎳片，因上衣短小用以避免胸部裸露）、腰帶（彩色毛線編成麻花狀，各兩條）。系統為方衣系統，方形剪裁不做立體裁剪。\n**頭飾用記載的白色鵝毛，不戴花蓮縣花蓮花。** female 欄第一項就是「白色鵝毛、兔毛，或家屋周邊可取得的花朵植物」，族群有記載就畫記載的，縣花只在族群沒有記載時才不補位（AGENTS.md 硬規則四對特別版的處理）。\n刻意做的三個限制：\n一、**不畫整套鮮紅**。palette 寫著紅色是外來材料、1960 年代花蓮阿美文化村之後才整套轉紅，pitfalls 第一條也正是「把整套鮮紅當成阿美族的傳統」。所以底色取早期的黑與深色，紅只出現在頭飾與毛線。\n二、**不畫任何部落的識別紋樣**。原民會的傳統智慧創作專用權登記總表裡，阿美族已有三筆與服飾有關：馬太鞍部落男性傳統服飾五片流蘇裙（美 H000001）、馬太鞍部落領袖大禮冠盤帽（美 H000002）、奇美部落勇士 Ciopihay 服飾（美 H000008）。costume.json 的 variants 記著馬太鞍「五片裙藍白紅」，那正是登記在案的那件男裙，既是男性服飾也不能拿來畫。這一筆因此停在花蓮區的形制層級，不指名任何部落，也不畫可辨識到部落的紋樣。\n三、**不混臺東**。pitfalls 第二條是「把花蓮與臺東的服飾混在同一張圖裡」——臺東是兩片裙、黑底外片裙有刺繡、螢光綠皺褶圍裙、綁腿稱 tapad 為多色拼布，這些一項都不能出現。\n**綁腿布不列入，是取景拍不到不是省略。** female 欄有花蓮式綁腿（黑底＋白布纏小腿約三圈、綠色三股線綁結呈 V 形），但這個系列的取景固定切在大腿中段，小腿永遠進不了畫面，寫進 outfit 只會變成一條驗收不了的規格。checklist 第三條「綁腿是否呈 V 形」這一筆因此標為不適用。\n**片裙開口方向改寫成觀眾視角。** 第一輪出圖看不出開口在哪一側——「開左側」對模型與驗收的人都有歧義（人物的左還是畫面的左）。現在明寫成「人物左側＝觀眾右側，那條垂直開口邊要看得見，另一側不得有」，跟賽夏族雷女紋那次的教訓同形狀：規格沒有指定「畫在哪裡看得到」，等於沒有約束。",
+        "scene_basis": "視點覆寫成七星潭，不繼承花蓮普通版的太魯閣峽谷：峽谷是太魯閣族的傳統領域，讓穿阿美族服飾的角色站在那裡，等於把一族放進另一族的地景。七星潭所在的奇萊平原一帶是南勢阿美的分布區（costume.json 的 areas_detail：中央山脈以東、立霧溪以南的平原地帶，北部為南勢群）。七星潭與清水斷崖都在花蓮普通版既有的 landmarks 裡，沒有新發明地標。"
+      },
+      "todo": [
+        "對外發表前應請該族群或相關單位過目"
+      ],
+      "notes": [
+        "阿美族的識別特徵在形制（方衣系統的短上衣＋三片方布片裙＋V 形綁腿），不在紋樣密度。出圖若看到整套鮮紅、兩片裙、螢光綠圍裙，那張就是錯的。",
+        "這一筆刻意停在「花蓮區通則」而不指名部落，因為阿美族已有三筆服飾登記傳統智慧創作專用權（馬太鞍男性五片流蘇裙、馬太鞍領袖大禮冠盤帽、奇美勇士服飾）。要往下畫到部落層級，必須先取得該部落同意。",
+        "第一輪出圖檢討：頭上那個看似白花的東西，放大後是阿蕊固定配件金珠流蘇髮簪的簪頭，不是花，沒有違反「不戴花」。縮圖上差點判成錯的。"
+      ]
+    },
+    {
       "id": "nantou-thao",
       "name": "南投縣・邵族",
       "en": "NANTOU / THAU",
@@ -2438,6 +2476,7 @@
         "costume_basis": "逐項對 data/costume.json 的 thao：female 欄的頭巾、有袖上衣、胸衣、腰裙、腰帶、膝布、花草製作的頭冠；palette 的深淺褐、藍、灰、黑；motifs 的幾何形花紋。\n頭冠取 female 欄記載的「花草製作的頭冠」，材料不指定成南投縣花梅花——特別版的頭飾一律跟著族群走，不套縣市花規則（AGENTS.md 硬規則四對特別版不適用）。族群有記載的就畫記載的；沒記載的就**什麼都不戴**，不用縣花補位——縣花是普通版的角色識別記號，把它戴到族服上等於在族群造型裡混進一個不屬於它的東西。\n**刻意不畫達戈紋。** 那是麻線加狗毛織成的布匹，清代《皇清職貢圖》即有記載，但 costume.json 的 gaps 寫著「達戈紋的具體織紋形貌未見官方圖示說明」——查不到長什麼樣就不畫，只保留低彩度與幾何紋的整體調性。"
       },
       "todo": [
+        "邵族登記的是「傳統男子服飾」（邵 H000052），本筆畫的是女性，不在該登記範圍。已對過登記總表，記著免得下次又要重查",
         "對外發表前應請該族群或相關單位過目"
       ],
       "notes": [
@@ -2462,6 +2501,7 @@
         "costume_basis": "逐項對 data/costume.json 的 hlaalua female 欄，該欄的形制出自原住民族傳統智慧創作專用權申請書說明書（案號 1080722000009／證號 拉H000073），由開放博物館轉錄，是整份資料集裡法律依據最明確的一筆。\n取排剪社（高中里）：女性上衣藍色、腰帶兩端習以三角形製作，是四社中唯一。雁爾社是深藍、美瓏與那爾瓦是白色，三者不可混。\n片裙長度必須過膝：族人視露體為不德，這是形制的一部分不是比例問題。\n**公雞羽毛不是鷹羽**，典故是紀念神話中幫助族人與太陽談判成功的公雞。\n頭飾以族群記載為準、不套縣花規則。特別版的頭飾一律跟著族群走，不套縣市花規則（AGENTS.md 硬規則四對特別版不適用）。族群有記載的就畫記載的；沒記載的就**什麼都不戴**，不用縣花補位——縣花是普通版的角色識別記號，把它戴到族服上等於在族群造型裡混進一個不屬於它的東西。"
       },
       "todo": [
+        "拉阿魯哇族「男女傳統服飾」已登記智慧創作專用權（拉 H000073），範圍涵蓋女性。畫面上的紋樣要對回該筆公告確認，必要時取得同意",
         "對外發表前應請該族群或相關單位過目"
       ],
       "notes": [
@@ -2511,6 +2551,7 @@
         "costume_basis": "逐項對 data/costume.json 的 kavalan：female 欄與 palette 的「目前常見的傳統服裝形式，上半部是方衣系統、用兩幅布縫合而成，下半身則以一塊布料裹身，以黑色、白色為主」；material 的香蕉絲（蕉布較輕薄，涼爽易乾，可製背袋、檳榔袋）。\n**兩個刻意的取捨：**\n一、取現行常見形制（黑白），不取十九世紀馬偕蒐藏那套紅藍黃挑織的結婚服飾。後者是特定場合的禮服、且資料只記到色彩與紋路（菱形、米字、曲折形、八瓣花葉形），沒有逐部位形制，畫出來會有很大的推測成分。palette 欄同時記著這兩套，不可混用。\n二、**不畫祭典盛裝的銅鈴垂飾與瑪瑙、琉璃珠、貝珠手環腳環**。那是「每當慶典祭儀不拘大小必著盛裝」時的配件，不是日常。\n香蕉絲是噶瑪蘭最獨特的識別物，這一筆用在斜背袋上而不是衣服上，因為 material 欄寫的是「蕉布適合男性於熱天時穿著，也可以製作背袋、檳榔袋等配件」。\nfemale 欄雖列有「頭飾」但未描述形制，十九世紀馬偕蒐藏那套也只記到有頭飾、沒記形貌，形貌查不到就不自創，因此戴宜蘭縣花國蘭。族群沒有記載女性固定頭飾時，沿用該縣市的市花（AGENTS.md 硬規則四）——那是阿蕊的識別記號，不因為換成特別版就拿掉。有記載的則以族群為準。特別版的頭飾一律跟著族群走，不套縣市花規則（AGENTS.md 硬規則四對特別版不適用）。族群有記載的就畫記載的；沒記載的就**什麼都不戴**，不用縣花補位——縣花是普通版的角色識別記號，把它戴到族服上等於在族群造型裡混進一個不屬於它的東西。"
       },
       "todo": [
+        "噶瑪蘭族「tibay（女子禮裙）」已登記智慧創作專用權（噶 GH000026）。要確認畫面上的裙不是 tibay 禮裙，或取得同意",
         "對外發表前應請該族群或相關單位過目"
       ],
       "notes": [
@@ -2583,6 +2624,7 @@
         "costume_basis": "逐項對 data/costume.json 的 cou：female 欄的黑色頭巾、胸兜、長袖短上衣、長裙、護腳布；material 的女性用棉布、絲或綢緞；palette 的紅白黑藍。\n頭飾以族群記載為準：female 欄第一項就是黑色頭巾，因此不套縣花規則。\n**第一輪出圖畫成了丸子頭插金珠流蘇髮簪，頭巾完全沒出現**，所以現在把它寫成否定句：是纏起來的布，不是髮簪、不是花、不是露出來的髮髻。族群沒有記載女性固定頭飾時，沿用該縣市的市花（AGENTS.md 硬規則四）——那是阿蕊的識別記號，不因為換成特別版就拿掉。有記載的則以族群為準。\n**不畫獸皮帽與羽毛**：那是男子服飾，而且帽飾具重要意義——戴上獸皮帽代表成年，盛裝時插鷹、藍腹鷴、帝雉、鷲羽毛數根彰顯勇敢英武，帽前緣的紅色紋飾帶更是傳統領袖或征帥等具勇士資格者才有。那一整套都不屬於女性日常。\n**這一筆的出處只有 1 筆**（原住民族委員會族群介紹頁），是全資料集裡最薄的族之一——教育部臺灣原住民族事典的鄒族服飾詞條目前無法開啟。對外發表前尤其需要族人過目。"
       },
       "todo": [
+        "鄒族「男女傳統服飾」已登記智慧創作專用權（鄒 H000005，專用權人為鄒族），範圍涵蓋女性。畫面上的紋樣要對回該筆公告確認，必要時取得同意",
         "對外發表前應請該族群或相關單位過目"
       ],
       "notes": [
