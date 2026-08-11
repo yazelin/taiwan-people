@@ -733,14 +733,14 @@
         "hair_basis": "symbols.flower",
         "right_zone": "sea",
         "landmarks_en": [
-          "Guishan Island, a turtle-shaped volcanic island floating offshore",
+          "Guishan Island, an ISLAND lying OFFSHORE in open water about ten kilometres out, with sea all the way around it and nothing joining it to the land — no road, no beach, no causeway, no harbour at its foot. It is small and far, sitting low between sea and sky. Its silhouette has THREE parts, read from left to right: (1) at the LEFT end a rounded cone that is clearly LOWER than the main mass and set apart from it by a dip — that is the turtle's HEAD, and it points LEFT; (2) the main body, one tall peak, the highest thing on the island — the shell; (3) from the right end a very long, very low gravel spit running out just above the waterline until it disappears — the tail. The head must NOT be drawn taller than the shell.",
           "Taipingshan's cypress forest and mountain railway in drifting cloud",
           "the Dongshan River's wide green channel with its arched bridges"
         ],
         "plants_desc": "cymbidium orchid: slender greenish-cream flowers with three narrow sepals, two petals and a spotted lip, several on an arching spike, with long strap-like leaves",
         "flower_shown": "國蘭",
         "hero_landmark": "龜山島",
-        "hero_landmark_en": "Guishan Island, a turtle-shaped volcanic island floating offshore",
+        "hero_landmark_en": "Guishan Island, an ISLAND lying OFFSHORE in open water about ten kilometres out, with sea all the way around it and nothing joining it to the land — no road, no beach, no causeway, no harbour at its foot. It is small and far, sitting low between sea and sky. Its silhouette has THREE parts, read from left to right: (1) at the LEFT end a rounded cone that is clearly LOWER than the main mass and set apart from it by a dip — that is the turtle's HEAD, and it points LEFT; (2) the main body, one tall peak, the highest thing on the island — the shell; (3) from the right end a very long, very low gravel spit running out just above the waterline until it disappears — the tail. The head must NOT be drawn taller than the shell.",
         "others_en": [
           "Taipingshan's cypress forest and mountain railway in drifting cloud",
           "the Dongshan River's wide green channel with its arched bridges"
@@ -748,8 +748,8 @@
         "light": "east",
         "accessories": "a green jade pendant on a cord, a beaded wrist strand, and a small woven bamboo basket hanging from her arm",
         "viewpoint": "standing on the shore of the Toucheng coast facing the Pacific",
-        "viewpoint_sees": "from here the turtle-shaped Guishan Island floats offshore, with fishing boats and the dark ridge of the Central Range behind to the west",
-        "right_zone_desc": "The right 40 percent is the Pacific off the Toucheng coast, built as FOUR depth bands. (1) Open sky fills the upper 45 percent, graded from soft blue to warm pale haze, with thin cloud bands. (2) A pale haze band on the horizon; the dark ridge of the Central Range does NOT appear here, it belongs behind the left side. (3) The ocean in broad soft horizontal value bands, paler at the horizon and deeper nearer the viewer, with one wide path of low glitter. (4) At the very bottom edge only, a thin line of surf over dark shore rock. No boats, figures or hard dark shapes; Guishan Island stays on the LEFT with the hero landmark."
+        "viewpoint_sees": "from here the sea opens out to the horizon and Guishan Island floats OFFSHORE on it — an island in open water, ten kilometres out, small and far, with sea on every side of it and no road, beach or spit connecting it to the shore. Seen from this stretch of coast the turtle faces LEFT: a low rounded head at the left end, set apart by a dip from the tall single peak of the shell, and a very long low tail spit trailing off to the right just above the water. Fishing boats lie nearer in, and the dark ridge of the Central Range stands behind to the west. The island must NOT be drawn as a headland or cape attached to the mainland.",
+        "right_zone_desc": "The right 40 percent is the open Pacific seen from the Toucheng shore: a broad band of water with long low swells and a clean high horizon, and Guishan Island small and pale on that horizon — an offshore island with water all around it, its low head at the left, its single tall shell peak, and its long low tail spit to the right, all readable but far away and low in contrast. Quiet because text goes over it, but real water with gradation, NOT a flat empty area and NOT a big green mass filling the zone."
       },
       "places": [
         "龜山島",
@@ -764,7 +764,8 @@
       "notes": [
         "海報物產欄列了「櫻花蝦」，但櫻花蝦主產地是屏東東港，宜蘭的代表海產是南方澳鯖魚。已排除。",
         "六項全部確認。三星蔥產於三星鄉。",
-        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。"
+        "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
+        "龜山島從第一版就畫成接在陸地上的岬角（普通版與噶瑪蘭特別版都是），沒有龜首龜尾、底下還有公路與漁港連回岸邊。量測抓不到這種錯——它只量亮度與結構，不會問「這是不是那座島」。\n2026-08-11 改對三件：**離岸**（四周是水、沒有東西連回陸地）、**距離**（十公里外，小而遠）、**三段式輪廓**（低圓的龜首＋以鞍部分開的單一高峰龜甲＋極低長的龜尾砂嘴）。\n**龜首不是最高的**——龜甲 398 公尺才是最高點，龜首 239 公尺、明顯較低。先前寫「一端高圓的龜頭」是錯的。\n**朝左還是朝右取決於站在哪裡**：島本身龜首朝東、龜尾朝西，但蘭陽平原海岸線呈 C 型，頭城竹安里以北看龜頭偏左、竹安以南偏右。本專案的 viewpoint 寫的是頭城海岸，屬竹安以北，所以畫成龜首朝左；宜蘭縣徽也是朝左（縣府民政處的說法是取「北上遊子從石城進入宜蘭第一眼」的角度）。要改成多數蘭陽平原居民印象中的朝右，就得把視點南移到壯圍或五結，那會連地標與構圖一起動。"
       ],
       "traits": [
         "純淨",
@@ -779,7 +780,10 @@
         "鴨賞",
         "宜蘭牛舌餅"
       ],
-      "quote_basis": "段落卡原句"
+      "quote_basis": "段落卡原句",
+      "todo": [
+        "普通版的底圖也把龜山島畫成接在陸地上的岬角（跟特別版第一輪同一個錯）。規格已經修好且兩版共用，重生就會對——但現行那張其他部分是好的，重生要保留備份、只有新候選在構圖與留白上不輸才換"
+      ]
     },
     {
       "id": "miaoli",
@@ -2558,14 +2562,14 @@
       },
       "todo": [
         "噶瑪蘭族「tibay（女子禮裙）」已登記智慧創作專用權（噶 GH000026）。要確認畫面上的裙不是 tibay 禮裙，或取得同意",
-        "對外發表前應請該族群或相關單位過目",
-        "背景的主地標龜山島畫成了近岸的綠色岬角，不是離岸的龜形島。五個候選都沒畫對，下一輪要在 viewpoint_sees 寫死龜山島的形狀（高圓的龜頭加低長的龜尾）"
+        "對外發表前應請該族群或相關單位過目"
       ],
       "notes": [
         "掛在宜蘭是因為蘭陽平原是噶瑪蘭族的原鄉。但十九世紀起族人陸續南遷，香蕉絲織布等活的技藝目前主要在花蓮新社。要改掛花蓮也說得通，見對話紀錄。",
         "這是第一筆用實物照當生圖參考的特別版。促成的原因是舊圖被指出「不像」——文字依據沒錯，但只寫到「黑白為主」，剩下的比例與分佈全是模型自由發揮。",
         "底圖 2026-08-11 依實物照重生。舊圖是寬黑白斑馬條紋，那是文字依據只寫「黑白為主」、沒寫黑白怎麼配置，模型自由發揮的結果。新圖對得上照片：白衣＋黑鑲邊＋白珠十字＋銀圓片＋珠繡頭帶。",
-        "照片裡還有一條斜掛的白珠飾帶（含藍白條紋織帶段與藍流蘇），這一筆沒有畫——accessories 沒寫它。要加的話是規格層面的決定，不是補漏。"
+        "照片裡還有一條斜掛的白珠飾帶（含藍白條紋織帶段與藍流蘇），這一筆沒有畫——accessories 沒寫它。要加的話是規格層面的決定，不是補漏。",
+        "第二輪重生（規格寫死龜山島之後）：島終於在離岸海面上，而且是三段式輪廓。第一輪那張服飾對了但島是接在陸地上的岬角，已淘汰。"
       ]
     },
     {
