@@ -616,8 +616,25 @@ cd /home/ct/taiwan-people && python3 -m http.server 8901
 ## 生圖
 
 `~/.claude/skills/codex-imagegen/codex-imagegen.sh` 這支包裝腳本會間歇性失敗
-（回報失敗但圖其實已產出，或完全不產出）。比較可靠的做法是直接呼叫 codex，
-再從 `~/.codex/generated_images/<最新 session>/` 取最新的 PNG。
+（回報失敗但圖其實已產出，或完全不產出）。所以這個 repo 走自己的 `tools/gen.sh`。
+
+**不要自己去 `~/.codex/generated_images/<最新 session>/` 撿最新的 PNG。**
+那個目錄是這台機器上**所有** codex 用途共用的，不是這個專案專用。
+2026-08-11 我照這個做法撿圖，撿到的是另一個 session 產的「穿西裝的星空章魚配電腦桌前的女孩」，
+差一點就當成阿美族特別版的候選存進 repo。`gen.sh` 執行前後各拍一次 PNG 清單、
+只認新出現的檔案，正是為了防這件事——繞過它就會中招。
+
+**codex 會整輪掛住不回，而且不是短暫的。** 同一天實測兩次，一次 1 小時 55 分、
+一次 1 小時 27 分，進程活著、沒有輸出、也沒有錯誤，四小時內只成功產出一張圖。
+所以**批次生成一定要包 `timeout`**：
+
+```bash
+timeout 900 bash tools/gen.sh "$out" "$prompt" $refs || continue   # 卡住就跳下一輪
+```
+
+還有一種假成功：gen.sh 回報 OK，但存出來的檔案 md5 與上一輪一模一樣。
+候選存檔用內容雜湊當檔名（`r${round}-$(md5sum "$f" | cut -c1-8).png`），
+重複的自然不會多存一份，也就看得出來這一輪其實沒產出新東西。
 
 去背一律用色鍵，不要跟模型要透明背景（它會給你綠幕）。
 綠幕會撞到畫面裡的綠色物件，用**洋紅**比較安全。

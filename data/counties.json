@@ -2428,7 +2428,6 @@
       "culture": "amis",
       "group": "e",
       "poster": "hualien",
-      "base": "hualien-amis-base",
       "scene": {
         "outfit_zh": "阿美族女子服飾（花蓮區通則，不採任何部落的識別紋樣）：短上衣（長度至胸下，袖口與下擺有條紋彎邊）、胸巾斜綁於最外層、三片方布片裙且最外層開口在人物左側（＝觀眾視角的右側）、鎳片胸掛、彩色毛線麻花腰帶",
         "outfit": "Amis (Pangcah) women's dress of the HUALIEN region, in the square-cut cloth system — flat panels of woven cloth, no tailored three-dimensional cutting. A SHORT top ending just below the chest, its cuffs and hem carrying a band of striped curved-edge trim about a hand's width deep; the two ends of the hem are left as cloth ties knotted at the waist. Over it, worn OUTERMOST, a breast cloth tied diagonally across the chest. Below, a wrap skirt of THREE square cloth panels. The outermost panel opens on HER LEFT side, which is the VIEWER'S RIGHT since she faces us: the vertical opening edge of that panel, with its striped trim running top to bottom, must be clearly visible on the viewer's right of the skirt, and there must be NO such vertical opening edge on the viewer's left. At the chest a beaded and nickel-plate ornament hanging over the top's short hem, and at the waist two twisted ropes of coloured wool. The ground colours are DARK — black and deep indigo — with colour appearing only in the trim bands, the wool ropes and the head-dress. This is NOT an all-red costume.",
@@ -2450,6 +2449,7 @@
         "scene_basis": "視點覆寫成七星潭，不繼承花蓮普通版的太魯閣峽谷：峽谷是太魯閣族的傳統領域，讓穿阿美族服飾的角色站在那裡，等於把一族放進另一族的地景。七星潭所在的奇萊平原一帶是南勢阿美的分布區（costume.json 的 areas_detail：中央山脈以東、立霧溪以南的平原地帶，北部為南勢群）。七星潭與清水斷崖都在花蓮普通版既有的 landmarks 裡，沒有新發明地標。"
       },
       "todo": [
+        "底圖還沒生出來。規格已定稿，等 codex 恢復正常再跑 tools/gen_all.sh 花蓮縣・阿美族",
         "對外發表前應請該族群或相關單位過目"
       ],
       "notes": [
