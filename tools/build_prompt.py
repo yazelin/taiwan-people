@@ -157,6 +157,25 @@ def costume_block(c):
         "Every layer named above must remain visible in the finished picture — do not let an "
         "outer garment cover and hide a layer that was listed, especially leg-cloths and "
         "chest-cloths. ")
+    # 有實物照時才加這段。
+    # 第一版寫成「不得複製任何織紋」——那是錯的，而且自相矛盾：族服的識別特徵常常
+    # 就是紋樣本身（賽夏沒有雷女紋只剩標籤、太魯閣沒有菱紋就變泛族風），
+    # 禁掉紋樣等於禁掉這張圖存在的理由。要禁的從來不是「紋樣」，是
+    # 「登記在案的特定作品」與「可辨識到單一部落的專屬紋章」。
+    if c.get("scene", {}).get("costume_refs"):
+        parts.append(
+            "THE LAST REFERENCE IMAGE is a photograph of this actual garment as it is worn today. "
+            "Follow it for how the pieces are constructed and layered, the proportions (garment "
+            "lengths, how deep the trim bands are, how wide the panels are), how the colours are "
+            "distributed, AND the ornament actually visible on it — the bead work, the metal discs "
+            "and the way they are laid out along the bands. That patterning is the point of the "
+            "garment, not an optional extra: draw it. "
+            "Two things you must NOT take from it: do not reproduce it as a ceremonial or wedding "
+            "dress, and do not add any single crest or emblem that would mark one specific village "
+            "rather than the people as a whole. "
+            "Do NOT copy the person, face, pose, hairstyle, background or framing from it — "
+            "those come from the character sheets and the scene description. "
+            "Where the photograph and the written description disagree, the written description wins. ")
     return "".join(parts)
 
 
@@ -304,12 +323,18 @@ def build(c):
 
 
 def refs(c):
-    """生圖要附的參考圖：image 1 是舊海報，其後才是角色設定圖。"""
+    """生圖要附的參考圖：image 1 是舊海報，其後是角色設定圖，最後才是服飾實物照。
+
+    服飾實物照放在最後，是因為 build() 裡那段說明用「最後一張參考圖」來指涉它。
+    只有 scene.costume_refs 有寫的那幾筆才會附——照片要授權允許才收，見
+    data/costume-refs/SOURCES.md。
+    """
     out = []
     if c.get("poster"):
         out.append(ROOT / "img" / f"{c['poster']}.webp")
     out.extend([ROOT / "data" / "character" / "ref-half.png",
                 ROOT / "data" / "character" / "face.png"])
+    out.extend(ROOT / p for p in c.get("scene", {}).get("costume_refs", []))
     return [str(p) for p in out if p.exists()]
 
 
