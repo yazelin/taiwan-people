@@ -557,6 +557,28 @@ def build_bottom_right_cleanup(c):
     )
 
 
+def build_ornament_cleanup(c):
+    """既有底圖只清掉衣物上多畫的裝飾，其餘保留。
+
+    噶瑪蘭那張的上衣黑帶上殘留兩三顆大銀圓盤——那些盤只屬於攜物袋的斜背帶與袋身。
+    整張重生要冒新的風險（前一輪就是為了修島而把國蘭髮花畫壞），這種只錯一處的
+    情況用定點編輯比較划算。要清掉什麼寫在 scene.ornament_cleanup。
+    """
+    what = c["scene"].get("ornament_cleanup") or ""
+    return (
+        "Use case: precise-object-edit. Image 1 is the edit target. "
+        "Change only this: " + what + " "
+        "Rebuild each cleared spot as the plain cloth that surrounds it, matching its colour, "
+        "weave, shading and the fall of the fabric, so that nothing looks erased or patched. "
+        "Preserve exactly everything else: the character's face, warm brown eyes, expression, hair, "
+        "head-dress, hairpin, earrings, every other part of the clothing and its ornament, the bag "
+        "and its strap with all of their discs and tassels, both hands and whatever she holds, the "
+        "necklace, the foreground plants, the whole background including the offshore island, the "
+        "composition, lighting, palette, painterly anime style and 4:3 framing. "
+        "Do not change, add or remove anything else. No text, letters, logos, panels, borders or "
+        "watermarks."
+    )
+
 def build_print_fix(c):
     """既有底圖只清掉衣物與提袋印花裡的偽字。"""
     s = c["scene"]
@@ -644,6 +666,8 @@ if __name__ == "__main__":
         print(build_landmark_boundary_fix(county))
     elif "--cleanup-bottom-right" in sys.argv:
         print(build_bottom_right_cleanup(county))
+    elif "--cleanup-ornament" in sys.argv:
+        print(build_ornament_cleanup(county))
     elif "--fix-print" in sys.argv:
         print(build_print_fix(county))
     elif "--fix-hand-framing" in sys.argv:
