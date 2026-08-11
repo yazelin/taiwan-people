@@ -498,6 +498,32 @@ def build_landmark_boundary_fix(c):
     )
 
 
+def build_landmark_shape_fix(c):
+    """既有底圖只重畫主地標本身，其餘一律保留。
+
+    用在「畫面是好的、但那個地標畫錯了」的情況——宜蘭那張把離岸的龜山島畫成接在
+    陸地上的岬角，整張圖其他部分（國蘭髮花、構圖、右側留白）都比重生的候選好，
+    重生等於用好的換壞的。內容取自 scene.hero_landmark_en，所以其他縣市也能用。
+    """
+    s = c["scene"]
+    return (
+        "Use case: precise-object-edit. Image 1 is the edit target. "
+        "Change ONLY the main landmark in the middle distance and the water immediately around it. "
+        "Whatever landform currently occupies that part of the picture is wrong and must be removed "
+        "completely, together with any buildings, roads, breakwaters or shoreline that currently sit on "
+        "it or connect it to the land. In its place, continue the open sea, and on the far horizon draw: "
+        + s["hero_landmark_en"] + " "
+        "Draw it at the size and haze of things that far away — small, pale and low-contrast, clearly "
+        "behind everything in the foreground. "
+        "Preserve everything else exactly unchanged: the complete character, her face, eyes, hair, the "
+        "flower and leaves in her hair, the hairpin, earrings, all clothing, both hands and whatever she "
+        "is holding, every foreground plant, and all the town, road, railway, bridge, near shoreline and "
+        "rocks on the left side. Keep the sky, horizon height, lighting, palette, painterly anime style "
+        "and 4:3 framing. Do not move or rescale the character. "
+        "No text, letters, logos, panels, borders or watermarks."
+    )
+
+
 def build_bottom_right_cleanup(c):
     """既有底圖只清除右下文字區的近景障礙物。"""
     return (
@@ -598,6 +624,8 @@ if __name__ == "__main__":
         print(build_tote_print_fix(county))
     elif "--cleanup-right-zone" in sys.argv:
         print(build_right_zone_cleanup(county))
+    elif "--fix-landmark-shape" in sys.argv:
+        print(build_landmark_shape_fix(county))
     elif "--fix-landmark-boundary" in sys.argv:
         print(build_landmark_boundary_fix(county))
     elif "--cleanup-bottom-right" in sys.argv:
