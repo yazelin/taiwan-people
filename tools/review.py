@@ -26,7 +26,15 @@ GEN = pathlib.Path("/tmp/taiwan-people-gen")
 
 
 def measure(path):
-    """跟 verify_base.py 同一套判準，數字要對得起來。"""
+    """跟 verify_base.py 同一套判準，數字要對得起來。
+
+    2026-08-12 對過一次，發現這句註解是假的：verify_base 早就把「右緣」停用
+    （它量到的是背景不是人物），也早就把文字區起伏上限放寬到 0.055 並補了右側
+    結構下限 0.010；這裡卻還卡在 0.030 上限＋右緣 0.38–0.62，而且完全沒量右側結構。
+    後果是真的發生了：太魯閣那張唯一畫對的候選被這裡判 FAIL（右緣 0.64），
+    我因此先去看了另外兩張——而那兩張是別的縣市混進來的圖。
+    **兩支工具說法不一致時，會有人照著錯的那支做決定。** 現在對齊 verify_base。
+    """
     a = np.asarray(Image.open(path).convert("RGB"), float)
     H, W, _ = a.shape
     lum = (.2126 * a[..., 0] + .7152 * a[..., 1] + .0722 * a[..., 2]) / 255
@@ -39,9 +47,15 @@ def measure(path):
     g = np.abs(np.diff(lum, axis=1))
     col = g.mean(axis=0)
     idx = np.where(col > col.mean() + col.std() * .5)[0]
+    # 右緣：跟 verify_base 一樣只留數字供參考，不進判定
     res["right"] = round(float(idx.max() / W) if len(idx) else 0, 2)
-    ok = (all(res[k][0] >= res[k][2] and res[k][1] <= 0.030 for k in ("name", "text"))
-          and 0.38 <= res["right"] <= 0.62)
+    # 右側 40% 的結構下限，verify_base 有、這裡本來沒有
+    rz = lum[:, int(.60 * W):]
+    rh, rw = rz.shape
+    rb = rz[:rh // 16 * 16, :rw // 16 * 16].reshape(rh // 16, 16, -1, 16)
+    res["detail"] = round(float(np.median(rb.std(axis=(1, 3)))), 4)
+    ok = (all(res[k][0] >= res[k][2] and res[k][1] <= 0.055 for k in ("name", "text"))
+          and res["detail"] >= 0.010)
     res["ok"] = bool(ok)   # numpy 的布林不能直接轉 JSON
     return res
 

@@ -23,6 +23,18 @@ for f in "$@"; do
   args+=(--image "$f")
 done
 
+# 一次只准跑一個 gen.sh。這支腳本靠「執行前後比對 ~/.codex/generated_images」來認出
+# 新產生的圖，那個做法在並行時會失效：2026-08-12 我在噶瑪蘭那輪還沒跑完時就啟動太魯閣，
+# 結果太魯閣把噶瑪蘭的三張圖當成自己的候選撿走了（服裝、手持物、背景全是宜蘭的），
+# 量測還全部通過——因為那三張本身是好圖，只是屬於另一個縣市。
+# 那個目錄是整台機器共用的（別的 Claude session 用 codex 也會寫進去），鎖住才安全。
+exec 9>/tmp/taiwan-people-gen.lock
+if ! flock -n 9; then
+  echo "FAIL: 另一個 tools/gen.sh 還在跑。generated_images 是共用目錄，" >&2
+  echo "      並行會讓兩邊互相撿走對方的圖，所以一次只跑一個。" >&2
+  exit 1
+fi
+
 before=$(mktemp)
 find ~/.codex/generated_images -name '*.png' 2>/dev/null | sort > "$before"
 
@@ -36,13 +48,26 @@ find ~/.codex/generated_images -name '*.png' 2>/dev/null | sort > "$before"
 codex exec -C "$(pwd)" -s workspace-write --skip-git-repo-check \
   "${args[@]}" -- "\$imagegen $prompt" </dev/null >"${out%.*}.codex.log" 2>&1
 
-after=$(mktemp)
-find ~/.codex/generated_images -name '*.png' 2>/dev/null | sort > "$after"
-# codex 一次會產生「多個不同的嘗試」，不是「一張逐步改進」——
-# 實測台北那次出了 5 張，最新的那張 101 最小最淡，第 3 張才是最好的。
-# 所以全部留下由人審，取最新的等於每次丟掉 4 個候選而且沒理由相信最後一張最好。
-mapfile -t news < <(comm -13 "$before" "$after" | xargs -r ls -1t 2>/dev/null)
-rm -f "$before" "$after"
+# 取圖的正解是**認 codex 這一次的 session id**，不是比對前後檔案清單。
+# codex exec 會把「session id: <uuid>」印到 stderr，而它產的圖就放在
+# ~/.codex/generated_images/<uuid>/ 底下——這是唯一能證明「這張圖屬於這一次請求」的關聯。
+# 前後比對只是退路：它假設那段時間裡只有自己在產圖，而那個假設被打破過兩次
+# （撿到別的 Claude session 的圖、撿到自己另一個縣市的圖）。
+sid=$(grep -oaE 'session id: [0-9a-f-]{36}' "${out%.*}.codex.log" 2>/dev/null | head -1 | awk '{print $3}')
+if [ -n "$sid" ] && [ -d "$HOME/.codex/generated_images/$sid" ]; then
+  mapfile -t news < <(ls -1t "$HOME/.codex/generated_images/$sid"/*.png 2>/dev/null)
+  echo "（本輪 session $sid，取到 ${#news[@]} 張）" >&2
+else
+  echo "警告：從 log 讀不到 session id，退回前後比對取圖——並行時可能撿到別人的圖" >&2
+  after=$(mktemp)
+  find ~/.codex/generated_images -name '*.png' 2>/dev/null | sort > "$after"
+  # codex 一次會產生「多個不同的嘗試」，不是「一張逐步改進」——
+  # 實測台北那次出了 5 張，最新的那張 101 最小最淡，第 3 張才是最好的。
+  # 所以全部留下由人審，取最新的等於每次丟掉 4 個候選而且沒理由相信最後一張最好。
+  mapfile -t news < <(comm -13 "$before" "$after" | xargs -r ls -1t 2>/dev/null)
+  rm -f "$after"
+fi
+rm -f "$before"
 
 if [ ${#news[@]} -eq 0 ]; then
   # 原本這裡寫死「prompt 被拒或額度用盡」，那是猜的，而且猜錯過：實際遇到的是
