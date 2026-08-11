@@ -68,7 +68,8 @@ def build():
     for c in data["counties"]:
         cid, name = c["id"], c["name"]
         cand = sorted(glob.glob(str(GEN / f"{cid}-base.cand" / "*.png")))
-        cur = ROOT / "img" / f"{c['base']}.webp"
+        # 還沒生出底圖的特別版沒有 base 欄，而審查頁正是那種狀態下最需要開的頁
+        cur = ROOT / "img" / f"{c.get('base') or c['id'] + '-base'}.webp"
         items = []
         for f in cand:
             no = os.path.basename(f).split(".")[0]
