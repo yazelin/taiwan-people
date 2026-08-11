@@ -175,6 +175,16 @@ def costume_block(c):
             "rather than the people as a whole. "
             "Do NOT copy the person, face, pose, hairstyle, background or framing from it — "
             "those come from the character sheets and the scene description. "
+            "THE COSTUME PHOTOGRAPHS ARE GARMENT-ONLY CROPS AND CONTAIN NO FACE. The character's "
+            "face, eyes, eye shape, face shape, skin and hair come from the character sheets and "
+            "from nowhere else: keep the round face and large round brown eyes exactly as drawn "
+            "there. Do not lengthen the face, narrow the eyes, raise the cheekbones or make her "
+            "look older — if the finished face would not be recognised as the same person as the "
+            "character sheets, the picture is wrong. "
+            "Match the DENSITY of the ornament in the photographs, not just its motifs: where the "
+            "photograph shows a few separate ornaments on empty cloth, draw a few separate "
+            "ornaments on empty cloth. Filling the band with continuous bead lines or dense inlay "
+            "is a mistake even when every individual motif is correct. "
             "Where the photograph and the written description disagree, the written description wins. ")
     return "".join(parts)
 
