@@ -175,6 +175,16 @@ def costume_block(c):
             "rather than the people as a whole. "
             "Do NOT copy the person, face, pose, hairstyle, background or framing from it — "
             "those come from the character sheets and the scene description. "
+            "THE COSTUME PHOTOGRAPHS ARE GARMENT-ONLY CROPS AND CONTAIN NO FACE. The character's "
+            "face, eyes, eye shape, face shape, skin and hair come from the character sheets and "
+            "from nowhere else: keep the round face and large round brown eyes exactly as drawn "
+            "there. Do not lengthen the face, narrow the eyes, raise the cheekbones or make her "
+            "look older — if the finished face would not be recognised as the same person as the "
+            "character sheets, the picture is wrong. "
+            "Match the DENSITY of the ornament in the photographs, not just its motifs: where the "
+            "photograph shows a few separate ornaments on empty cloth, draw a few separate "
+            "ornaments on empty cloth. Filling the band with continuous bead lines or dense inlay "
+            "is a mistake even when every individual motif is correct. "
             "Where the photograph and the written description disagree, the written description wins. ")
     return "".join(parts)
 
@@ -216,7 +226,11 @@ def build(c):
         f"OUTFIT — do NOT copy the clothes shown in the reference sheets, which lock only her "
         f"face and build. Dress her instead in: {s['outfit']}. "
         + costume_block(c)
-        + "Keep the canvas tote bag. "
+        # 帆布提袋是系列的固定道具，但有些特別版該背的是族群自己的攜物袋
+        # （噶瑪蘭的檳榔袋就是整組服飾的一件），兩個都掛在身上會變成雜物。
+        + ("Keep the canvas tote bag. " if c["scene"].get("tote", True) else
+           "She carries NO canvas tote bag in this picture — the only bag is the traditional one "
+           "described in the outfit above. ")
         # tote_print 原本只有 --fix-tote-print 讀得到，build() 沒用它——
         # 等於正式生成時提袋印花一律由模型自由發揮。新竹市那次就發明出一張
         # 像剪貼素材的 IC 晶片示意圖，而且對不回任何一筆 landmarks。
@@ -543,6 +557,28 @@ def build_bottom_right_cleanup(c):
     )
 
 
+def build_ornament_cleanup(c):
+    """既有底圖只清掉衣物上多畫的裝飾，其餘保留。
+
+    噶瑪蘭那張的上衣黑帶上殘留兩三顆大銀圓盤——那些盤只屬於攜物袋的斜背帶與袋身。
+    整張重生要冒新的風險（前一輪就是為了修島而把國蘭髮花畫壞），這種只錯一處的
+    情況用定點編輯比較划算。要清掉什麼寫在 scene.ornament_cleanup。
+    """
+    what = c["scene"].get("ornament_cleanup") or ""
+    return (
+        "Use case: precise-object-edit. Image 1 is the edit target. "
+        "Change only this: " + what + " "
+        "Rebuild each cleared spot as the plain cloth that surrounds it, matching its colour, "
+        "weave, shading and the fall of the fabric, so that nothing looks erased or patched. "
+        "Preserve exactly everything else: the character's face, warm brown eyes, expression, hair, "
+        "head-dress, hairpin, earrings, every other part of the clothing and its ornament, the bag "
+        "and its strap with all of their discs and tassels, both hands and whatever she holds, the "
+        "necklace, the foreground plants, the whole background including the offshore island, the "
+        "composition, lighting, palette, painterly anime style and 4:3 framing. "
+        "Do not change, add or remove anything else. No text, letters, logos, panels, borders or "
+        "watermarks."
+    )
+
 def build_print_fix(c):
     """既有底圖只清掉衣物與提袋印花裡的偽字。"""
     s = c["scene"]
@@ -630,6 +666,8 @@ if __name__ == "__main__":
         print(build_landmark_boundary_fix(county))
     elif "--cleanup-bottom-right" in sys.argv:
         print(build_bottom_right_cleanup(county))
+    elif "--cleanup-ornament" in sys.argv:
+        print(build_ornament_cleanup(county))
     elif "--fix-print" in sys.argv:
         print(build_print_fix(county))
     elif "--fix-hand-framing" in sys.argv:
