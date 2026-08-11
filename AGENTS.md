@@ -616,8 +616,47 @@ cd /home/ct/taiwan-people && python3 -m http.server 8901
 ## 生圖
 
 `~/.claude/skills/codex-imagegen/codex-imagegen.sh` 這支包裝腳本會間歇性失敗
-（回報失敗但圖其實已產出，或完全不產出）。比較可靠的做法是直接呼叫 codex，
-再從 `~/.codex/generated_images/<最新 session>/` 取最新的 PNG。
+（回報失敗但圖其實已產出，或完全不產出）。所以這個 repo 走自己的 `tools/gen.sh`。
+
+**不要自己去 `~/.codex/generated_images/<最新 session>/` 撿最新的 PNG。**
+那個目錄是這台機器上**所有** codex 用途共用的，不是這個專案專用。
+2026-08-11 我照這個做法撿圖，撿到的是另一個 session 產的「穿西裝的星空章魚配電腦桌前的女孩」，
+差一點就當成阿美族特別版的候選存進 repo。`gen.sh` 執行前後各拍一次 PNG 清單、
+只認新出現的檔案，正是為了防這件事——繞過它就會中招。
+
+**背景執行時 codex 會永遠等 stdin。** 這是 2026-08-11 卡掉整個下午的真正原因，
+一開始我以為是 codex 慢或額度用盡，兩個都不是：
+
+```
+$ codex exec -- "回覆 OK"          # 前景：stdin 已關 → 幾秒回
+$ (同一行放到背景跑)                # 印一行「Reading additional input from stdin...」
+                                    # 然後停在那裡不動
+```
+
+`codex exec` 會把 stdin 當成「還有補充輸入要讀」並等 EOF。前景執行時 stdin 已經關了，
+所以看不出問題；丟到背景跑時那是一條永遠不關的管線，它就一路等下去——
+實測兩輪分別卡了 1 小時 55 分與 1 小時 27 分，**連 session 檔都沒建**（它根本還沒開工），
+而 `gen.sh` 當時又把輸出全丟進 `/dev/null`，所以連那行提示都看不到。
+
+對照實驗（各跑一次，背景）：繼承 stdin → 100 秒被 timeout 砍掉；`< /dev/null` → 10 秒完成。
+所以 `gen.sh` 現在固定 `</dev/null`，輸出也留檔不再丟掉。
+
+**另外一種失敗長得很像但不是同一件事**：codex 會回
+`Selected model is at capacity`（`codex_error_info: server_overloaded`），
+那一輪大約一分鐘就結束、不產圖。`gen.sh` 舊版把這種情況一律報成
+「prompt 被拒或額度用盡」——那是猜的，而且猜錯：查 codex 自己記的 `rate_limits`，
+週配額只用了 9%、`rate_limit_reached_type` 是 null。現在改成去讀 session 檔裡的真實錯誤。
+**猜測性的錯誤訊息比沒有訊息更糟，它會把人帶去查錯方向。**
+
+批次生成仍然要包 `timeout`（伺服器端塞住時還是可能久等）：
+
+```bash
+timeout 900 bash tools/gen.sh "$out" "$prompt" $refs || continue   # 卡住就跳下一輪
+```
+
+還有一種假成功：gen.sh 回報 OK，但存出來的檔案 md5 與上一輪一模一樣。
+候選存檔用內容雜湊當檔名（`r${round}-$(md5sum "$f" | cut -c1-8).png`），
+重複的自然不會多存一份，也就看得出來這一輪其實沒產出新東西。
 
 去背一律用色鍵，不要跟模型要透明背景（它會給你綠幕）。
 綠幕會撞到畫面裡的綠色物件，用**洋紅**比較安全。
