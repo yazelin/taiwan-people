@@ -1775,8 +1775,8 @@
         ],
         "hand": "a bowl of mung-bean dessert with shaved ice",
         "hand_zh": "恆春綠豆蒜",
-        "outfit_zh": "珊瑚橘短袖襯衫、白T",
-        "outfit": "an open coral-orange short-sleeve shirt over a white tee",
+        "outfit_zh": "珊瑚橘短袖襯衫、素面白T（不得有任何印花）",
+        "outfit": "an open coral-orange short-sleeve shirt over a PLAIN white tee — the tee is completely plain: no print, no pattern, no graphic, no floral or tropical motif, no logo and no lettering anywhere on it, just white cloth",
         "hair": "a bright magenta bougainvillea pinned beside her neat high bun",
         "hair_zh": "九重葛（屏東縣花）",
         "hair_basis": "symbols.flower",
@@ -1803,8 +1803,7 @@
         "right_zone_desc": "The right 40 percent is the Kenting coast opening south, built as FOUR depth bands. (1) Open sky fills the upper 45 percent, graded from soft blue to warm pale haze, with thin cloud bands. (2) A pale haze band on the horizon with one far low headland silhouette. (3) The sea in broad soft value bands, turquoise nearer the shore shading to deep blue at the horizon, with one wide path of low glitter. (4) At the very bottom edge only, a thin line of surf over pale coral rock. The coral rock shelf and palms belong on the LEFT and must not continue across this zone."
       },
       "todo": [
-        "查證 symbols.flower：九重葛查無官方出處（維基該列無引註、縣府官網無象徵頁），且 2016 縣府曾擬 i-voting 更換縣花。動髮花前要先確定現行縣花是什麼",
-        "白T被模型畫成滿版熱帶印花，資料寫的是白T。分數更高的候選 03 多畫了一座斜張橋——墾丁珊瑚礁岸沒有那個東西，規格寫的是大尖山，所以維持現裝。印花這件事下輪再處理。"
+        "查證 symbols.flower 暫緩（2026-08-11 拍板）：九重葛查無官方一手出處，但旁證顯示到 2024 年民間仍普遍如此認知，維持不動，不再主動追查"
       ],
       "places": [
         "墾丁國家公園",
@@ -1820,7 +1819,9 @@
         "海報「代表海產」欄為黑鮪魚與櫻花蝦，確認櫻花蝦屬屏東東港——宜蘭那張把櫻花蝦列進物產是錯的。",
         "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
         "服裝含原住民族織紋，依原海報保留視覺但**不指名族群**——台東就有阿美、卑南、排灣、布農、達悟五族，指錯族群的織紋比指錯市樹嚴重。若要對外正式發佈，這幾張建議先請具代表性的族人或相關單位過目。",
-        "原海報畫扶桑花，但扶桑＝朱槿是**舊高雄縣**縣花，帶著別的縣市的聯想，改用屏東自己的九重葛（桃紅色，同樣搶眼）。"
+        "原海報畫扶桑花，但扶桑＝朱槿是**舊高雄縣**縣花，帶著別的縣市的聯想，改用屏東自己的九重葛（桃紅色，同樣搶眼）。",
+        "白T的印花連兩輪被畫成滿版熱帶花——成因是規格只寫 white tee，沒有禁止印花。跟賽夏族雷女紋那次相反的形狀：那次是「該出現的沒要求它出現」，這次是「不該出現的沒禁止它出現」。outfit 已改成明確的否定句。",
+        "底圖 2026-08-11 重生：舊圖的白T是滿版椰子樹＋扶桑花＋海浪印花，對不回任何資料。四個候選裡選了唯一同時做到「白T素面」與「畫面沒有斜張橋」的那張——斜張橋這個錯連兩輪出現，墾丁珊瑚礁岸沒有那東西。"
       ],
       "traits": [
         "樂天",
