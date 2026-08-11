@@ -9,7 +9,7 @@
     "places": "卡片右欄第一列：三個代表地標。選鑑別度高、外地人也認得的。",
     "foods": "卡片右欄第二列。**第一項要與 scene.hand 一致**，文字與畫面才會互相印證。",
     "symbols": "不再顯示在右欄。市花保留，因為它決定角色髮上那朵花的種類（同時是恆定記號與地方變數）。",
-    "symbols.flower": "該縣市市花。同時決定背景花木與她髮上那朵花。source：official＝已對官方原始出處；wikipedia_cited_gov＝維基且該表附政府引註，未逐一開啟核對；none＝該縣市未指定。",
+    "symbols.flower": "該縣市市花。同時決定背景花木與她髮上那朵花。source：official＝已對官方原始出處；wikipedia_cited_gov＝維基且該表附政府引註，未逐一開啟核對；wikipedia＝只有維基一個來源；none＝該縣市未指定。**引註存在不等於引註支持**——金門那筆的引註頁裡根本沒有花名，屏東與連江那兩筆的引註分別是沒有、以及民間論壇。所以升級成 official 之前要真的把那一頁讀完。",
     "quote": "阿蕊的短句，**全部取自原海報**，沒有一句是自己編的。\n那句話 20 張都有，只是位置不同：10 張寫在最左直書、新北在識別帶上、新竹在告示上、其餘藏在段落卡的收尾。\n取用原則：挑該張最有辨識度的一句，去掉宣傳腔的收尾（「這就是OO的日常，也是我們的驕傲」這種句型在台北與宜蘭幾乎一字不差，換成任何縣市都成立）。\n曾經把 22 句全部改寫成「XX是咱的家」——那個句型只有高雄那張是這樣寫的，套到全部就是把原本的變化抹平成模板。",
     "scene.hand": "她手上拿的東西，寫成給生圖模型看的英文描述。取自該縣市的 foods。**不要畫任何真實品牌的商標或包裝**，品牌名只出現在文字欄。珍奶屬台灣層級，縣市不要用。",
     "scene.plants": "背景要出現的植物。**預設就是該縣市的市花**，不要憑海報上的圖憑印象填；高雄第一版誤填鳳凰木（台南市樹），生出來的紅花既不是木棉也不是鳳凰花。",
@@ -61,13 +61,15 @@
         },
         "tree": {
           "value": "楓香",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "基隆市政府「基隆簡介」：市樹為楓香，屬於金縷梅科楓樹屬之落葉大喬木",
+          "url": "https://www.klcg.gov.tw/tw/About/Introduction"
         },
         "bird": {
           "value": "黑鳶",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "基隆市政府「基隆簡介」：市鳥為老鷹，又名來葉、厲翼、黑鳶",
+          "url": "https://www.klcg.gov.tw/tw/About/Introduction"
         }
       },
       "scene": {
@@ -164,13 +166,15 @@
         },
         "tree": {
           "value": "榕樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "臺北市政府「臺北市概況」：市樹 - 榕樹",
+          "url": "https://www.gov.taipei/cp.aspx?n=469A3095FCB700F3&s=18E21F157407D1E6"
         },
         "bird": {
           "value": "台灣藍鵲",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "臺北市政府「臺北市概況」：市鳥 - 臺灣藍鵲",
+          "url": "https://www.gov.taipei/cp.aspx?n=469A3095FCB700F3&s=18E21F157407D1E6"
         }
       },
       "scene": {
@@ -274,13 +278,14 @@
         },
         "tree": {
           "value": "台灣山櫻",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "新北市政府「市樹市花」：市樹：台灣山櫻",
+          "url": "https://www.ntpc.gov.tw/ch/home.jsp?id=f8985f0012d24001"
         },
         "bird": {
           "value": "鷺鷥",
           "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "note": "僅維基，待對官方核實。新北市政府那一頁叫「市樹市花」，只寫市樹與市花，沒有市鳥"
         }
       },
       "scene": {
@@ -375,18 +380,21 @@
       "symbols": {
         "flower": {
           "value": "桃花",
-          "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」。該縣市官網查無公開的象徵頁面：首頁無連結、站內搜尋查無、搜尋引擎亦僅得不相關頁面。已查證的 11 個縣市全部與該表吻合、零衝突，因此可信度高但仍非官方一手來源。"
+          "source": "official",
+          "note": "桃園市政府全球資訊網刊行的《新修桃園縣志──贅錄志》：「一、桃園縣花、縣樹、縣果、縣鳥、縣徽與縣歌　(一)縣花--桃花（亦為桃園市市花）」，同章〈桃園縣及各鄉鎮市官定花樹果一覽表〉另記舊桃園市（縣轄市）的市花桃花選定於 80.2.19。縣府官網另有「市花介紹」頁（www.tycg.gov.tw/ch/home.jsp?id=36），但該站有 WAF，curl 與瀏覽器自動化都被擋（403 HiNetCDN），所以引縣志 PDF，內容取自 2022-08-30 的 Wayback 存檔。原文見 data/sources/symbols/。",
+          "url": "https://www.tycg.gov.tw/uploaddowndoc?file=publish/201707051340570.pdf&filedisplay=%E6%96%B0%E4%BF%AE%E6%A1%83%E5%9C%92%E7%B8%A3%E5%BF%97%E2%94%80%E2%94%80%E8%B3%B8%E9%8C%84%E5%BF%97.pdf&flag=doc"
         },
         "tree": {
           "value": "桃樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "《新修桃園縣志──贅錄志》：「(二)縣樹--桃樹」，選桃樹的淵源是薛啟隆在虎茅庄大量種桃",
+          "url": "https://www.tycg.gov.tw/uploaddowndoc?file=publish/201707051340570.pdf&filedisplay=%E6%96%B0%E4%BF%AE%E6%A1%83%E5%9C%92%E7%B8%A3%E5%BF%97%E2%94%80%E2%94%80%E8%B3%B8%E9%8C%84%E5%BF%97.pdf&flag=doc"
         },
         "bird": {
           "value": "台灣藍鵲",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "《新修桃園縣志──贅錄志》：「(四)縣鳥—台灣藍鵲」（同段記台灣藍鵲同時中選為臺北市市鳥與桃園縣縣鳥）",
+          "url": "https://www.tycg.gov.tw/uploaddowndoc?file=publish/201707051340570.pdf&filedisplay=%E6%96%B0%E4%BF%AE%E6%A1%83%E5%9C%92%E7%B8%A3%E5%BF%97%E2%94%80%E2%94%80%E8%B3%B8%E9%8C%84%E5%BF%97.pdf&flag=doc"
         }
       },
       "scene": {
@@ -425,9 +433,6 @@
         "viewpoint_sees": "from here the green reservoir lake stretches back between forested hills, with the ridges of Lalashan far behind in haze",
         "right_zone_desc": "The right 40 percent is the Shimen Reservoir lake opening back between the hills, built as FOUR depth bands. (1) Open sky fills the upper 40 percent, graded from soft blue to warm pale haze, with thin cloud bands. (2) Three or four forested ridgelines layered one behind another, each paler than the one in front, with mist pooling in the valleys between them. (3) The lake surface in broad soft value bands, mirroring the ridges as soft pale reflections. (4) Nearest the bottom edge only, the near water with gentle current texture. No dam structures, boats, figures or hard dark shapes; the dam crest belongs on the LEFT."
       },
-      "todo": [
-        "查證 symbols.flower（決定髮花）"
-      ],
       "places": [
         "拉拉山",
         "石門水庫",
@@ -479,18 +484,21 @@
       "symbols": {
         "flower": {
           "value": "杜鵑花",
-          "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」。該縣市官網查無公開的象徵頁面：首頁無連結、站內搜尋查無、搜尋引擎亦僅得不相關頁面。已查證的 11 個縣市全部與該表吻合、零衝突，因此可信度高但仍非官方一手來源。"
+          "source": "official",
+          "note": "新竹市政府「市徽.花.樹.鳥」：「市花：杜鵑花」（同頁列市樹黑松、市鳥喜鵲）。原文見 data/sources/symbols/。",
+          "url": "https://www.hccg.gov.tw/ch/home.jsp?id=35&parentpath=0,18"
         },
         "tree": {
           "value": "黑松",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "新竹市政府「市徽.花.樹.鳥」：市樹：黑松",
+          "url": "https://www.hccg.gov.tw/ch/home.jsp?id=35&parentpath=0,18"
         },
         "bird": {
           "value": "喜鵲",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "新竹市政府「市徽.花.樹.鳥」：市鳥：喜鵲",
+          "url": "https://www.hccg.gov.tw/ch/home.jsp?id=35&parentpath=0,18"
         }
       },
       "scene": {
@@ -531,10 +539,6 @@
         "right_zone_desc": "The right 40 percent is a plausible quiet opening within this same temple-plaza viewpoint: pale sky above the low tiled roofs and plastered upper storeys of the shophouses that ring the plaza, receding and getting paler with distance, with a string of slack festival lanterns high up as the only detail. Low contrast and gently graded for text. No sea, harbour, bridge, water, shoreline or distant mountains appear in this zone.",
         "tote_print": "a complete wordless line illustration of the Hsinchu City God Temple — its tiered swallowtail roof ridges, the carved eaves brackets and one stone lion — drawn in a single ink colour, filling the bag panel as a finished graphic with no text, no letters, no logo, no border and no blank patches"
       },
-      "todo": [
-        "查證 symbols.flower（決定髮花）",
-        "底圖與資料已不符（印花欄改過），img/<id>-base.webp 需要重生"
-      ],
       "places": [
         "十八尖山",
         "南寮漁港",
@@ -549,7 +553,8 @@
         "海報美食欄的「客家小炒・擂茶」其實是新竹縣客家庄（北埔、竹東）的，不是新竹市。",
         "六項全部確認。台灣光華雜誌明確稱米粉、貢丸、竹塹餅為「新竹三寶」，竹塹為新竹舊名。",
         "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
-        "現用底圖右側畫著海與港灣拱橋，但視點在城隍廟前廣場，市中心的廟埕看不到海。成因是 right_zone 原本寫 sea。這是地理錯誤不是美感問題，量測抓不到（它有內容、分數 0.0257 通過），是目視抓到的。已改 city_sky 並補 right_zone_desc，需重生。"
+        "現用底圖右側畫著海與港灣拱橋，但視點在城隍廟前廣場，市中心的廟埕看不到海。成因是 right_zone 原本寫 sea。這是地理錯誤不是美感問題，量測抓不到（它有內容、分數 0.0257 通過），是目視抓到的。已改 city_sky 並補 right_zone_desc，需重生。",
+        "「底圖與資料不符、需要重生」那條待辦是舊的，已移除：印花改成城隍廟線描的那次（commit 9e89850）底圖就跟資料一起重生了。2026-08-11 逐項核對現行底圖：帆布袋是城隍廟線描含石獅、帽T沒有印花、徽章是無字的燕尾屋頂，都與資料一致，verify_base 也全部通過（右側 0.0372、右緣 48%）。"
       ],
       "traits": [
         "務實",
@@ -593,13 +598,15 @@
         },
         "tree": {
           "value": "竹柏",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "新竹縣政府「縣花縣鳥縣樹」：縣樹 - 竹柏，1999 年 3 月 29 日臨時縣務會議通過，同年 6 月 4 日經縣議會第十四屆第三次定期會通過",
+          "url": "https://www.hsinchu.gov.tw/cp.aspx?n=96"
         },
         "bird": {
           "value": "五色鳥",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "新竹縣政府「縣花縣鳥縣樹」：縣鳥 - 五色鳥",
+          "url": "https://www.hsinchu.gov.tw/cp.aspx?n=96"
         }
       },
       "scene": {
@@ -613,8 +620,8 @@
         ],
         "hand": "a bowl of hakka lei-cha, thick pale-green ground tea, with a small dish of puffed rice",
         "hand_zh": "客家擂茶",
-        "outfit_zh": "淺駝色針織開襟外套、白T",
-        "outfit": "a soft camel-coloured knitted cardigan worn open over a white tee",
+        "outfit_zh": "淺駝色針織開襟外套、白T（印茶花＝縣花）",
+        "outfit": "a soft camel-coloured knitted cardigan worn open over a white tee printed with a camellia spray — the county flower — as a soft painterly botanical print with no text or lettering",
         "hair": "a pale pink camellia pinned beside her neat high bun",
         "hair_zh": "茶花（新竹縣花）",
         "hair_basis": "symbols.flower",
@@ -637,11 +644,9 @@
         "viewpoint": "standing in the lane of Beipu Old Street",
         "viewpoint_sees": "from here red-brick Hakka shophouses and tea rooms line both sides with tiled roofs layered behind and hills beyond",
         "costume_basis": "原本是北部客家大襟衫，已移到特別版（新竹縣・客家）。普通版一律當代穿著、不穿任何族群的傳統服飾：普通版說的是「阿蕊在這個地方」，不對任何族群下宣稱；要穿傳統服飾就得指名族群、附依據，那是特別版的事。",
-        "right_zone_desc": "The right 40 percent is the hills beyond Beipu, built as THREE depth bands: pale sky graded warm toward the horizon in the upper 45 percent with thin cloud bands; three or four tea-covered ridgelines layered one behind another, each paler than the one in front, with mist pooling between them; and nearest the bottom edge only, the last tiled roof ridges of the old street. No large trees or dark foliage masses crossing this zone."
+        "right_zone_desc": "The right 40 percent is the hills beyond Beipu, built as THREE depth bands: pale sky graded warm toward the horizon in the upper 45 percent with thin cloud bands; three or four tea-covered ridgelines layered one behind another, each paler than the one in front, with mist pooling between them; and nearest the bottom edge only, the last tiled roof ridges of the old street. No large trees or dark foliage masses crossing this zone.",
+        "tote_print": "a camellia spray — pale pink rounded blooms with many overlapping petals and thick glossy leaves — as a soft painterly botanical print, no text, no letters, no border"
       },
-      "todo": [
-        "白T上有花卉印花，資料寫的是白T。不影響地理或族群宣稱，下輪再處理。"
-      ],
       "places": [
         "內灣老街",
         "北埔老街",
@@ -657,7 +662,8 @@
         "北埔老街及其客家擂茶、粄條、東方美人茶經搜尋確認。內灣（橫山鄉）與司馬庫斯（尖石鄉）依行政區劃屬新竹縣，未另找到專頁佐證。",
         "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
         "**新竹縣沒有自己的海報**（與新竹市共用一張），造型是依該縣特徵推定的，不是讀來的。要更準就得另外找依據。",
-        "id 原本與共用海報的另一個縣市相同，導致批次生圖時被當成「已存在」跳過。id＝底圖檔名，必須唯一；poster 才是可以共用的。"
+        "id 原本與共用海報的另一個縣市相同，導致批次生圖時被當成「已存在」跳過。id＝底圖檔名，必須唯一；poster 才是可以共用的。",
+        "白T與帆布袋上的茶花印花是 2026-08-11 拍板保留的：那朵花對得回縣花，屬於「印花要對得回資料」而不是「模型自由發揮畫錯」，所以改的是 outfit 的寫法，不是重生底圖。tote_print 也一併寫死，免得下次重生時變回別的花。"
       ],
       "traits": [
         "客家硬頸",
@@ -693,18 +699,20 @@
       "symbols": {
         "flower": {
           "value": "國蘭",
-          "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」。該縣市官網查無公開的象徵頁面：首頁無連結、站內搜尋查無、搜尋引擎亦僅得不相關頁面。已查證的 11 個縣市全部與該表吻合、零衝突，因此可信度高但仍非官方一手來源。"
+          "source": "official",
+          "note": "宜蘭縣政府「縣花介紹」：「民國七十三年十一月三日，宜蘭縣政府第260次縣務會議中，通過選定國蘭為宜蘭縣縣花。」**該頁 2026-08 已失效**（原網址會轉回首頁），內容取自 Wayback 存檔，原文見 data/sources/symbols/。",
+          "url": "https://web.archive.org/web/2023/https://www.e-land.gov.tw/cp.aspx?n=99E24DAAC84279E4"
         },
         "tree": {
           "value": "台灣欒樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "宜蘭縣政府「縣樹介紹」：縣樹：台灣欒樹（苦苓舅）。該頁原址 2026-08 已失效，讀 Wayback 存檔",
+          "url": "https://web.archive.org/web/2023/https://www.e-land.gov.tw/cp.aspx?n=3A3E61574AC53193"
         },
         "bird": {
           "value": "彩鷸",
           "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "note": "僅維基，待對官方核實。宜蘭縣政府只有「縣花介紹」與「縣樹介紹」兩頁，沒有縣鳥"
         }
       },
       "scene": {
@@ -743,9 +751,6 @@
         "viewpoint_sees": "from here the turtle-shaped Guishan Island floats offshore, with fishing boats and the dark ridge of the Central Range behind to the west",
         "right_zone_desc": "The right 40 percent is the Pacific off the Toucheng coast, built as FOUR depth bands. (1) Open sky fills the upper 45 percent, graded from soft blue to warm pale haze, with thin cloud bands. (2) A pale haze band on the horizon; the dark ridge of the Central Range does NOT appear here, it belongs behind the left side. (3) The ocean in broad soft horizontal value bands, paler at the horizon and deeper nearer the viewer, with one wide path of low glitter. (4) At the very bottom edge only, a thin line of surf over dark shore rock. No boats, figures or hard dark shapes; Guishan Island stays on the LEFT with the hero landmark."
       },
-      "todo": [
-        "查證 symbols.flower（決定髮花）"
-      ],
       "places": [
         "龜山島",
         "太平山",
@@ -797,18 +802,21 @@
       "symbols": {
         "flower": {
           "value": "桂花",
-          "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」。該縣市官網查無公開的象徵頁面：首頁無連結、站內搜尋查無、搜尋引擎亦僅得不相關頁面。已查證的 11 個縣市全部與該表吻合、零衝突，因此可信度高但仍非官方一手來源。"
+          "source": "official",
+          "note": "苗栗縣政府「縣花」：「本府邀請專家學者初選九種花卉，再由縣民於縣府廣場票選，選出桂花作為本縣縣花。」原文見 data/sources/symbols/。",
+          "url": "https://www.miaoli.gov.tw/cp.aspx?n=281"
         },
         "tree": {
           "value": "樟樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "苗栗縣政府「縣樹」：樟樹為本縣特產之一，其成品之雕刻、樟腦油，均為本縣蓬勃發展之事業",
+          "url": "https://www.miaoli.gov.tw/cp.aspx?n=279"
         },
         "bird": {
           "value": "喜鵲",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "苗栗縣政府「縣鳥」：初選十種本縣較具代表性之鳥類，以通訊票選選出喜鵲作為本縣縣鳥",
+          "url": "https://www.miaoli.gov.tw/cp.aspx?n=282"
         }
       },
       "scene": {
@@ -848,9 +856,6 @@
         "costume_basis": "原本是北部客家大襟衫，已移到特別版（苗栗縣・客家）。普通版一律當代穿著、不穿任何族群的傳統服飾：普通版說的是「阿蕊在這個地方」，不對任何族群下宣稱；要穿傳統服飾就得指名族群、附依據，那是特別版的事。",
         "right_zone_desc": "The right 40 percent is the Da'an River bed opening downstream from this same viewpoint, built as FOUR depth bands with clearly different values. (1) Open sky fills the upper 40 percent, graded from soft blue to warm pale haze, with thin cloud bands. (2) Along the horizon, two or three pale hill ridges layered one behind another, each paler than the one in front, with mist pooling between them. (3) The far riverbed, its braided pale channels and gravel bars receding and losing detail with distance. (4) Nearest the bottom edge only, the near gravel with readable stone texture. The orange-red eroded cliffs belong on the LEFT with the hero landmark and must NOT continue across this zone as an even wall of the same texture."
       },
-      "todo": [
-        "查證 symbols.flower（決定髮花）"
-      ],
       "places": [
         "南庄老街",
         "三義木雕村",
@@ -909,13 +914,15 @@
         },
         "tree": {
           "value": "台灣五葉松",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "臺中市政府「市樹、花、鳥介紹」：市樹介紹-臺灣五葉松（松科）",
+          "url": "https://www.taichung.gov.tw/8868/9945/10017/676427/post"
         },
         "bird": {
           "value": "白耳畫眉",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "臺中市政府「市樹、花、鳥介紹」：市鳥介紹-白耳畫眉（畫眉科）",
+          "url": "https://www.taichung.gov.tw/8868/9945/10017/676427/post"
         }
       },
       "scene": {
@@ -1018,13 +1025,15 @@
         },
         "tree": {
           "value": "菩提樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "彰化縣政府「本縣象徵」：縣樹 菩提樹（學名 Ficus religiosa、桑科）",
+          "url": "https://www.chcg.gov.tw/ch2/abouts-represent.aspx"
         },
         "bird": {
           "value": "灰面鵟鷹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "彰化縣政府「本縣象徵」：縣鳥 灰面鵟鷹，俗稱南路鷹、清明鳥，每年春分前後大量過境八卦山脈",
+          "url": "https://www.chcg.gov.tw/ch2/abouts-represent.aspx"
         }
       },
       "scene": {
@@ -1121,8 +1130,9 @@
         },
         "tree": {
           "value": "樟樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "南投縣政府「南投縣花、縣樹」：南投縣樹～樟樹",
+          "url": "https://www.nantou.gov.tw/big5/introduction-administrative-1.php?dptid=376480000&cid=1507"
         },
         "bird": {
           "value": null,
@@ -1217,18 +1227,21 @@
       "symbols": {
         "flower": {
           "value": "蝴蝶蘭",
-          "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」。該縣市官網查無公開的象徵頁面：首頁無連結、站內搜尋查無、搜尋引擎亦僅得不相關頁面。已查證的 11 個縣市全部與該表吻合、零衝突，因此可信度高但仍非官方一手來源。"
+          "source": "official",
+          "note": "雲林縣政府「咱的標誌」，該頁分縣鳥／縣花／縣樹／縣徽／縣歌五頁，縣花那一頁寫的是蝴蝶蘭（頁面日期 105-08-24）。**該站有 Cloudflare 防護，curl 與瀏覽器自動化都被擋**，內容取自 Wayback 存檔，原文見 data/sources/symbols/。",
+          "url": "https://www.yunlin.gov.tw/cp.aspx?n=1358"
         },
         "tree": {
           "value": "樟樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "雲林縣政府「咱的標誌」：雲林縣縣樹為樟樹。該站有 Cloudflare 防護，內容取自 Wayback 存檔",
+          "url": "https://www.yunlin.gov.tw/cp.aspx?n=1358"
         },
         "bird": {
           "value": "台灣藍鵲",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "雲林縣政府「咱的標誌」：縣鳥台灣藍鵲。該站有 Cloudflare 防護，內容取自 Wayback 存檔",
+          "url": "https://www.yunlin.gov.tw/cp.aspx?n=1358"
         }
       },
       "scene": {
@@ -1271,9 +1284,6 @@
         "viewpoint_sees": "from here the long red steel truss bridge crosses the wide braided riverbed with farmland stretching flat behind. Beigang Chaotian Temple and Janfusun Fancyworld are far away and must not appear",
         "right_zone_desc": "The right 40 percent is the Zhuoshui River opening downstream from this same bank, built as FOUR depth bands, and the red truss bridge must NOT extend into it. (1) Open sky fills the upper half, graded from soft blue to warm pale haze, with thin cloud bands and nothing else. (2) A pale haze band on the horizon with the flat far bank and a line of windbreak trees, very low contrast. (3) The wide braided riverbed, its pale sand bars and shallow channels layering back and getting paler with distance. (4) Nearest the bottom edge, the near sand bar with grass tussocks catching low warm light. No bridge, no buildings, no figures and no vehicles in this zone."
       },
-      "todo": [
-        "查證 symbols.flower（決定髮花）"
-      ],
       "places": [
         "北港朝天宮",
         "西螺大橋",
@@ -1333,7 +1343,7 @@
         "tree": {
           "value": "豔紫荊",
           "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "note": "僅維基，待對官方核實。嘉義市政府那一頁叫「市徽、市花、市歌」，整頁沒有市樹，不是漏查"
         },
         "bird": {
           "value": null,
@@ -1429,18 +1439,21 @@
       "symbols": {
         "flower": {
           "value": "玉蘭花",
-          "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」。該縣市官網查無公開的象徵頁面：首頁無連結、站內搜尋查無、搜尋引擎亦僅得不相關頁面。已查證的 11 個縣市全部與該表吻合、零衝突，因此可信度高但仍非官方一手來源。"
+          "source": "official",
+          "note": "嘉義縣政府「嘉縣標誌」：「『玉蘭花』--由來：（木蘭科、常綠中喬木）民國七十四年從嘉義縣縣民問卷調查後，擇定為縣花。」（同頁列縣樹臺灣欒樹、縣鳥藍腹鷴）原文見 data/sources/symbols/。",
+          "url": "https://www.cyhg.gov.tw/cp.aspx?n=E13057BB37942D3F"
         },
         "tree": {
           "value": "台灣欒樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "嘉義縣政府「嘉縣標誌」：縣樹臺灣欒樹（無患子科、落葉喬木），民國 89 年由縣民票選產生",
+          "url": "https://www.cyhg.gov.tw/cp.aspx?n=E13057BB37942D3F"
         },
         "bird": {
           "value": "藍腹鷴",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "嘉義縣政府「嘉縣標誌」：縣鳥藍腹鷴，民國 88 年由縣民圈選產生",
+          "url": "https://www.cyhg.gov.tw/cp.aspx?n=E13057BB37942D3F"
         }
       },
       "scene": {
@@ -1480,9 +1493,6 @@
         "viewpoint_sees": "from here the sea of clouds fills the valley below, with giant cypress trunks framing the view and the narrow-gauge red railcar curving along the slope",
         "right_zone_desc": "The right 40 percent is the sea of clouds filling the valley below Alishan, built as THREE depth bands: pale sky graded warm in the upper third with thin cloud bands; the far ridges rising above the cloud sea as pale flat silhouettes, layered and each paler than the one in front; and the cloud sea itself in broad soft value bands. No cypress trunks, railcar or figures in this zone — those belong on the LEFT."
       },
-      "todo": [
-        "查證 symbols.flower（決定髮花）"
-      ],
       "places": [
         "阿里山",
         "奮起湖老街",
@@ -1532,13 +1542,15 @@
         },
         "tree": {
           "value": "鳳凰樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "臺南市政府「市府識別」：市樹–鳳凰樹",
+          "url": "https://www.tainan.gov.tw/News.aspx?n=4981&sms=13702"
         },
         "bird": {
           "value": "水雉",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "臺南市政府「市府識別」：市鳥–水雉",
+          "url": "https://www.tainan.gov.tw/News.aspx?n=4981&sms=13702"
         }
       },
       "scene": {
@@ -1635,7 +1647,7 @@
         "flower": {
           "value": "木棉花",
           "source": "official",
-          "note": "1980 年起經兩次全體市民票選"
+          "note": "1980 年起經兩次全體市民票選。**但這一筆手上沒有官方網址**：高雄市政府「認識高雄」與「市旗市徽」兩頁都沒有寫市花，維基那一列也沒有引註（22 列裡只有高雄與屏東沒有）。木棉為市花的說法見於教育部教學資源與新聞報導（民國 75 年蘇南成市長任內公告）。花名本身不動，待補官方出處。"
         },
         "tree": {
           "value": "木棉",
@@ -1691,7 +1703,9 @@
         "foreground_layout": "The foreground breakwater and every concrete block are confined entirely to x=0–56 percent beneath and left of her, then exit through the bottom edge before x=56 percent. From x=60 percent all the way down to the bottom-right corner there is uninterrupted open water with no seawall, tetrapod, rock or other object",
         "right_zone_desc": "The right 40 percent is the mouth of Kaohsiung Harbour seen from this same breakwater, built as FOUR depth bands. (1) Open sky fills the upper 45 percent, graded from soft blue at the top edge to warm gold at the horizon, with two or three thin cloud bands. (2) Along the horizon, the far shore of the harbour as ONE continuous pale silhouette of low city towers and gantry cranes, flat and hazy, with no individual building readable. (3) The harbour water, its VALUE shifting in broad soft horizontal bands from pale near the far shore to deeper blue-green nearer the viewer, with one wide path of low sun-glitter running toward the lower right. (4) At the very bottom edge only, the breakwater's concrete blocks catching warm light. No cargo ships, no figures, no hard dark shapes. The water must read as large soft masses of light, NOT as an even allover ripple texture."
       },
-      "todo": [],
+      "todo": [
+        "查證 symbols.flower 的官方出處：木棉花目前只有二手來源，缺官方網址"
+      ],
       "places": [
         "西子灣",
         "蓮池潭",
@@ -1736,8 +1750,8 @@
       "symbols": {
         "flower": {
           "value": "九重葛",
-          "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」。該縣市官網查無公開的象徵頁面：首頁無連結、站內搜尋查無、搜尋引擎亦僅得不相關頁面。已查證的 11 個縣市全部與該表吻合、零衝突，因此可信度高但仍非官方一手來源。"
+          "source": "wikipedia",
+          "note": "**降級：這一筆沒有政府引註。** 維基「台灣各縣市象徵列表」22 列裡只有高雄與屏東兩列完全沒有引註，屏東縣政府官網也查不到象徵頁面。另有 2016-06 自由時報報導縣府擬用 i-voting 決定是否更換縣徽與縣花，後續結果未查到。**九重葛目前只有二手來源，要動髮花之前必須先查證。**　旁證（非官方，不升級可信度）：牡丹鄉旅遊粉專「牡丹心旅行」2020-01-16 貼文帶 #屏東縣花九重葛、屏東在地 IG 帳號 2024-03-19 稱「九重葛是屏東縣花」。兩則都不是縣府一手發布，也都回答不了「現行是否仍是、何時依何指定」，只能說明到 2024 年民間仍普遍這樣認知，2016 那次 i-voting 應該沒有換掉。"
         },
         "tree": {
           "value": "可可椰子",
@@ -1789,7 +1803,7 @@
         "right_zone_desc": "The right 40 percent is the Kenting coast opening south, built as FOUR depth bands. (1) Open sky fills the upper 45 percent, graded from soft blue to warm pale haze, with thin cloud bands. (2) A pale haze band on the horizon with one far low headland silhouette. (3) The sea in broad soft value bands, turquoise nearer the shore shading to deep blue at the horizon, with one wide path of low glitter. (4) At the very bottom edge only, a thin line of surf over pale coral rock. The coral rock shelf and palms belong on the LEFT and must not continue across this zone."
       },
       "todo": [
-        "查證 symbols.flower（決定髮花）",
+        "查證 symbols.flower：九重葛查無官方出處（維基該列無引註、縣府官網無象徵頁），且 2016 縣府曾擬 i-voting 更換縣花。動髮花前要先確定現行縣花是什麼",
         "白T被模型畫成滿版熱帶印花，資料寫的是白T。分數更高的候選 03 多畫了一座斜張橋——墾丁珊瑚礁岸沒有那個東西，規格寫的是大尖山，所以維持現裝。印花這件事下輪再處理。"
       ],
       "places": [
@@ -1836,18 +1850,21 @@
       "symbols": {
         "flower": {
           "value": "蓮花",
-          "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」。該縣市官網查無公開的象徵頁面：首頁無連結、站內搜尋查無、搜尋引擎亦僅得不相關頁面。已查證的 11 個縣市全部與該表吻合、零衝突，因此可信度高但仍非官方一手來源。"
+          "source": "official",
+          "note": "花蓮縣政府「縣花」：民國 69 年吳水雲縣長任內選定蓮花，理由是「蓮」為「花蓮」倒唸之諧音，並取其出淤泥而不染。原文見 data/sources/symbols/。",
+          "url": "https://www.hl.gov.tw/cp.aspx?n=32773"
         },
         "tree": {
           "value": "菩提樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "花蓮縣政府「縣樹」：菩提樹。民國 78 年吳國棟縣長任內經縣務會議討論通過選定",
+          "url": "https://www.hl.gov.tw/cp.aspx?n=32772"
         },
         "bird": {
           "value": "朱鸝",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "花蓮縣政府「縣鳥」：中名朱鸝（Oriolus traillii），臺灣十一種瀕臨絕種鳥類之一",
+          "url": "https://www.hl.gov.tw/cp.aspx?n=32771"
         }
       },
       "scene": {
@@ -1887,9 +1904,6 @@
         "right_zone_desc": "The right 40 percent is the gorge itself receding upstream: pale marble walls dissolving layer behind layer into bright mist, values compressed almost to white, with a thin band of sky visible high between the cliff tops. Quiet and low-detail because text goes over it, but real rock and mist with depth and gradation, NOT an empty flat area. There is NO SEA anywhere in the picture.",
         "costume_basis": "原本是「白色荷葉袖上衣＋紅黑白幾何織紋滾邊背心＋多層串珠項鍊與長串珠耳環」，讀自原海報，對不回任何一族。花蓮境內有阿美、太魯閣、撒奇萊雅、噶瑪蘭、賽德克、布農六族，各族織紋差異很大（太魯閣是白底單獨菱紋的素淨風格，撒奇萊雅是土金與暗紅），混成一件「泛原住民風」等於六族都畫錯。改成戶外山行的當代日常，花蓮的族服造型另立 culture 欄的筆數處理。"
       },
-      "todo": [
-        "查證 symbols.flower（決定髮花）"
-      ],
       "places": [
         "太魯閣峽谷",
         "清水斷崖",
@@ -1938,18 +1952,20 @@
       "symbols": {
         "flower": {
           "value": "蝴蝶蘭",
-          "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」。該縣市官網查無公開的象徵頁面：首頁無連結、站內搜尋查無、搜尋引擎亦僅得不相關頁面。已查證的 11 個縣市全部與該表吻合、零衝突，因此可信度高但仍非官方一手來源。"
+          "source": "official",
+          "note": "臺東縣政府「臺東簡介及形象識別標誌」：「臺東縣縣花：蝴蝶蘭」（同頁另提供縣花 LOGO 與「台東縣樹～樟樹」）。**該站對本機 IP 回 Web Page Blocked**，內容取自 2021-02-01 的 Wayback 存檔，原文見 data/sources/symbols/。",
+          "url": "https://www.taitung.gov.tw/cp.aspx?n=6528E8A41AC41737&themesite=BAA86C8F16BADDE6"
         },
         "tree": {
           "value": "樟樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "臺東縣政府「臺東簡介及形象識別標誌」：台東縣樹～樟樹。該站對本機 IP 回 Web Page Blocked，內容取自 2021-02-01 Wayback 存檔",
+          "url": "https://www.taitung.gov.tw/cp.aspx?n=6528E8A41AC41737&themesite=BAA86C8F16BADDE6"
         },
         "bird": {
           "value": "烏頭翁",
           "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "note": "僅維基，待對官方核實。臺東縣政府「臺東簡介及形象識別標誌」只寫縣花與縣樹，沒有縣鳥"
         }
       },
       "scene": {
@@ -1993,9 +2009,6 @@
         "costume_basis": "原本是「黑色長版上衣配紅白幾何織紋滾邊與腰帶、多層串珠項鍊、長串珠耳環」，讀自原海報，對不回任何一族。台東境內有卑南、阿美、排灣、布農、達悟、魯凱、噶瑪蘭七族，達悟是白黑藏青的簡樸系統、卑南是紅黃綠加花環，兩者放進同一件衣服就是兩族都錯。改成海邊的當代日常。台東的族服造型見 culture 欄的筆數。",
         "right_zone_desc": "The right 40 percent is the Pacific off Sanxiantai, built as FOUR depth bands: open sky graded to warm haze in the upper 45 percent with thin cloud bands; a pale haze band on the horizon; the ocean in broad soft value bands with one wide path of low glitter; and at the very bottom edge only, surf over the andesite pebble beach. The eight-arched bridge belongs on the LEFT."
       },
-      "todo": [
-        "查證 symbols.flower（決定髮花）"
-      ],
       "places": [
         "三仙台",
         "伯朗大道",
@@ -2047,13 +2060,15 @@
         },
         "tree": {
           "value": "榕樹",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "澎湖縣政府「澎湖象徵」：縣樹◎榕樹，最有名的是樹齡三百餘年的通樑古榕",
+          "url": "https://www.penghu.gov.tw/ch/home.jsp?id=10176"
         },
         "bird": {
           "value": "澎湖小雲雀",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "澎湖縣政府「澎湖象徵」：縣鳥◎澎湖小雲雀。縣府請澎湖縣野鳥學會推薦八種鳥票選，澎湖小雲雀得票最高，經縣長公佈為縣鳥",
+          "url": "https://www.penghu.gov.tw/ch/home.jsp?id=10176"
         }
       },
       "scene": {
@@ -2147,13 +2162,15 @@
       "symbols": {
         "flower": {
           "value": "四季蘭",
-          "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」。該縣市官網查無公開的象徵頁面：首頁無連結、站內搜尋查無、搜尋引擎亦僅得不相關頁面。已查證的 11 個縣市全部與該表吻合、零衝突，因此可信度高但仍非官方一手來源。"
+          "source": "official",
+          "note": "**維基引的「認識金門」那一頁其實不支持這一筆**：該頁「縣花」標題底下那段文字是縣徽的說明，整頁找不到「四季蘭」三個字（2021 年的存檔與 2026-08 的現況都一樣）。改引金門縣政府新聞稿〈室雅蘭香─蘭花作品展 優雅飄香〉，副縣長致詞：「正如我們20幾年前所票選出來的縣花『四季蘭』」。是縣府官網的一手發言，但不是象徵專頁。原文見 data/sources/symbols/。",
+          "url": "https://www.kinmen.gov.tw/News_Content2.aspx?n=98E3CA7358C89100&sms=BF7D6D478B935644&s=4F15C9462086E888"
         },
         "tree": {
           "value": "木棉",
-          "source": "wikipedia",
-          "note": "僅維基，待對官方核實"
+          "source": "official",
+          "note": "金門縣政府「認識金門」：縣樹（木棉）別名斑芝樹、棉樹，經由縣民票選成為縣樹。同一頁的縣花欄底下印的卻是縣徽說明，所以市花那一筆另引縣府新聞稿",
+          "url": "https://www.kinmen.gov.tw/cp.aspx?n=B602E31F7317F1AA"
         },
         "bird": {
           "value": null,
@@ -2197,9 +2214,6 @@
         "viewpoint_sees": "from here a stone Wind Lion God stands guard in the foreground with a southern-Fujian red-brick village of swallowtail roofs behind",
         "right_zone_desc": "The right 40 percent is the Taiwan Strait seen across the fields from this same village edge, built as FOUR depth bands. (1) Open sky fills the upper half, graded from soft blue to warm pale haze at the horizon, with two or three thin cloud bands. (2) A pale haze band on the horizon carrying the low flat silhouette of a far islet. (3) The strait's calm water in broad soft horizontal value bands, paler at the horizon and deeper nearer the viewer. (4) Nearest the bottom edge, the last strip of the sorghum field and a low granite field wall, warm and low-contrast. No boats, figures, buildings, military structures, slogans or hard dark shapes."
       },
-      "todo": [
-        "查證 symbols.flower（決定髮花）"
-      ],
       "places": [
         "莒光樓",
         "翟山坑道",
@@ -2243,8 +2257,9 @@
       "symbols": {
         "flower": {
           "value": "紅花石蒜",
-          "source": "wikipedia_cited_gov",
-          "note": "維基「台灣各縣市象徵列表」。該縣市官網查無公開的象徵頁面：首頁無連結、站內搜尋查無、搜尋引擎亦僅得不相關頁面。已查證的 11 個縣市全部與該表吻合、零衝突，因此可信度高但仍非官方一手來源。"
+          "source": "official",
+          "note": "連江縣政府新聞櫥窗〈秋意漸濃 「縣花」紅花石蒜美麗盛開〉（發布單位：連江縣政府，105/09/21）：內文兩處以「縣花」稱紅花石蒜，並記縣府執行復育培苗計畫、將其列為珍稀保育類植物嚴禁攜帶出境。**是縣府官網的一手發布，但不是象徵專頁**，指定年份與依據仍未查到（維基那一列引的是民間論壇轉錄的縣志）。原文見 data/sources/symbols/。",
+          "url": "https://www.matsu.gov.tw/chhtml/Detail/371030000A0001/25?mcid=370"
         },
         "tree": {
           "value": "海桐",
@@ -2294,7 +2309,7 @@
         "right_zone_desc": "The right 40 percent is the sea beyond Qinbi cove, built as FOUR depth bands: open sky graded to warm haze in the upper 45 percent with thin cloud bands; a pale haze band on the horizon; the sea in broad soft value bands with one wide path of low glitter; and at the very bottom edge only, the last granite roofs stepping down toward the water. The green islet stays low and far."
       },
       "todo": [
-        "查證 symbols.flower（決定髮花）"
+        "縣花的指定年份與依據還沒查到（新聞稱「縣花」但沒說哪一年、依哪個會議或法規）。已擬信要問連江縣政府"
       ],
       "places": [
         "芹壁聚落",
@@ -2583,22 +2598,20 @@
   },
   "_verification": {
     "市花": {
-      "official": 11,
-      "wikipedia_cited_gov": 11,
-      "查無官方頁面的縣市": [
-        "桃園市",
-        "新竹市",
-        "宜蘭縣",
-        "苗栗縣",
-        "雲林縣",
-        "嘉義縣",
+      "official": 20,
+      "wikipedia": 2,
+      "仍無官方出處的縣市": [
         "屏東縣",
-        "花蓮縣",
-        "台東縣",
-        "金門縣",
-        "連江縣"
+        "連江縣",
+        "高雄市（花名不疑，缺官方網址）"
       ],
-      "說明": "逐一到各縣市政府網站核對。11 個縣市有公開的象徵頁面且全部與原資料吻合、零衝突；其餘 11 個縣市官網沒有公開象徵頁面，非查證疏漏。要再往下只剩打電話問民政處或翻縣志與地方法規。"
+      "說明": "第二輪（2026-08-11）把上一輪判定「官網查無象徵頁面」的 11 個縣市重查，其中 9 個其實查得到，只是上一輪的找法碰不到：桃園在《新修桃園縣志》PDF 裡（縣府站有 WAF 擋自動抓取）、雲林被 Cloudflare 擋、台東對本機 IP 回 Web Page Blocked、宜蘭那頁已經失效要讀 Wayback、苗栗與新竹市與嘉義縣則是站內搜尋搜不到但頁面一直都在。**「我抓不到」不等於「它不存在」**，這跟先前「工具用錯不等於做不到」是同一個形狀。",
+      "另外抓到兩個錯標": "金門那筆維基引的是「認識金門」，但那頁的縣花欄底下印的是縣徽說明，全頁沒有「四季蘭」；屏東與高雄兩列在維基上根本沒有引註，卻被標成 wikipedia_cited_gov。**引註存在不等於引註支持，要開來讀完才算數。**",
+      "存檔": "已核對的原文抄一份在 data/sources/symbols/。"
+    },
+    "市樹市鳥": {
+      "official": "市樹 18 筆、市鳥 13 筆",
+      "說明": "查市花時開的那些官方頁面，多半同一頁就寫著市樹與市鳥，上一輪卻整批停在維基層級——**開了那一頁卻只讀自己要的那一格，等於白開。** 這一輪順手把同頁寫到的都對完。沒升級的都是那一頁真的沒寫：新北與宜蘭、台東的頁面沒有鳥，嘉義市那頁只有市徽市花市歌，南投、嘉義市、金門則是該縣市本來就沒指定縣鳥。高雄、屏東、連江三個縣市整組都還沒有官方出處。"
     }
   }
 }
