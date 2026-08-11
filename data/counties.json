@@ -620,8 +620,8 @@
         ],
         "hand": "a bowl of hakka lei-cha, thick pale-green ground tea, with a small dish of puffed rice",
         "hand_zh": "客家擂茶",
-        "outfit_zh": "淺駝色針織開襟外套、白T",
-        "outfit": "a soft camel-coloured knitted cardigan worn open over a white tee",
+        "outfit_zh": "淺駝色針織開襟外套、白T（印茶花＝縣花）",
+        "outfit": "a soft camel-coloured knitted cardigan worn open over a white tee printed with a camellia spray — the county flower — as a soft painterly botanical print with no text or lettering",
         "hair": "a pale pink camellia pinned beside her neat high bun",
         "hair_zh": "茶花（新竹縣花）",
         "hair_basis": "symbols.flower",
@@ -644,11 +644,9 @@
         "viewpoint": "standing in the lane of Beipu Old Street",
         "viewpoint_sees": "from here red-brick Hakka shophouses and tea rooms line both sides with tiled roofs layered behind and hills beyond",
         "costume_basis": "原本是北部客家大襟衫，已移到特別版（新竹縣・客家）。普通版一律當代穿著、不穿任何族群的傳統服飾：普通版說的是「阿蕊在這個地方」，不對任何族群下宣稱；要穿傳統服飾就得指名族群、附依據，那是特別版的事。",
-        "right_zone_desc": "The right 40 percent is the hills beyond Beipu, built as THREE depth bands: pale sky graded warm toward the horizon in the upper 45 percent with thin cloud bands; three or four tea-covered ridgelines layered one behind another, each paler than the one in front, with mist pooling between them; and nearest the bottom edge only, the last tiled roof ridges of the old street. No large trees or dark foliage masses crossing this zone."
+        "right_zone_desc": "The right 40 percent is the hills beyond Beipu, built as THREE depth bands: pale sky graded warm toward the horizon in the upper 45 percent with thin cloud bands; three or four tea-covered ridgelines layered one behind another, each paler than the one in front, with mist pooling between them; and nearest the bottom edge only, the last tiled roof ridges of the old street. No large trees or dark foliage masses crossing this zone.",
+        "tote_print": "a camellia spray — pale pink rounded blooms with many overlapping petals and thick glossy leaves — as a soft painterly botanical print, no text, no letters, no border"
       },
-      "todo": [
-        "白T與帆布袋上的花是茶花（＝縣花，對得回資料），但 outfit 寫的是素白T。兩條路擇一，是決定不是查證：(a) 重生底圖讓衣服變素面；(b) 把 outfit 改寫成「白T印茶花」，承認這張的印花本來就對得回縣花。在那之前不要動圖。"
-      ],
       "places": [
         "內灣老街",
         "北埔老街",
@@ -664,7 +662,8 @@
         "北埔老街及其客家擂茶、粄條、東方美人茶經搜尋確認。內灣（橫山鄉）與司馬庫斯（尖石鄉）依行政區劃屬新竹縣，未另找到專頁佐證。",
         "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
         "**新竹縣沒有自己的海報**（與新竹市共用一張），造型是依該縣特徵推定的，不是讀來的。要更準就得另外找依據。",
-        "id 原本與共用海報的另一個縣市相同，導致批次生圖時被當成「已存在」跳過。id＝底圖檔名，必須唯一；poster 才是可以共用的。"
+        "id 原本與共用海報的另一個縣市相同，導致批次生圖時被當成「已存在」跳過。id＝底圖檔名，必須唯一；poster 才是可以共用的。",
+        "白T與帆布袋上的茶花印花是 2026-08-11 拍板保留的：那朵花對得回縣花，屬於「印花要對得回資料」而不是「模型自由發揮畫錯」，所以改的是 outfit 的寫法，不是重生底圖。tote_print 也一併寫死，免得下次重生時變回別的花。"
       ],
       "traits": [
         "客家硬頸",
@@ -2258,8 +2257,9 @@
       "symbols": {
         "flower": {
           "value": "紅花石蒜",
-          "source": "wikipedia",
-          "note": "**降級：維基那一列的引註不是政府網站**，是民間論壇 board.matsu.idv.tw（馬祖資訊網）轉錄的《連江縣志》。連江縣政府網站有一則新聞標題〈秋意漸濃「縣花」紅花石蒜美麗盛開〉，但 www.matsu.gov.tw 對本機連線一律 302 到連不上的位址、Wayback 也沒有可用存檔，未能核對原文。"
+          "source": "official",
+          "note": "連江縣政府新聞櫥窗〈秋意漸濃 「縣花」紅花石蒜美麗盛開〉（發布單位：連江縣政府，105/09/21）：內文兩處以「縣花」稱紅花石蒜，並記縣府執行復育培苗計畫、將其列為珍稀保育類植物嚴禁攜帶出境。**是縣府官網的一手發布，但不是象徵專頁**，指定年份與依據仍未查到（維基那一列引的是民間論壇轉錄的縣志）。原文見 data/sources/symbols/。",
+          "url": "https://www.matsu.gov.tw/chhtml/Detail/371030000A0001/25?mcid=370"
         },
         "tree": {
           "value": "海桐",
@@ -2309,7 +2309,7 @@
         "right_zone_desc": "The right 40 percent is the sea beyond Qinbi cove, built as FOUR depth bands: open sky graded to warm haze in the upper 45 percent with thin cloud bands; a pale haze band on the horizon; the sea in broad soft value bands with one wide path of low glitter; and at the very bottom edge only, the last granite roofs stepping down toward the water. The green islet stays low and far."
       },
       "todo": [
-        "查證 symbols.flower：紅花石蒜只有民間論壇轉錄的縣志。連江縣府網站在本機連不上，改天用一般瀏覽器開www.matsu.gov.tw 找〈秋意漸濃「縣花」紅花石蒜美麗盛開〉核對"
+        "縣花的指定年份與依據還沒查到（新聞稱「縣花」但沒說哪一年、依哪個會議或法規）。已擬信要問連江縣政府"
       ],
       "places": [
         "芹壁聚落",
