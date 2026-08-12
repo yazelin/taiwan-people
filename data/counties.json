@@ -2541,19 +2541,20 @@
       "poster": "pingtung",
       "base": "pingtung-paiwan-base",
       "scene": {
-        "outfit_zh": "排灣族女子服飾（北排 Vuculj 本群、平民）：圓領開右襟筒袖長衣 lungpau（衣脇至衣襬 A 型開叉）、單片式長裙至腳踝上方、護腳布 cacavu。黑底，紅黃綠幾何與植物紋",
-        "outfit": "Paiwan women's dress of the northern Vuculj group, as worn by a COMMONER. A round-neck long tunic (lungpau) fastening to the RIGHT with tube sleeves, its side seam opening into a shallow A-shaped slit from the underarm down to the hem; the body hangs fairly straight and long. A single-panel long skirt reaching just above the ankle. Rectangular leg-cloths (cacavu) wound round the shins. The ground cloth is BLACK with some deep blue. Ornament is embroidery and glass-bead work in bright red, yellow and green, arranged as bands along the collar, the right-hand opening, the cuffs and the hem. The motifs are GEOMETRIC and plant forms ONLY.",
+        "outfit_zh": "排灣族女子服飾（北排 Vuculj 本群、**平民**）：圓領開右襟筒袖長衣 lungpau（衣脇至衣襬 A 型開叉）、單片式長裙至腳踝上方、護腳布 cacavu。**平民限用淺黑、淺藍或白色，且不飾任何紋飾**——素面才是對的，華麗等於冒用階級",
+        "outfit": "Paiwan women's dress of the northern Vuculj group, and specifically the dress of a COMMONER — this constrains both colour and ornament, and the constraint is the point:\nLONG GARMENT (lungpau): a long tunic with a round neck, opening to the RIGHT across the front, with straight tube sleeves, and an A-shaped slit running from under each arm down to the hem.\nSKIRT: a single wrap cloth reaching to just above the ankle. LEG-CLOTHS (cacavu) wrapped round the shins.\nCOLOUR — a commoner's cloth is limited to LIGHT BLACK (a soft charcoal grey-black, not deep black), LIGHT BLUE or WHITE. Deep black, deep indigo and crimson belong to the chiefly line and must not be used here.\nORNAMENT — a commoner's garment carries NO PATTERN AT ALL. Draw the cloth plain: no embroidery, no beadwork, no woven figures, no geometric bands, no floral motifs, and above all no human head, human figure, hundred-pace snake or sun motif, which are the marks of the chiefly line. The garment may show only its own seams, its right-side closure, plain narrow cloth binding at the neck, cuffs and hem in the same restricted colours, and the fall of the fabric. A plain garment is the correct answer here — richness would be a false claim of rank.",
         "hair": "a bougainvillea blossom tucked into her hair, which is gathered in a compact high bun, and absolutely NO feathered head-dress of any kind",
         "hair_zh": "九重葛（屏東縣花）、丸子頭。**不戴任何羽冠**",
         "accessories": "a woven sash and small glass-bead earrings; no eagle feathers, no clouded-leopard fur, no metal chest plates",
-        "costume_basis": "逐項對 data/costume.json 的 paiwan：北排 Raval／Vuculj 本群的 female 形制（圓領或立領開右襟筒袖長衣 lungpau、衣脇至衣襬 A 型開叉、展度較直衣身較長、裙長至腳踝上方、長方形護腳布 cacavu 纏於脛部）；palette 的北排主黑次藍、色彩運用偏亮的紅黃綠；techniques 的刺繡與珠繡。\n**這一筆刻意設定為平民，並避開全部三條與階級有關的紅線：**\n一、不畫熊鷹羽毛頭冠。rank 欄寫著那是頭目與貴族專屬，且熊鷹依野生動物保育法為瀕臨絕種保育類（_redlines 第一、二條）。\n二、不畫人形紋、人頭紋、百步蛇紋。那些在傳統規範中屬頭目與貴族，平民需經納貢或授予儀式才能使用。太陽紋雖然晚近已開放，但為求保守也不畫。\n三、不畫雲豹皮無袖長上衣，那是貴族在常服外加穿的。\n紋樣只用幾何與植物形，那是 costume.json 明列且無階級限制的部分。\n**絕對不畫羽冠**：有記載的熊鷹羽頭冠是頭目與貴族專屬，且熊鷹是瀕臨絕種保育類。東排平民的草與萬壽菊花環屬東排不屬北排，也不用。北排女性平民頭飾未見記載，因此戴屏東縣花九重葛。族群沒有記載女性固定頭飾時，沿用該縣市的市花（AGENTS.md 硬規則四）——那是阿蕊的識別記號，不因為換成特別版就拿掉。有記載的則以族群為準。特別版的頭飾一律跟著族群走，不套縣市花規則（AGENTS.md 硬規則四對特別版不適用）。族群有記載的就畫記載的；沒記載的就**什麼都不戴**，不用縣花補位——縣花是普通版的角色識別記號，把它戴到族服上等於在族群造型裡混進一個不屬於它的東西。"
+        "costume_basis": "**2026-08-12 改正一個階級錯誤。** 先前這一筆寫「黑底，紅黃綠幾何與植物紋」，但 data/costume.json 的 paiwan.rank 寫得很清楚：**「平民不可飾以任何紋飾」**，而且**「色彩使用亦有階級限制：頭目所用布料可為深黑、深藍或大紅色，平民則限用淺黑、淺藍或白色」**。我們指名了平民，卻給她穿上有紋飾的深色衣服——那是在畫面上冒用一個階級，跟 _redlines 第一條「階級紋樣不是裝飾，是身分」是同一個錯，只是形狀比較隱晦：不是畫了百步蛇，而是畫了「平民不該有的任何紋飾」。\n臺灣原住民族事典的排灣族服飾條目也記著同樣的規範：各階級婦女都穿 lungpau 這類長衣，但平民不能有紋飾，只有貴族才能以刺繡、綴珠或織繡表現人頭紋與百步蛇紋。\n所以這一筆改成**素面**：淺黑／淺藍／白，僅有接縫、右開襟與同色系的窄邊。**素面才是正確答案，畫得華麗等於冒用階級。**\n頭飾維持九重葛（屏東縣花）、丸子頭，**不戴任何羽冠**——熊鷹羽頭冠是頭目與貴族專屬，且熊鷹是瀕臨絕種保育類（_redlines 第一、二條）。"
       },
       "todo": [
         "對外發表前應請該族群或相關單位過目"
       ],
       "notes": [
         "排灣族是階級社會。這一筆設定為平民，任何羽冠、人頭紋、百步蛇紋出現在圖上都是錯的。",
-        "五個群的形制差異很大，這一筆只代表北排 Vuculj 本群，不能當成「排灣族的樣子」。"
+        "五個群的形制差異很大，這一筆只代表北排 Vuculj 本群，不能當成「排灣族的樣子」。",
+        "這一筆的重點是「不畫什麼」。排灣是嚴謹的階級社會，平民服飾的正確樣貌就是素面；把它畫得漂亮＝把平民畫成貴族。驗收時要反過來看：有沒有多出不該有的紋樣。"
       ]
     },
     {
@@ -2603,12 +2604,12 @@
       "poster": "hsinchu-city",
       "base": "hsinchu-county-saysiyat-base",
       "scene": {
-        "outfit_zh": "賽夏族女子服飾（北賽夏／五峰）：無袖長衣外加無袖短上衣、菱形胸衣、橫式細條紋腰裙、披風 hoepong。白布為底，紋樣集中在帶狀區；**帶內是紅地、花紋以白線夾織其上**、黑只用來勾邊分隔；帶以外維持素白。**衣背必須有不對稱的雷女紋**",
-        "outfit": "Saisiyat women's dress of the northern group. A narrow sleeveless LONG robe of the square-cloth system, with a sleeveless SHORT jacket worn over it. Under them a chest-cloth cut roughly as a diamond. A waist skirt made of two or three rectangular cloths seamed together, patterned with fine HORIZONTAL stripes. Over the shoulders a cape (hoepong) of three rectangular cloths seamed side by side. The colour scheme is strictly THREE colours: the CLOTH ITSELF is WHITE, and the ornament sits in BANDS. Inside a band the ground is RED and the pattern is worked into it in WHITE, with BLACK used only to outline and separate — so a band reads as white figures on red, not red figures on white. Outside the bands the garment stays plain white. The patterning sits on the LOWER HALF and is strongest on the BACK. The BACK of the long robe MUST carry the hinobi:wa'an thunder-goddess motif: two crossing lightning strokes, drawn ASYMMETRICALLY like a lightning flash or a letter Z, in red outlined with black. It is not optional and it is not a symmetrical diamond — it is the one motif that tells this people apart from the Atayal, whose clothing is otherwise very similar. Arrange it so at least part of it is visible from the front three-quarter view, on the shoulder or the side of the robe.",
+        "outfit_zh": "賽夏族女子祭典服（北賽夏／五峰）：對襟無袖長衣外加無袖短背心、菱形胸衣、**身前垂下的腰裙前片滿佈雷女紋**——紅地上白色卍字勾連紋連續排成格狀（不是單一一道閃電），背面同樣是這片紋；其餘腰裙為紅白黑橫式細條紋；短背心前襟與下擺綴白色鈕扣與珠串；白布為底，紋樣集中在帶狀區，帶內紅地白紋、黑只勾邊",
+        "outfit": "Saisiyat women's festival dress of the northern group. Draw these:\nLONG GARMENT: a narrow sleeveless long robe of the square-cloth system, opening down the centre front, worn with a sleeveless SHORT jacket over it. The cloth itself is WHITE.\nTHE THUNDER-WOMAN PATTERN (雷女紋), and this is the one thing that must not be missing: on a RED ground, a continuous LATTICE of white hooked meander figures — each figure is a squared spiral with arms bent at right angles (a swastika-like hook form), and they repeat edge to edge in diagonal rows so the whole band reads as a dense white grid on red. It is a woven field, NOT a single lightning bolt and NOT a scatter of separate marks. Draw this field large and unmistakable on the FRONT PANEL of the waist cloth that hangs down her front, so it is fully visible from the front; the same field also covers the back of the long garment.\nWAIST SKIRT: below and around that panel, cloth woven in fine HORIZONTAL STRIPES of red, white and black.\nSHORT JACKET: its front edges and hem are set with rows of small WHITE BUTTONS and white bead strings.\nCHEST CLOTH: a diamond-shaped chest cloth under the garments.\nCOLOUR RULE: the cloth is white; wherever there is ornament it sits in a band whose ground is RED with the pattern worked in WHITE, black used only to outline and separate. Outside those bands the garment stays plain white.",
         "hair": "a camellia flower tucked into her hair, which is gathered in a compact high bun",
         "hair_zh": "茶花（新竹縣花）、丸子頭",
         "accessories": "a woven waist tie and small stud earrings; white four-hole buttons may edge the chest-cloth",
-        "costume_basis": "逐項對 data/costume.json 的 saysiyat：female 欄的無袖長衣、無袖短上衣、胸衣（約呈菱形的織布）、腰裙（2-3 塊布縫成的長方形、紋樣多以橫式細條紋為主）、披風 hoepong（三塊不經剪裁的長方形織布橫向平行縫合）；palette 的白底、紅為花紋主色、黑用來凸顯花紋作配色；長衣裝飾集中在下半部且強調背面。\n取北賽夏（新竹五峰，大隘村與花園村），巴斯達隘祭典屬北祭團。\n**雷女紋 hinobi:wa'an 是賽夏獨有的識別特徵**，形制像兩道閃電交錯、有順時針與逆時針兩種，過去是不對稱的。**第一輪四個候選全都沒有雷女紋**，成因是我把規格寫成「若出現」——太鬆。現在改成必須出現：畫在長衣背面，兩道交錯的閃電、不對稱、像閃電或 Z 字，紅色描黑邊。對稱化是後來的事，不可畫成對稱菱形。並要求至少露出一部分在四分之三側面看得到的位置（肩上或衣側），否則正面構圖永遠看不到它。\n北賽夏的服裝形式與泰雅族頗為相似，這正是最容易被混掉的地方：**分辨點是雷女紋（泰雅沒有）與白紅黑三色的嚴格配色**。\n頭飾沿用縣花規則：賽夏族女性的固定頭飾未見記載，查不到就不自創。族群沒有記載女性固定頭飾時，沿用該縣市的市花（AGENTS.md 硬規則四）——那是阿蕊的識別記號，不因為換成特別版就拿掉。有記載的則以族群為準。\n\n**2026-08-12 補一個地色的細節。** 先前寫「白底、紅為主紋」，模型把紋樣帶也畫成白地紅紋。國立臺灣歷史博物館藏「賽夏族無袖長衣」的說明寫得更精確：「以白色麻布對折縫合，正面為左右對襟樣式，**背面下半部及正面胸前帶狀以紅色織線為地、白色毛線夾織幾何紋飾**（如 X 紋、V 紋、雙菱形紋等上下對稱），上半部素面」。所以整件的底是白，但**紋樣帶內是紅地白紋**，兩者不衝突，先前只寫了前者。\n該件的數位物件標示「受著作權法保護－僅限於本平台有限度公開瀏覽」，**所以不收圖、不進 prompt**，只引用其描述文字（內容描述授權 CC BY 3.0 TW+）。"
+        "costume_basis": "逐項對 data/costume.json 的 saysiyat：female 欄的無袖長衣、無袖短上衣、胸衣（約呈菱形的織布）、腰裙（2-3 塊布縫成的長方形、紋樣多以橫式細條紋為主）、披風 hoepong（三塊不經剪裁的長方形織布橫向平行縫合）；palette 的白底、紅為花紋主色、黑用來凸顯花紋作配色；長衣裝飾集中在下半部且強調背面。\n取北賽夏（新竹五峰，大隘村與花園村），巴斯達隘祭典屬北祭團。\n**雷女紋 hinobi:wa'an 是賽夏獨有的識別特徵**，形制像兩道閃電交錯、有順時針與逆時針兩種，過去是不對稱的。**第一輪四個候選全都沒有雷女紋**，成因是我把規格寫成「若出現」——太鬆。現在改成必須出現：畫在長衣背面，兩道交錯的閃電、不對稱、像閃電或 Z 字，紅色描黑邊。對稱化是後來的事，不可畫成對稱菱形。並要求至少露出一部分在四分之三側面看得到的位置（肩上或衣側），否則正面構圖永遠看不到它。\n北賽夏的服裝形式與泰雅族頗為相似，這正是最容易被混掉的地方：**分辨點是雷女紋（泰雅沒有）與白紅黑三色的嚴格配色**。\n頭飾沿用縣花規則：賽夏族女性的固定頭飾未見記載，查不到就不自創。族群沒有記載女性固定頭飾時，沿用該縣市的市花（AGENTS.md 硬規則四）——那是阿蕊的識別記號，不因為換成特別版就拿掉。有記載的則以族群為準。\n\n**2026-08-12 補一個地色的細節。** 先前寫「白底、紅為主紋」，模型把紋樣帶也畫成白地紅紋。國立臺灣歷史博物館藏「賽夏族無袖長衣」的說明寫得更精確：「以白色麻布對折縫合，正面為左右對襟樣式，**背面下半部及正面胸前帶狀以紅色織線為地、白色毛線夾織幾何紋飾**（如 X 紋、V 紋、雙菱形紋等上下對稱），上半部素面」。所以整件的底是白，但**紋樣帶內是紅地白紋**，兩者不衝突，先前只寫了前者。\n該件的數位物件標示「受著作權法保護－僅限於本平台有限度公開瀏覽」，**所以不收圖、不進 prompt**，只引用其描述文字（內容描述授權 CC BY 3.0 TW+）。\n\n**2026-08-12 第二次修正：雷女紋的形式與位置都錯了。** 先前只寫「衣背必須有不對稱的雷女紋」，模型畫成側面一道紅色 Z 形閃電。實際的雷女紋是**紅地上白色卍字（勾連回形）連續排成的格狀滿版紋**，而且在祭典服上**最顯眼的位置是身前垂下的腰裙前片**，正面就看得到——這正好解決「衣背的紋樣在正面構圖永遠拍不到」那個老問題。\ncostume.json 的 motifs 欄同時記著兩種說法：「雷女紋 hinobi:wa'an（兩道閃電交錯……過去是不對稱的，像閃電或 Z 形）」與「卍字紋（與泰雅族區分的關鍵）」。實物照顯示現行祭典服上呈現的是後者的連續格狀，所以規格改成畫格狀滿版，並明確否定「單一一道閃電」。\n另補：短背心的前襟與下擺綴白色鈕扣與珠串（開放博物館「賽夏族女子無袖長衣」的描述：「前襟與下擺處以白色鈕扣與薏苡珠串做裝飾，胸前雷女紋織布下方以銅鈴裝飾」），腰裙為紅白黑橫式細條紋。\n**這是祭典服**：該件說明寫「此種服飾一般只在矮靈祭的祭典上穿著，日常生活不會穿著」，所以 outfit_zh 改稱「祭典服」，不宣稱它是日常穿著。"
       },
       "todo": [
         "對外發表前應請該族群或相關單位過目"
@@ -2618,29 +2619,29 @@
       ]
     },
     {
-      "id": "hsinchu-county-tayal",
-      "name": "新竹縣・泰雅族",
-      "en": "HSINCHU COUNTY / TAYAL",
-      "county": "新竹縣",
+      "id": "miaoli-tayal",
+      "name": "苗栗縣・泰雅族",
+      "en": "MIAOLI / ATAYAL",
+      "county": "苗栗縣",
       "culture": "tayal",
       "group": "n",
-      "poster": "hsinchu-city",
-      "base": "hsinchu-county-tayal-base",
+      "poster": "miaoli",
       "scene": {
-        "outfit_zh": "泰雅族女子服飾（馬里闊丸群／尖石）：胸兜＋無袖長衣（正面胸前一條飾帶、衣背中段大菱紋）、單片前開式片裙、護腳布、披肩",
-        "outfit": "Atayal women's dress of the Mrqwang group. A chest-cloth under a sleeveless LONG robe of the square-cloth system — the long robe is the main garment. On the FRONT it carries a single narrow decorative band across the chest; on the BACK, through the middle section, LARGE diamond motifs in a simple, boldly scaled arrangement, not a dense allover field. Below, a single-panel wrap skirt opening at the FRONT, and leg-cloths on the shins. Over the shoulders a shawl patterned with small diamonds, diagonal lines and stripes alternating in bands, plain and unshowy. Ground cloth is undyed WHITE ramie; pattern colour is chiefly RED.",
-        "hair": "a camellia flower tucked into her hair, which is gathered in a compact high bun",
-        "hair_zh": "茶花（新竹縣花）、丸子頭",
+        "outfit_zh": "泰雅族女子服飾（**北勢群**／苗栗泰安、大安溪流域）：**有袖**長衣（北勢群長衣短衣均為有袖，不是別群的無袖長衣）、白色苧麻為底；紋樣是**多色菱形組合成單元方格**，以紅橙黃綠藍黑羊毛線細緻密織成帶狀，分布在胸前、衣身下半與下襬，帶與帶之間維持素白；另有北勢群獨有的貼布裝飾；胸兜、片裙、護腳布（膝到踝、要看得見）、披肩",
+        "outfit": "Atayal women's dress of the BEISHI group (北勢群) of Tai'an in Miaoli, on the Da'an River. Draw these:\nTOP: a long tunic WITH SLEEVES — in this group both the long and the short garments are sleeved; do NOT draw the sleeveless long robe that belongs to other Atayal groups. White ramie ground.\nPATTERN: the group's signature is MULTI-COLOURED DIAMONDS GROUPED INTO SQUARE UNITS — small diamonds in red, orange, yellow, green, blue and black wool worked close together so that each cluster reads as a square block, and the blocks run in bands across the chest, the lower body of the tunic and the hem. This group is admired for FINE, DENSE, MANY-COLOURED work, so the bands are richly filled rather than sparse — but the cloth between the bands stays plain white. Some pieces also carry appliqué patches, a technique particular to this group.\nCHEST CLOTH: a chest-cloth worn under the tunic, its edge showing at the neck.\nSKIRT: a wrap skirt over the lower body; LEG-CLOTHS from knee to ankle, both clearly visible.\nSHOULDER CLOTH: a rectangular shoulder cloth may hang over one shoulder.\nThe palette is a WHITE ground with the many-coloured diamond bands; this is not a red costume and not a plain one.",
+        "hair": "a head-band of the Beishi group: a band built on a thin bamboo strip so it holds a firm curved shape across the front of her hair, covered with fine multi-coloured bead and thread work. Her hair is worn DOWN and loose. No flower.",
+        "hair_zh": "北勢群女子頭飾（以竹片勾勒外形再裝飾的頭帶）、頭髮放下、不戴縣花",
         "accessories": "a woven waist tie and small stud earrings; no shell-bead garments and no bells",
-        "costume_basis": "逐項對 data/costume.json 的 tayal：variants 欄馬里闊丸群（Mrqwang，大漢溪上游馬里闊丸溪兩側，即新竹尖石一帶）的形制——男女上身穿胸兜與無袖長衣、無袖長衣為主要服飾、正面約於胸前處有一條飾帶、衣背中段的大菱紋組成較為單純構圖較大、女子穿片裙（單片式、採前開式穿法）與護腳布、披肩以小菱紋斜紋與條紋間隔出現、沒有過於華麗的裝飾呈現單純與樸質的風格；system 的方衣系統與白色苧麻為底、紅色為主要紋樣色。\n**五個群不可混。** 選馬里闊丸群是因為它分布在新竹縣尖石。北勢群在苗栗與台中、南澳群在宜蘭、大嵙崁群在新北桃園宜蘭、馬利巴群在南投。各群色彩偏好都不同（例如只有馬利巴群在單色菱紋組合中使用黃色）。\n**不畫貝珠衣與無袖短上衣**：rank 欄寫著那是具特別功績者與獵首成功男子的特殊禮服。\n頭飾沿用縣花規則：馬里闊丸群女性的固定頭飾未見記載（南澳群有大量白色四孔鈕釦裝飾的額飾，但那屬南澳群），查不到就不自創。族群沒有記載女性固定頭飾時，沿用該縣市的市花（AGENTS.md 硬規則四）——那是阿蕊的識別記號，不因為換成特別版就拿掉。有記載的則以族群為準。\n\n**找到的授權實物照是苗栗北勢群的，不能用（2026-08-12）。** 國家文化記憶庫那件「泰雅族傳統服」（苗栗縣政府文化觀光局，CC BY-NC 3.0 TW+）標明是**北勢群**，而這一筆畫的是新竹的**馬里闊丸群**。costume.json 的 gaps 欄與 AGENTS 都寫著「同一族不同群的服飾可以完全不像」，拿北勢群的實物去畫馬里闊丸群，就是把一個群的東西當成另一個群的。**寧可停在文字層級，也不要跨群借圖。**要補實物照，得找馬里闊丸群（新竹尖石一帶）自己的典藏。"
+        "costume_basis": "**2026-08-12 從新竹搬到苗栗。** 原本掛在新竹縣、寫的是馬里闊丸群（尖石），但找得到的授權實物照與可引用的描述都是**北勢群**（苗栗泰安、臺中和平）。跨群借圖等於把一個群的東西當成另一個群的（AGENTS 與 costume.json 都寫著「同一族不同群的服飾可以完全不像」），所以改成掛苗栗、畫北勢群。地理上也更合：苗栗普通版的視點是**大安溪河床**，那正是北勢群的流域。\n逐項對回 data/costume.json 的 tayal：variants 的北勢群「長衣短衣均以有袖為主。多色菱形組成方格紋，崇尚細緻紋樣與多色變化……女子頭飾先以竹片勾勒外形再裝飾，配戴時圖紋面朝後」；female 欄的胸兜、片裙、護腳布、披肩。\n另引開放博物館「泰雅族北勢群服飾」（典藏者詒古原工坊／慕伊阿道工坊，數位物件典藏者臺南市政府原住民族事務委員會）的說明：「無論是長衣或短衣均為有袖……以多色菱形組合成單元方格為特色」，並記載北勢群獨特融合**貼布裝飾技法**，女性配片裙與護腳布、兩性皆可穿披肩。\n**照片沒有收進 repo**：該頁與國家文化記憶庫那件（苗栗縣政府文化觀光局，CC BY-NC 3.0 TW+，但該筆沒有實際藏品照）都沒有可散布的圖檔授權，所以只讀圖與文字來寫規格，不存檔、不進 prompt。\n**頭飾改用族群自己的**：北勢群女子頭飾有明確記載（竹片為底、配戴時圖紋面朝後），依 AGENTS 硬規則四「有記載就畫記載的」，不再沿用縣花。\n**不畫**：貝珠衣與獵首服飾（rank 欄寫明僅具特別功績者可穿）、紋面（過去唯有善織的女子才具備紋面資格，是掙來的資格不是裝飾）。"
       },
       "todo": [
         "對外發表前應請該族群或相關單位過目",
-        "要補實物照的話必須是馬里闊丸群（新竹尖石）的典藏；苗栗北勢群那件不能用"
+        "要補實物照的話，必須是北勢群（苗栗泰安、臺中和平）的典藏，而且要有可散布的授權；目前找到的兩個來源都沒有標示"
       ],
       "notes": [
-        "泰雅五群形制與色彩差異很大，這一筆只代表馬里闊丸群，不能當成「泰雅族的樣子」。"
-      ]
+        "原本是新竹縣・泰雅族（馬里闊丸群）。搬到苗栗是因為找得到的實物依據都是北勢群，而跨群借圖等於把一個群的東西當成另一個群的。舊底圖 hsinchu-county-tayal-base.webp 已刪。"
+      ],
+      "base": "miaoli-tayal-base"
     },
     {
       "id": "chiayi-county-cou",
