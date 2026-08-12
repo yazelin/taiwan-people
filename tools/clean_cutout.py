@@ -38,20 +38,7 @@ def clean(src, far=140.0, fade=60.0):
     al = A[semi][:, None]
     rgb[semi] = np.clip((rgb[semi] - (1 - al) * 255.0) / al, 0, 255)
 
-    # 2) 碎屑：只留最大的連通區塊
-    op = A > 40 / 255
-    lab, n = ndimage.label(op)
-    if n > 1:
-        sz = ndimage.sum(op, lab, range(1, n + 1))
-        main = int(np.argmax(sz)) + 1
-        frag = (lab > 0) & (lab != main)
-        report["碎屑塊數"] = n - 1
-        report["碎屑像素"] = int(frag.sum())
-        A[frag] = 0
-    else:
-        report["碎屑塊數"] = report["碎屑像素"] = 0
-
-    # 2.5) 白邊：貼著背景那一圈又白又不飽和的不透明像素，就是沒清掉的白底。
+    # 2) 白邊：貼著背景那一圈又白又不飽和的不透明像素，就是沒清掉的白底。
     # 只清「邊界上」的，所以白T、帆布袋的內部一格都不會動到。
     op = A > 40 / 255
     edge = op & ~ndimage.binary_erosion(op, np.ones((3, 3)))
@@ -80,6 +67,21 @@ def clean(src, far=140.0, fade=60.0):
     A = A * k
     report["飛髮"] = (f"細的 {int(thin.sum()):,} 像素，其中暗且離頭 >{fade:.0f}px 的 "
                      f"{int(target.sum()):,} 淡出（總不透明量 -{(1 - A.sum() / before) * 100:.1f}%）")
+
+    # 4) 碎屑：一定要放在最後。
+    # 原本這段排在白邊之前，結果清白邊時把細髮絲切斷，切出來的新碎片沒人清——
+    # 「清過」的檔案碎片反而從 76 塊變成 128 塊，貼在深色底上就是一片白點。
+    # 只留最大的連通區塊，等於把所有斷掉的碎屑一次收乾淨。
+    op = A > 40 / 255
+    lab, n = ndimage.label(op)
+    if n > 1:
+        sz = ndimage.sum(op, lab, range(1, n + 1))
+        main = int(np.argmax(sz)) + 1
+        frag = (lab > 0) & (lab != main)
+        report["碎屑"] = f"{n - 1} 塊／{int(frag.sum()):,} 像素，已清"
+        A[frag] = 0
+    else:
+        report["碎屑"] = "沒有"
 
     out = np.dstack([rgb, A * 255]).astype(np.uint8)
     return Image.fromarray(out, "RGBA"), report
