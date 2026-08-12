@@ -13,6 +13,9 @@
 | `kavalan-female-03-band.jpg` | 前襟黑帶的特寫：珠繡十字的構造與間距 | 同上 | 同上 | CC BY-NC 3.0 TW+ |
 | `kavalan-female-04-cuff.jpg` | 袖口特寫：黑邊在袖側往上延伸成有尖端的窄片 | 同上 | 同上 | CC BY-NC 3.0 TW+ |
 | `kavalan-female-02.jpg` | 下半身：裙、綁腿與衣長 | 同上 | 同上 | CC BY-NC 3.0 TW+ |
+| `truku-female-01-set.jpg` | 太魯閣族女子服飾整組（頭飾 wahug、上衣 sla、腰帶 habuk、裙、護腿布 pdagit） | [國家文化記憶庫](https://tcmb.culture.tw/zh-tw/detail?indexCode=Culture_Object&id=287226) | 花蓮縣文化局 | 數位物件 OGDL 1.0、描述文字 CC0 |
+| `truku-female-02-motif.jpg` | 同上的布面特寫：小菱紋的大小、顏色與間距 | 同上 | 同上 | 同上 |
+| `puyuma-female-01-chest.jpg` | 卑南族女子胸兜下半的密繡（黑底、V 形排列的彩色方格與菱形、八瓣花） | [國家文化記憶庫](https://tcmb.culture.tw/zh-tw/detail?id=107000024835&indexCode=MOCCOLLECTIONS) | 國史館臺灣文獻館（文化部典藏網） | 數位物件 CC BY-NC 3.0 TW+、描述文字 CC BY 3.0 TW+ |
 
 原圖尺寸 3456×5184，收進來的是裁切後長邊 1400–1600 的圖。
 
@@ -40,3 +43,10 @@
 本專案畫的是日常常見形制、不畫禮裙，並且在 prompt 明確要求「只取形制與配色分佈，不複製任何特定織紋」。
 公告本文目前讀不到（`titic.cip.gov.tw` 的 TLS 設定太舊，本機連不上），
 所以標的範圍是否涵蓋日常款尚未確認——這一點寫在這裡，不假裝查過。
+
+## 有浮水印的圖不要當參考圖
+
+國史館臺灣文獻館那批藏品照片壓著「國史館臺灣文獻館／TAIWAN HISTORICA」的浮水印。
+餵給模型會有兩個後果：浮水印本身可能被學成畫面上的字（違反硬規則二「底圖不能有任何文字」），
+而且它蓋住的正好是紋樣。做法是**裁到浮水印以外的區域**才收；裁不掉的就只當閱讀資料，
+用來寫規格、不進 prompt。卑南族的長裙那張就是這樣處理的。
