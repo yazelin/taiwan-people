@@ -9,8 +9,17 @@
     python3 tools/build_sw.py
 
 它動 sw.js 裡的 SHELL_V 那一行，以及 ASSET_LIST（離線包清單，由 counties.json 產生
-——那份清單手抄的話，新增一個特別版就會靜靜地漏在離線包外）。ASSET_V 是手動的，因為底圖採「換內容就換檔名」
-的慣例，同名檔內容變動很少見；真的變了再自己 bump。
+——那份清單手抄的話，新增一個特別版就會靜靜地漏在離線包外），還有 ASSET_V。
+
+ASSET_V 本來是手動的，理由寫著「底圖採換內容就換檔名的慣例，同名檔內容變動很少見」。
+那個前提是錯的：2026-08-13 查出來，光那兩天就有 12 個檔沿用原檔名換掉內容
+（噶瑪蘭、太魯閣、賽夏、阿美、排灣、泰雅、屏東、宜蘭的底圖，加上首圖兩次），
+而 ASSET_V 從建站起一次都沒 bump 過。圖走 cache-first，所以回訪者看到的
+全都還是舊圖——包括那些修正過的服飾。這正是本檔開頭說的那種最惡劣的症狀：
+沒有徵兆，本機也測不出來。所以 ASSET_V 也改成從內容算。
+
+代價要知道：任何一張圖換內容，整份離線包的快取都會被丟掉重抓（13MB）。
+比起讓人看到錯的服飾，這個代價值得。
 """
 import hashlib
 import json
@@ -69,6 +78,22 @@ if n != 1:
     sys.exit("在 sw.js 裡找不到 ASSET_LIST")
 mb = sum((ROOT / a).stat().st_size for a in assets) / 1e6
 print(f"ASSET_LIST → {len(assets)} 個檔、{mb:.1f} MB")
+
+# ASSET_V：拿版控裡所有圖與音檔的內容算。用 git ls-files 而不是 glob，
+# 免得草稿版本（img/*-v2.webp 之類，.gitignore 擋掉的）也算進去，害版號亂跳。
+tracked = subprocess.run(["git", "-C", str(ROOT), "ls-files", "img", "audio"],
+                         capture_output=True, text=True).stdout.split()
+media = sorted(f for f in tracked
+               if f.lower().endswith((".webp", ".png", ".jpg", ".jpeg", ".svg", ".mp3", ".m4a")))
+ha = hashlib.sha256()
+for f in media:
+    ha.update(f.encode())
+    ha.update((ROOT / f).read_bytes())
+aver = "asset-" + ha.hexdigest()[:7]
+src, n = re.subn(r'const ASSET_V = "[^"]*";', f'const ASSET_V = "{aver}";', src, count=1)
+if n != 1:
+    sys.exit("在 sw.js 裡找不到 ASSET_V")
+print(f"ASSET_V → {aver}（{len(media)} 個圖與音檔）")
 
 ver = "shell-" + h.hexdigest()[:7]
 new, n = re.subn(r'const SHELL_V = "[^"]*";', f'const SHELL_V = "{ver}";', src, count=1)
