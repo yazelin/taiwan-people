@@ -2520,11 +2520,12 @@
         "hair": "a black cap with a cock's tail-feather hair ornament and ribbons of red, yellow, green, white and blue, her hair gathered under it",
         "hair_zh": "黑色帽飾插公雞羽毛髮髻＋紅黃綠白藍彩帶（族群明確記載的形制）",
         "accessories": "a bone or seed bead necklace and bone-and-shell ear ornaments; no eagle feathers and no hawk feathers anywhere",
-        "costume_basis": "逐項對 data/costume.json 的 hlaalua female 欄，該欄的形制出自原住民族傳統智慧創作專用權申請書說明書（案號 1080722000009／證號 拉H000073），由開放博物館轉錄，是整份資料集裡法律依據最明確的一筆。\n取排剪社（高中里）：女性上衣藍色、腰帶兩端習以三角形製作，是四社中唯一。雁爾社是深藍、美瓏與那爾瓦是白色，三者不可混。\n片裙長度必須過膝：族人視露體為不德，這是形制的一部分不是比例問題。\n**公雞羽毛不是鷹羽**，典故是紀念神話中幫助族人與太陽談判成功的公雞。\n頭飾以族群記載為準、不套縣花規則。特別版的頭飾一律跟著族群走，不套縣市花規則（AGENTS.md 硬規則四對特別版不適用）。族群有記載的就畫記載的；沒記載的就**什麼都不戴**，不用縣花補位——縣花是普通版的角色識別記號，把它戴到族服上等於在族群造型裡混進一個不屬於它的東西。"
+        "costume_basis": "逐項對 data/costume.json 的 hlaalua female 欄，該欄的形制出自原住民族傳統智慧創作專用權申請書說明書（案號 1080722000009／證號 拉H000073），由開放博物館轉錄，是整份資料集裡法律依據最明確的一筆。\n取排剪社（高中里）：女性上衣藍色、腰帶兩端習以三角形製作，是四社中唯一。雁爾社是深藍、美瓏與那爾瓦是白色，三者不可混。\n片裙長度必須過膝：族人視露體為不德，這是形制的一部分不是比例問題。\n**公雞羽毛不是鷹羽**，典故是紀念神話中幫助族人與太陽談判成功的公雞。\n頭飾以族群記載為準、不套縣花規則。特別版的頭飾一律跟著族群走，不套縣市花規則（AGENTS.md 硬規則四對特別版不適用）。族群有記載的就畫記載的；沒記載的就**什麼都不戴**，不用縣花補位——縣花是普通版的角色識別記號，把它戴到族服上等於在族群造型裡混進一個不屬於它的東西。\n\n**這一筆刻意不加實物照參考圖（2026-08-12 拍板）。** 該族的「男女傳統服飾」已登記原住民族傳統智慧創作專用權（拉 H000073），範圍涵蓋女性。照著實物照畫得越像，越接近登記標的；所以維持族層級的文字描述，紋樣只取 costume.json 的 motifs 欄所列，不追求逐件還原。這跟阿美族迴避馬太鞍（美 H000001）的處理一致。要往下畫到可辨識的具體織紋，前提是先取得專用權人同意。"
       },
       "todo": [
         "拉阿魯哇族「男女傳統服飾」已登記智慧創作專用權（拉 H000073），範圍涵蓋女性。畫面上的紋樣要對回該筆公告確認，必要時取得同意",
-        "對外發表前應請該族群或相關單位過目"
+        "對外發表前應請該族群或相關單位過目",
+        "維持不加實物照參考圖（服飾已登記智慧創作專用權）；要更精確就得先取得同意"
       ],
       "notes": [
         "這是資料集裡法律依據最明確的一筆，形制錯了特別難看。出圖必跑 --checklist。"
@@ -2602,12 +2603,12 @@
       "poster": "hsinchu-city",
       "base": "hsinchu-county-saysiyat-base",
       "scene": {
-        "outfit_zh": "賽夏族女子服飾（北賽夏／五峰）：無袖長衣外加無袖短上衣、菱形胸衣、橫式細條紋腰裙、披風 hoepong。白底、紅為主紋、黑作配色。**衣背必須有不對稱的雷女紋**",
-        "outfit": "Saisiyat women's dress of the northern group. A narrow sleeveless LONG robe of the square-cloth system, with a sleeveless SHORT jacket worn over it. Under them a chest-cloth cut roughly as a diamond. A waist skirt made of two or three rectangular cloths seamed together, patterned with fine HORIZONTAL stripes. Over the shoulders a cape (hoepong) of three rectangular cloths seamed side by side. The colour scheme is strictly THREE colours: a WHITE ground, RED as the main pattern colour, BLACK used only to outline and separate the red. The patterning sits on the LOWER HALF and is strongest on the BACK. The BACK of the long robe MUST carry the hinobi:wa'an thunder-goddess motif: two crossing lightning strokes, drawn ASYMMETRICALLY like a lightning flash or a letter Z, in red outlined with black. It is not optional and it is not a symmetrical diamond — it is the one motif that tells this people apart from the Atayal, whose clothing is otherwise very similar. Arrange it so at least part of it is visible from the front three-quarter view, on the shoulder or the side of the robe.",
+        "outfit_zh": "賽夏族女子服飾（北賽夏／五峰）：無袖長衣外加無袖短上衣、菱形胸衣、橫式細條紋腰裙、披風 hoepong。白布為底，紋樣集中在帶狀區；**帶內是紅地、花紋以白線夾織其上**、黑只用來勾邊分隔；帶以外維持素白。**衣背必須有不對稱的雷女紋**",
+        "outfit": "Saisiyat women's dress of the northern group. A narrow sleeveless LONG robe of the square-cloth system, with a sleeveless SHORT jacket worn over it. Under them a chest-cloth cut roughly as a diamond. A waist skirt made of two or three rectangular cloths seamed together, patterned with fine HORIZONTAL stripes. Over the shoulders a cape (hoepong) of three rectangular cloths seamed side by side. The colour scheme is strictly THREE colours: the CLOTH ITSELF is WHITE, and the ornament sits in BANDS. Inside a band the ground is RED and the pattern is worked into it in WHITE, with BLACK used only to outline and separate — so a band reads as white figures on red, not red figures on white. Outside the bands the garment stays plain white. The patterning sits on the LOWER HALF and is strongest on the BACK. The BACK of the long robe MUST carry the hinobi:wa'an thunder-goddess motif: two crossing lightning strokes, drawn ASYMMETRICALLY like a lightning flash or a letter Z, in red outlined with black. It is not optional and it is not a symmetrical diamond — it is the one motif that tells this people apart from the Atayal, whose clothing is otherwise very similar. Arrange it so at least part of it is visible from the front three-quarter view, on the shoulder or the side of the robe.",
         "hair": "a camellia flower tucked into her hair, which is gathered in a compact high bun",
         "hair_zh": "茶花（新竹縣花）、丸子頭",
         "accessories": "a woven waist tie and small stud earrings; white four-hole buttons may edge the chest-cloth",
-        "costume_basis": "逐項對 data/costume.json 的 saysiyat：female 欄的無袖長衣、無袖短上衣、胸衣（約呈菱形的織布）、腰裙（2-3 塊布縫成的長方形、紋樣多以橫式細條紋為主）、披風 hoepong（三塊不經剪裁的長方形織布橫向平行縫合）；palette 的白底、紅為花紋主色、黑用來凸顯花紋作配色；長衣裝飾集中在下半部且強調背面。\n取北賽夏（新竹五峰，大隘村與花園村），巴斯達隘祭典屬北祭團。\n**雷女紋 hinobi:wa'an 是賽夏獨有的識別特徵**，形制像兩道閃電交錯、有順時針與逆時針兩種，過去是不對稱的。**第一輪四個候選全都沒有雷女紋**，成因是我把規格寫成「若出現」——太鬆。現在改成必須出現：畫在長衣背面，兩道交錯的閃電、不對稱、像閃電或 Z 字，紅色描黑邊。對稱化是後來的事，不可畫成對稱菱形。並要求至少露出一部分在四分之三側面看得到的位置（肩上或衣側），否則正面構圖永遠看不到它。\n北賽夏的服裝形式與泰雅族頗為相似，這正是最容易被混掉的地方：**分辨點是雷女紋（泰雅沒有）與白紅黑三色的嚴格配色**。\n頭飾沿用縣花規則：賽夏族女性的固定頭飾未見記載，查不到就不自創。族群沒有記載女性固定頭飾時，沿用該縣市的市花（AGENTS.md 硬規則四）——那是阿蕊的識別記號，不因為換成特別版就拿掉。有記載的則以族群為準。"
+        "costume_basis": "逐項對 data/costume.json 的 saysiyat：female 欄的無袖長衣、無袖短上衣、胸衣（約呈菱形的織布）、腰裙（2-3 塊布縫成的長方形、紋樣多以橫式細條紋為主）、披風 hoepong（三塊不經剪裁的長方形織布橫向平行縫合）；palette 的白底、紅為花紋主色、黑用來凸顯花紋作配色；長衣裝飾集中在下半部且強調背面。\n取北賽夏（新竹五峰，大隘村與花園村），巴斯達隘祭典屬北祭團。\n**雷女紋 hinobi:wa'an 是賽夏獨有的識別特徵**，形制像兩道閃電交錯、有順時針與逆時針兩種，過去是不對稱的。**第一輪四個候選全都沒有雷女紋**，成因是我把規格寫成「若出現」——太鬆。現在改成必須出現：畫在長衣背面，兩道交錯的閃電、不對稱、像閃電或 Z 字，紅色描黑邊。對稱化是後來的事，不可畫成對稱菱形。並要求至少露出一部分在四分之三側面看得到的位置（肩上或衣側），否則正面構圖永遠看不到它。\n北賽夏的服裝形式與泰雅族頗為相似，這正是最容易被混掉的地方：**分辨點是雷女紋（泰雅沒有）與白紅黑三色的嚴格配色**。\n頭飾沿用縣花規則：賽夏族女性的固定頭飾未見記載，查不到就不自創。族群沒有記載女性固定頭飾時，沿用該縣市的市花（AGENTS.md 硬規則四）——那是阿蕊的識別記號，不因為換成特別版就拿掉。有記載的則以族群為準。\n\n**2026-08-12 補一個地色的細節。** 先前寫「白底、紅為主紋」，模型把紋樣帶也畫成白地紅紋。國立臺灣歷史博物館藏「賽夏族無袖長衣」的說明寫得更精確：「以白色麻布對折縫合，正面為左右對襟樣式，**背面下半部及正面胸前帶狀以紅色織線為地、白色毛線夾織幾何紋飾**（如 X 紋、V 紋、雙菱形紋等上下對稱），上半部素面」。所以整件的底是白，但**紋樣帶內是紅地白紋**，兩者不衝突，先前只寫了前者。\n該件的數位物件標示「受著作權法保護－僅限於本平台有限度公開瀏覽」，**所以不收圖、不進 prompt**，只引用其描述文字（內容描述授權 CC BY 3.0 TW+）。"
       },
       "todo": [
         "對外發表前應請該族群或相關單位過目"
@@ -2631,10 +2632,11 @@
         "hair": "a camellia flower tucked into her hair, which is gathered in a compact high bun",
         "hair_zh": "茶花（新竹縣花）、丸子頭",
         "accessories": "a woven waist tie and small stud earrings; no shell-bead garments and no bells",
-        "costume_basis": "逐項對 data/costume.json 的 tayal：variants 欄馬里闊丸群（Mrqwang，大漢溪上游馬里闊丸溪兩側，即新竹尖石一帶）的形制——男女上身穿胸兜與無袖長衣、無袖長衣為主要服飾、正面約於胸前處有一條飾帶、衣背中段的大菱紋組成較為單純構圖較大、女子穿片裙（單片式、採前開式穿法）與護腳布、披肩以小菱紋斜紋與條紋間隔出現、沒有過於華麗的裝飾呈現單純與樸質的風格；system 的方衣系統與白色苧麻為底、紅色為主要紋樣色。\n**五個群不可混。** 選馬里闊丸群是因為它分布在新竹縣尖石。北勢群在苗栗與台中、南澳群在宜蘭、大嵙崁群在新北桃園宜蘭、馬利巴群在南投。各群色彩偏好都不同（例如只有馬利巴群在單色菱紋組合中使用黃色）。\n**不畫貝珠衣與無袖短上衣**：rank 欄寫著那是具特別功績者與獵首成功男子的特殊禮服。\n頭飾沿用縣花規則：馬里闊丸群女性的固定頭飾未見記載（南澳群有大量白色四孔鈕釦裝飾的額飾，但那屬南澳群），查不到就不自創。族群沒有記載女性固定頭飾時，沿用該縣市的市花（AGENTS.md 硬規則四）——那是阿蕊的識別記號，不因為換成特別版就拿掉。有記載的則以族群為準。"
+        "costume_basis": "逐項對 data/costume.json 的 tayal：variants 欄馬里闊丸群（Mrqwang，大漢溪上游馬里闊丸溪兩側，即新竹尖石一帶）的形制——男女上身穿胸兜與無袖長衣、無袖長衣為主要服飾、正面約於胸前處有一條飾帶、衣背中段的大菱紋組成較為單純構圖較大、女子穿片裙（單片式、採前開式穿法）與護腳布、披肩以小菱紋斜紋與條紋間隔出現、沒有過於華麗的裝飾呈現單純與樸質的風格；system 的方衣系統與白色苧麻為底、紅色為主要紋樣色。\n**五個群不可混。** 選馬里闊丸群是因為它分布在新竹縣尖石。北勢群在苗栗與台中、南澳群在宜蘭、大嵙崁群在新北桃園宜蘭、馬利巴群在南投。各群色彩偏好都不同（例如只有馬利巴群在單色菱紋組合中使用黃色）。\n**不畫貝珠衣與無袖短上衣**：rank 欄寫著那是具特別功績者與獵首成功男子的特殊禮服。\n頭飾沿用縣花規則：馬里闊丸群女性的固定頭飾未見記載（南澳群有大量白色四孔鈕釦裝飾的額飾，但那屬南澳群），查不到就不自創。族群沒有記載女性固定頭飾時，沿用該縣市的市花（AGENTS.md 硬規則四）——那是阿蕊的識別記號，不因為換成特別版就拿掉。有記載的則以族群為準。\n\n**找到的授權實物照是苗栗北勢群的，不能用（2026-08-12）。** 國家文化記憶庫那件「泰雅族傳統服」（苗栗縣政府文化觀光局，CC BY-NC 3.0 TW+）標明是**北勢群**，而這一筆畫的是新竹的**馬里闊丸群**。costume.json 的 gaps 欄與 AGENTS 都寫著「同一族不同群的服飾可以完全不像」，拿北勢群的實物去畫馬里闊丸群，就是把一個群的東西當成另一個群的。**寧可停在文字層級，也不要跨群借圖。**要補實物照，得找馬里闊丸群（新竹尖石一帶）自己的典藏。"
       },
       "todo": [
-        "對外發表前應請該族群或相關單位過目"
+        "對外發表前應請該族群或相關單位過目",
+        "要補實物照的話必須是馬里闊丸群（新竹尖石）的典藏；苗栗北勢群那件不能用"
       ],
       "notes": [
         "泰雅五群形制與色彩差異很大，這一筆只代表馬里闊丸群，不能當成「泰雅族的樣子」。"
@@ -2655,11 +2657,12 @@
         "hair": "a BLACK head-cloth wound round her head and covering her hair — a real wrapped cloth, NOT a hairpin, NOT a flower and NOT an uncovered bun. Her hair is gathered underneath it and only a little shows at the nape.",
         "hair_zh": "黑色頭巾纏髮並包住頭髮（鄒族女子服飾 female 欄第一項），不是髮簪也不是花",
         "accessories": "a woven waist tie and small stud earrings; no feathers, no hide cap, no boar-tusk ornaments",
-        "costume_basis": "逐項對 data/costume.json 的 cou：female 欄的黑色頭巾、胸兜、長袖短上衣、長裙、護腳布；material 的女性用棉布、絲或綢緞；palette 的紅白黑藍。\n頭飾以族群記載為準：female 欄第一項就是黑色頭巾，因此不套縣花規則。\n**第一輪出圖畫成了丸子頭插金珠流蘇髮簪，頭巾完全沒出現**，所以現在把它寫成否定句：是纏起來的布，不是髮簪、不是花、不是露出來的髮髻。族群沒有記載女性固定頭飾時，沿用該縣市的市花（AGENTS.md 硬規則四）——那是阿蕊的識別記號，不因為換成特別版就拿掉。有記載的則以族群為準。\n**不畫獸皮帽與羽毛**：那是男子服飾，而且帽飾具重要意義——戴上獸皮帽代表成年，盛裝時插鷹、藍腹鷴、帝雉、鷲羽毛數根彰顯勇敢英武，帽前緣的紅色紋飾帶更是傳統領袖或征帥等具勇士資格者才有。那一整套都不屬於女性日常。\n**這一筆的出處只有 1 筆**（原住民族委員會族群介紹頁），是全資料集裡最薄的族之一——教育部臺灣原住民族事典的鄒族服飾詞條目前無法開啟。對外發表前尤其需要族人過目。"
+        "costume_basis": "逐項對 data/costume.json 的 cou：female 欄的黑色頭巾、胸兜、長袖短上衣、長裙、護腳布；material 的女性用棉布、絲或綢緞；palette 的紅白黑藍。\n頭飾以族群記載為準：female 欄第一項就是黑色頭巾，因此不套縣花規則。\n**第一輪出圖畫成了丸子頭插金珠流蘇髮簪，頭巾完全沒出現**，所以現在把它寫成否定句：是纏起來的布，不是髮簪、不是花、不是露出來的髮髻。族群沒有記載女性固定頭飾時，沿用該縣市的市花（AGENTS.md 硬規則四）——那是阿蕊的識別記號，不因為換成特別版就拿掉。有記載的則以族群為準。\n**不畫獸皮帽與羽毛**：那是男子服飾，而且帽飾具重要意義——戴上獸皮帽代表成年，盛裝時插鷹、藍腹鷴、帝雉、鷲羽毛數根彰顯勇敢英武，帽前緣的紅色紋飾帶更是傳統領袖或征帥等具勇士資格者才有。那一整套都不屬於女性日常。\n**這一筆的出處只有 1 筆**（原住民族委員會族群介紹頁），是全資料集裡最薄的族之一——教育部臺灣原住民族事典的鄒族服飾詞條目前無法開啟。對外發表前尤其需要族人過目。\n\n**這一筆刻意不加實物照參考圖（2026-08-12 拍板）。** 該族的「男女傳統服飾」已登記原住民族傳統智慧創作專用權（鄒 H000005），範圍涵蓋女性。照著實物照畫得越像，越接近登記標的；所以維持族層級的文字描述，紋樣只取 costume.json 的 motifs 欄所列，不追求逐件還原。這跟阿美族迴避馬太鞍（美 H000001）的處理一致。要往下畫到可辨識的具體織紋，前提是先取得專用權人同意。"
       },
       "todo": [
         "鄒族「男女傳統服飾」已登記智慧創作專用權（鄒 H000005，專用權人為鄒族），範圍涵蓋女性。畫面上的紋樣要對回該筆公告確認，必要時取得同意",
-        "對外發表前應請該族群或相關單位過目"
+        "對外發表前應請該族群或相關單位過目",
+        "維持不加實物照參考圖（服飾已登記智慧創作專用權）；要更精確就得先取得同意"
       ],
       "notes": [
         "出處只有 1 筆，是全資料集最薄的族之一。卡片上要標明這一點。"
