@@ -18,3 +18,8 @@ img/*.cand/
 
 __pycache__/
 *.pyc
+
+# 角色母檔。img/*.png 只擋 img/ 直下的檔案，擋不到子目錄，
+# 這幾張 2046×3074 的 PNG（一張 3MB）差點跟著進版控。
+# 網站要的是 img/hero.webp 與 img/hero@2x.webp，母檔留在磁碟上供重出用。
+img/alui/

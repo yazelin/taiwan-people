@@ -907,11 +907,14 @@ section:has(>.hero){overflow-x:clip}
       </a>
     </div>
     <div class="figure">
-      <!-- 一般螢幕拿 900px（318KB），高解析螢幕才拿 1800px（776KB）。
+      <!-- 一般螢幕拿 900px（328KB），高解析螢幕才拿 1371px（440KB）。
        實測：1440 視窗 DPR1 需要 781px、DPR2 需要 1562px。
-       4K 母檔（2757×5861）在 ~/taiwan-people-drafts/，供印刷或周邊用，不進 repo。 -->
+       2026-08-13 換新版角色圖，母檔（1371×2926，已裁掉透明留白）在
+       ~/taiwan-people-drafts/alui/。@2x 就是母檔原生尺寸、沒有再放大：
+       這張的原始渲染只有 685px 寬，舊版那個 1800px 是硬放大出來的，撈不到細節。
+       width/height 是給瀏覽器算版位的，換圖一定要跟著換成新檔的實際尺寸。 -->
       <img src="img/hero.webp" srcset="img/hero.webp 1x, img/hero@2x.webp 2x"
-           width="900" height="1913"
+           width="900" height="1921"
            alt="台灣人代表角色阿蕊：手持台灣帆布袋與珍珠奶茶、伸手迎向前方的女孩。">
     </div>
   </div>
@@ -1015,7 +1018,7 @@ section:has(>.hero){overflow-x:clip}
       不是為了比誰厲害，而是想說：這些全部都是「台灣人代表」。</p>
   </div>
   <div class="meet">
-    <img class="meet-fig" src="img/hero.webp" width="685" height="1461"
+    <img class="meet-fig" src="img/hero.webp" width="685" height="1462"
          alt="阿蕊：台灣人代表系列的角色">
     <div class="meet-txt">
       <h3>認識阿蕊<small>A-luí</small></h3>
