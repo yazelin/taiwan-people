@@ -2348,12 +2348,15 @@
       "poster": "taitung",
       "base": "taitung-pinuyumayan-base",
       "scene": {
-        "outfit_zh": "卑南族女子服飾，四層各自可見：長袖短身上衣 makiteng（及腰、非長袍）、黑底胸兜 pakelrep（下半部貼縫繡花口袋，須露出）、貼身裙 tubilr 外罩方布裙 lrabit（裙擺在膝下，小腿不遮）、素面護腿布片 katring（膝到踝，必須看得見）",
-        "outfit": "Pinuyumayan women's dress, worn as FOUR separate visible layers, not one robe. (1) A SHORT-BODIED long-sleeved top (makiteng) whose hem ends at the waist — it is a short jacket, NOT a long robe and NOT floor-length. (2) Under it a black chest-cloth (pakelrep) tied at the neck and waist, its lower half carrying a stitched-on rectangular pocket embroidered with small geometric motifs; the chest-cloth must stay visible below the short top. (3) A wrap skirt (tubilr) with its embroidered panel at her RIGHT side and both cloth edges overlapping on the LEFT, covered by an outer square-cloth skirt (lrabit); the skirt hem ends just BELOW THE KNEE so the lower legs stay uncovered. (4) On her lower legs, plain leg-cloths (katring) wrapped from knee to ankle and clearly visible: a black centre band flanked by red, yellow and green trim with a plain blue outer band, carrying NO woven or embroidered figure motifs at all. The geometric ornament throughout is flower-and-leaf, square, diamond and triangle forms in red, yellow and green, arranged as repeating horizontal bands.",
+        "outfit_zh": "卑南族女子服飾，四層各自可見：長袖短身上衣 makiteng（及腰、非長袍）、**掛在胸前的黑底菱形胸兜 pakelrep**（編繩繫頸與腰、末端紅綠小流蘇；黑地上散布藍粉綠八瓣花，下半密繡彩色方格與菱形排成 V 形、紅線勾邊）、貼身裙 tubilr 外罩方布裙 lrabit（裙擺在膝下、小腿不遮，裙面下方有菱格蝴蝶花卉迴紋的繡帶）、素面護腿布片 katring（膝到踝，必須看得見）",
+        "outfit": "Puyuma women's dress, four layers each of which must remain visible:\nTOP (makiteng): a long-sleeved SHORT-BODIED jacket ending at the waist — it must NOT become a full-length robe. Dark ground with narrow woven bands of colour at the cuffs, front edges and hem.\nCHEST PANEL (pakelrep): a BLACK panel hung ON THE CHEST — a broad square set on the diagonal so it makes a downward point at the bottom, held by braided cords that pass round the neck and waist with small red and green tassels at their ends. Its black ground carries scattered eight-petal flower rosettes in blue, pink and green, and its LOWER HALF is filled with dense fine embroidery: small squares and diamonds in pink, red, blue, green, yellow and white arranged in nested chevrons that follow the panel's point, outlined in red stitching. This panel hangs on the chest and must be clearly visible — do not turn it into an apron or a pocket at the waist.\nSKIRT: a fitted under-skirt (tubilr) with a square wrap cloth (lrabit) over it, the hem falling below the knee so the lower legs stay uncovered. Dark ground; across the lower part of the wrap runs a band of embroidery — diamonds, butterflies, flowers and meander motifs in pink, red, white and green on the dark cloth.\nLEG-CLOTHS (katring): plain leg-cloths from knee to ankle, and they must be visible, not hidden under the skirt.",
         "hair": "a flower crown (aputr) plaited from real fresh flowers including white moth orchids, worn over hair that falls DOWN and loose over her shoulders",
         "hair_zh": "卑南族鮮花花環 aputr，用台東縣花蝴蝶蘭編製、頭髮放下",
         "accessories": "no beaded necklaces and no metal medallion; only the flower crown and the woven waist tie that fastens the skirts",
-        "costume_basis": "逐項對 data/costume.json 的 pinuyumayan：female 欄的花環 aputr、長袖短身上衣 makiteng、胸兜 pakelrep（黑或白底、下半部貼縫口袋、早期刺繡集中在口袋表面）、貼身裙 tubilr（繡片置於右側、兩布邊於左側重疊）、方布外裙 lrabit、護腿布片 katring（黑底素布條為中心、兩側紅黃綠三色飾邊、最外層藍底素花布條）；palette 的紅黃綠；motifs 的花草紋、四方紋、菱形紋、三角形紋，二方或四方連續排列。\n刻意做的兩個限制：\n一、護腿布片畫成素面、不加織繡圖紋。rank 欄寫著「成年或已婚女性方可穿著帶有織繡圖紋的護腿布片」，阿蕊的角色卡沒有設定婚姻狀態，所以取不會出錯的那一邊。\n二、拿掉原通用版的多層串珠項鍊與金屬圓牌，costume.json 的卑南族女子服飾沒有這兩項。\n花環同時滿足 AGENTS.md 硬規則四（頭上的花＝該縣市市花）：aputr 傳統以鮮花編製，這裡編的是台東縣花蝴蝶蘭。"
+        "costume_basis": "逐項對 data/costume.json 的 pinuyumayan：female 欄的花環 aputr、長袖短身上衣 makiteng、胸兜 pakelrep（黑或白底、下半部貼縫口袋、早期刺繡集中在口袋表面）、貼身裙 tubilr（繡片置於右側、兩布邊於左側重疊）、方布外裙 lrabit、護腿布片 katring（黑底素布條為中心、兩側紅黃綠三色飾邊、最外層藍底素花布條）；palette 的紅黃綠；motifs 的花草紋、四方紋、菱形紋、三角形紋，二方或四方連續排列。\n刻意做的兩個限制：\n一、護腿布片畫成素面、不加織繡圖紋。rank 欄寫著「成年或已婚女性方可穿著帶有織繡圖紋的護腿布片」，阿蕊的角色卡沒有設定婚姻狀態，所以取不會出錯的那一邊。\n二、拿掉原通用版的多層串珠項鍊與金屬圓牌，costume.json 的卑南族女子服飾沒有這兩項。\n花環同時滿足 AGENTS.md 硬規則四（頭上的花＝該縣市市花）：aputr 傳統以鮮花編製，這裡編的是台東縣花蝴蝶蘭。\n\n**2026-08-12 依實物照修正胸兜。** 先前寫「黑底胸兜 pakelrep（下半部貼縫繡花口袋，須露出）」，「口袋」這個詞讓模型把它畫成腰際的圍裙口袋——實物是**掛在胸前**的菱形黑底片，以編繩繫頸、四角垂紅綠流蘇，黑地上散布藍粉綠八瓣花，下半是密繡的彩色方格與菱形排成 V 形、紅線勾邊。\n依據：國史館臺灣文獻館藏「卑南族女子胸兜」與「卑南族深色女長裙」（文化部典藏網／國家文化記憶庫，數位物件 CC BY-NC 3.0 TW+、描述文字 CC BY 3.0 TW+）。胸兜那張裁掉浮水印之後收進 data/costume-refs/ 當參考圖；長裙那張的浮水印正好壓在繡帶上，裁不掉，只當閱讀資料——它記的是「菱格、蝴蝶、花卉、迴紋等多彩繡樣」，已寫進 outfit。",
+        "costume_refs": [
+          "data/costume-refs/puyuma-female-01-chest.jpg"
+        ]
       },
       "todo": [
         "對外發表前應請卑南族人或相關單位過目"
@@ -2377,7 +2380,9 @@
         "accessories": "a plain cloth pouch at her hip and small jade drop earrings",
         "costume_basis": "依客委會《台灣客家服飾民間收藏調查研究》（鄭惠美，2007，實地丈量 200 件文物，含北部客家大襟衫 25 件）的北客大襟衫調查：右開大襟、直布扣、鑲緄從領緣沿大襟延伸至後片與小襟、外緣加提花織帶（寬約 1-2.5 公分）、衣長蓋過臀部（比六堆藍衫短 15-20 公分）、下身大襠褲。北客用色不限藍黑，年輕婦女常見白、米、淡綠、水藍。\n避開三個常見錯誤：一、大襟衫是素面，全身不得有印花——現在通稱的「客家花布」是 1960 年代不分族群使用的印花被單布，不是客家傳統服飾（見 costume.json 的 _redlines 第四條）；二、大襟衫用直布扣，盤扣是對襟的做法；三、桃竹苗屬北客，該叫大襟衫，「藍衫」是南部六堆的稱法。\n頭飾不畫：客委會那份調查沒有頭飾專章，本次也沒找到台灣客家頭飾的官方專論。查不到就不畫。\n新竹取水藍、苗栗取米色，兩縣的特別版才不會長得一樣。"
       },
-      "todo": [],
+      "todo": [
+        "對外發表前應請該族群或相關單位過目"
+      ],
       "notes": [
         "由普通版移過來的。普通版不穿任何族群的傳統服飾，客家大襟衫改由這一筆承擔。"
       ]
@@ -2397,7 +2402,9 @@
         "accessories": "a plain cloth pouch at her hip and small silver drop earrings",
         "costume_basis": "依客委會《台灣客家服飾民間收藏調查研究》（鄭惠美，2007，實地丈量 200 件文物，含北部客家大襟衫 25 件）的北客大襟衫調查：右開大襟、直布扣、鑲緄從領緣沿大襟延伸至後片與小襟、外緣加提花織帶（寬約 1-2.5 公分）、衣長蓋過臀部（比六堆藍衫短 15-20 公分）、下身大襠褲。北客用色不限藍黑，年輕婦女常見白、米、淡綠、水藍。\n避開三個常見錯誤：一、大襟衫是素面，全身不得有印花——現在通稱的「客家花布」是 1960 年代不分族群使用的印花被單布，不是客家傳統服飾（見 costume.json 的 _redlines 第四條）；二、大襟衫用直布扣，盤扣是對襟的做法；三、桃竹苗屬北客，該叫大襟衫，「藍衫」是南部六堆的稱法。\n頭飾不畫：客委會那份調查沒有頭飾專章，本次也沒找到台灣客家頭飾的官方專論。查不到就不畫。\n苗栗取米色、新竹取水藍，兩縣的特別版才不會長得一樣。"
       },
-      "todo": [],
+      "todo": [
+        "對外發表前應請該族群或相關單位過目"
+      ],
       "notes": [
         "由普通版移過來的。普通版不穿任何族群的傳統服飾，客家大襟衫改由這一筆承擔。"
       ]
