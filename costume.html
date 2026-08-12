@@ -983,11 +983,22 @@ const esc = (s) => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>
 
 let DATA = null, filterCat = 'all', filterArea = '';
 
-fetch('data/costume.json').then(r => r.json()).then(d => { DATA = d; render(); })
-  .catch(() => {
+// 這條鏈的 catch 原本寫死一句「讀不到 costume.json，要用 http 開」，而且把 render()
+// 自己丟的例外也一起吞掉。2026-08-13 真的踩到：sources 有一筆漏了 kind 欄位，
+// 排序時 a.kind.localeCompare 炸掉 → 整個 render 中止 → 畫面顯示「讀不到 json」。
+// 但 json 明明拿到了（HTTP 200、12 萬位元組），照著那句話去查 CORS 一輩子查不到。
+// 所以：抓不到檔跟畫不出來分開講，而且一定要印出真正的錯誤。
+fetch('data/costume.json')
+  .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+  .then(d => { DATA = d; render(); })
+  .catch(err => {
+    const isFile = location.protocol === 'file:';
     document.getElementById('grid').innerHTML =
-      '<p class="disclaim">讀不到 <code>data/costume.json</code>。這頁用 fetch 取資料，必須透過 http 開啟；' +
-      '直接用 file:// 開會被瀏覽器的跨來源限制擋下來。本機請跑 <code>python3 -m http.server 8901</code>。</p>';
+      '<p class="disclaim">這頁沒能畫出來：<code>' + String(err && err.message || err) + '</code>。' +
+      (isFile
+        ? '你是用 file:// 開的，fetch 會被跨來源限制擋下來，本機請跑 <code>python3 -m http.server 8901</code>。'
+        : '資料是抓到了，問題出在畫的時候——多半是 <code>data/costume.json</code> 有一筆缺欄位。') + '</p>';
+    throw err;   // 別靜靜吞掉，主控台要留得下堆疊
   });
 
 function render(){
