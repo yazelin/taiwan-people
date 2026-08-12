@@ -1803,7 +1803,7 @@
         "light": "west",
         "accessories": "a cord necklace with a small shell, a plain cloth pouch on her tote strap, and small stud earrings",
         "viewpoint": "standing on the coral rock shore of Kenting",
-        "viewpoint_sees": "from here turquoise water and palms stretch along the coast with the peak of Dajianshan rising inland behind",
+        "viewpoint_sees": "from here turquoise water and palms stretch along the coast with the peak of Dajianshan rising inland behind There is NO cable-stayed bridge, no suspension bridge and no large modern bridge anywhere in this view — that belongs to another part of the county, not to this coral shore.",
         "costume_basis": "原本是「彩色幾何織紋襯衫（橘綠藍條帶）＋多層串珠項鍊、長串珠耳環」，讀自原海報，對不回任何一族。屏東的排灣與魯凱都是階級社會，人形紋、人頭紋、百步蛇紋屬頭目與貴族，把類似的織紋當裝飾畫上去，等於在畫面上偽造一個身分（見 costume.json 的 _redlines 第一條）。改成南國海邊的當代日常。",
         "right_zone_desc": "The right 40 percent is the Kenting coast opening south, built as FOUR depth bands. (1) Open sky fills the upper 45 percent, graded from soft blue to warm pale haze, with thin cloud bands. (2) A pale haze band on the horizon with one far low headland silhouette. (3) The sea in broad soft value bands, turquoise nearer the shore shading to deep blue at the horizon, with one wide path of low glitter. (4) At the very bottom edge only, a thin line of surf over pale coral rock. The coral rock shelf and palms belong on the LEFT and must not continue across this zone."
       },
@@ -1826,7 +1826,8 @@
         "服裝含原住民族織紋，依原海報保留視覺但**不指名族群**——台東就有阿美、卑南、排灣、布農、達悟五族，指錯族群的織紋比指錯市樹嚴重。若要對外正式發佈，這幾張建議先請具代表性的族人或相關單位過目。",
         "原海報畫扶桑花，但扶桑＝朱槿是**舊高雄縣**縣花，帶著別的縣市的聯想，改用屏東自己的九重葛（桃紅色，同樣搶眼）。",
         "白T的印花連兩輪被畫成滿版熱帶花——成因是規格只寫 white tee，沒有禁止印花。跟賽夏族雷女紋那次相反的形狀：那次是「該出現的沒要求它出現」，這次是「不該出現的沒禁止它出現」。outfit 已改成明確的否定句。",
-        "底圖 2026-08-11 重生：舊圖的白T是滿版椰子樹＋扶桑花＋海浪印花，對不回任何資料。四個候選裡選了唯一同時做到「白T素面」與「畫面沒有斜張橋」的那張——斜張橋這個錯連兩輪出現，墾丁珊瑚礁岸沒有那東西。"
+        "底圖 2026-08-11 重生：舊圖的白T是滿版椰子樹＋扶桑花＋海浪印花，對不回任何資料。四個候選裡選了唯一同時做到「白T素面」與「畫面沒有斜張橋」的那張——斜張橋這個錯連兩輪出現，墾丁珊瑚礁岸沒有那東西。",
+        "斜張橋在候選裡出現過三次（兩輪重生各一次、排灣特別版一次）。墾丁珊瑚礁岸沒有那個東西，所以 viewpoint_sees 直接寫成否定句擋掉，不再靠挑候選避開。"
       ],
       "traits": [
         "樂天",
@@ -2543,10 +2544,10 @@
       "scene": {
         "outfit_zh": "排灣族女子服飾（北排 Vuculj 本群、**平民**）：圓領開右襟筒袖長衣 lungpau（衣脇至衣襬 A 型開叉）、單片式長裙至腳踝上方、護腳布 cacavu。**平民限用淺黑、淺藍或白色，且不飾任何紋飾**——素面才是對的，華麗等於冒用階級",
         "outfit": "Paiwan women's dress of the northern Vuculj group, and specifically the dress of a COMMONER — this constrains both colour and ornament, and the constraint is the point:\nLONG GARMENT (lungpau): a long tunic with a round neck, opening to the RIGHT across the front, with straight tube sleeves, and an A-shaped slit running from under each arm down to the hem.\nSKIRT: a single wrap cloth reaching to just above the ankle. LEG-CLOTHS (cacavu) wrapped round the shins.\nCOLOUR — a commoner's cloth is limited to LIGHT BLACK (a soft charcoal grey-black, not deep black), LIGHT BLUE or WHITE. Deep black, deep indigo and crimson belong to the chiefly line and must not be used here.\nORNAMENT — a commoner's garment carries NO PATTERN AT ALL. Draw the cloth plain: no embroidery, no beadwork, no woven figures, no geometric bands, no floral motifs, and above all no human head, human figure, hundred-pace snake or sun motif, which are the marks of the chiefly line. The garment may show only its own seams, its right-side closure, plain narrow cloth binding at the neck, cuffs and hem in the same restricted colours, and the fall of the fabric. A plain garment is the correct answer here — richness would be a false claim of rank.",
-        "hair": "a bougainvillea blossom tucked into her hair, which is gathered in a compact high bun, and absolutely NO feathered head-dress of any kind",
+        "hair": "bougainvillea tucked into her compact high bun — draw it as the plant actually is: a TRIO of thin PAPERY BRACTS in magenta, veined like coloured tissue paper and arranged as a triangle around three tiny white tubular flowers at their centre. It is NOT a five-petalled hibiscus and NOT a single broad flower with a yellow stamen column. Match the bougainvillea in the foreground of the same picture. Absolutely NO feathered head-dress of any kind.",
         "hair_zh": "九重葛（屏東縣花）、丸子頭。**不戴任何羽冠**",
-        "accessories": "a woven sash and small glass-bead earrings; no eagle feathers, no clouded-leopard fur, no metal chest plates",
-        "costume_basis": "**2026-08-12 改正一個階級錯誤。** 先前這一筆寫「黑底，紅黃綠幾何與植物紋」，但 data/costume.json 的 paiwan.rank 寫得很清楚：**「平民不可飾以任何紋飾」**，而且**「色彩使用亦有階級限制：頭目所用布料可為深黑、深藍或大紅色，平民則限用淺黑、淺藍或白色」**。我們指名了平民，卻給她穿上有紋飾的深色衣服——那是在畫面上冒用一個階級，跟 _redlines 第一條「階級紋樣不是裝飾，是身分」是同一個錯，只是形狀比較隱晦：不是畫了百步蛇，而是畫了「平民不該有的任何紋飾」。\n臺灣原住民族事典的排灣族服飾條目也記著同樣的規範：各階級婦女都穿 lungpau 這類長衣，但平民不能有紋飾，只有貴族才能以刺繡、綴珠或織繡表現人頭紋與百步蛇紋。\n所以這一筆改成**素面**：淺黑／淺藍／白，僅有接縫、右開襟與同色系的窄邊。**素面才是正確答案，畫得華麗等於冒用階級。**\n頭飾維持九重葛（屏東縣花）、丸子頭，**不戴任何羽冠**——熊鷹羽頭冠是頭目與貴族專屬，且熊鷹是瀕臨絕種保育類（_redlines 第一、二條）。"
+        "accessories": "a PLAIN cloth belt at the waist in the same restricted colours (light black, light blue or white) — it carries no woven pattern, no coloured stripes, no beadwork and no tassels, because a commoner's dress carries no ornament — and small glass-bead earrings; no eagle feathers, no clouded-leopard fur, no metal chest plates",
+        "costume_basis": "**2026-08-12 改正一個階級錯誤。** 先前這一筆寫「黑底，紅黃綠幾何與植物紋」，但 data/costume.json 的 paiwan.rank 寫得很清楚：**「平民不可飾以任何紋飾」**，而且**「色彩使用亦有階級限制：頭目所用布料可為深黑、深藍或大紅色，平民則限用淺黑、淺藍或白色」**。我們指名了平民，卻給她穿上有紋飾的深色衣服——那是在畫面上冒用一個階級，跟 _redlines 第一條「階級紋樣不是裝飾，是身分」是同一個錯，只是形狀比較隱晦：不是畫了百步蛇，而是畫了「平民不該有的任何紋飾」。\n臺灣原住民族事典的排灣族服飾條目也記著同樣的規範：各階級婦女都穿 lungpau 這類長衣，但平民不能有紋飾，只有貴族才能以刺繡、綴珠或織繡表現人頭紋與百步蛇紋。\n所以這一筆改成**素面**：淺黑／淺藍／白，僅有接縫、右開襟與同色系的窄邊。**素面才是正確答案，畫得華麗等於冒用階級。**\n頭飾維持九重葛（屏東縣花）、丸子頭，**不戴任何羽冠**——熊鷹羽頭冠是頭目與貴族專屬，且熊鷹是瀕臨絕種保育類（_redlines 第一、二條）。\n**腰帶也算紋飾。** 第一輪三個候選的衣身都素面了，但兩張的腰帶織了彩色幾何紋、還垂彩色流蘇。「平民不可飾以任何紋飾」不會因為換到腰帶上就不算，所以 accessories 明寫腰帶要素面、同樣限用淺黑／淺藍／白，且不得有珠飾與流蘇。\n**髮花被畫成扶桑。** 九重葛是三片紙質苞片圍著三朵白色小管花，不是五瓣大花——AGENTS 記過「屏東海報畫扶桑花，但扶桑＝朱槿是高雄市花之一」，這次又漂回去了。hair 欄改成逐項描述苞片形態，並要求與同一張畫面前景的九重葛一致。"
       },
       "todo": [
         "對外發表前應請該族群或相關單位過目"
