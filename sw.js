@@ -8,7 +8,7 @@
  * SHELL_V 由 tools/build_sw.py 依 precache 清單的內容 hash 產生，不要手改。
  * 手動 bump 的遲早會忘記，而忘記的症狀是「使用者永遠看不到新版」，沒有任何徵兆。
  */
-const SHELL_V = "shell-fc76ca6";
+const SHELL_V = "shell-deaed0e";
 const ASSET_V = "asset-f9b4984";
 
 // 前綴要跨專案唯一。CacheStorage 是 per-origin，yazelin.github.io 底下所有專案
@@ -32,10 +32,12 @@ const PRECACHE = [
   "index.html",
   "costume.html",
   "newcomers.html",
+  "population.html",
   "counties.html",
   "manifest.json",
   "data/costume.json",
   "data/newcomers.json",
+  "data/indigenous.json",
   "data/counties.json",
   "icon-v1-192.png",
   "icon-v1-512.png",
