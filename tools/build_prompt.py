@@ -228,9 +228,15 @@ def build(c):
         + costume_block(c)
         # 帆布提袋是系列的固定道具，但有些特別版該背的是族群自己的攜物袋
         # （噶瑪蘭的檳榔袋就是整組服飾的一件），兩個都掛在身上會變成雜物。
+        # tote=False 有兩種情況：族群自己有攜物袋（噶瑪蘭的檳榔袋、阿美的攜物袋），
+        # 或這一族的女子服飾根本沒有袋子（拉阿魯哇）。後者若照抄「只背傳統的那個」，
+        # 等於在暗示畫面上該有一個袋子，模型就會自己發明一個。所以看 outfit 有沒有提到袋。
         + ("Keep the canvas tote bag. " if c["scene"].get("tote", True) else
-           "She carries NO canvas tote bag in this picture — the only bag is the traditional one "
-           "described in the outfit above. ")
+           "She carries NO canvas tote bag in this picture"
+           + (" — the only bag is the traditional one described in the outfit above. "
+              if any(w in c["scene"].get("outfit", "").lower()
+                     for w in ("bag", "pouch", "satchel"))
+              else ", and no bag or satchel of any kind: her hands and shoulders are free. "))
         # tote_print 原本只有 --fix-tote-print 讀得到，build() 沒用它——
         # 等於正式生成時提袋印花一律由模型自由發揮。新竹市那次就發明出一張
         # 像剪貼素材的 IC 晶片示意圖，而且對不回任何一筆 landmarks。
@@ -634,9 +640,18 @@ if __name__ == "__main__":
         p = PEOPLES.get(county.get("culture") or "")
         if p is None:
             sys.exit(f"{county['name']} 是通用版，沒有指名族群，沒有族服驗收清單。")
+        # 阿蕊是女子，畫面上永遠不會有男裝。男子條目留在 costume.json 是資料完整性，
+        # 但拿去當驗收清單會每次都產生假 NG（拉阿魯哇那輪十項裡有兩項是這樣來的），
+        # 而假 NG 會讓人開始略過整份清單。要看全部跑 --checklist --all。
+        skipped = 0
         print(f"{p['name']} 出圖驗收（出自 data/costume.json）")
         for x in p["checklist"]:
+            if x.startswith(("男子", "男性")) and "--all" not in sys.argv:
+                skipped += 1
+                continue
             print(f"  □ {x}")
+        if skipped:
+            print(f"  （另有 {skipped} 條男裝條目，阿蕊是女子用不到，要看加 --all）")
         if p["pitfalls"]:
             print("\n已知會畫錯的地方")
             for x in p["pitfalls"]:

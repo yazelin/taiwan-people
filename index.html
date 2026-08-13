@@ -279,6 +279,33 @@ section:has(>.hero){overflow-x:clip}
 .figure{position:absolute;right:clamp(-30px,1vw,40px);top:0;bottom:auto;
   height:185vh;width:max-content;z-index:0;pointer-events:none;will-change:transform;
   --figop:1;opacity:calc(var(--figop) * var(--fade,1))}
+/* 阿蕊的簽名。三個要求：像代言人本人簽在自己的照片上、貼著角色、不搶風采。
+   位置抓在伸出那隻手的下方偏左——那裡是視覺動線的收尾，不會壓到臉或手。
+   微幅逆時針，順手簽下去的角度；透明度壓到 .55，讀得出是簽名但不跟角色搶。
+   高度用 % 綁在 .figure 上，所以視窗高度變化時它跟角色的相對位置不會跑。 */
+/* .figure 整層 pointer-events:none（不擋住底下的地圖與捲動），
+   所以簽名要點得到就得自己把指標事件開回來，只開連結這一小塊。 */
+.figure .sig-link{position:absolute;left:70%;top:15%;width:min(19%,170px);
+  pointer-events:auto;display:block;rotate:-5deg;transition:opacity .25s,scale .25s}
+/* 呼吸燈：簽名擺在天空裡，不做提示沒人會想到那能點。
+   只讓它非常輕微地縮放，不碰透明度也不碰外暈——
+   一淡就變灰看起來髒，外暈一加強那圈白會浮出來像多疊一層底，兩種都試過都不對。
+   幅度刻意壓到 1→1.035：看得出在動，但不會變成閃爍的廣告。 */
+@keyframes sig-breathe{0%,100%{scale:1}50%{scale:1.035}}
+.figure .sig-link{animation:sig-breathe 3.4s ease-in-out infinite}
+.figure .sig-link:hover,.figure .sig-link:focus-visible{animation:none;scale:1.05}
+/* 使用者關掉動態效果時就不要動。這是系統層級的無障礙偏好，不是喜好問題—— */
+@media (prefers-reduced-motion:reduce){
+  .figure .sig-link{animation:none}
+}
+.figure .sig{display:block;width:100%;height:auto;opacity:.92;
+  /* 位置：臉頰右側、101 前面那片天空。這是整個 hero 唯一「貼著角色又乾淨」的地方——
+     左邊被標題與內文佔滿、中間是手與帆布袋、下面出血。手機版同一組座標也落在天空上。
+     顏色是原稿的墨色，陰影做成白色外暈而不是深色投影：這一帶的天空是偏淡的藍加白雲，
+     深色字對比最強，需要的是把它從雲裡拉出來的淺色暈。四種組合實測過
+     （白字深影／白字淺影／黑墨白暈／黑墨深影），黑墨配白暈最清楚。
+     筆畫寬在顯示尺寸下 4.5px，是原稿本來的粗細，沒有另外加粗。 */
+  filter:drop-shadow(0 2px 3px rgba(255,255,255,.95)) drop-shadow(0 0 10px rgba(255,255,255,.8))}
 .figure img{height:100%;width:auto;max-width:none;display:block;
   filter:drop-shadow(0 2px 3px rgba(8,28,52,.55))
          drop-shadow(-6px 6px 10px rgba(8,28,52,.32))
@@ -916,6 +943,12 @@ section:has(>.hero){overflow-x:clip}
       <img src="img/hero.webp" srcset="img/hero.webp 1x, img/hero@2x.webp 2x"
            width="900" height="1921"
            alt="台灣人代表角色阿蕊：手持台灣帆布袋與珍珠奶茶、伸手迎向前方的女孩。">
+      <!-- 簽名掛在 .figure 內而不是 hero 上：這樣它跟著角色一起被捲動淡出、
+           一起吃 --figop，位置也永遠貼著角色而不是貼著視窗。 -->
+      <a class="sig-link" href="#meet-alui">
+        <img class="sig" src="img/signature.png"
+             srcset="img/signature.png 1x, img/signature@2x.png 2x"
+             width="380" height="100" alt="阿蕊的簽名，點擊看「認識阿蕊」"></a>
     </div>
   </div>
   <div class="waterline" aria-hidden="true"><i></i><canvas class="foam" id="foam"></canvas><canvas class="viz" id="viz"></canvas></div>
@@ -1017,7 +1050,7 @@ section:has(>.hero){overflow-x:clip}
       收進一張角色海報裡。<br>
       不是為了比誰厲害，而是想說：這些全部都是「台灣人代表」。</p>
   </div>
-  <div class="meet">
+  <div class="meet" id="meet-alui">
     <img class="meet-fig" src="img/hero.webp" width="685" height="1462"
          alt="阿蕊：台灣人代表系列的角色">
     <div class="meet-txt">
