@@ -6,6 +6,8 @@
     "naturalized": "其中已歸化取得我國國籍者，法律上為中華民國國民",
     "residence_permit": "其中仍持外僑居留證或永久居留證者",
     "prc_hk_macau": "大陸、港澳地區配偶",
+    "prc_settled": "其中大陸地區配偶已取得定居證者。大陸地區人民不適用國籍法的歸化，走的是定居設籍，所以不會出現在 naturalized 裡",
+    "hk_macau_settled": "其中港澳地區配偶已取得定居證者，同上",
     "by_origin": "外裔外籍配偶按原屬國籍分，加上大陸與港澳"
   },
   "as_of": "2026-06",
@@ -17,7 +19,7 @@
     "url": "https://www.immigration.gov.tw/5385/7344/7350/8887/?alias=settledown",
     "file": "https://www.immigration.gov.tw/media/120550/%E5%A4%96%E7%B1%8D%E9%85%8D%E5%81%B6%E4%BA%BA%E6%95%B8%E8%88%87%E5%A4%A7%E9%99%B8-%E5%90%AB%E6%B8%AF%E6%BE%B3-%E9%85%8D%E5%81%B6%E4%BA%BA%E6%95%B8%E6%8C%89%E8%AD%89%E4%BB%B6%E5%88%8611506.ods",
     "archive": "data/sources/immigration/外籍配偶人數按證件分與國籍分11506.tsv",
-    "fetched": "2026-08-09"
+    "fetched": "2026-08-13"
   },
   "total": {
     "total": 621272,
@@ -25,6 +27,8 @@
     "naturalized": 144766,
     "residence_permit": 82972,
     "prc_hk_macau": 393534,
+    "prc_settled": 148280,
+    "hk_macau_settled": 17832,
     "by_origin": {
       "越南": 127508,
       "印尼": 33418,
@@ -45,6 +49,8 @@
       "naturalized": 23142,
       "residence_permit": 17550,
       "prc_hk_macau": 80647,
+      "prc_settled": 28664,
+      "hk_macau_settled": 5829,
       "by_origin": {
         "越南": 22070,
         "印尼": 4386,
@@ -64,6 +70,8 @@
       "naturalized": 7226,
       "residence_permit": 10890,
       "prc_hk_macau": 51424,
+      "prc_settled": 17146,
+      "hk_macau_settled": 3867,
       "by_origin": {
         "越南": 6710,
         "印尼": 1324,
@@ -83,6 +91,8 @@
       "naturalized": 17274,
       "residence_permit": 11880,
       "prc_hk_macau": 42264,
+      "prc_settled": 17975,
+      "hk_macau_settled": 1781,
       "by_origin": {
         "越南": 14358,
         "印尼": 5409,
@@ -102,6 +112,8 @@
       "naturalized": 14346,
       "residence_permit": 9714,
       "prc_hk_macau": 42620,
+      "prc_settled": 14733,
+      "hk_macau_settled": 1717,
       "by_origin": {
         "越南": 13789,
         "印尼": 2690,
@@ -121,6 +133,8 @@
       "naturalized": 9856,
       "residence_permit": 4893,
       "prc_hk_macau": 23917,
+      "prc_settled": 9772,
+      "hk_macau_settled": 736,
       "by_origin": {
         "越南": 9893,
         "印尼": 1263,
@@ -140,6 +154,8 @@
       "naturalized": 15142,
       "residence_permit": 7690,
       "prc_hk_macau": 46955,
+      "prc_settled": 16812,
+      "hk_macau_settled": 1460,
       "by_origin": {
         "越南": 14332,
         "印尼": 2361,
@@ -159,6 +175,8 @@
       "naturalized": 3042,
       "residence_permit": 1213,
       "prc_hk_macau": 5739,
+      "prc_settled": 2289,
+      "hk_macau_settled": 166,
       "by_origin": {
         "越南": 2799,
         "印尼": 524,
@@ -178,6 +196,8 @@
       "naturalized": 5723,
       "residence_permit": 2605,
       "prc_hk_macau": 7883,
+      "prc_settled": 3579,
+      "hk_macau_settled": 241,
       "by_origin": {
         "越南": 3314,
         "印尼": 2631,
@@ -197,6 +217,8 @@
       "naturalized": 5347,
       "residence_permit": 1905,
       "prc_hk_macau": 8853,
+      "prc_settled": 4293,
+      "hk_macau_settled": 134,
       "by_origin": {
         "越南": 3923,
         "印尼": 2051,
@@ -216,6 +238,8 @@
       "naturalized": 9455,
       "residence_permit": 3334,
       "prc_hk_macau": 13430,
+      "prc_settled": 5457,
+      "hk_macau_settled": 306,
       "by_origin": {
         "越南": 8610,
         "印尼": 1943,
@@ -235,6 +259,8 @@
       "naturalized": 4568,
       "residence_permit": 1301,
       "prc_hk_macau": 6328,
+      "prc_settled": 2455,
+      "hk_macau_settled": 133,
       "by_origin": {
         "越南": 3924,
         "印尼": 993,
@@ -254,6 +280,8 @@
       "naturalized": 6678,
       "residence_permit": 1824,
       "prc_hk_macau": 9415,
+      "prc_settled": 4169,
+      "hk_macau_settled": 136,
       "by_origin": {
         "越南": 5361,
         "印尼": 2012,
@@ -273,6 +301,8 @@
       "naturalized": 5298,
       "residence_permit": 1169,
       "prc_hk_macau": 7714,
+      "prc_settled": 3575,
+      "hk_macau_settled": 108,
       "by_origin": {
         "越南": 4412,
         "印尼": 1307,
@@ -292,6 +322,8 @@
       "naturalized": 7497,
       "residence_permit": 1952,
       "prc_hk_macau": 11497,
+      "prc_settled": 4380,
+      "hk_macau_settled": 254,
       "by_origin": {
         "越南": 5691,
         "印尼": 1835,
@@ -311,6 +343,8 @@
       "naturalized": 1328,
       "residence_permit": 449,
       "prc_hk_macau": 2946,
+      "prc_settled": 1144,
+      "hk_macau_settled": 59,
       "by_origin": {
         "越南": 1076,
         "印尼": 272,
@@ -330,6 +364,8 @@
       "naturalized": 1749,
       "residence_permit": 708,
       "prc_hk_macau": 5943,
+      "prc_settled": 1899,
+      "hk_macau_settled": 160,
       "by_origin": {
         "越南": 1272,
         "印尼": 580,
@@ -349,6 +385,8 @@
       "naturalized": 952,
       "residence_permit": 102,
       "prc_hk_macau": 936,
+      "prc_settled": 513,
+      "hk_macau_settled": 25,
       "by_origin": {
         "越南": 630,
         "印尼": 326,
@@ -368,6 +406,8 @@
       "naturalized": 2170,
       "residence_permit": 1104,
       "prc_hk_macau": 8062,
+      "prc_settled": 3218,
+      "hk_macau_settled": 260,
       "by_origin": {
         "越南": 2084,
         "印尼": 361,
@@ -387,6 +427,8 @@
       "naturalized": 2357,
       "residence_permit": 1989,
       "prc_hk_macau": 6624,
+      "prc_settled": 2712,
+      "hk_macau_settled": 245,
       "by_origin": {
         "越南": 1862,
         "印尼": 794,
@@ -406,6 +448,8 @@
       "naturalized": 1241,
       "residence_permit": 585,
       "prc_hk_macau": 3851,
+      "prc_settled": 1453,
+      "hk_macau_settled": 88,
       "by_origin": {
         "越南": 1116,
         "印尼": 226,
@@ -425,6 +469,8 @@
       "naturalized": 308,
       "residence_permit": 101,
       "prc_hk_macau": 2865,
+      "prc_settled": 1550,
+      "hk_macau_settled": 57,
       "by_origin": {
         "越南": 224,
         "印尼": 122,
@@ -444,6 +490,8 @@
       "naturalized": 67,
       "residence_permit": 14,
       "prc_hk_macau": 598,
+      "prc_settled": 382,
+      "hk_macau_settled": 4,
       "by_origin": {
         "越南": 58,
         "印尼": 8,

@@ -226,15 +226,17 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.8rem 2rem;justify-content:space-be
       大陸地區是「臺灣地區以外之中華民國領土」，大陸地區人民不是外國人，走的是團聚、依親居留、
       長期居留到定居設籍這條線；港澳居民依《香港澳門關係條例》另有一條。
       兩者取得身分之後都不會出現在歸化的數字裡。
-      來源表其實有定居證的人數，這頁還沒有把它拆出來，
-      在拆出來之前，這頁低估了已經取得我國身分的人數。
+      所以下表另立「其中已定居」一欄，寫的是大陸與港澳配偶已取得定居證的人數。
+      要看「已經取得我國身分的人有多少」，要把歸化與定居兩欄相加，
+      這也是上方統計方塊與卡片上那行小字的算法。
+      要注意這是兩種不同的法律事件湊在一起，不是同一種身分，所以只能寫「歸化或定居」。
     </p>
   </div>
 
   <section id="counties" class="wrap">
     <div class="sechead">
       <h2>各縣市人數</h2>
-      <p>點欄位標題可以換排序。歸化與居留是同一群人的兩種身分狀態，相加等於外裔外籍配偶；再加上大陸港澳地區配偶，等於總計。</p>
+      <p>點欄位標題可以換排序。歸化與居留是同一群人的兩種身分狀態，相加等於外裔外籍配偶；再加上大陸港澳地區配偶，等於總計。最後一欄「其中已定居」是大陸港澳那一欄的子集，不另外加總。</p>
     </div>
     <div class="tblwrap">
       <table id="ctable">
@@ -246,6 +248,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.8rem 2rem;justify-content:space-be
             <th scope="col" data-k="naturalized" aria-sort="none"><button type="button">其中已歸化</button></th>
             <th scope="col" data-k="residence_permit" aria-sort="none"><button type="button">其中持居留證</button></th>
             <th scope="col" data-k="prc_hk_macau" aria-sort="none"><button type="button">大陸・港澳</button></th>
+            <th scope="col" data-k="settled" aria-sort="none"><button type="button">其中已定居</button></th>
           </tr>
         </thead>
         <tbody id="cbody"></tbody>
@@ -334,7 +337,7 @@ let DATA = null, sortKey = 'total', sortDir = -1;
 fetch('data/newcomers.json').then(r => r.json()).then(d => { DATA = d; render(); })
   .catch(() => {
     document.getElementById('cbody').innerHTML =
-      '<tr><td colspan="6">讀不到 <code>data/newcomers.json</code>。這頁用 fetch 取資料，' +
+      '<tr><td colspan="7">讀不到 <code>data/newcomers.json</code>。這頁用 fetch 取資料，' +
       '必須透過 http 開啟；直接用 file:// 開會被瀏覽器的跨來源限制擋下來。' +
       '本機請跑 <code>python3 -m http.server 8901</code>。</td></tr>';
   });
@@ -343,7 +346,9 @@ function render(){
   const t = DATA.total, y = DATA.as_of.slice(0, 4) - 1911, m = +DATA.as_of.slice(5);
   document.getElementById('stats').innerHTML = [
     ['全台新住民', fmt(t.total) + ' 人'],
-    ['已歸化為國民', fmt(t.naturalized) + ' 人'],
+    // 三條路加起來才是「已經取得我國身分的人」：外籍配偶歸化、陸配定居、港澳配偶定居。
+    // 只放 naturalized 會少算一半，因為大陸與港澳配偶不適用國籍法的歸化。
+    ['已歸化或定居', fmt(t.naturalized + t.prc_settled + t.hk_macau_settled) + ' 人'],
     ['涵蓋縣市', Object.keys(DATA.counties).length + ' 個'],
     ['統計截止', y + ' 年 ' + m + ' 月']
   ].map(([k, v]) => '<div class="stat"><b>' + v + '</b><span>' + k + '</span></div>').join('');
@@ -370,7 +375,10 @@ function render(){
 }
 
 function drawCounties(){
-  const rows = Object.entries(DATA.counties).map(([name, c]) => ({name, ...c}));
+  // settled 是排序用的衍生欄位（大陸定居證＋港澳定居證），不進 newcomers.json——
+  // 那個檔只放來源表上真的有的欄位，加總留給這裡做。
+  const rows = Object.entries(DATA.counties).map(([name, c]) =>
+    ({name, ...c, settled: c.prc_settled + c.hk_macau_settled}));
   rows.sort((a, b) => sortKey === 'name'
     ? a.name.localeCompare(b.name, 'zh-Hant') * sortDir
     : (a[sortKey] - b[sortKey]) * sortDir);
@@ -380,13 +388,15 @@ function drawCounties(){
     '<td>' + fmt(r.foreign_spouse) + '</td>' +
     '<td>' + fmt(r.naturalized) + '</td>' +
     '<td class="dim">' + fmt(r.residence_permit) + '</td>' +
-    '<td>' + fmt(r.prc_hk_macau) + '</td></tr>').join('');
+    '<td>' + fmt(r.prc_hk_macau) + '</td>' +
+    '<td>' + fmt(r.settled) + '</td></tr>').join('');
 
   const t = DATA.total;
   document.getElementById('cfoot').innerHTML =
     '<tr><td>全台合計</td><td>' + fmt(t.total) + '</td><td>' + fmt(t.foreign_spouse) +
     '</td><td>' + fmt(t.naturalized) + '</td><td>' + fmt(t.residence_permit) +
-    '</td><td>' + fmt(t.prc_hk_macau) + '</td></tr>';
+    '</td><td>' + fmt(t.prc_hk_macau) +
+    '</td><td>' + fmt(t.prc_settled + t.hk_macau_settled) + '</td></tr>';
 
   // 全台合計比 22 個縣市相加多一點，差額是統計表上住址不詳的那一列。
   // 不講的話，讀者自己加總會發現對不起來，然後合理懷疑整張表。

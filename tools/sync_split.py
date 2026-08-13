@@ -24,7 +24,11 @@ def newcomers(name):
     # 「其他」是統計上的殘差桶，不是一個地方，列進來會讀成「有 2,540 人來自其他」
     top = sorted(((k, v) for k, v in c["by_origin"].items() if k != "其他"),
                  key=lambda kv: -kv[1])
-    return {"t": c["total"], "n": c["naturalized"],
+    # n＝已經取得我國身分的人數，三條路加起來：外籍配偶歸化、大陸配偶定居、港澳配偶定居。
+    # 不能只給 naturalized——那一欄依國籍法只涵蓋外國人與無國籍人，大陸與港澳配偶
+    # 走的是定居設籍，設了籍也不會進到那個數字，只寫它會少算一半。
+    return {"t": c["total"],
+            "n": c["naturalized"] + c["prc_settled"] + c["hk_macau_settled"],
             "top": [[k, v] for k, v in top[:3] if v]}
 
 
