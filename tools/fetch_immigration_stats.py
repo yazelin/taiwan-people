@@ -95,11 +95,27 @@ def parse(rows):
     by_doc, by_origin = {}, {}
     for r in body(rows[:head2]):
         # 0 區域別 1 總計 2-4 外籍配偶計男女 5-7 歸化 8-10 外僑居留 11 65歲以上 12-14 陸港澳
+        #
+        # 右半是同一張表的「（續）」，把陸港澳那欄拆成證件別，欄位接在同一列後面：
+        #   31 區域別 32 大陸合計 35 入出境許可證 38 居留證 41 依親 44 長期 47 定居證
+        #   50 港澳合計 53 居留證 56 定居證
+        # 定居證那兩欄是這支腳本原本漏掉的關鍵：大陸與港澳配偶不適用國籍法的歸化
+        # （歸化對象是外國人或無國籍人），他們走的是定居設籍，取得身分之後也永遠
+        # 不會進到 naturalized 裡。只看 naturalized 會把「已經是國民的人」少算一半。
+        if len(r) <= 56:
+            raise SystemExit(f"{r[0]} 這一列只有 {len(r)} 欄，讀不到續表的定居證欄位，"
+                             "表格版型可能改了，先確認欄位再改索引")
         by_doc[norm(r[0])] = {
             "total": num(r[1]), "foreign_spouse": num(r[2]),
             "naturalized": num(r[5]), "residence_permit": num(r[8]),
             "prc_hk_macau": num(r[12]),
+            "prc_settled": num(r[47]), "hk_macau_settled": num(r[56]),
         }
+        # 續表自己的三道對帳。對不起來就是欄位錯位，寧可炸掉也不要寫出錯的數字
+        k_ = norm(r[0])
+        assert num(r[35]) + num(r[38]) + num(r[47]) == num(r[32]), f"{k_} 大陸證件別"
+        assert num(r[53]) + num(r[56]) == num(r[50]), f"{k_} 港澳證件別"
+        assert num(r[32]) + num(r[50]) == num(r[12]), f"{k_} 續表與本表陸港澳合計"
     for r in body(rows[head2:]):
         # 國籍分後面還跟著一張「按國籍與性別分」，欄位不同但同樣過得了篩選，
         # 所以只認每個縣市第一次出現的那一列（＝按國籍分那張）。
@@ -155,6 +171,9 @@ def main():
             "naturalized": "其中已歸化取得我國國籍者，法律上為中華民國國民",
             "residence_permit": "其中仍持外僑居留證或永久居留證者",
             "prc_hk_macau": "大陸、港澳地區配偶",
+            "prc_settled": "其中大陸地區配偶已取得定居證者。大陸地區人民不適用國籍法的"
+                           "歸化，走的是定居設籍，所以不會出現在 naturalized 裡",
+            "hk_macau_settled": "其中港澳地區配偶已取得定居證者，同上",
             "by_origin": "外裔外籍配偶按原屬國籍分，加上大陸與港澳",
         },
         "as_of": f"{y}-{m:02d}",
@@ -173,7 +192,10 @@ def main():
     t = data["總計"]
     print(f"{label}：新住民 {t['total']:,} 人"
           f"（外裔外籍 {t['foreign_spouse']:,}，其中已歸化 {t['naturalized']:,}；"
-          f"大陸港澳 {t['prc_hk_macau']:,}）")
+          f"大陸港澳 {t['prc_hk_macau']:,}，其中已取得定居證 "
+          f"{t['prc_settled'] + t['hk_macau_settled']:,}）")
+    print(f"已歸化或取得定居資格合計 "
+          f"{t['naturalized'] + t['prc_settled'] + t['hk_macau_settled']:,} 人")
     print(f"存檔 {tsv.relative_to(ROOT)}，摘要 data/newcomers.json")
     print("接著跑 tools/sync_split.py，數字才會進 index.html")
 
