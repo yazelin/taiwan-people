@@ -20,6 +20,11 @@
 | `hlaalua-female-02-headdress.jpg` | 頭飾特寫：黑帽、兩排銀飾流蘇、羽毛與紅黃紫彩帶 | 同上 | 同上 | 同上 |
 | `hlaalua-female-03-sash.jpg` | 腰帶末端特寫：幾何刺繡三角面、白流蘇與多色毛球的排法 | 同上 | 同上 | 同上 |
 | `saysiyat-waon-01-back.jpg` | 賽夏族雷女紋 wa:on 實穿背面：紅底白線的卍字紋嵌在菱格中連續鋪滿，上下各兩道窄幾何邊帶，上緣綴一排小鈴 | [數位島嶼](https://cyberisland.teldap.tw/P/vFrv) | 中央研究院數位文化中心（攝影 shiaochin） | CC BY-NC-SA 3.0 TW |
+| `tayal-beishi-female-01-set.jpg` | 泰雅族北勢群女子禮服整體：紅底密織多色帶狀紋有袖短上衣、黑袖口、多層帶紋片裙與綁腿、織帶頭飾垂紅流蘇 | [維基共享資源](https://commons.wikimedia.org/wiki/File:%E6%B3%B0%E9%9B%85%E6%97%8F%E5%8C%97%E5%8B%A2%E7%BE%A4%E7%94%B7%E5%A5%B3%E7%A6%AE%E6%9C%8D.jpg) | 維基共享資源使用者「宜蘭第一公民」自攝（展場，原圖左男右女，此處只取右邊女子） | CC BY-SA 4.0 |
+| `tayal-beishi-female-02-bands.jpg` | 同上的帶狀紋特寫：多色菱形組成方格的排法與密度 | 同上 | 同上 | 同上 |
+| `puyuma-female-02-set.jpg` | 卑南族（卑南社）女子服飾整體：深色立領右襟短上衣、前襟挑繡、片裙下襬繡帶 | [維基共享資源](https://commons.wikimedia.org/wiki/File:%E5%8D%91%E5%8D%97%E6%97%8F%E6%9C%8D%E9%A3%BE.jpg) | 維基共享資源使用者「宜蘭第一公民」自攝（展場） | CC BY-SA 4.0 |
+| `puyuma-female-03-collar.jpg` | 領口與前襟特寫：立領形制、盤扣與挑繡帶的寬度 | 同上 | 同上 | 同上 |
+| `puyuma-female-04-hem.jpg` | 片裙下襬繡帶特寫：紋樣與色序 | 同上 | 同上 | 同上 |
 | `thao-female-01-set.jpg` | 邵族女子服飾整體：紫藍色開襟短上衣（紅、黃、藍白幾何織帶三重緄邊）、黑色長腰裙、臀線一組黃／水藍／紅橫帶、前緣與裙襬紅邊 | [維基共享資源](https://commons.wikimedia.org/wiki/File:%E5%8F%B0%E7%81%A3%E5%8E%9F%E4%BD%8F%E6%B0%91%E6%9C%8D%E9%A3%BE%EF%BC%8C%E9%82%B5%E6%97%8F.jpg) | 維基共享資源使用者 Priscilla9877 自攝（展場，左女右男，此處只取左邊女子） | CC BY-SA 4.0 |
 | `thao-female-02-headband.jpg` | 頭飾特寫：紅底珠繡額帶，紫／藍菱形連續紋綴白珠，下垂白紫珠串流蘇 | 同上 | 同上 | 同上 |
 | `thao-female-03-skirt-bands.jpg` | 腰裙臀線橫帶特寫：色序與各帶寬度 | 同上 | 同上 | 同上 |
