@@ -13,7 +13,7 @@ d = json.loads((ROOT / "data" / "counties.json").read_text(encoding="utf-8"))
 # 只同步通用版（沒有 culture 欄的那些）。指名族群的造型是同一個縣市底下的另一張圖，
 # 地圖上仍然只有 22 個可點區域，直接倒進 SPLIT 會讓地圖與資料對不起來。
 # 新住民人數。這一欄不是文案是統計，由 tools/fetch_immigration_stats.py 抓來，
-# 網頁上「一起住」那一行直接顯示原始數字，不做四捨五入也不改寫。
+# 網頁上「住一起」那一行直接顯示原始數字，不做四捨五入也不改寫。
 nc = json.loads((ROOT / "data" / "newcomers.json").read_text(encoding="utf-8"))
 
 
@@ -66,9 +66,12 @@ assert m == 1, "在 index.html 找不到 HAIR_FLOWERS 常數"
 s2, j = re.subn(r"const NC_SRC=\{.*?\};\n",
                 "const NC_SRC=" + json.dumps(
                     # 表名寫全稱會在版面上佔掉兩行小字，這裡只給單位與期別，
-                    # 全稱與完整期間留在 data/newcomers.json 與存檔的 TSV 裡
+                    # 全稱與完整期間留在 data/newcomers.json 與存檔的 TSV 裡。
+                    # 期別一定要帶起始年與「累計」兩個字：那張表是 76 年起的累計申請人數，
+                    # 原本寫「截至 115 年 6 月」會被讀成現住人口，差了將近四十年的存量。
                     {"table": nc["source"]["agency"] + "統計",
-                     "period": "截至 %s 年 %d 月" % (
+                     "period": "%s 年至 %s 年 %d 月累計" % (
+                         nc["period"].split("年")[0],
                          int(nc["as_of"][:4]) - 1911, int(nc["as_of"][5:])),
                      "url": nc["source"]["url"]},
                     ensure_ascii=False) + ";\n",
