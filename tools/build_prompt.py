@@ -241,7 +241,13 @@ def build(c):
         # 等於正式生成時提袋印花一律由模型自由發揮。新竹市那次就發明出一張
         # 像剪貼素材的 IC 晶片示意圖，而且對不回任何一筆 landmarks。
         + (f"THE TOTE'S PRINT: {s['tote_print']}. " if s.get("tote_print") else "")
-        + f"ON HER: {s.get('accessories', '')}. These small details matter — she should look "
+        # 角色卡固定寫著「small hoop earrings」，但特別版的 accessories 常常另有指定
+        # （拉阿魯哇是獸骨貝類耳飾、噶瑪蘭是多股白珠頸鍊）。兩句都進 prompt，模型會自己挑一個——
+        # 拉阿魯哇那張最後畫成金色小圈，明明資料裡有依據的飾品沒被畫出來。
+        # 所以特別版要明講以 accessories 為準，覆寫角色卡。
+        + ("ON HER, and these REPLACE the small hoop earrings named in the character sheet — "
+           "draw what is listed here instead: " if c.get("culture") else "ON HER: ")
+        + f"{s.get('accessories', '')}. These small details matter — she should look "
         "lived-in and specific, not stripped down. "
         "If the outfit includes a hat, her hair is fully contained under it, never poking "
         "through the crown. "
