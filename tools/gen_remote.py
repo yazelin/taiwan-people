@@ -82,11 +82,35 @@ def main():
         raise SystemExit(f"FAIL: 服務回 {e.code} {body}")
     took = time.time() - t0
 
-    imgs = res.get("data") or res.get("images") or []
+    # 回應是 {"images":[{"url":..., "expires_at":...}]}，不是 OpenAI 那種 b64_json。
+    # 圖會過期，所以拿到就立刻抓下來。
+    imgs = res.get("images") or []
     if not imgs:
         raise SystemExit(f"FAIL: 回應沒有圖 {json.dumps(res, ensure_ascii=False)[:300]}")
-    first = imgs[0]
-    raw = base64.b64decode(first["b64_json"] if isinstance(first, dict) else first)
+    url = imgs[0]["url"] if isinstance(imgs[0], dict) else imgs[0]
+    if url.startswith("/"):
+        url = BASE + url
+    dl = urllib.request.Request(url, headers={"Authorization": f"Bearer {KEY}",
+                                              "User-Agent": "taiwan-people/gen_remote"})
+    with urllib.request.urlopen(dl, timeout=300) as r:
+        raw = r.read()
+    if len(raw) < 20000:
+        raise SystemExit(f"FAIL: 下載回來只有 {len(raw)} bytes，不像一張圖")
+
+    # 長寬比守門。網頁的框是 aspect-ratio:1400/1120=1.25，構圖規則（人物在左三分之一、
+    # 右 40% 留白）是照那個框調的。服務端會依 prompt 自行決定尺寸，實測同一支腳本
+    # 同一個 size 參數，拉阿魯哇回 1448x1086(1.33)、邵族回 1536x1024(1.50)。
+    # 1.5 進到 1.25 的框會把右側開闊水面切掉一截，verify_base.py 不檢查這個，所以擋在這裡。
+    from io import BytesIO
+    try:
+        from PIL import Image as _I
+        _w, _h = _I.open(BytesIO(raw)).size
+        _ar = _w / _h
+        if not (1.20 <= _ar <= 1.36):
+            raise SystemExit(f"FAIL: 長寬比 {_w}x{_h} = {_ar:.3f}，不在系列的 1.20–1.36 之間。"
+                             "網頁的框是 1.25，這張放進去會被裁掉。重跑，或把 prompt 裡的 4:3 講得更重")
+    except ImportError:
+        pass
 
     # 第二道去重：服務端已有內容雜湊，這裡再擋一次「拿到上一張」
     sha = hashlib.sha256(raw).hexdigest()

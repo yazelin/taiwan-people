@@ -640,9 +640,18 @@ if __name__ == "__main__":
         p = PEOPLES.get(county.get("culture") or "")
         if p is None:
             sys.exit(f"{county['name']} 是通用版，沒有指名族群，沒有族服驗收清單。")
+        # 阿蕊是女子，畫面上永遠不會有男裝。男子條目留在 costume.json 是資料完整性，
+        # 但拿去當驗收清單會每次都產生假 NG（拉阿魯哇那輪十項裡有兩項是這樣來的），
+        # 而假 NG 會讓人開始略過整份清單。要看全部跑 --checklist --all。
+        skipped = 0
         print(f"{p['name']} 出圖驗收（出自 data/costume.json）")
         for x in p["checklist"]:
+            if x.startswith(("男子", "男性")) and "--all" not in sys.argv:
+                skipped += 1
+                continue
             print(f"  □ {x}")
+        if skipped:
+            print(f"  （另有 {skipped} 條男裝條目，阿蕊是女子用不到，要看加 --all）")
         if p["pitfalls"]:
             print("\n已知會畫錯的地方")
             for x in p["pitfalls"]:

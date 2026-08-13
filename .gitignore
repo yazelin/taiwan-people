@@ -1,6 +1,9 @@
 # 生圖的中間版本：每次嘗試都是 2–3MB 的 PNG，網站不會用到，
 # 留在 ~/taiwan-people-drafts/ 供比對，不進版控
 img/*.png
+# 簽名是網站要用的資產，不是生圖的中間版本，要進版控
+!img/signature.png
+!img/signature@2x.png
 img/*-v[0-9].webp
 img/*-v[0-9][0-9].webp
 
