@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>這裡住著誰 ─ 台灣人代表的人口脈絡</title>
+<meta name="description" content="各縣市原住民與新住民人數並列備查。原住民數字出自原住民族委員會的逐月統計，新住民出自內政部移民署。兩者是不同性質的統計，頁面說明為什麼不能相加。">
+<meta name="theme-color" content="#fbf8f2">
+<link rel="canonical" href="https://yazelin.github.io/taiwan-people/population.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="台灣人代表">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://yazelin.github.io/taiwan-people/population.html">
+<meta property="og:title" content="這裡住著誰 ─ 台灣人代表的人口脈絡">
+<meta property="og:description" content="各縣市原住民與新住民人數並列備查，逐筆對得回原民會與移民署的統計表。">
+<meta property="og:image" content="https://yazelin.github.io/taiwan-people/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="人口脈絡頁：各縣市原住民與新住民統計與出處">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="這裡住著誰 ─ 台灣人代表的人口脈絡">
+<meta name="twitter:description" content="各縣市原住民與新住民人數並列備查，含統計口徑與出處。">
+<meta name="twitter:image" content="https://yazelin.github.io/taiwan-people/img/og.jpg">
+<meta name="author" content="林亞澤">
+<!-- 每個可能被單獨開啟或分享的頁都是入口，manifest / icon / SW 三樣都要各自掛。 -->
+<link rel="manifest" href="manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="台灣人代表">
+<link rel="apple-touch-icon" href="icon-v1-192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-v1-192.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "台灣各縣市原住民與新住民人數",
+  "alternateName": "這裡住著誰 ─ 台灣人代表的人口脈絡",
+  "description": "各縣市原住民人口數與新住民人數並列。原住民為依原住民身分法登記之現住人口，出自原住民族委員會逐月統計；新住民為婚姻移民累計申請人數，出自內政部移民署。兩者統計性質不同，不可相加。",
+  "url": "https://yazelin.github.io/taiwan-people/population.html",
+  "inLanguage": "zh-Hant-TW",
+  "keywords": ["原住民人口", "新住民", "人口統計", "原住民族委員會", "內政部移民署"],
+  "creator": {"@type": "Person", "name": "林亞澤", "url": "https://yazelin.github.io/"},
+  "isAccessibleForFree": true,
+  "distribution": [
+    {"@type": "DataDownload", "encodingFormat": "application/json",
+     "contentUrl": "https://yazelin.github.io/taiwan-people/data/indigenous.json"},
+    {"@type": "DataDownload", "encodingFormat": "application/json",
+     "contentUrl": "https://yazelin.github.io/taiwan-people/data/newcomers.json"}
+  ],
+  "citation": [
+    {"@type": "CreativeWork",
+     "name": "台閩縣市原住民族人口－按性別年齡",
+     "publisher": {"@type": "Organization", "name": "原住民族委員會"},
+     "url": "https://www.cip.gov.tw/zh-tw/news/data-list/940F9579765AC6A0/index.html?cumid=940F9579765AC6A0"},
+    {"@type": "CreativeWork",
+     "name": "各縣市外裔、外籍配偶人數與大陸（含港澳）配偶人數按證件分",
+     "publisher": {"@type": "Organization", "name": "內政部移民署"},
+     "url": "https://www.immigration.gov.tw/5385/7344/7350/8887/?alias=settledown"}
+  ]
+}
+</script>
+<style>
+:root{
+  --paper:#fbf8f2;
+  --card:#ffffff;
+  --ink:#16293c;
+  --ink2:#5a6d80;
+  --ink3:#8b9aa8;
+  --line:#e6e0d4;
+  --line2:#f0ebe0;
+  --blue:#0f5f8f;
+  --clay:#a8582f;
+  --amber:#9a7420;
+  --serif:"Noto Serif CJK TC","Source Han Serif TC","Noto Serif TC",
+          "PingFang TC","蘋方-繁","Microsoft JhengHei",serif;
+  --sans:"Noto Sans CJK TC","Source Han Sans TC","PingFang TC",
+         "Microsoft JhengHei","Helvetica Neue",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);
+  line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:var(--blue);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--clay)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:3px}
+.wrap{width:min(1080px,92vw);margin-inline:auto}
+
+.nav{position:sticky;top:0;z-index:40;background:rgba(251,248,242,.92);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:1rem;padding:.7rem 0;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:.55rem;text-decoration:none;color:var(--ink)}
+.brand img{height:24px;width:auto;max-width:none;flex:none}
+.brand small{font-size:.6rem;letter-spacing:.2em;color:var(--ink3);font-weight:600}
+.nav nav{display:flex;gap:1.2rem;font-size:.86rem;flex-wrap:wrap}
+.nav nav a{color:var(--ink2);text-decoration:none}
+.nav nav a:hover{color:var(--blue)}
+
+.hero{padding:clamp(3rem,8vw,6rem) 0 clamp(1.6rem,3vw,2.4rem)}
+.kicker{font-size:.72rem;font-weight:700;letter-spacing:.3em;color:var(--amber);margin-bottom:1.1rem}
+h1{font-family:var(--serif);font-weight:900;line-height:1.22;letter-spacing:.02em;
+  font-size:clamp(2.1rem,5.4vw,3.5rem)}
+.lede{font-family:var(--serif);font-size:clamp(1rem,1.42vw,1.16rem);
+  max-width:42em;margin-top:1.3rem;color:#2c4257}
+.lede + .lede{margin-top:.8rem}
+.stats{display:flex;flex-wrap:wrap;gap:1.6rem;margin-top:2.2rem;
+  padding-top:1.4rem;border-top:1px solid var(--line)}
+.stat b{display:block;font-family:var(--serif);font-size:1.6rem;font-weight:900;line-height:1.2}
+.stat span{font-size:.76rem;letter-spacing:.1em;color:var(--ink3)}
+
+section{padding:clamp(2.4rem,5vw,3.6rem) 0}
+.sechead{margin-bottom:1.8rem;padding-bottom:1rem;border-bottom:1px solid var(--line)}
+.sechead h2{font-family:var(--serif);font-weight:900;letter-spacing:.03em;
+  font-size:clamp(1.45rem,2.6vw,2rem)}
+.sechead p{color:var(--ink2);max-width:46em;margin-top:.5rem;font-size:.94rem}
+
+.disclaim{border:1px solid var(--line);border-radius:4px;background:var(--card);
+  padding:1.15rem 1.35rem;font-size:.92rem;color:var(--ink2);max-width:52em}
+.disclaim b{color:var(--ink)}
+.disclaim + .disclaim{margin-top:.8rem}
+
+/* 表格：欄位多又都是數字，橫向捲動比硬塞進畫面好讀。
+   數字用 tabular-nums，否則各列的位數對不齊，掃不出大小。 */
+.tblwrap{border:1px solid var(--line);border-radius:6px;background:var(--card);overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:640px}
+th,td{padding:.62rem .85rem;text-align:right;white-space:nowrap;
+  border-bottom:1px solid var(--line2);font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{text-align:left;white-space:normal}
+thead th{position:sticky;top:0;background:var(--card);z-index:1;
+  font-size:.74rem;letter-spacing:.1em;font-weight:800;color:var(--amber);
+  border-bottom:1px solid var(--line)}
+thead th button{width:100%;text-align:inherit;letter-spacing:inherit;
+  font-weight:inherit;color:inherit;padding:0}
+thead th button::after{content:"";opacity:.45;font-size:.9em}
+thead th[aria-sort="descending"] button::after{content:" ↓";opacity:1}
+thead th[aria-sort="ascending"] button::after{content:" ↑";opacity:1}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:#faf7f0}
+tbody th{font-weight:700;text-align:left}
+td.dim{color:var(--ink3)}
+tfoot td{font-weight:800;border-top:1px solid var(--line);background:#faf7f0}
+.tnote{font-size:.8rem;color:var(--ink3);margin-top:.7rem;max-width:52em}
+
+.two{display:grid;gap:1.6rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));
+  align-items:start}
+.note h3{font-family:var(--serif);font-size:1.06rem;font-weight:800;margin-bottom:.4rem}
+.note p{font-size:.92rem;color:var(--ink2);max-width:42em}
+.note p + p{margin-top:.6rem}
+.note + .note{margin-top:1.5rem}
+
+.srclist{display:grid;gap:0}
+.sr{display:grid;grid-template-columns:8.5rem 1fr;gap:0 1.1rem;
+  padding:.9rem 0;border-bottom:1px solid var(--line2);font-size:.9rem}
+.sr:last-child{border-bottom:0}
+.sr dt{font-size:.74rem;letter-spacing:.14em;font-weight:800;color:var(--amber);padding-top:.35rem}
+.sr dd{color:#243a4d;word-break:break-word}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;
+  background:#f3efe6;border:1px solid var(--line2);border-radius:3px;padding:.05em .35em}
+pre{background:#f3efe6;border:1px solid var(--line2);border-radius:4px;
+  padding:.8rem 1rem;overflow-x:auto;margin-top:.7rem}
+pre code{background:none;border:0;padding:0}
+
+footer{border-top:1px solid var(--line);padding:2rem 0 3rem;margin-top:2rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:.8rem 2rem;justify-content:space-between;
+  font-size:.85rem;color:var(--ink2)}
+@media (max-width:560px){
+  .sr{grid-template-columns:1fr;gap:.2rem}
+  .sr dt{padding-top:0}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="img/logo.webp" alt="台灣人代表"><small>PEOPLE OF TAIWAN</small></a>
+    <nav>
+      <a href="#counties">各縣市</a>
+      <a href="#scope">口徑</a>
+      <a href="#gap">還缺什麼</a>
+      <a href="#source">出處</a>
+      <a href="newcomers.html">新住民人數</a>
+      <a href="index.html">回首頁</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <p class="kicker">人口脈絡 ／ WHO LIVES HERE</p>
+    <h1>這裡住著誰</h1>
+    <p class="lede">卡片上的「住一起」只寫新住民。這頁把原住民人口也放進來，讓兩份統計並列，看得到一個縣市的人口組成大概是什麼樣子。</p>
+    <p class="lede">這頁是備查用的。首頁的卡片不會顯示這些數字，也不算佔比、不做縣市排名——那會把地方變成一張成績單，而這個系列講的是人。</p>
+    <div class="stats" id="stats"></div>
+  </div>
+
+  <div class="wrap">
+    <p class="disclaim">
+      <b>先講清楚：這兩個數字不是同一種東西，不要相加，也不要直接比大小。</b>
+      原住民那一欄是<b>現住登記人口</b>，指此刻依《原住民身分法》登記在案的人。
+      新住民那一欄是<b>累計申請人數</b>，是民國 76 年以來將近四十年的總和，
+      期間過世的、離婚返回原籍的、取得身分後遷居國外的都沒有扣掉，
+      而且來源表自己註明「本表係申請人數且不一定在台」。
+      一個是存量、一個是流量的累計，加起來不代表任何真實的人數，
+      相減也算不出誰多誰少。並排放在這裡只是為了各看各的量級。
+    </p>
+  </div>
+
+  <section id="counties" class="wrap">
+    <div class="sechead">
+      <h2>各縣市</h2>
+      <p>點欄位標題可以換排序。兩欄的統計期別剛好都是民國 115 年 6 月底，但那是巧合，不是同一份統計；下一期未必還會對齊，所以出處要各標各的。</p>
+    </div>
+    <div class="tblwrap">
+      <table id="ptable">
+        <thead>
+          <tr>
+            <th scope="col" data-k="name" aria-sort="none"><button type="button">縣市</button></th>
+            <th scope="col" data-k="indigenous" aria-sort="descending"><button type="button">原住民（現住登記）</button></th>
+            <th scope="col" data-k="newcomers" aria-sort="none"><button type="button">新住民（累計申請）</button></th>
+          </tr>
+        </thead>
+        <tbody id="pbody"></tbody>
+        <tfoot id="pfoot"></tfoot>
+      </table>
+    </div>
+    <p class="tnote" id="pnote"></p>
+  </section>
+
+  <section id="scope" class="wrap">
+    <div class="sechead">
+      <h2>原住民那一欄算的是誰</h2>
+      <p>這一欄有四個地方會被讀錯，其中第一個會讓這個站自打嘴巴，所以寫在最前面。</p>
+    </div>
+    <div class="two">
+      <div>
+        <div class="note">
+          <h3>平埔族群不在這個數字裡</h3>
+          <p>這份統計算的是依《原住民身分法》登記者。《平埔原住民族群身分法》在民國 114 年 10 月 17 日三讀通過，西拉雅等九個平埔原住民族群目前是<b>已提出申請、審議中</b>，尚未完成認定。</p>
+          <p>所以台南那個數字裡沒有西拉雅族人。而這個站的資料夾裡收著西拉雅族的傳統文化原文，講服飾的時候認、講人口的時候不認，那是矛盾。審議有結果之後這一欄要回頭更新。</p>
+        </div>
+        <div class="note">
+          <h3>是法律身分，不是族群認同</h3>
+          <p>登記與否牽涉到身分法的血統與姓名要件，也牽涉到當事人願不願意登記。這個數字回答的是「有多少人在戶籍上具原住民身分」，不是「有多少人自認是原住民」。</p>
+        </div>
+      </div>
+      <div>
+        <div class="note">
+          <h3>戶籍不等於現在住哪裡</h3>
+          <p>這是戶籍統計。都市原住民大量設籍在新北、桃園、台中，人也確實在那裡生活，但也有人戶籍留在原鄉、人在城市。這一欄看得出設籍分布，看不出實際居住分布。</p>
+        </div>
+        <div class="note">
+          <h3>一個數字說不出是哪一族</h3>
+          <p>花蓮那個數字底下是阿美、太魯閣、撒奇萊雅、噶瑪蘭、賽德克、布農六族。這個站在<a href="costume.html">服飾依據</a>那邊費了很大力氣把「原住民風」拆成一族一族，這裡放一個合計數，是為了看人口量級，不能拿它回頭當「某族有多少人」用。要那個得換一張按族別分的表。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gap" class="wrap">
+    <div class="sechead">
+      <h2>還缺什麼：各縣市總人口</h2>
+      <p>原本想放的是三欄：總人口、原住民、新住民。總人口那一欄目前沒有放，理由寫在這裡，而不是默默留白。</p>
+    </div>
+    <div class="note">
+      <p>這個站的規矩是每個數字都要對得回官方機關、而且要能用腳本重跑。各縣市總人口找了四個來源，都過不了這一關：</p>
+      <p>政府資料開放平臺上戶政司的縣市層級資料集停在民國 107 年；村里層級的月報資料集停在 109 年 8 月。內政統計月報表 1.7「鄉鎮市區戶口數」有縣市小計，但公開的那份歷史檔最新只到 105 年 12 月，當期的月報已改由查詢系統提供，沒有固定網址的檔案可抓。戶政司網站的人口統計專區則是查詢介面，同樣沒有可以直連的檔。</p>
+      <p>抄一個數字上來很容易，但那就變成手抄的數字，跟這個站其他頁的作法不一致，也沒人能驗。所以先空著，找到能腳本化的來源再補。</p>
+    </div>
+  </section>
+
+  <section id="source" class="wrap">
+    <div class="sechead">
+      <h2>出處與更新</h2>
+      <p>兩份統計各有各的出處與期別。政府網站的連結會爛，所以兩份原始表格都另存了一份純文字進版本庫。</p>
+    </div>
+    <dl class="srclist" id="srclist"></dl>
+    <p class="tnote">這頁的數字每月會變。更新的方式是重跑腳本，不是手改：</p>
+    <pre><code>python3 tools/fetch_indigenous_stats.py    # 原民會，產 data/indigenous.json
+python3 tools/fetch_immigration_stats.py  # 移民署，產 data/newcomers.json</code></pre>
+    <p class="tnote">原民會那張表疊了三個區塊（不分平地山地、平地原住民、山地原住民），每個區塊都把縣市重跑一遍，中間還夾著臺灣省與福建省兩列小計。腳本用區塊標題切、剔掉省小計，再驗二十二個縣市相加等於總計、縣市數剛好是二十二。任何一項對不起來就中止，不會寫出半對的數字。</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>資料檔：<code>data/indigenous.json</code>、<code>data/newcomers.json</code>。內容有誤或有補充，歡迎指正。</span>
+    <span><a href="newcomers.html">新住民人數</a>　<a href="costume.html">服飾依據</a>　<a href="counties.html">縣市依據</a>　<a href="index.html">回台灣人代表</a></span>
+  </div>
+</footer>
+
+<script>
+const fmt = n => n == null ? '—' : n.toLocaleString('en-US');
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+let ROWS = null, IND = null, NC = null, sortKey = 'indigenous', sortDir = -1;
+
+Promise.all([
+  fetch('data/indigenous.json').then(r => r.json()),
+  fetch('data/newcomers.json').then(r => r.json())
+]).then(([a, b]) => { IND = a; NC = b; render(); }).catch(() => {
+  document.getElementById('pbody').innerHTML =
+    '<tr><td colspan="3">讀不到 <code>data/indigenous.json</code> 或 <code>data/newcomers.json</code>。' +
+    '這頁用 fetch 取資料，必須透過 http 開啟；直接用 file:// 開會被瀏覽器的跨來源限制擋下來。' +
+    '本機請跑 <code>python3 -m http.server 8901</code>。</td></tr>';
+});
+
+function render(){
+  const iy = IND.as_of.slice(0, 4) - 1911, im = +IND.as_of.slice(5);
+  document.getElementById('stats').innerHTML = [
+    ['原住民（現住登記）', fmt(IND.total) + ' 人'],
+    ['新住民（累計申請）', fmt(NC.total.total) + ' 人'],
+    ['兩份統計期別', iy + ' 年 ' + im + ' 月'],
+    ['涵蓋縣市', Object.keys(IND.counties).length + ' 個']
+  ].map(([k, v]) => '<div class="stat"><b>' + v + '</b><span>' + k + '</span></div>').join('');
+
+  document.title = '這裡住著誰 ─ 台灣人代表的人口脈絡';
+
+  // 兩份資料的縣市名都已由各自的腳本正規化成「台」，這裡直接對得起來。
+  // 對不上的話寧可讓它顯示 —，也不要猜對照表。
+  ROWS = Object.entries(IND.counties).map(([name, v]) =>
+    ({name, indigenous: v, newcomers: (NC.counties[name] || {}).total ?? null}));
+  draw();
+
+  const rows = [
+    ['原住民人口', IND],
+    ['新住民人數', NC]
+  ].flatMap(([label, d]) => [
+    ['統計單位', esc(label) + '：' + esc(d.source.agency)],
+    ['統計表', esc(d.source.table)],
+    ['統計期間', esc(d.source.period)],
+    ['原始頁面', '<a href="' + esc(d.source.url) + '" target="_blank" rel="noopener">' + esc(d.source.url) + '</a>'],
+    ['本站存檔', '<a href="' + esc(d.source.archive) + '">' + esc(d.source.archive) + '</a>'],
+    ['抓取日期', esc(d.source.fetched)]
+  ]);
+  document.getElementById('srclist').innerHTML = rows
+    .map(([k, v]) => '<div class="sr"><dt>' + k + '</dt><dd>' + v + '</dd></div>').join('');
+}
+
+function draw(){
+  ROWS.sort((a, b) => sortKey === 'name'
+    ? a.name.localeCompare(b.name, 'zh-Hant') * sortDir
+    : ((a[sortKey] ?? -1) - (b[sortKey] ?? -1)) * sortDir);
+  document.getElementById('pbody').innerHTML = ROWS.map(r =>
+    '<tr><th scope="row">' + esc(r.name) + '</th>' +
+    '<td>' + fmt(r.indigenous) + '</td>' +
+    '<td>' + fmt(r.newcomers) + '</td></tr>').join('');
+  document.getElementById('pfoot').innerHTML =
+    '<tr><td>全台合計</td><td>' + fmt(IND.total) + '</td><td>' + fmt(NC.total.total) + '</td></tr>';
+
+  // 新住民的全台合計比二十二縣市相加多一點，差額是原表上住址不詳的那一列。
+  // 原住民那份沒有這個問題（腳本驗過相加等於總計），所以只講新住民這邊。
+  const sum = ROWS.reduce((a, r) => a + (r.newcomers || 0), 0);
+  const gap = NC.total.total - sum;
+  document.getElementById('pnote').textContent =
+    '原住民欄二十二個縣市相加等於全台合計，腳本每次抓完都會驗。' +
+    (gap > 0 ? '新住民欄的全台合計比二十二個縣市相加多 ' + fmt(gap) +
+               ' 人，差額是移民署原表上居住地址不詳的部分，本站不分配到任何縣市。' : '');
+}
+
+document.querySelectorAll('#ptable thead th').forEach(th => {
+  th.querySelector('button').addEventListener('click', () => {
+    const k = th.dataset.k;
+    sortDir = sortKey === k ? -sortDir : (k === 'name' ? 1 : -1);
+    sortKey = k;
+    document.querySelectorAll('#ptable thead th').forEach(x =>
+      x.setAttribute('aria-sort', x === th ? (sortDir === 1 ? 'ascending' : 'descending') : 'none'));
+    draw();
+  });
+});
+</script>
+
+<script>
+/* 每個入口頁都要自己註冊 SW。只靠首頁註冊的話，「第一次就從分享連結開這頁」的人
+   完全沒有離線，而且沒有任何徵兆——本機測不出來，因為本機早就被別的頁註冊過了。
+
+   register 之前先記下有沒有 controller：sw.js 在 install 呼叫 skipWaiting、
+   activate 呼叫 clients.claim，首次造訪也會觸發 controllerchange，
+   不判斷就會剛載完整頁重載一次，排序與捲動位置全沒了。 */
+if ("serviceWorker" in navigator) {
+  addEventListener("load", async () => {
+    const hadController = !!navigator.serviceWorker.controller;
+    try {
+      await navigator.serviceWorker.register("sw.js");
+      let reloading = false;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (!hadController || reloading) return;   // 首次造訪不重載
+        reloading = true;
+        location.reload();
+      });
+    } catch (_) { /* 不支援或被封鎖時照常運作，只是沒有離線 */ }
+  });
+}
+</script>
+</body>
+</html>

@@ -69,7 +69,10 @@ python3 -m http.server 8901
 | `tools/register_base.py` | 驗收過後把 base 欄位寫回資料 |
 | `tools/sync_split.py` | 資料同步進 index.html |
 | `tools/fetch_immigration_stats.py` | 抓移民署每月的新住民統計，存原文並產 `data/newcomers.json` |
+| `tools/fetch_indigenous_stats.py` | 抓原民會每月的原住民人口，存原文並產 `data/indigenous.json` |
 | `data/newcomers.json` | 各縣市新住民人數，卡片上「住一起」那一行的來源。**腳本產生，不要手改** |
+| `data/indigenous.json` | 各縣市原住民人口，`population.html` 的來源。**腳本產生，不要手改** |
+| `population.html` | 人口脈絡頁：原住民與新住民並列備查（單檔，含全部樣式） |
 | `robots.txt` / `sitemap.xml` | 網址寫死在裡面，換網域要一起改 |
 | `AGENTS.md` | **動這個 repo 之前先讀**：硬規則與驗證方式 |
 | `data/character.md` | 角色阿蕊的設定：名字、她跟地方的關係、髮花規則、恆定項 |
