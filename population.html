@@ -212,7 +212,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.8rem 2rem;justify-content:space-be
   <section id="counties" class="wrap">
     <div class="sechead">
       <h2>各縣市</h2>
-      <p>點欄位標題可以換排序。兩欄的統計期別剛好都是民國 115 年 6 月底，但那是巧合，不是同一份統計；下一期未必還會對齊，所以出處要各標各的。</p>
+      <p>點欄位標題可以換排序。兩欄不是同一份統計，期別各自跟著各自的機關走，<span id="perNote"></span>所以出處要各標各的。</p>
     </div>
     <div class="tblwrap">
       <table id="ptable">
@@ -309,13 +309,23 @@ Promise.all([
 });
 
 function render(){
-  const iy = IND.as_of.slice(0, 4) - 1911, im = +IND.as_of.slice(5);
+  // 兩個機關各自發布，期別遲早會錯開。標成「兩份統計期別」卻只讀其中一份，
+  // 錯開的那個月就會拿原民會的期別冒充兩份的期別，而且畫面上沒有任何徵兆。
+  // 所以先比對，一樣才敢合併寫，不一樣就兩個都寫出來。
+  const roc = s => (s.slice(0, 4) - 1911) + ' 年 ' + (+s.slice(5)) + ' 月';
+  const aligned = IND.as_of === NC.as_of;
   document.getElementById('stats').innerHTML = [
     ['原住民（現住登記）', fmt(IND.total) + ' 人'],
     ['新住民（累計申請）', fmt(NC.total.total) + ' 人'],
-    ['兩份統計期別', iy + ' 年 ' + im + ' 月'],
+    aligned ? ['兩份統計期別', roc(IND.as_of)]
+            : ['原住民／新住民期別', roc(IND.as_of) + '／' + roc(NC.as_of)],
     ['涵蓋縣市', Object.keys(IND.counties).length + ' 個']
   ].map(([k, v]) => '<div class="stat"><b>' + v + '</b><span>' + k + '</span></div>').join('');
+
+  document.getElementById('perNote').textContent = aligned
+    ? '這一期剛好都落在民國 ' + roc(IND.as_of) + '底，但那是巧合，下一期未必還會對齊，'
+    : '這一期沒有對齊（原住民為民國 ' + roc(IND.as_of) + '底、新住民為民國 '
+      + roc(NC.as_of) + '底），比較時要記得這一點，';
 
   document.title = '這裡住著誰 ─ 台灣人代表的人口脈絡';
 
