@@ -1,0 +1,76 @@
+#!/usr/bin/env python3
+"""把 data/costume-refs/SOURCES.md 的表格轉成 data/costume-refs.json。
+
+    python3 tools/build_costume_refs_json.py
+
+為什麼要有這支：那些實物照要公開展示在網站上，而 CC BY-SA 與 CC BY-NC 的
+**姓名標示是法律條件**——每一張都得看得到作者與授權。那些資訊原本只寫在
+SOURCES.md 的表格裡（給人看的），網頁讀不到。
+
+不把資料改寫成 JSON 手動維護，是因為那會變成兩份事實來源，遲早不同步。
+SOURCES.md 仍然是唯一要編輯的地方，這支只負責轉檔。
+
+表格有「同上」的繼承寫法（同一件藏品的多張裁圖只在第一列寫出處），
+轉檔時要展開，否則網頁上會出現「出處：同上」這種對外看不懂的字。
+"""
+import json
+import pathlib
+import re
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+SRC = ROOT / "data" / "costume-refs" / "SOURCES.md"
+OUT = ROOT / "data" / "costume-refs.json"
+
+LINK = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
+
+
+def main():
+    rows, prev = {}, {}
+    for line in SRC.read_text(encoding="utf-8").splitlines():
+        if not line.startswith("| `"):
+            continue
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) < 5:
+            continue
+        fn = cells[0].strip("`")
+        desc, src, holder, lic = cells[1], cells[2], cells[3], cells[4]
+        # 「同上」繼承前一列
+        src = prev.get("src", src) if src == "同上" else src
+        holder = prev.get("holder", holder) if holder == "同上" else holder
+        lic = prev.get("lic", lic) if lic == "同上" else lic
+        prev = {"src": src, "holder": holder, "lic": lic}
+
+        m = LINK.search(src)
+        rows[fn] = {
+            "desc": desc,
+            "source": m.group(1) if m else re.sub(r"\[|\]|\(.*?\)", "", src),
+            "url": m.group(2) if m else "",
+            "holder": holder,
+            "license": lic,
+        }
+
+    have = {p.name for p in (ROOT / "data" / "costume-refs").glob("*.jpg")}
+    missing = have - rows.keys()
+    orphan = rows.keys() - have
+    if missing:
+        raise SystemExit("FAIL: 這些檔案在 costume-refs/ 但 SOURCES.md 沒有登記，"
+                         "公開展示前一定要補（授權標示是法律條件）：\n  "
+                         + "\n  ".join(sorted(missing)))
+    if orphan:
+        print("警告：SOURCES.md 有登記但檔案不存在：" + "、".join(sorted(orphan)))
+
+    OUT.write_text(json.dumps({
+        "_note": "由 tools/build_costume_refs_json.py 從 data/costume-refs/SOURCES.md 產生，"
+                 "不要手改。要改出處或授權請改 SOURCES.md 再重跑。",
+        "refs": rows,
+    }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"{len(rows)} 張實物照的出處與授權已轉出 → {OUT.relative_to(ROOT)}")
+    lics = {}
+    for v in rows.values():
+        lics[v["license"]] = lics.get(v["license"], 0) + 1
+    for k, n in sorted(lics.items(), key=lambda x: -x[1]):
+        print(f"  {n:>2} 張　{k}")
+
+
+if __name__ == "__main__":
+    main()

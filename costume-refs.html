@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>照著什麼畫 ─ 台灣人代表的實物照依據</title>
+<meta name="description" content="每一個族群特別版用了哪些實物照、畫出什麼結果，逐族並排對照。所有實物照都標明典藏單位與授權條款，多數來自國家文化記憶庫與維基共享資源。">
+<meta name="theme-color" content="#fbf8f2">
+<link rel="canonical" href="https://yazelin.github.io/taiwan-people/costume-refs.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="台灣人代表">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://yazelin.github.io/taiwan-people/costume-refs.html">
+<meta property="og:title" content="照著什麼畫 ─ 台灣人代表的實物照依據">
+<meta property="og:description" content="每一族用了哪些實物照、畫出什麼結果，逐族並排。實物照全部標明典藏單位與授權。">
+<meta property="og:image" content="https://yazelin.github.io/taiwan-people/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="實物照與出圖的逐族對照">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="照著什麼畫 ─ 台灣人代表的實物照依據">
+<meta name="twitter:description" content="每一族用了哪些實物照、畫出什麼結果，逐族並排。">
+<meta name="twitter:image" content="https://yazelin.github.io/taiwan-people/img/og.jpg">
+<meta name="author" content="林亞澤">
+<link rel="manifest" href="manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="台灣人代表">
+<link rel="apple-touch-icon" href="icon-v1-192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-v1-192.png">
+<style>
+:root{
+  --paper:#fbf8f2;        /* 微暖的紙白，純白會太刺眼 */
+  --card:#ffffff;
+  --ink:#16293c;          /* 正文 */
+  --ink2:#5a6d80;         /* 次要說明 */
+  --ink3:#8b9aa8;         /* 標籤、註記 */
+  --line:#e6e0d4;         /* 髮絲線，暖色系才不會跟紙白打架 */
+  --line2:#f0ebe0;
+  --blue:#0f5f8f;         /* 連結與原住民族分類 */
+  --clay:#a8582f;         /* 提醒、平埔族群 */
+  --moss:#5c7a45;         /* 漢人族群 */
+  --amber:#9a7420;        /* 小標籤 */
+  --serif:"Noto Serif CJK TC","Source Han Serif TC","Noto Serif TC",
+          "PingFang TC","蘋方-繁","Microsoft JhengHei",serif;
+  --sans:"Noto Sans CJK TC","Source Han Sans TC","PingFang TC",
+         "Microsoft JhengHei","Helvetica Neue",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);
+  line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:var(--blue);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--clay)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:3px}
+.wrap{width:min(1080px,92vw);margin-inline:auto}
+
+/* ── nav ─────────────────────────────────────────────── */
+.nav{position:sticky;top:0;z-index:40;background:rgba(251,248,242,.92);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:1rem;padding:.7rem 0;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:.55rem;text-decoration:none;color:var(--ink)}
+.brand img{height:24px;width:auto;max-width:none;flex:none}
+.brand small{font-size:.6rem;letter-spacing:.2em;color:var(--ink3);font-weight:600}
+.nav nav{display:flex;gap:1.2rem;font-size:.86rem;flex-wrap:wrap}
+.nav nav a{color:var(--ink2);text-decoration:none}
+.nav nav a:hover{color:var(--blue)}
+
+/* ── hero ─────────────────────────────────────────────── */
+.hero{padding:clamp(3rem,8vw,6rem) 0 clamp(1.6rem,3vw,2.4rem)}
+.kicker{font-size:.72rem;font-weight:700;letter-spacing:.3em;color:var(--amber);margin-bottom:1.1rem}
+h1{font-family:var(--serif);font-weight:900;line-height:1.22;letter-spacing:.02em;
+  font-size:clamp(2.1rem,5.4vw,3.5rem)}
+.lede{font-family:var(--serif);font-size:clamp(1rem,1.42vw,1.16rem);
+  max-width:42em;margin-top:1.3rem;color:#2c4257}
+.lede + .lede{margin-top:.8rem}
+.stats{display:flex;flex-wrap:wrap;gap:1.6rem;margin-top:2.2rem;
+  padding-top:1.4rem;border-top:1px solid var(--line)}
+.stat b{display:block;font-family:var(--serif);font-size:1.6rem;font-weight:900;line-height:1.2}
+.stat span{font-size:.76rem;letter-spacing:.1em;color:var(--ink3)}
+
+/* ── sections ─────────────────────────────────────────── */
+section{padding:clamp(2.4rem,5vw,3.6rem) 0}
+.sechead{margin-bottom:1.8rem;padding-bottom:1rem;border-bottom:1px solid var(--line)}
+.sechead h2{font-family:var(--serif);font-weight:900;letter-spacing:.03em;
+  font-size:clamp(1.45rem,2.6vw,2rem)}
+.sechead p{color:var(--ink2);max-width:46em;margin-top:.5rem;font-size:.94rem}
+
+.disclaim{border:1px solid var(--line);border-radius:4px;background:var(--card);
+  padding:1.15rem 1.35rem;font-size:.92rem;color:var(--ink2);max-width:52em}
+.disclaim b{color:var(--ink)}
+
+/* ── redlines：不用色塊也不用左邊條，用編號與髮絲線分隔 ── */
+.redlines{display:grid;gap:0}
+.rl{display:grid;grid-template-columns:2.6rem 1fr;gap:0 1.1rem;
+  padding:1.3rem 0;border-bottom:1px solid var(--line2)}
+.rl:last-child{border-bottom:0}
+.rl .no{font-family:var(--serif);font-size:1.5rem;font-weight:900;color:var(--clay);
+  line-height:1;padding-top:.15rem}
+.rl h3{font-family:var(--serif);font-size:1.06rem;font-weight:800;margin-bottom:.35rem}
+.rl p{font-size:.93rem;color:var(--ink2);max-width:46em}
+.rl .refs{margin-top:.6rem;display:flex;flex-wrap:wrap;gap:.9rem;font-size:.78rem}
+
+/* ── filter ───────────────────────────────────────────── */
+.filters{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;margin-bottom:1.5rem}
+.chip{border:1px solid var(--line);border-radius:999px;padding:.32rem 1rem;
+  font-size:.85rem;background:var(--card);color:var(--ink2);transition:.15s}
+.chip:hover{border-color:var(--ink3);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:700}
+select{font:inherit;font-size:.85rem;color:var(--ink);background:var(--card);
+  border:1px solid var(--line);border-radius:999px;padding:.32rem 1rem}
+.count{font-size:.8rem;color:var(--ink3);margin-left:auto}
+
+/* ── cards ────────────────────────────────────────────── */
+/* align-items:start：展開一張卡片時，同一列的其他卡片預設會被拉到一樣高，
+   變成幾個空盒子。這行讓每張卡片只佔自己的高度。 */
+.grid{display:grid;gap:1rem;align-items:start;
+  grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr))}
+.card{border:1px solid var(--line);border-radius:6px;background:var(--card);overflow:hidden}
+.card > summary{list-style:none;cursor:pointer;padding:1.2rem 1.3rem;display:block}
+.card > summary::-webkit-details-marker{display:none}
+.card:hover{border-color:var(--ink3)}
+.card[open]{border-color:var(--ink3);box-shadow:0 2px 16px -6px rgba(22,41,60,.14)}
+.card h3{font-family:var(--serif);font-weight:900;font-size:1.24rem;letter-spacing:.02em;
+  display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;line-height:1.4}
+.card h3 span{font-size:.72rem;font-weight:600;letter-spacing:.06em;color:var(--ink3);font-family:var(--sans)}
+.tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.55rem}
+.tag{font-size:.71rem;line-height:1.7;border:1px solid var(--line);border-radius:3px;
+  padding:0 .4rem;color:var(--ink2);background:var(--paper)}
+.tag.cat-indigenous{border-color:#bcd6e6;color:var(--blue);background:#f2f8fc}
+.tag.cat-pingpu{border-color:#e6cdbe;color:var(--clay);background:#fdf5f0}
+.tag.cat-han{border-color:#cdd9c1;color:var(--moss);background:#f5f8f1}
+.tag.warn{border-color:#e6cdbe;color:var(--clay);background:#fdf5f0}
+.peek{font-size:.85rem;color:var(--ink2);margin-top:.7rem;line-height:1.8}
+.more{font-size:.76rem;color:var(--blue);margin-top:.9rem;letter-spacing:.08em}
+.card[open] .more{display:none}
+
+.body{padding:0 1.3rem 1.5rem;border-top:1px solid var(--line2);margin-top:.4rem}
+.blk{margin-top:1.25rem}
+.blk > h4{font-size:.7rem;font-weight:800;letter-spacing:.2em;color:var(--amber);
+  margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:1px solid var(--line2)}
+.blk ul{list-style:none;display:grid;gap:.42rem}
+.blk li{font-size:.885rem;line-height:1.8;padding-left:.95rem;position:relative;color:#243a4d}
+.blk li::before{content:"";position:absolute;left:0;top:.72em;width:4px;height:4px;
+  border-radius:50%;background:#b7c4ce}
+.blk.check li::before{background:var(--blue)}
+.blk.pit li::before{background:var(--clay)}
+.blk p{font-size:.885rem;line-height:1.85;color:#243a4d}
+.vari{margin-top:.7rem}
+.vari b{font-family:var(--serif);font-size:.92rem}
+.vari p{font-size:.855rem;color:var(--ink2);margin-top:.1rem}
+.gap{font-size:.865rem;color:#5c4a33;background:#faf5e9;border:1px solid #ede2c9;
+  border-radius:4px;padding:.75rem .9rem;line-height:1.8}
+.srcs{display:grid;gap:.3rem}
+.srcs a{font-size:.78rem;color:var(--ink2);text-decoration:none;line-height:1.65}
+.srcs a:hover{color:var(--blue);text-decoration:underline}
+.srcs a i{font-style:normal;color:var(--ink3)}
+.two{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+
+/* ── source table ─────────────────────────────────────── */
+.srctable{border:1px solid var(--line);border-radius:6px;overflow-x:auto;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:.87rem}
+th,td{text-align:left;padding:.65rem .9rem;border-bottom:1px solid var(--line2);vertical-align:top}
+th{font-size:.7rem;letter-spacing:.16em;color:var(--ink3);white-space:nowrap;
+  border-bottom-color:var(--line)}
+tr:last-child td{border-bottom:0}
+td:last-child{color:var(--ink2);white-space:nowrap}
+.kind{font-size:.71rem;line-height:1.7;border-radius:3px;padding:0 .4rem;border:1px solid var(--line);white-space:nowrap}
+.kind.official{color:var(--blue);border-color:#bcd6e6;background:#f2f8fc}
+.kind.museum{color:var(--amber);border-color:#e7dcbd;background:#fbf7ea}
+.kind.research{color:var(--clay);border-color:#e6cdbe;background:#fdf5f0}
+
+/* ── gaps list ────────────────────────────────────────── */
+.gaps{display:grid;gap:0}
+.gapitem{padding:1.15rem 0;border-bottom:1px solid var(--line2)}
+.gapitem:last-child{border-bottom:0}
+.gapitem h3{font-family:var(--serif);font-size:1rem;font-weight:800;margin-bottom:.25rem}
+.gapitem p{font-size:.88rem;color:var(--ink2);max-width:52em}
+
+footer{border-top:1px solid var(--line);padding:2.2rem 0 3.2rem;color:var(--ink3);font-size:.83rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
+code{font-size:.92em;background:#f2eee4;border-radius:3px;padding:.05em .35em}
+
+@media (max-width:640px){
+  .nav nav{font-size:.8rem;gap:.85rem}
+  .count{width:100%;margin-left:0}
+  .stats{gap:1.1rem}
+  .rl{grid-template-columns:1.9rem 1fr;gap:0 .8rem}
+}
+</style><style>
+/* 這頁特有的：出圖與實物照並排。左邊放大圖，右邊是一排實物照縮圖。 */
+.pair{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:1.6rem;
+  align-items:start;margin-bottom:2.6rem;padding-bottom:2.6rem;border-bottom:1px solid var(--line)}
+.pair:last-child{border-bottom:0}
+@media(max-width:820px){.pair{grid-template-columns:1fr;gap:1rem}}
+.pair h3{font-family:var(--serif);font-size:1.2rem;font-weight:800;margin-bottom:.15rem}
+.pair h3 small{font-weight:400;font-size:.72rem;letter-spacing:.12em;color:var(--ink3);margin-left:.6rem}
+.shot img{width:100%;border-radius:8px;display:block;border:1px solid var(--line)}
+.reflist{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.7rem}
+.reflist figure{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--card)}
+.reflist img{width:100%;aspect-ratio:1;object-fit:cover;display:block;cursor:zoom-in}
+.reflist figcaption{font-size:.62rem;line-height:1.5;color:var(--ink2);padding:.4rem .5rem}
+.reflist .lic{display:block;color:var(--ink3);font-size:.58rem;letter-spacing:.02em;margin-top:.15rem}
+.nofoto{border:1px dashed var(--line);border-radius:6px;padding:1rem;font-size:.85rem;color:var(--ink2)}
+.sublab{font-size:.66rem;letter-spacing:.16em;font-weight:800;color:var(--amber);margin:0 0 .5rem}
+.pair ul{margin:.2rem 0 0 1.1rem;font-size:.84rem;color:var(--ink2)}
+.pair ul li{margin-bottom:.2rem}
+dialog{border:0;padding:0;background:#0b0f14;max-width:96vw;max-height:96vh}
+dialog img{max-width:96vw;max-height:92vh;display:block}
+dialog figcaption{color:#cfd8e3;font-size:.78rem;padding:.6rem .9rem;background:#0b0f14}
+dialog::backdrop{background:rgba(6,14,24,.9)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="img/logo.webp" alt="台灣人代表"><small>PEOPLE OF TAIWAN</small></a>
+    <nav>
+      <a href="#list">逐族對照</a>
+      <a href="#how">怎麼用</a>
+      <a href="costume.html">服飾依據</a>
+      <a href="population.html">人口脈絡</a>
+      <a href="index.html">回首頁</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <p class="kicker">實物照依據 ／ WHAT IT WAS DRAWN FROM</p>
+    <h1>照著什麼畫</h1>
+    <p class="lede">每一個族群特別版都附了實物照給模型，這頁把「餵進去的照片」與「畫出來的結果」並排，讓你自己判斷像不像。</p>
+    <p class="lede">會這樣做，是因為只有文字鎖不住比例與密度。噶瑪蘭那一輪的文字寫「黑白為主、方衣系統、兩幅布縫合」，模型畫成寬斑馬條紋；實物是白衣、袖口與衣襬鑲黑寬邊、黑邊上綴白珠與銀圓片。文字擅長鎖結構，對比例與分佈幾乎無能為力。</p>
+    <div class="stats" id="stats"></div>
+  </div>
+
+  <div class="wrap">
+    <p class="disclaim">
+      <b>照片都不是我們拍的。</b>
+      每一張都標了典藏單位與授權條款，點圖放大可以看到完整資訊與原始頁面連結。
+      多數來自<b>國家文化記憶庫</b>與<b>維基共享資源</b>，授權從 CC BY-SA 4.0、CC BY-NC 3.0 TW+
+      到政府資料開放授權（OGDL 1.0）都有。沒有開放授權的照片一律不收，
+      Google 圖片縮圖、社群平台、影片截圖也不收——那些連原始出處都追不到。
+    </p>
+    <p class="disclaim">
+      <b>照片只用來對形制與比例，不逐件還原。</b>
+      有幾族的服飾已登記原住民族傳統智慧創作專用權（鄒 H000005、拉阿魯哇 H000073、
+      噶瑪蘭 GH000026 等），產生 prompt 時明確禁止「重製登記在案的特定作品」與
+      「可辨識到單一部落的專屬紋章」。
+      這些特別版<b>仍未經該族群或相關單位審閱</b>，畫面上有錯是我們的責任。
+    </p>
+  </div>
+
+  <section id="list" class="wrap">
+    <div class="sechead">
+      <h2>逐族對照</h2>
+      <p>左邊是實際畫出來的底圖，右邊是餵給模型的實物照與該族的驗收清單。點實物照可放大看出處。</p>
+    </div>
+    <div id="pairs"></div>
+  </section>
+
+  <section id="how" class="wrap">
+    <div class="sechead">
+      <h2>怎麼用這些照片</h2>
+      <p>同一批資料，作法不同結果差很多。這裡寫清楚我們怎麼用、以及刻意不做什麼。</p>
+    </div>
+    <div class="two">
+      <div>
+        <div class="note">
+          <h3>照片一律裁掉臉</h3>
+          <p>第一版收的是含臉的半身特寫，prompt 明寫「不得取照片裡的人與臉」，模型還是把臉的骨架帶走了——出圖的臉型變長、眼睛變窄，而且是使用者先看出來的。現在收進來的全部是裁掉頭部的服飾特寫。</p>
+        </div>
+        <div class="note">
+          <h3>指名部落或群別的優先</h3>
+          <p>同一族不同群的服飾可以完全不像。苗栗泰雅那一筆先拿到泛稱「泰雅族服飾」的展場照，其實是別群的紅白橫條加貝珠，不是北勢群的多色菱形方格紋。跨群借圖等於把一個群的東西當成另一個群的。</p>
+        </div>
+      </div>
+      <div>
+        <div class="note">
+          <h3>排灣刻意不用實物照</h3>
+          <p>那一筆畫的是平民，而資料寫著「平民不可飾以任何紋飾」、顏色限淺黑／淺藍／白。照片能解決的是比例與紋樣密度，素面沒有密度可對；附一張有紋飾的照片反而會跟「畫素面」正面打架。素面才是正確答案，畫得華麗等於冒用階級。</p>
+        </div>
+        <div class="note">
+          <h3>照片與文字打架時，先查是誰過期</h3>
+          <p>賽夏的驗收清單一度停在舊認知，每次出圖都產生假的不合格項；鄒族的清單六條裡有五條是男裝，而阿蕊是女子。假的不合格項比漏檢更傷——它會讓人開始不信任整份清單。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>實物照清單與授權：<code>data/costume-refs/SOURCES.md</code>。內容有誤或有補充，歡迎指正。</span>
+    <span><a href="costume.html">服飾依據</a>　<a href="population.html">人口脈絡</a>　<a href="index.html">回台灣人代表</a></span>
+  </div>
+</footer>
+
+<dialog id="zoom"><img alt=""><figcaption></figcaption></dialog>
+
+<script>
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+Promise.all([
+  fetch('data/counties.json').then(r => r.json()),
+  fetch('data/costume.json').then(r => r.json()),
+  fetch('data/costume-refs.json').then(r => r.json())
+]).then(([counties, costume, refs]) => {
+  const peoples = Object.fromEntries(costume.peoples.map(p => [p.id, p]));
+  const rows = counties.counties.filter(c => c.culture && c.base);
+  let withPhoto = 0, total = 0;
+
+  document.getElementById('pairs').innerHTML = rows.map(c => {
+    const p = peoples[c.culture] || {};
+    const rs = (c.scene.costume_refs || []).map(x => x.split('/').pop());
+    if (rs.length) withPhoto++;
+    total += rs.length;
+    // 男裝條目對阿蕊不適用，跟 build_prompt.py --checklist 同一條規則
+    const checks = (p.checklist || []).filter(x => !/^男[子性]/.test(x));
+    return `<div class="pair">
+      <div class="shot"><h3>${esc(c.name)}<small>${esc(p.name || c.culture)}</small></h3>
+        <img src="img/${esc(c.base)}.webp" loading="lazy"
+             alt="${esc(c.name)}的角色底圖"></div>
+      <div>
+        <p class="sublab">餵進去的實物照</p>
+        ${rs.length ? `<div class="reflist">${rs.map(fn => {
+          const m = refs.refs[fn] || {};
+          return `<figure><img src="data/costume-refs/${esc(fn)}" loading="lazy"
+                    alt="${esc(m.desc || fn)}"
+                    data-desc="${esc(m.desc || '')}" data-holder="${esc(m.holder || '')}"
+                    data-lic="${esc(m.license || '')}" data-src="${esc(m.source || '')}"
+                    data-url="${esc(m.url || '')}">
+            <figcaption>${esc(m.holder || '（未標示）')}
+              <span class="lic">${esc(m.license || '')}</span></figcaption></figure>`;
+        }).join('')}</div>`
+        : `<div class="nofoto">${c.culture === 'paiwan'
+            ? '這一筆<b>刻意不用實物照</b>：畫的是平民，而平民不可飾以任何紋飾，素面就是正確答案。'
+            : '還沒有可用的實物照，目前只靠文字規格。'}</div>`}
+        ${checks.length ? `<p class="sublab" style="margin-top:1.1rem">這一族的驗收清單</p>
+          <ul>${checks.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
+      </div></div>`;
+  }).join('');
+
+  document.getElementById('stats').innerHTML = [
+    ['族群特別版', rows.length + ' 個'],
+    ['有實物照', withPhoto + ' 個'],
+    ['實物照張數', total + ' 張'],
+    ['授權來源', new Set(Object.values(refs.refs).map(r => r.license)).size + ' 種']
+  ].map(([k, v]) => `<div class="stat"><b>${v}</b><span>${k}</span></div>`).join('');
+}).catch(() => {
+  document.getElementById('pairs').innerHTML =
+    '<p class="disclaim">讀不到資料檔。這頁用 fetch 取資料，必須透過 http 開啟；' +
+    '直接用 file:// 開會被瀏覽器的跨來源限制擋下來。本機請跑 ' +
+    '<code>python3 -m http.server 8901</code>。</p>';
+});
+
+const dlg = document.getElementById('zoom');
+document.addEventListener('click', ev => {
+  const img = ev.target.closest('.reflist img');
+  if (img) {
+    dlg.querySelector('img').src = img.src;
+    dlg.querySelector('img').alt = img.alt;
+    const url = img.dataset.url;
+    dlg.querySelector('figcaption').innerHTML =
+      esc(img.dataset.desc) + '<br>典藏：' + esc(img.dataset.holder) +
+      '　授權：' + esc(img.dataset.lic) +
+      (url ? '　<a href="' + esc(url) + '" target="_blank" rel="noopener" style="color:#8ab4dd">原始頁面 →</a>' : '');
+    dlg.showModal();
+  } else if (ev.target.closest('dialog')) dlg.close();
+});
+</script>
+<script>
+
+/* 自動重載要監聽 controllerchange，不是 state === "installed"——後者新 SW 還沒接管，
+   這時 reload 仍被舊 SW 控制、拿到舊快取。
+
+   但光監聽 controllerchange 不夠：sw.js 在 install 呼叫 skipWaiting、activate 呼叫
+   clients.claim，所以**第一次造訪**的頁面會從「沒有 SW 控制」變成「被控制」，
+   controllerchange 照樣會觸發，於是剛載完就整頁重載一次，捲動位置與展開的卡片全沒了。
+   所以要在 register 之前先記下當時有沒有 controller，沒有就代表是首次造訪，不重載。 */
+if ("serviceWorker" in navigator) {
+  addEventListener("load", async () => {
+    const hadController = !!navigator.serviceWorker.controller;
+    try {
+      await navigator.serviceWorker.register("sw.js");
+      let reloading = false;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (!hadController || reloading) return;   // 首次造訪不重載
+        reloading = true;
+        location.reload();
+      });
+    } catch (_) { /* 不支援或被封鎖時照常運作，只是沒有離線 */ }
+  });
+}
+</script>
+</body>
+</html>
