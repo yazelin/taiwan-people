@@ -47,8 +47,21 @@ def post(path, payload, timeout):
         headers={"Content-Type": "application/json",
                  "Authorization": f"Bearer {KEY}",
                  "User-Agent": "taiwan-people/gen_remote"})
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return json.loads(r.read())
+    # 連線逾時要自己重試。2026-08-14 新竹客家連四次都是 Connection timed out，
+    # 但外層迴圈把它印成「長寬比不合」——網路問題被誤報成內容問題，
+    # 查了才知道跟圖無關。網路的錯在這裡吸收掉，不要讓它冒到上層。
+    last = None
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                return json.loads(r.read())
+        except urllib.error.HTTPError:
+            raise                      # 服務端回錯誤碼是真的失敗，不重試
+        except (urllib.error.URLError, TimeoutError, OSError) as e:
+            last = e
+            print(f"（連線問題，{5 * (attempt + 1)} 秒後重試：{str(e)[:60]}）", file=sys.stderr)
+            time.sleep(5 * (attempt + 1))
+    raise SystemExit(f"FAIL: 連線三次都失敗 {last}")
 
 
 def b64(p):

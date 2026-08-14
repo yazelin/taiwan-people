@@ -8,8 +8,8 @@
  * SHELL_V 由 tools/build_sw.py 依 precache 清單的內容 hash 產生，不要手改。
  * 手動 bump 的遲早會忘記，而忘記的症狀是「使用者永遠看不到新版」，沒有任何徵兆。
  */
-const SHELL_V = "shell-3fb73f6";
-const ASSET_V = "asset-360fb7e";
+const SHELL_V = "shell-a3b01df";
+const ASSET_V = "asset-17e9706";
 
 // 前綴要跨專案唯一。CacheStorage 是 per-origin，yazelin.github.io 底下所有專案
 // 共用同一份；SW 的 scope 只管 fetch，管不到快取。用兩個字母的前綴很容易撞到別站。
