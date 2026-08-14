@@ -17,6 +17,19 @@ image_gen 就回傳，實測單張 4-12 分鐘，但**沒有自我複驗**——
 環境變數：
   CODEX_IMAGE_URL   服務位址，預設 https://ching-tech.ddns.net/codex-image
   GEN_NO_VERIFY=1   跳過 /v1/vision 那步（只想比生圖速度時用）
+
+連不上的時候怎麼查（2026-08-14 遇過一次，十幾分鐘後自己好了）：
+
+    curl -s -o /dev/null -w '%{http_code}\n' https://ching-tech.ddns.net/codex-image/openapi.json
+    ssh ct@192.168.11.11 'docker ps --format "{{.Names}}\t{{.Status}}"'      # 容器在不在
+    ssh ct@192.168.11.11 'curl -s -o /dev/null -w "%{http_code}\n" http://localhost/codex-image/openapi.json'
+    curl -s -o /dev/null -w '%{http_code}\n' http://192.168.11.11/codex-image/openapi.json   # 繞過對外繞路
+
+那次的現象是：容器 up 8 天沒重啟、.11 本機打 nginx 回 200、DDNS 也指對，
+但從外面打就 Connection timed out，接著變成 Connection refused。
+**不是容器掛掉，不要急著 restart** —— 是對外那一段暫時不通，等一下就好。
+真的要重啟也只需要 `docker compose restart codex-image-service`；
+改過 code 才需要 build（app/ 是 COPY 進 image 的，沒有 volume 掛載）。
 """
 import base64
 import hashlib
