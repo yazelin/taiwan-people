@@ -217,6 +217,12 @@ def build(c):
     # that can genuinely share the hero landmark's frame.
     others = "; ".join(s.get("viewpoint_support_en") or s.get("others_en") or [])
     return (
+        # 畫布規則放第一行，不是放結尾。prompt 有一萬多字，結尾那句
+        # 「Landscape aspect ratio, 4:3」讀不到——.11 的服務會回 1536x1024（1.50），
+        # 那個比例放進網頁 1.25 的框會被裁掉。2026-08-14 賽夏與泰雅各試五次全敗，
+        # 而邵族把同一句話搬到前面之後就過了。長 prompt 裡指令的位置比措辭重要。
+        "CANVAS: landscape FOUR-TO-THREE (4:3) — noticeably taller than a widescreen 3:2 frame. "
+        "Compose for 4:3, not for a wide banner. This governs the whole picture. "
         "An anime illustration in the same style, colour palette and painterly shading as "
         "image 1. A single continuous scene — not a collage, not a panel of separate items. "
         f"THE CHARACTER, locked by the reference sheets: {CARD['card']} "
