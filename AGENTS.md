@@ -765,6 +765,15 @@ cd /home/ct/taiwan-people && python3 -m http.server 8901
 
 改完至少確認：22 縣市可點、無 404、桌機與手機皆無橫向捲軸、無 JS error。
 
+**實物照公開展示之後，授權標示是法律條件不是禮貌。**
+`costume-refs.html` 把每一張實物照公開在網站上，其中 12 張是 CC BY-SA 4.0、
+還有 CC BY-NC、CC BY-NC-SA、OGDL 等六種授權，姓名標示與相同方式分享都是條件。
+所以：**新增實物照一定要同時在 `data/costume-refs/SOURCES.md` 登記**，
+然後跑 `python3 tools/build_costume_refs_json.py` 轉出網頁要讀的 JSON。
+那支腳本會檢查「檔案在 costume-refs/ 但表格沒登記」並直接中止——
+漏登記的照片會以「（未標示）」出現在公開頁上，那是要避免的。
+SOURCES.md 仍然是唯一要編輯的地方，JSON 是產生物，不要手改。
+
 ## 2026-08-13／14 這一輪的四條教訓
 
 **一、不要在同一張圖上疊加編輯，發現錯就改規格重新生成。**

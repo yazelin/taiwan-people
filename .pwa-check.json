@@ -1,4 +1,3 @@
 {
-  "ignore": ["review/index.html"],
-  "sharedOrigin": true
+  "ignore": ["review/costume.html", "review/index.html"]
 }
