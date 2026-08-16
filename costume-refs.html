@@ -317,13 +317,15 @@ Promise.all([
 ]).then(([counties, costume, refs]) => {
   const peoples = Object.fromEntries(costume.peoples.map(p => [p.id, p]));
   const rows = counties.counties.filter(c => c.culture && c.base);
-  let withPhoto = 0, total = 0;
+  let withPhoto = 0;
+  // 用 Set 去重：兩筆客家共用同一組照片，逐族累加會把 32 張算成 35 張
+  const seenPhotos = new Set();
 
   document.getElementById('pairs').innerHTML = rows.map(c => {
     const p = peoples[c.culture] || {};
     const rs = (c.scene.costume_refs || []).map(x => x.split('/').pop());
     if (rs.length) withPhoto++;
-    total += rs.length;
+    rs.forEach(f => seenPhotos.add(f));
     // 男裝條目對阿蕊不適用，跟 build_prompt.py --checklist 同一條規則
     const checks = (p.checklist || []).filter(x => !/^男[子性]/.test(x));
     return `<div class="pair">
@@ -351,7 +353,7 @@ Promise.all([
   document.getElementById('stats').innerHTML = [
     ['族群特別版', rows.length + ' 個'],
     ['有實物照', withPhoto + ' 個'],
-    ['實物照張數', total + ' 張'],
+    ['實物照張數', seenPhotos.size + ' 張'],
     ['授權來源', new Set(Object.values(refs.refs).map(r => r.license)).size + ' 種']
   ].map(([k, v]) => `<div class="stat"><b>${v}</b><span>${k}</span></div>`).join('');
 }).catch(() => {
