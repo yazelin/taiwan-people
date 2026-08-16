@@ -2581,7 +2581,8 @@
         "costume_refs": [
           "data/costume-refs/paiwan-cut-01-lungpau.jpg",
           "data/costume-refs/paiwan-cut-02-slit.jpg"
-        ]
+        ],
+        "costume_refs_cut_only": true
       },
       "todo": [
         "對外發表前應請該族群或相關單位過目"
