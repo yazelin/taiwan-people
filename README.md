@@ -65,6 +65,7 @@ python3 -m http.server 8901
 | `tools/build_prompt.py` | 由資料產生生成 prompt，資料不全就擋下來 |
 | `tools/gen.sh` | 呼叫 codex 產一張圖。**原本放 /tmp，重開機被清掉整條產線就斷了**，所以搬進 repo |
 | `tools/gen_all.sh` | 批次生成缺底圖的縣市 |
+| `tools/gen_rounds.sh` | 同一份規格連跑幾輪，每輪留檔不覆蓋 `img/`。**改完規格要驗證時用這支**，單次結果判斷不了規格改對沒有 |
 | `tools/gen_remote.py` | 改打 `.11` 的 codex-image-service 產一張圖（比本機快十倍），生完另外呼叫 `/v1/vision` 做形制複驗。連不上時的排查步驟寫在檔頭 |
 | `tools/check_spec_conflicts.py` | 送去生圖之前跑：找同一個部位在 `counties.json` 與 `costume.json` 裡被講兩次而且講法互斥的地方 |
 | `tools/verify_base.py` | 量測底圖版面是否合規 |
@@ -141,6 +142,7 @@ python3 tools/build_prompt.py 台東縣・卑南族 --checklist   # 出圖後照
 ```bash
 python3 tools/build_prompt.py 高雄市      # 由資料產生 prompt，不要手打
 python3 tools/check_spec_conflicts.py     # 改過規格就跑：同一個部位有沒有被講兩次
+bash tools/gen_rounds.sh 屏東縣・排灣族 3  # 連跑三輪留檔，跑完自己挑一張複製進 img/
 bash tools/gen_all.sh                     # 批次生所有缺底圖的縣市
 bash tools/gen_all.sh 澎湖縣 金門縣        # 只生指定的
 python3 tools/verify_base.py              # 量測版面是否合規
