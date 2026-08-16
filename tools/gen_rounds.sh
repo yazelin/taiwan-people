@@ -13,6 +13,15 @@
 # 直接落地到 img/ 的版本在 tools/gen_all.sh，那支適合已經穩定的縣市。
 set -u
 cd "$(dirname "$0")/.."
+
+# 金鑰要自己撈：~/.bashrc 第 15 行左右有「非互動 shell 直接 return」，
+# 排在那之後的 export 對腳本無效，所以不能只靠 source。
+export CODEX_IMAGE_KEY="${CODEX_IMAGE_KEY:-$(grep -oP '^export CODEX_IMAGE_KEY=\K.*' ~/.bashrc | tr -d '"')}"
+[ -n "$CODEX_IMAGE_KEY" ] || {
+  echo "FAIL: 讀不到 CODEX_IMAGE_KEY，先確認 ~/.bashrc 裡有 export CODEX_IMAGE_KEY=..." >&2
+  exit 1
+}
+
 n="${1:?用法：bash tools/gen_rounds.sh 縣市名 [輪數]}"
 rounds="${2:-3}"
 keep=tmp/rounds
