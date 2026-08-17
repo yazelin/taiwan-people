@@ -316,6 +316,9 @@ dialog::backdrop{background:rgba(6,14,24,.9)}
 <script>
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
+// 只處理 **粗體**，refs_note 用得到；其餘一律當純文字跳脫
+const md = s => esc(s).replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
+
 Promise.all([
   fetch('data/counties.json').then(r => r.json()),
   fetch('data/costume.json').then(r => r.json()),
@@ -323,7 +326,7 @@ Promise.all([
 ]).then(([counties, costume, refs]) => {
   const peoples = Object.fromEntries(costume.peoples.map(p => [p.id, p]));
   const rows = counties.counties.filter(c => c.culture && c.base);
-  let withPhoto = 0;
+  let withPhoto = 0, documented = 0;
   // 用 Set 去重：兩筆客家共用同一組照片，逐族累加會把 32 張算成 35 張
   const seenPhotos = new Set();
 
@@ -331,6 +334,7 @@ Promise.all([
     const p = peoples[c.culture] || {};
     const rs = (c.scene.costume_refs || []).map(x => x.split('/').pop());
     if (rs.length) withPhoto++;
+    else if (c.scene.refs_note) documented++;
     rs.forEach(f => seenPhotos.add(f));
     // 男裝條目對阿蕊不適用，跟 build_prompt.py --checklist 同一條規則
     const checks = (p.checklist || []).filter(x => !/^男[子性]/.test(x));
@@ -350,7 +354,13 @@ Promise.all([
             <figcaption>${esc(m.holder || '（未標示）')}
               <span class="lic">${esc(m.license || '')}</span></figcaption></figure>`;
         }).join('')}</div>`
-        : `<div class="nofoto">還沒有可用的實物照，目前只靠文字規格。</div>`}
+        : c.scene.refs_note
+          ? `<div class="nofoto"><b>${esc(c.scene.refs_note.why)}</b>
+              <p style="margin-top:.6rem">${md(c.scene.refs_note.text)}</p>
+              <p style="margin-top:.6rem">${esc(c.scene.refs_note.no_photo_why)}</p>
+              <p style="margin-top:.6rem"><a href="${esc(c.scene.refs_note.url)}"
+                target="_blank" rel="noopener">${esc(c.scene.refs_note.org)}</a></p></div>`
+          : `<div class="nofoto">還沒有可用的實物照，目前只靠文字規格。</div>`}
         ${checks.length ? `<p class="sublab" style="margin-top:1.1rem">這一族的驗收清單</p>
           <ul>${checks.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
       </div></div>`;
@@ -359,6 +369,7 @@ Promise.all([
   document.getElementById('stats').innerHTML = [
     ['族群特別版', rows.length + ' 個'],
     ['有實物照', withPhoto + ' 個'],
+    ...(documented ? [['有依據但圖不能展示', documented + ' 個']] : []),
     ['實物照張數', seenPhotos.size + ' 張'],
     // 只算真的展示出來的那些：data/costume-refs/ 裡可能留著暫時沒被引用的檔案
     // （例如鄒族改畫現行族服後，1927 那兩張實穿照就先擱著），
