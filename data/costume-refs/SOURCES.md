@@ -26,13 +26,15 @@
 | `amis-nanshi-02-worn.jpg` | 1983 年花蓮聯合豐年祭：三位女子穿著改良式阿美女服，補的是實物平放看不出的東西——頭飾戴起來的角度、紅上衣與頸飾的比例 | [國家文化記憶庫](https://tcmb.culture.tw/zh-tw/detail?id=516366&indexCode=Culture_Object) | 花蓮縣文化局（1983 年，花蓮市美崙田徑場） | 數位物件 CC BY-NC 3.0 TW+、描述文字 CC0 |
 | `amis-nanshi-03-headworn.jpg` | 同上的頭飾特寫：白絨毛冠、上排彩色絨球、兩側垂紅穗、下緣垂彩色珠串 | 同上 | 同上 | 同上 |
 | `cou-female-01-jacket.jpg` | 鄒族達邦社女子上衣整件：藍靛短身、V 領與袖口鑲白／黑／黃／紅多層織帶 | [維基共享資源](https://commons.wikimedia.org/wiki/File:%E9%84%92%E6%97%8F%E9%81%94%E9%82%A6%E7%A4%BE%E5%A5%B3%E5%AD%90%E4%B8%8A%E8%A1%A3.jpg) | 維基共享資源使用者「氏子」自攝（原件昭和四年／1929 年入藏臺北帝國大學） | CC BY-SA 4.0 |
+| `cou-female-02-collar.jpg` | V 領特寫：織帶的層數、寬度與色序 | 同上 | 同上 | 同上 |
+| `cou-female-03-cuff.jpg` | 袖口特寫：同一組織帶在袖端的排法 | 同上 | 同上 | 同上 |
+| `cou-female-04-skirt.jpg` | 下半身穿法：前片有紋的長布自腰垂至近腳踝，兩側與下襬露出深色底裙，兩層看得出來 | [維基共享資源](https://commons.wikimedia.org/wiki/File:Ladies_from_Hosa_no_Tfuya.jpg) | 《阿里山新高山景色寫真帖》林久三編，中央寫真館 1927 年出版第 15 頁｜特富野社女子三人實穿｜**黑白照，不可據以判斷顏色**；裙面為漢式印花布，與順益台灣原住民博物館藏 M108402「黑底＋紅布條＋白色十字繡菱形紋」那款不同，兩者都是鄒族女子長裙，年代與場合不同 | 公有領域（日本與美國均已進入公有領域，1927 年出版、作者不詳） |
+| `cou-female-05-wear.jpg` | 同上的全身：上衣、頭巾、裙的比例關係與實際穿法 | 同上 | 同上 | 同上 |
 | `paiwan-cut-01-lungpau.jpg` | 北部排灣族長衣的**形制**：立領、右開襟自領口斜向腋下、筒袖、衣長過膝 |[維基共享資源](https://commons.wikimedia.org/wiki/File:%E5%8C%97%E9%83%A8%E6%8E%92%E7%81%A3%E6%97%8F%E6%9C%8D%E9%A3%BE.jpg) | 維基共享資源使用者「宜蘭第一公民」自攝（展場）｜**照片上是貴族等級，只取形制不取裝飾** | CC BY-SA 4.0 |
 | `paiwan-cut-02-slit.jpg` | 衣脇到衣襬的 A 型開叉，以及片裙與護腳布的層次關係 | 同上 | 同上 | 同上 |
 | `hakka-beike-01-collar.jpg` | 北客大襟衫的領口與大襟走向：黑緞鑲緄自領口沿右大襟斜下 | [國家文化記憶庫](https://tcmb.culture.tw/zh-tw/detail?indexCode=MOCCOLLECTIONS&id=107000025958) | 國史館臺灣文獻館（該頁明寫「此件服裝應屬於北部客家婦女的禮服」） | 數位物件 CC BY-NC 3.0 TW+、描述文字 CC BY 3.0 TW+ |
 | `hakka-beike-02-cuff.jpg` | 袖口反折處：黑緞鑲緄與寬 4 公分的藍紫色提花織帶 | 同上 | 同上 | 同上 |
 | `hakka-beike-03-shape.jpg` | 整件平放輪廓（中央有典藏單位浮水印，只當形制參考） | 同上 | 同上 | 同上 |
-| `cou-female-02-collar.jpg` | V 領特寫：織帶的層數、寬度與色序 | 同上 | 同上 | 同上 |
-| `cou-female-03-cuff.jpg` | 袖口特寫：同一組織帶在袖端的排法 | 同上 | 同上 | 同上 |
 | `tayal-beishi-female-01-set.jpg` | 泰雅族北勢群女子禮服整體：紅底密織多色帶狀紋有袖短上衣、黑袖口、多層帶紋片裙與綁腿、織帶頭飾垂紅流蘇 | [維基共享資源](https://commons.wikimedia.org/wiki/File:%E6%B3%B0%E9%9B%85%E6%97%8F%E5%8C%97%E5%8B%A2%E7%BE%A4%E7%94%B7%E5%A5%B3%E7%A6%AE%E6%9C%8D.jpg) | 維基共享資源使用者「宜蘭第一公民」自攝（展場，原圖左男右女，此處只取右邊女子） | CC BY-SA 4.0 |
 | `tayal-beishi-female-02-bands.jpg` | 同上的帶狀紋特寫：多色菱形組成方格的排法與密度 | 同上 | 同上 | 同上 |
 | `puyuma-female-02-set.jpg` | 卑南族（卑南社）女子服飾整體：深色立領右襟短上衣、前襟挑繡、片裙下襬繡帶 | [維基共享資源](https://commons.wikimedia.org/wiki/File:%E5%8D%91%E5%8D%97%E6%97%8F%E6%9C%8D%E9%A3%BE.jpg) | 維基共享資源使用者「宜蘭第一公民」自攝（展場） | CC BY-SA 4.0 |

@@ -34,11 +34,22 @@ def main():
             continue
         fn = cells[0].strip("`")
         desc, src, holder, lic = cells[1], cells[2], cells[3], cells[4]
-        # 「同上」繼承前一列
+        # 「同上」繼承前一列——**而「前一列」是位置相依的**。
+        # 2026-08-17 踩過：鄒族的 01 與 02、03 在表格裡不相鄰，中間隔著排灣與客家五列，
+        # 於是 02、03 的「同上」繼承到客家那筆，公開頁上把國史館的客家藏品
+        # 標成了鄒族參考照的出處。圖本身是對的，錯的是授權標示——而那是法律條件。
+        # 所以擋一道：檔名的族群前綴（第一個 - 之前）必須跟被繼承的那列相同。
+        group = fn.split("-")[0]
+        if "同上" in (src, holder, lic) and prev.get("group") not in (None, group):
+            raise SystemExit(
+                f"FAIL: `{fn}` 寫「同上」，但上一列是 `{prev.get('fn')}`，"
+                f"分屬不同族群（{group} ≠ {prev.get('group')}）。\n"
+                "「同上」只繼承緊鄰的上一列，同一件藏品的各張裁圖必須排在一起。\n"
+                "把這一列搬到同組後面，或者把出處寫全。")
         src = prev.get("src", src) if src == "同上" else src
         holder = prev.get("holder", holder) if holder == "同上" else holder
         lic = prev.get("lic", lic) if lic == "同上" else lic
-        prev = {"src": src, "holder": holder, "lic": lic}
+        prev = {"src": src, "holder": holder, "lic": lic, "group": group, "fn": fn}
 
         m = LINK.search(src)
         rows[fn] = {
