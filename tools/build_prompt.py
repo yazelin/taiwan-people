@@ -137,8 +137,17 @@ def costume_block(c):
     if p["motifs"]:
         parts.append("MOTIFS, and only these: " + "; ".join(p["motifs"]) + ". ")
     if p["rank"]:
-        parts.append("RANK AND ELIGIBILITY — this decides what she is allowed to wear: "
+        # rank 是整族的階級規範，同時寫著各階級各能穿什麼。當這一筆畫的是特定階級時，
+        # 那段裡「別的階級不可以穿什麼」會直接跟 outfit 打架——2026-08-17 排灣改畫貴族後
+        # 連跑兩輪紋飾一項都沒出來，就是因為 rank 裡的「平民不可飾以任何紋飾」還在，
+        # 而且它前面冠著「this decides what she is allowed to wear」，語氣比 outfit 更強。
+        # rank 本身是正確的族群知識不能刪，所以由 scene.rank_note 指明這一筆屬於哪一階級。
+        parts.append("RANK AND ELIGIBILITY — this is the people's rank system as a whole: "
                      + p["rank"] + " ")
+        note = c.get("scene", {}).get("rank_note")
+        if note:
+            parts.append("WHICH RANK THIS PICTURE SHOWS — read the paragraph above through this: "
+                         + note + " ")
     parts.append("Do not add ornament from any other Taiwanese people: no other people's "
                  "weave patterns, head-dress, feathers or bead work. ")
     # 實測兩張特別版都退回模型熟悉的「民族風／戲服」樣板：卑南族被畫成及地長袍長裙

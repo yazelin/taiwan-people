@@ -34,6 +34,10 @@ GROUPS = {
     "衣長": [r"(below|past) the knee|過膝", r"waist-length|及腰", r"above the knee|膝上"],
     "袖": [r"tube sleeve|筒袖", r"sleeveless|no sleeve|無袖", r"cuff turned back|袖口反折"],
     "腰": [r"belt at the waist|腰帶", r"sash|腰繩", r"apron|圍裙", r"NOTHING at the waist|腰間無帶"],
+    # 2026-08-17 排灣踩到：outfit 要求滿版刺繡，而 costume.json 的 rank 寫著
+    # 「平民不可飾以任何紋飾」，兩邊對「這件衣服有沒有紋飾」講了相反的話。
+    "有無紋飾": [r"COVERED IN ORNAMENT|滿版|大量刺繡|carries no ornament|不可飾以任何紋飾",
+                r"\bPLAIN\b|素面|no ornament at all"],
 }
 
 # 出現這些就當作是「明講不要畫」，不算一種主張
@@ -88,16 +92,21 @@ def self_check():
     real = " ".join(x for x in (s.get("outfit"), s.get("accessories"), s.get("hair")) if x)
     anchor = "LONG GARMENT (lungpau)"
     assert anchor in real, "校準用的錨點不在排灣規格裡了，請改這支的 self_check"
-    for group, sentence in [("領型", "The tunic has a standing collar."),
-                            ("腰", "She wears a belt at the waist."),
-                            ("衣長", "It is a waist-length jacket.")]:
-        injected = real.replace(anchor, sentence + " " + anchor)
-        assert group in scan(injected), f"校準失敗：真實規格注入「{sentence}」後仍抓不到{group}矛盾"
+    # 注入「成對」的互斥講法，不要依賴規格既有的內容——
+    # 2026-08-17 排灣從平民改成貴族後領型由圓領變立領，
+    # 原本只注入一句 standing collar 就不再構成矛盾，校準因此誤判失敗。
+    # 基準綁在會變的資料上是設計缺陷，改成自帶兩邊。
+    for group, pair in [("領型", ("The tunic has a standing collar.", "It has a round neck.")),
+                        ("腰", ("She wears a belt at the waist.", "A sash is tied there.")),
+                        ("衣長", ("It is a waist-length jacket.", "The hem falls below the knee."))]:
+        injected = real.replace(anchor, " ".join(pair) + " " + anchor)
+        assert group in scan(injected), f"校準失敗：真實規格注入 {pair} 後仍抓不到{group}矛盾"
 
     # 跨檔案、跨語言的那種：outfit 是英文的「圓領」，checklist 是中文的「立領」。
     # 這正是 2026-08-16 實際發生過、而只掃 counties.json 抓不到的那一種。
-    assert "領型" in scan(real + " 長衣的骨架對不對：立領、筒袖"), \
-        "校準失敗：中文清單裡的「立領」對上英文規格的 round neck，應該要抓得到"
+    # 中英跨檔案那一種：英文規格說圓領、中文清單說立領。同樣自帶兩邊，不依賴 real 的內容。
+    assert "領型" in scan(real + " It has a round neck. 長衣的骨架對不對：立領、筒袖"), \
+        "校準失敗：中文清單的「立領」對上英文的 round neck，應該要抓得到"
     print("自我檢查通過：矛盾版抓得到、修好版不誤報、"
           "真實規格注入三種競爭主張都抓得到、中英跨檔案矛盾也抓得到")
 
@@ -117,8 +126,15 @@ def main():
         # 驗收清單也要一起掃。2026-08-16 排灣的 outfit 改成「低圓領無立領」，
         # 但 costume.json 的 checklist 還留著「立領」，vision 就拿舊清單判了一條假 NG。
         # 規格與清單分在兩個檔案，只掃一邊等於沒掃。
-        checks = " ".join(peoples.get(c["culture"], {}).get("checklist") or [])
-        text = " ".join(x for x in (s.get("outfit"), s.get("accessories"), s.get("hair"), checks) if x)
+        pe = peoples.get(c["culture"], {})
+        checks = " ".join(pe.get("checklist") or [])
+        # rank 也要掃。2026-08-17 排灣改畫貴族後連跑兩輪紋飾一項都沒出來，
+        # 因為 rank 欄位裡還留著「平民不可飾以任何紋飾」，而 build_prompt 會把它灌進去，
+        # 前面還冠著「this decides what she is allowed to wear」——語氣比 outfit 更強。
+        # 只掃 outfit 那幾欄，等於漏掉 prompt 裡份量最重的一段。
+        rank = pe.get("rank") or ""
+        text = " ".join(x for x in (s.get("outfit"), s.get("accessories"), s.get("hair"),
+                                    s.get("rank_note"), checks, rank) if x)
         hits = scan(text)
         if hits:
             bad += 1
