@@ -1758,6 +1758,10 @@ secs.forEach(s=>io.observe(s));
 <script>
 (function(){"use strict";
 if(window.__yzPromoInit)return;window.__yzPromoInit=1;
+/* 開啟計數。只送站名,後端只記「哪天、哪站、幾次」,不存 IP、不設 cookie、不給識別碼。
+   有一半的作品是純靜態沒後端,以前根本不知道有沒有人在用。這行要放在下面那個
+   prefers-reduced-motion 的 return 之前,不然關動畫的人就不會被算到。 */
+try{if(location.hostname==="yazelin.github.io"&&navigator.sendBeacon)navigator.sendBeacon("https://k-rider-api.yazelinj303.workers.dev/hit?s=taiwan-people")}catch(e){}
 try{if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)return}catch(e){}
 var REPO="taiwan-people",INJECT=false,ADDBLOG=true;
 var GH=REPO?"https://github.com/yazelin/"+REPO:"https://github.com/yazelin";
@@ -1823,139 +1827,6 @@ window.__yzPromo=say;
 return true}
 function boot(){var tries=0;(function t(){if(start())return;if(++tries<20)setTimeout(t,1500)})()}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot);else boot();
-})();
-
-/* 背景音樂 + 第二條浪。
-   1) 瀏覽器禁止有聲自動播放，所以只能掛在第一個使用者手勢上，不能在 load 時直接播。
-   2) 音檔 2.9MB，第一次要播才 fetch，不聽的人完全不付這個成本。
-   3) 曾經按過關閉的人不再自動開——那是他明確表達過的選擇。
-   4) 音量寫進 window.__lv，泡沫水線那支也讀它，兩條浪才會一起呼吸。
-      沒音樂時 __lv 衰減到 0，兩條線就是普通的海浪。 */
-(function(){
-  const btn=document.getElementById("mus");
-  const cv=document.getElementById("viz");
-  if(!btn||!cv) return;
-  let a=null, ac=null, an=null, buf=null, fbuf=null;
-
-  const stop=()=>{ if(a){a.pause();} btn.setAttribute("aria-pressed","false");
-                   btn.setAttribute("aria-label","播放背景音樂"); };
-  const hookAnalyser=(el)=>{
-    if(ac) { if(ac.state==="suspended") ac.resume(); return; }
-    const AC=window.AudioContext||window.webkitAudioContext;
-    if(!AC) return;
-    ac=new AC();
-    an=ac.createAnalyser(); an.fftSize=1024; an.smoothingTimeConstant=.9;
-    // MediaElementSource 一旦建立，聲音就改走這條 graph，
-    // 沒接到 destination 會整個靜音——下面這行不能省
-    ac.createMediaElementSource(el).connect(an);
-    an.connect(ac.destination);
-    buf=new Uint8Array(an.fftSize);
-    fbuf=new Uint8Array(an.frequencyBinCount);
-  };
-  const start=()=>{
-    if(!a){
-      a=new Audio("audio/theme.mp3");
-      a.loop=true; a.volume=.35; a.preload="none";
-      a.addEventListener("error",()=>{ stop(); btn.title="音樂載入失敗"; });
-    }
-    return a.play().then(()=>{
-      btn.setAttribute("aria-pressed","true");
-      btn.setAttribute("aria-label","關閉背景音樂");
-      hookAnalyser(a);
-    }).catch(()=>stop());
-  };
-
-  btn.addEventListener("click",()=>{
-    if(btn.getAttribute("aria-pressed")==="true"){
-      stop(); try{localStorage.setItem("tp-music","0");}catch(e){} return;
-    }
-    start().then(()=>{ try{localStorage.setItem("tp-music","1");}catch(e){} });
-  });
-
-  let armed=true;
-  const auto=()=>{
-    if(!armed) return;
-    armed=false;
-    let pref=null; try{pref=localStorage.getItem("tp-music");}catch(e){}
-    if(pref==="0") return;
-    start();
-  };
-  ["pointerdown","keydown","touchstart"].forEach(ev=>
-    document.addEventListener(ev,auto,{once:true,passive:true}));
-
-  document.addEventListener("visibilitychange",()=>{ if(document.hidden&&a&&!a.paused) stop(); });
-
-  /* 第二條浪：從載入就一直畫，本來就是海面的一部分。
-     公式與筆觸跟 #foam 那條水線完全相同，只是往下 52px。
-     沒音樂時 __lv=0，它就是一條乾淨的慢波；有音樂時涌起來並長出漣漪。 */
-  let lvA=0, lvB=0, tw=0, loA=1, hiA=0, loB=1, hiB=0;
-  window.__lvA=0; window.__lvB=0;
-  cv.classList.add("on");
-  (function draw(){
-    const dpr=Math.min(devicePixelRatio||1,2);
-    const W=cv.clientWidth,H=cv.clientHeight;
-    if(W&&H){
-      if(cv.width!==W*dpr||cv.height!==H*dpr){ cv.width=W*dpr; cv.height=H*dpr; }
-      const c=cv.getContext("2d");
-      c.setTransform(dpr,0,0,dpr,0,0);
-      c.clearRect(0,0,W,H);
-
-      /* 兩條線刻意吃不同頻段，否則會一起漲一起落，像機械連桿一樣死。
-           上面那條 ← 低頻（鼓與低音）：平滑係數大，慢慢的大起伏
-           下面那條 ← 中高頻（旋律與撥弦）：平滑係數小，反應快而碎
-         兩者的節奏來源不同，才會像兩條各自呼吸的浪。 */
-      let nb=0,nh=0;
-      if(an&&a&&!a.paused){
-        an.getByteFrequencyData(fbuf);
-        let sb=0,sh=0;
-        for(let i=1;i<=8;i++)  sb+=fbuf[i];        // 約 50–380 Hz
-        for(let i=20;i<=80;i++) sh+=fbuf[i];       // 約 0.9–3.7 kHz
-        /* 自動增益。實測這首曲子低頻常年在 0.69–0.80、中高在 0.18–0.29，
-           寫死係數的話這首會爆表卡在 1（上面那條就完全不動了），
-           換一首又會整個不動。改成追蹤各頻段自己的動態範圍：
-           遇到新極值快速跟上，平時緩慢回收，任何曲子都能撐滿 0–1。 */
-        const rawA=sb/8/255, rawB=sh/61/255;
-        /* 回收速率 0.006 而不是 0.0008：慢回收會讓 lo 卡在很久以前的最低點，
-           結果大部分訊號都擠在頂端（實測 lvA 常年 0.91–0.99，色塊只動 1px）。
-           快回收讓上下界貼著「最近這幾秒」的起伏走，擺幅才拉得開。 */
-        loA+=(rawA<loA?0.5:0.006)*(rawA-loA);
-        hiA+=(rawA>hiA?0.5:0.006)*(rawA-hiA);
-        loB+=(rawB<loB?0.5:0.006)*(rawB-loB);
-        hiB+=(rawB>hiB?0.5:0.006)*(rawB-hiB);
-        nb=Math.max(0,Math.min(1,(rawA-loA)/Math.max(0.03,hiA-loA)));
-        nh=Math.max(0,Math.min(1,(rawB-loB)/Math.max(0.03,hiB-loB)));
-      }
-      lvA=lvA*0.93+nb*0.07;           // 低頻：慢
-      lvB=lvB*0.74+nh*0.26;           // 中高頻：快
-      window.__lvA=lvA; window.__lvB=lvB;
-      // 底下三層色塊浪吃低頻，跟最上面那條水線同一個來源，整片海才是一起呼吸的
-      document.documentElement.style.setProperty('--surge',lvA.toFixed(3));
-      const lv=lvB;
-
-      tw+=0.016;
-      /* 這條浪刻意跟上面那條不同：波長更長、速度更慢、振幅更大、相位也錯開，
-         兩條才不會看起來像平行複製的同一條線。
-         發布成 window.__lower 讓泡沫那支直接呼叫——兩邊各自算會因為分屬
-         不同的 rAF 迴圈而走不同步，中間的泡沫就會對不準線。 */
-      /* 往「右」漂（+tw），跟上面那條反向；距離也拉近到 30px。
-         同向又離得遠＝兩條平行線；反向又靠近＝會互相穿插交錯。
-         靜止時兩條最近只差 4px 不會相交，音樂一起來就會明顯交疊。 */
-      const k=1+lv*1.5, ripple=lv*22, dy=30;
-      window.__lower=(x,hh)=> hh*0.40+dy
-             +Math.sin(x*0.0062+tw*0.48)*11*k
-             +Math.sin(x*0.016 +tw*0.85)*4.6*k
-             +Math.sin(x*0.045 +tw*2.2 )*ripple;
-      c.beginPath();
-      for(let x=0;x<=W;x+=4){
-        const y=window.__lower(x,H);
-        x?c.lineTo(x,y):c.moveTo(x,y);
-      }
-      c.strokeStyle="rgba(255,255,255,.62)"; c.lineWidth=1.8;
-      c.shadowColor="rgba(214,242,255,.75)"; c.shadowBlur=7;
-      c.stroke(); c.shadowBlur=0;
-    }
-    requestAnimationFrame(draw);
-  })();
 })();
 </script>
 <script>
