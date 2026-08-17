@@ -360,7 +360,10 @@ Promise.all([
     ['族群特別版', rows.length + ' 個'],
     ['有實物照', withPhoto + ' 個'],
     ['實物照張數', seenPhotos.size + ' 張'],
-    ['授權來源', new Set(Object.values(refs.refs).map(r => r.license)).size + ' 種']
+    // 只算真的展示出來的那些：data/costume-refs/ 裡可能留著暫時沒被引用的檔案
+    // （例如鄒族改畫現行族服後，1927 那兩張實穿照就先擱著），
+    // 拿 refs.refs 全部去算會連沒展示的授權也算進來。
+    ['授權來源', new Set([...seenPhotos].map(f => refs.refs[f]?.license).filter(Boolean)).size + ' 種']
   ].map(([k, v]) => `<div class="stat"><b>${v}</b><span>${k}</span></div>`).join('');
 }).catch(() => {
   document.getElementById('pairs').innerHTML =
