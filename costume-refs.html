@@ -209,8 +209,10 @@ code{font-size:.92em;background:#f2eee4;border-radius:3px;padding:.05em .35em}
 .sublab{font-size:.66rem;letter-spacing:.16em;font-weight:800;color:var(--amber);margin:0 0 .5rem}
 .pair ul{margin:.2rem 0 0 1.1rem;font-size:.84rem;color:var(--ink2)}
 .pair ul li{margin-bottom:.2rem}
-dialog{border:0;padding:0;background:#0b0f14;max-width:96vw;max-height:96vh}
-dialog img{max-width:96vw;max-height:92vh;display:block}
+/* margin:auto 是 dialog 自己置中的方式，但上面那條 *{margin:0} 會蓋掉它，
+   modal 就貼到 inset:0 的左上角去了。這裡補回來。 */
+dialog{border:0;padding:0;background:#0b0f14;margin:auto;max-width:96vw;max-height:96vh}
+dialog img{max-width:96vw;max-height:86vh;display:block}
 dialog figcaption{color:#cfd8e3;font-size:.78rem;padding:.6rem .9rem;background:#0b0f14}
 dialog::backdrop{background:rgba(6,14,24,.9)}
 </style>
