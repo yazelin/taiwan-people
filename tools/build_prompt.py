@@ -137,8 +137,17 @@ def costume_block(c):
     if p["motifs"]:
         parts.append("MOTIFS, and only these: " + "; ".join(p["motifs"]) + ". ")
     if p["rank"]:
-        parts.append("RANK AND ELIGIBILITY — this decides what she is allowed to wear: "
+        # rank 是整族的階級規範，同時寫著各階級各能穿什麼。當這一筆畫的是特定階級時，
+        # 那段裡「別的階級不可以穿什麼」會直接跟 outfit 打架——2026-08-17 排灣改畫貴族後
+        # 連跑兩輪紋飾一項都沒出來，就是因為 rank 裡的「平民不可飾以任何紋飾」還在，
+        # 而且它前面冠著「this decides what she is allowed to wear」，語氣比 outfit 更強。
+        # rank 本身是正確的族群知識不能刪，所以由 scene.rank_note 指明這一筆屬於哪一階級。
+        parts.append("RANK AND ELIGIBILITY — this is the people's rank system as a whole: "
                      + p["rank"] + " ")
+        note = c.get("scene", {}).get("rank_note")
+        if note:
+            parts.append("WHICH RANK THIS PICTURE SHOWS — read the paragraph above through this: "
+                         + note + " ")
     parts.append("Do not add ornament from any other Taiwanese people: no other people's "
                  "weave patterns, head-dress, feathers or bead work. ")
     # 實測兩張特別版都退回模型熟悉的「民族風／戲服」樣板：卑南族被畫成及地長袍長裙
@@ -163,14 +172,29 @@ def costume_block(c):
     # 禁掉紋樣等於禁掉這張圖存在的理由。要禁的從來不是「紋樣」，是
     # 「登記在案的特定作品」與「可辨識到單一部落的專屬紋章」。
     if c.get("scene", {}).get("costume_refs"):
+        # cut_only：照片跟這一筆的階級或場合對不上，只能拿來看剪裁。
+        # 排灣就是這種情形——找得到的女裝照片都是貴族盛裝，而這一筆畫平民，
+        # 平民不可飾以任何紋飾。這段通用文字原本一律要求「照著照片把紋飾畫出來」，
+        # 跟族別規格的「裝飾一律不取」在同一份 prompt 裡正面打架，
+        # 而排灣連跑三輪都畫錯。最後那句「文字與照片不符時以文字為準」
+        # 擋不住它——那是元規則，位置又在整段最後，份量遠不如前面那句「draw it」。
+        cut_only = c["scene"].get("costume_refs_cut_only")
         parts.append(
             "THE LAST REFERENCE IMAGE is a photograph of this actual garment as it is worn today. "
-            "Follow it for how the pieces are constructed and layered, the proportions (garment "
-            "lengths, how deep the trim bands are, how wide the panels are), how the colours are "
-            "distributed, AND the ornament actually visible on it — the bead work, the metal discs "
-            "and the way they are laid out along the bands. That patterning is the point of the "
-            "garment, not an optional extra: draw it. "
-            "Two things you must NOT take from it: do not reproduce it as a ceremonial or wedding "
+            + ("Take from it ONLY the CUT AND THE PROPORTIONS: how the pieces are constructed and "
+               "layered, the garment lengths, where the openings and slits fall, how the wrap "
+               "pieces sit under the outer one. Take NONE of its ornament, and none of its "
+               "colours: that photograph shows a garment of a DIFFERENT RANK OR OCCASION from the "
+               "one described in words above, and its decoration would be a false claim on this "
+               "character. The written description alone decides what pattern and what colour "
+               "this garment carries — and it says PLAIN. "
+               if cut_only else
+               "Follow it for how the pieces are constructed and layered, the proportions (garment "
+               "lengths, how deep the trim bands are, how wide the panels are), how the colours are "
+               "distributed, AND the ornament actually visible on it — the bead work, the metal discs "
+               "and the way they are laid out along the bands. That patterning is the point of the "
+               "garment, not an optional extra: draw it. ")
+            + "Two things you must NOT take from it: do not reproduce it as a ceremonial or wedding "
             "dress, and do not add any single crest or emblem that would mark one specific village "
             "rather than the people as a whole. "
             "Do NOT copy the person, face, pose, hairstyle, background or framing from it — "
@@ -181,11 +205,12 @@ def costume_block(c):
             "there. Do not lengthen the face, narrow the eyes, raise the cheekbones or make her "
             "look older — if the finished face would not be recognised as the same person as the "
             "character sheets, the picture is wrong. "
-            "Match the DENSITY of the ornament in the photographs, not just its motifs: where the "
-            "photograph shows a few separate ornaments on empty cloth, draw a few separate "
-            "ornaments on empty cloth. Filling the band with continuous bead lines or dense inlay "
-            "is a mistake even when every individual motif is correct. "
-            "Where the photograph and the written description disagree, the written description wins. ")
+            + ("" if cut_only else
+               "Match the DENSITY of the ornament in the photographs, not just its motifs: where the "
+               "photograph shows a few separate ornaments on empty cloth, draw a few separate "
+               "ornaments on empty cloth. Filling the band with continuous bead lines or dense inlay "
+               "is a mistake even when every individual motif is correct. ")
+            + "Where the photograph and the written description disagree, the written description wins. ")
     return "".join(parts)
 
 

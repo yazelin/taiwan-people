@@ -87,7 +87,7 @@ li{margin-bottom:3px}
 .gap{font-size:.76rem;color:var(--dim);margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
 .src{font-size:.7rem;color:var(--dim);margin-top:6px}
 .src a{color:#7fb3e0}
-dialog{border:0;background:#0b0f14;padding:0;max-width:96vw;max-height:96vh}
+dialog{border:0;background:#0b0f14;padding:0;margin:auto;max-width:96vw;max-height:96vh}
 dialog img{max-width:96vw;max-height:96vh;display:block}
 dialog::backdrop{background:rgba(0,0,0,.85)}
 </style></head><body>
@@ -113,8 +113,7 @@ dialog::backdrop{background:rgba(0,0,0,.85)}
                              f'<figcaption>{e(name)}</figcaption></figure>')
             parts.append('</div>')
         else:
-            parts.append('<div class="none">沒有實物照——排灣是刻意不用'
-                         '（平民不可飾以任何紋飾，正確答案是素面），其餘見 gaps</div>')
+            parts.append('<div class="none">沒有實物照，見 gaps</div>')
 
         if r["checks"]:
             parts.append('<div class="lab" style="margin-top:14px">驗收清單</div><ul>')
