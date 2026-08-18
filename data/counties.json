@@ -618,7 +618,7 @@
         "plants": [
           "茶花"
         ],
-        "hand": "a bowl of hakka lei-cha, thick pale-green ground tea, with a small dish of puffed rice",
+        "hand": "a bowl of hakka lei-cha, thick pale-green ground tea — ONE bowl only, nothing placed inside it and no second bowl or dish stacked in it",
         "hand_zh": "客家擂茶",
         "outfit_zh": "淺駝色針織開襟外套、白T（印茶花＝縣花）",
         "outfit": "a soft camel-coloured knitted cardigan worn open over a white tee printed with a camellia spray — the county flower — as a soft painterly botanical print with no text or lettering",
@@ -645,7 +645,8 @@
         "viewpoint_sees": "from here red-brick Hakka shophouses and tea rooms line both sides with tiled roofs layered behind and hills beyond",
         "costume_basis": "原本是北部客家大襟衫，已移到特別版（新竹縣・客家）。普通版一律當代穿著、不穿任何族群的傳統服飾：普通版說的是「阿蕊在這個地方」，不對任何族群下宣稱；要穿傳統服飾就得指名族群、附依據，那是特別版的事。",
         "right_zone_desc": "The right 40 percent is the hills beyond Beipu, built as THREE depth bands: pale sky graded warm toward the horizon in the upper 45 percent with thin cloud bands; three or four tea-covered ridgelines layered one behind another, each paler than the one in front, with mist pooling between them; and nearest the bottom edge only, the last tiled roof ridges of the old street. No large trees or dark foliage masses crossing this zone.",
-        "tote_print": "a camellia spray — pale pink rounded blooms with many overlapping petals and thick glossy leaves — as a soft painterly botanical print, no text, no letters, no border"
+        "tote_print": "a camellia spray — pale pink rounded blooms with many overlapping petals and thick glossy leaves — as a soft painterly botanical print, no text, no letters, no border",
+        "hand_basis": "**2026-08-19：原本寫成「a bowl of lei-cha with a small dish of puffed rice」，出圖畫成碗裡再放一個碗。**那句有歧義——爆米香在真實吃法裡是另外一小碟、客人自己撒進茶裡，但寫在同一個名詞片語裡就被讀成套疊的容器。已刪掉爆米香、只留一碗，並明講不可以在碗裡再放東西或疊第二個碗。"
       },
       "places": [
         "內灣老街",
@@ -2652,7 +2653,10 @@
           "data/costume-refs/saysiyat-waon-01-back.jpg",
           "data/costume-refs/saysiyat-02-longshirt.jpg",
           "data/costume-refs/saysiyat-03-redband.jpg"
-        ]
+        ],
+        "hand": "a small clear glass cup of Oriental Beauty tea — a clear amber-orange brew, no ice, no straw, nothing else in or beside the cup",
+        "hand_zh": "東方美人茶",
+        "hand_basis": "**不能沿用新竹縣的擂茶。**擂茶是客家食物，而同一個縣還有「新竹縣・客家」那一筆也拿同一碗；兩張並排時，等於把客家的東西掛在賽夏族身上。改成東方美人茶——同樣是新竹縣名產（該縣 foods 第三項），但屬於地方物產而非某一族群的食物。\n**判準（2026-08-19 使用者拍板）：紅線是「別族的食物」，當代食物本身不是問題。**所以草莓、釋迦、三星蔥、洛神花茶這些地方農產可以照用，高雄拉阿魯哇那筆的台式炸雞堡也維持不動——當代食物配傳統服飾可以是刻意的對比，真正不能做的是把 A 族的食物放進 B 族的手裡。"
       },
       "todo": [
         "對外發表前應請該族群或相關單位過目"
