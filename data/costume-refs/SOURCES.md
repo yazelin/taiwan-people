@@ -22,12 +22,16 @@
 | `saysiyat-waon-01-back.jpg` | 賽夏族雷女紋 wa:on 實穿背面：紅底白線的卍字紋嵌在菱格中連續鋪滿，上下各兩道窄幾何邊帶，上緣綴一排小鈴 | [數位島嶼](https://cyberisland.teldap.tw/P/vFrv) | 中央研究院數位文化中心（攝影 shiaochin） | CC BY-NC-SA 3.0 TW |
 | `saysiyat-02-longshirt.jpg` | 賽夏族無袖長衣整件平放：白麻布對襟無領無袖、胸前一道紅地紋樣帶 | [國家文化記憶庫](https://tcmb.culture.tw/zh-tw/detail?indexCode=MOCCOLLECTIONS&id=11000043876) | （記憶庫該筆） | CC BY 3.0 TW+ |
 | `saysiyat-03-redband.jpg` | 紅地紋樣帶特寫：○╳紋與細條紋，白麻底、紋樣帶內反過來是紅地白紋 | 同上 | 同上 | 同上 |
+| `saysiyat-04-kilakil-cc0.jpg` | 雷女紋 kilakil 織品特寫：紅底、菱形格內的卍字**白色與深藍兩色交錯**、格線由白色小圓點串成、上下窄織帶、末端白流蘇 | [維基共享資源](https://commons.wikimedia.org/wiki/File:%E8%B3%BD%E5%A4%8F%E6%97%8F%E7%B9%94%E7%B4%8B(%E9%9B%B7%E5%A5%B3%E7%B4%8B).jpg) | 維基共享資源使用者「宜蘭第一公民」自攝（順益台灣原住民博物館「勁樸有燦」臺灣原住民織繡研究展）| CC0 |
+| `saysiyat-05-donghe-robe.jpg` | 賽夏族東河社無袖長衣（複製品，原件 1930 年入藏臺北帝國大學）：上半白麻素面、下半整片紅白菱形密織紋、兩側夾黑白紅窄織帶 | [維基共享資源](https://commons.wikimedia.org/wiki/File:%E8%B3%BD%E5%A4%8F%E6%97%8F%E6%9D%B1%E6%B2%B3%E7%A4%BE%E7%84%A1%E8%A2%96%E9%95%B7%E8%A1%A3%EF%BC%88%E8%A4%87%E8%A3%BD%E5%93%81%EF%BC%89.jpg) | 同上（東河社即新竹州竹南郡蕃地ワロ社，正是本站畫的北群賽夏）| CC BY-SA 4.0 |
 | `amis-nanshi-01-headdress.jpg` | 南勢阿美女子服飾的頭飾單件：白絨毛冠、兩側紅穗、彩色絨球與珠串流蘇 | [國家文化記憶庫](https://tcmb.culture.tw/zh-tw/detail?indexCode=Culture_Object&id=287411) | 花蓮縣文化局（2005 年入庫，整組含頭飾、胸兜、上衣、攜物袋、2 條腰繩、2 塊方裙、護腿布、項鍊） | 數位物件 OGDL 1.0、描述文字 CC0 |
 | `amis-nanshi-02-worn.jpg` | 1983 年花蓮聯合豐年祭：三位女子穿著改良式阿美女服，補的是實物平放看不出的東西——頭飾戴起來的角度、紅上衣與頸飾的比例 | [國家文化記憶庫](https://tcmb.culture.tw/zh-tw/detail?id=516366&indexCode=Culture_Object) | 花蓮縣文化局（1983 年，花蓮市美崙田徑場） | 數位物件 CC BY-NC 3.0 TW+、描述文字 CC0 |
 | `amis-nanshi-03-headworn.jpg` | 同上的頭飾特寫：白絨毛冠、上排彩色絨球、兩側垂紅穗、下緣垂彩色珠串 | 同上 | 同上 | 同上 |
 | `cou-female-01-jacket.jpg` | 鄒族達邦社女子上衣整件：藍靛短身、V 領與袖口鑲白／黑／黃／紅多層織帶 | [維基共享資源](https://commons.wikimedia.org/wiki/File:%E9%84%92%E6%97%8F%E9%81%94%E9%82%A6%E7%A4%BE%E5%A5%B3%E5%AD%90%E4%B8%8A%E8%A1%A3.jpg) | 維基共享資源使用者「氏子」自攝（原件昭和四年／1929 年入藏臺北帝國大學） | CC BY-SA 4.0 |
 | `cou-female-02-collar.jpg` | V 領特寫：織帶的層數、寬度與色序 | 同上 | 同上 | 同上 |
 | `cou-female-03-cuff.jpg` | 袖口特寫：同一組織帶在袖端的排法 | 同上 | 同上 | 同上 |
+| `cou-female-06-mannequin.jpg` | 鄒族女子服飾人台全身：彩色毛線球頭冠與垂帶、寶藍色短外套、胸兜與白色菱形、黑裙配彩色織帶與白襬 | [維基共享資源](https://commons.wikimedia.org/wiki/File:%E9%84%92%E6%97%8F%E6%9C%8D%E9%A3%BE.jpg) | 維基共享資源使用者「宜蘭第一公民」自攝（凱達格蘭文化館藏，2023-01-05） | CC BY-SA 4.0 |
+| `cou-female-07-keoi.jpg` | 上半身特寫：胸兜 keo'i 的彩條排成**尖端朝上**的 ∧ 形、下方接**白色菱形**；紋樣只在袖子上——藍外套的袖子只到手肘，下面接一整條彩色橫條袖套 | 同上 | 同上 | 同上 |
 | `cou-female-04-skirt.jpg` | 下半身穿法：前片有紋的長布自腰垂至近腳踝，兩側與下襬露出深色底裙，兩層看得出來 | [維基共享資源](https://commons.wikimedia.org/wiki/File:Ladies_from_Hosa_no_Tfuya.jpg) | 《阿里山新高山景色寫真帖》林久三編，中央寫真館 1927 年出版第 15 頁｜特富野社女子三人實穿｜**黑白照，不可據以判斷顏色**；裙面為漢式印花布，與順益台灣原住民博物館藏 M108402「黑底＋紅布條＋白色十字繡菱形紋」那款不同，兩者都是鄒族女子長裙，年代與場合不同 | 公有領域（日本與美國均已進入公有領域，1927 年出版、作者不詳） |
 | `cou-female-05-wear.jpg` | 同上的全身：上衣、頭巾、裙的比例關係與實際穿法 | 同上 | 同上 | 同上 |
 | `paiwan-cut-01-lungpau.jpg` | 北部排灣族長衣的**形制**：立領、右開襟自領口斜向腋下、筒袖、衣長過膝 |[維基共享資源](https://commons.wikimedia.org/wiki/File:%E5%8C%97%E9%83%A8%E6%8E%92%E7%81%A3%E6%97%8F%E6%9C%8D%E9%A3%BE.jpg) | 維基共享資源使用者「宜蘭第一公民」自攝（展場）｜**照片上是貴族等級，只取形制不取裝飾** | CC BY-SA 4.0 |
