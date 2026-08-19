@@ -102,7 +102,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* ── nav ────────────────────────────────────────────────── */
 .nav{position:fixed;inset:0 0 auto;z-index:40;display:flex;align-items:center;gap:2.2rem;
-  padding:.9rem clamp(1rem,4vw,3.2rem);
+  padding:calc(.9rem + env(safe-area-inset-top)) clamp(1rem,4vw,3.2rem) .9rem;
   background:none}
 /* align-items 預設 stretch 會把 logo 橫向拉寬到跟副標齊寬，wordmark 會被壓扁 */
 /* flex:none 與 max-width:none 是一組，缺一個 logo 在窄視窗就會被壓扁：
@@ -223,7 +223,7 @@ section:has(>.hero){overflow-x:clip}
   /* logo 不能被壓扁，所以它佔的寬是實打實的 153px（2.6rem 高）。
      390px 螢幕塞不下 logo＋三個連結＋音樂鈕，只能一起縮：
      logo 降到 1.75rem（103px）、連結字級與左右留白同時收。 */
-  .nav{gap:.5rem;padding:.7rem .6rem}
+  .nav{gap:.5rem;padding:calc(.7rem + env(safe-area-inset-top)) .6rem .7rem}
   .brand img{height:1.75rem}
   .nav ul{gap:0;font-size:.68rem;flex-wrap:nowrap}
   /* 垂直 padding 撐到 44px 觸控高度；水平不動，390px 螢幕塞三個連結沒有餘裕 */
@@ -233,7 +233,7 @@ section:has(>.hero){overflow-x:clip}
 /* 更窄的機型（360 以下到 320）再收一階。垂直 padding 不動，觸控高度維持 45px。 */
 @media (max-width:400px){
   .brand img{height:1.5rem}
-  .nav{padding:.7rem .35rem;gap:.3rem}
+  .nav{padding:calc(.7rem + env(safe-area-inset-top)) .35rem .7rem;gap:.3rem}
   .nav ul{font-size:.63rem}
   .nav a{padding:.78rem .4rem}   /* 字級縮了，垂直 padding 補回來維持 44px 觸控高 */
 }
@@ -731,7 +731,7 @@ section:has(>.hero){overflow-x:clip}
     -webkit-backdrop-filter:blur(14px) saturate(1.1);backdrop-filter:blur(14px) saturate(1.1)}
   body.picking .mainmap{height:min(66vh,620px)}
   body.picking .insets{margin-top:.6rem}
-  body.picking .pickclose{position:fixed;top:.7rem;right:.7rem;z-index:81;
+  body.picking .pickclose{position:fixed;top:calc(.7rem + env(safe-area-inset-top));right:.7rem;z-index:81;
     display:grid;place-content:center;width:44px;height:44px;border-radius:50%;
     color:#dbeaf5;border:1px solid rgba(160,210,235,.45);background:rgba(8,32,58,.75);
     -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);cursor:pointer}
@@ -880,7 +880,7 @@ section:has(>.hero){overflow-x:clip}
   background:rgba(3,14,28,.94);backdrop-filter:blur(8px)}
 .lb[open]{display:grid}
 .lb img{max-width:96vw;max-height:94vh;border-radius:6px;box-shadow:var(--shadow)}
-.lb button{position:absolute;top:1.4rem;right:1.6rem;width:46px;height:46px;border-radius:50%;
+.lb button{position:absolute;top:calc(1.4rem + env(safe-area-inset-top));right:1.6rem;width:46px;height:46px;border-radius:50%;
   border:1px solid rgba(255,255,255,.35);display:grid;place-content:center}
 </style>
 </head>
