@@ -745,13 +745,13 @@
         "hero_landmark": "龜山島",
         "hero_landmark_en": "Guishan Island, an ISLAND lying OFFSHORE in open water about ten kilometres out, with sea all the way around it and nothing joining it to the land — no road, no beach, no causeway, no harbour at its foot. It is small and far, sitting low between sea and sky. Its silhouette has THREE parts, read from left to right: (1) at the LEFT end a rounded cone that is clearly LOWER than the main mass and set apart from it by a dip — that is the turtle's HEAD, and it points LEFT; (2) the main body, one tall peak, the highest thing on the island — the shell; (3) from the right end a very long, very low gravel spit running out just above the waterline until it disappears — the tail. The head must NOT be drawn taller than the shell.",
         "others_en": [
-          "Taipingshan's cypress forest and mountain railway in drifting cloud",
-          "the Dongshan River's wide green channel with its arched bridges"
+          "Wushi Harbour just along the shore with the Lanyang Museum beside it — a single wedge-shaped building whose roof slopes down to the water, its form taken from the cuestas of this coast, sitting low against the harbour",
+          "the flat sand of the Wai-ao beach running south from the harbour mouth, with the coastline and its long sand bar reaching away down the plain"
         ],
         "light": "east",
         "accessories": "a green jade pendant on a cord, a beaded wrist strand, and a small woven bamboo basket hanging from her arm",
         "viewpoint": "standing on the shore of the Toucheng coast facing the Pacific",
-        "viewpoint_sees": "from here the sea opens out to the horizon and Guishan Island floats OFFSHORE on it — an island in open water, ten kilometres out, small and far, with sea on every side of it and no road, beach or spit connecting it to the shore. Seen from this stretch of coast the turtle faces LEFT: a low rounded head at the left end, set apart by a dip from the tall single peak of the shell, and a very long low tail spit trailing off to the right just above the water. Fishing boats lie nearer in, and the dark ridge of the Central Range stands behind to the west. The island must NOT be drawn as a headland or cape attached to the mainland.",
+        "viewpoint_sees": "from here the sea opens out to the horizon and Guishan Island floats OFFSHORE on it — an island in open water, ten kilometres out, small and far, with sea on every side of it and no road, beach or spit connecting it to the shore. Seen from this stretch of coast the turtle faces LEFT: a low rounded head at the left end, set apart by a dip from the tall single peak of the shell, and a very long low tail spit trailing off to the right just above the water. Fishing boats lie nearer in, and a dark mountain ridge stands behind to the west, closing off the plain. The island must NOT be drawn as a headland or cape attached to the mainland.",
         "right_zone_desc": "The right 40 percent is the open Pacific seen from the Toucheng shore: a broad band of water with long low swells and a clean high horizon, and Guishan Island small and pale on that horizon — an offshore island with water all around it, its low head at the left, its single tall shell peak, and its long low tail spit to the right, all readable but far away and low in contrast. Quiet because text goes over it, but real water with gradation, NOT a flat empty area and NOT a big green mass filling the zone."
       },
       "places": [
@@ -769,7 +769,9 @@
         "六項全部確認。三星蔥產於三星鄉。",
         "造型讀自原海報人物區；衣服上的縣市名字樣未取（新底圖的印花不能有文字）。",
         "龜山島從第一版就畫成接在陸地上的岬角（普通版與噶瑪蘭特別版都是），沒有龜首龜尾、底下還有公路與漁港連回岸邊。量測抓不到這種錯：它只量亮度與結構，不會問「這是不是那座島」。\n2026-08-11 改對三件：**離岸**（四周是水、沒有東西連回陸地）、**距離**（十公里外，小而遠）、**三段式輪廓**（低圓的龜首＋以鞍部分開的單一高峰龜甲＋極低長的龜尾砂嘴）。\n**龜首不是最高的**：龜甲 398 公尺才是最高點，龜首 239 公尺、明顯較低。先前寫「一端高圓的龜頭」是錯的。\n**朝左還是朝右取決於站在哪裡**：島本身龜首朝東、龜尾朝西，但蘭陽平原海岸線呈 C 型，頭城竹安里以北看龜頭偏左、竹安以南偏右。本專案的 viewpoint 寫的是頭城海岸，屬竹安以北，所以畫成龜首朝左；宜蘭縣徽也是朝左（縣府民政處的說法是取「北上遊子從石城進入宜蘭第一眼」的角度）。要改成多數蘭陽平原居民印象中的朝右，就得把視點南移到壯圍或五結，那會連地標與構圖一起動。",
-        "2026-08-11 用 --fix-landmark-shape 重畫主地標。那個模式是給「畫面是好的、但地標畫錯了」用的：重生的兩個候選島畫對了，卻把髮上的國蘭退化成櫻花狀的圓瓣白花，等於用好的換壞的。實測 codex 收到這種 precise-object-edit 的 prompt 時會整張重畫一次：但因為 image 1 就是現行底圖，人物、髮花、服裝、前景蘭花都留住了，只有地標與左側背景換掉。"
+        "2026-08-11 用 --fix-landmark-shape 重畫主地標。那個模式是給「畫面是好的、但地標畫錯了」用的：重生的兩個候選島畫對了，卻把髮上的國蘭退化成櫻花狀的圓瓣白花，等於用好的換壞的。實測 codex 收到這種 precise-object-edit 的 prompt 時會整張重畫一次：但因為 image 1 就是現行底圖，人物、髮花、服裝、前景蘭花都留住了，只有地標與左側背景換掉。",
+        "2026-08-20 修掉地標與視點打架。others_en 原本寫太平山的檜木林與山地鐵道、冬山河的寬闊河道與拱橋，但視點在頭城海岸面朝太平洋：太平山在深山裡，冬山河在二十公里外的平原南段，從那裡兩個都看不到。這跟台北那次「陽明山＋北投＋101 同框」是同一個病灶。\n改成從那片海岸真的看得到的兩樣：烏石港與旁邊的蘭陽博物館（單面山造型、屋頂斜向水面），以及外澳的平坦沙灘往南延伸的海岸與沙汕。龜山島直線距離烏石港約十公里，維持主地標不變。\n順帶拿掉一個沒查證的說法：viewpoint_sees 原本寫背後西邊是「中央山脈」。蘭陽平原西北側是雪山山脈、西南側才是中央山脈，而頭城在最北端，查不到明確寫哪一條，所以改成不指名的「西邊的暗色山稜」。",
+        "改完重生三輪，第三輪三次都撞到長寬比守門（同一個 size 參數會回不同比例，gen_remote.py 註解裡記著這件事），取第一輪。畫面上是烏石港的漁船與防波堤、左側一棟斜屋頂的量體、往南延伸的沙灘，太平山的山地鐵道與冬山河的拱橋都不見了。龜山島維持在右側海平面上、四周都是水。"
       ],
       "traits": [
         "純淨",
@@ -785,9 +787,7 @@
         "宜蘭牛舌餅"
       ],
       "quote_basis": "段落卡原句",
-      "todo": [
-        "landmarks 寫著太平山與冬山河，但 viewpoint 是頭城海岸面向太平洋：從那裡看不到深山裡的太平山，也看不到二十公里外的冬山河。這跟台北那次（陽明山＋北投＋101 同框）是同一個病灶，只是沒被抓到過。兩條路擇一：把視點改成看得到三者的位置（很可能不存在），或把 landmarks 收斂成從頭城海岸真的看得到的東西（龜山島、漁港、蘭陽平原海岸線），places 那一列在卡片上是給人看的，可以維持三個代表地標不動"
-      ]
+      "todo": []
     },
     {
       "id": "miaoli",
