@@ -1171,10 +1171,23 @@ if ("serviceWorker" in navigator) {
   });
 }
 </script>
-<!-- 這一頁刻意不放 promo-footer 的 BMC 注意力 script（會跳動、會彈出求抖內對話泡）。
-     這頁與 costume-refs.html 是請族人幫忙挑錯用的，請益文的連結就指向這裡。
+<script>
+/* 訪客計數，從 promo-footer script 拆出來單獨保留。這頁拿掉的是 BMC 注意力效果，
+   不是計數——計數原本就刻意與視覺效果解耦（連 prefers-reduced-motion 的訪客都要算），
+   只送站名，後端只記「哪天、哪站、幾次」，不存 IP、不設 cookie、不給識別碼。
+   這兩頁正是請益文指向的頁面，拿掉計數就永遠不知道族人有沒有點進來看。 */
+try{if(location.hostname==="yazelin.github.io"&&navigator.sendBeacon)navigator.sendBeacon("https://k-rider-api.yazelinj303.workers.dev/hit?s=taiwan-people")}catch(e){}
+</script>
+<!-- 這一頁刻意不放 yz-promo-footer 的 BMC 注意力 script（會跳動、會彈出求抖內對話泡）。
+     這頁與 costume-refs.html 是請族人幫忙挑錯用的，請益文的連結就指向這兩頁。
      請人免費花時間看的頁面上主動要贊助，觀感是壞的。footer 的四個連結留著，
-     那是出處與作者資訊，安靜地放著沒有問題。
-     要恢復就重跑 python3 ~/.claude/skills/promo-footer/apply.py <檔名> taiwan-people。 -->
+     那是出處與作者資訊，安靜地放著沒有問題。上面那段獨立的 sendBeacon 是訪客計數，
+     跟注意力效果無關，要留著。
+     若這條註解下方出現 yz-promo-footer 的完整 script，代表有人重跑了 apply.py
+     把它加回來（apply.py 的 fallback 會插在 body 結尾標籤前、也就是本註解之後）——
+     那不是這頁該有的狀態，請把 script 拿掉並回顧這條決定。
+     真的要恢復注意力效果：python3 ~/.claude/skills/promo-footer/apply.py <檔名> taiwan-people，
+     然後**必須**跑 python3 tools/build_sw.py 重算 SHELL_V 並一起 commit——
+     這兩頁都在 sw.js 的 PRECACHE 裡，版號不動的話回訪者永遠看不到新版，沒有任何徵兆。 -->
 </body>
 </html>
