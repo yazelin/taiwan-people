@@ -132,12 +132,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   border:1px solid transparent;transition:.3s;
   text-shadow:0 1px 4px rgba(2,14,30,.92),0 0 14px rgba(2,14,30,.7)}
 .nav a:hover{border-color:rgba(255,255,255,.34);background:rgba(255,255,255,.1)}
+/* 資料站是換頁的門，跟前三個跳段錨點用細直線隔開 */
+.nav ul .ext{border-left:1px solid rgba(255,255,255,.35);padding-left:.7rem;margin-left:.35rem}
 .nav a[aria-current="true"]{border-color:rgba(255,255,255,.55);
   background:rgba(255,255,255,.16);backdrop-filter:blur(8px);
   box-shadow:0 4px 16px -6px rgba(4,30,60,.5),inset 0 1px 0 rgba(255,255,255,.35)}
 @media (max-width:860px){.nav ul{gap:.2rem;font-size:.8rem}.nav a{padding:.35rem .7rem}
   .brand small{display:none}}
-@media (max-width:560px){.nav ul li:nth-child(n+4){display:none}}
+/* 原本手機藏第 4 項起（當時那是三個跨頁連結）。現在第 4 項是唯一的資料站入口，要留著，四項在 .68rem 下放得進 390px。 */
 
 /* ── page dots ──────────────────────────────────────────── */
 .dots{position:fixed;right:clamp(.6rem,1.6vw,1.6rem);top:50%;translate:0 -50%;z-index:40;
@@ -895,13 +897,14 @@ section:has(>.hero){overflow-x:clip}
 
 <nav class="nav">
   <div class="brand"><img src="img/logo-white.webp" width="2036" height="555" alt="台灣人代表"><small>PEOPLE OF TAIWAN</small></div>
+  <!-- 本頁三段錨點＋一個「資料站」入口（2026-08-21 拍板）。
+       五個資訊頁已有統一的全站層 nav 互通，首頁只需要一個門，預設開服飾依據；
+       之前這裡混了三個跨頁連結而且只連到部分頁，正是資訊頁那邊整理掉的亂。 -->
   <ul>
     <li><a href="#home">首頁</a></li>
     <li><a href="#explore">探索各地代表</a></li>
     <li><a href="#about">關於系列</a></li>
-    <li><a href="costume.html">服飾依據</a></li>
-    <li><a href="newcomers.html">新住民人數</a></li>
-    <li><a href="counties.html">縣市依據</a></li>
+    <li class="ext"><a href="costume.html">資料站</a></li>
   </ul>
   <button id="mus" class="mus" aria-label="播放背景音樂" aria-pressed="false" title="背景音樂">
     <svg class="i-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
