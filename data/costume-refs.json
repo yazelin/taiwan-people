@@ -198,25 +198,60 @@
       "license": "CC BY-SA 4.0"
     },
     "hakka-beike-01-collar.jpg": {
-      "desc": "北客大襟衫的領口與大襟走向：黑緞鑲緄自領口沿右大襟斜下",
+      "desc": "北客大襟衫的領口與大襟走向：黑緞鑲緄自領口沿右大襟斜下 【未使用：這件國史館「客家婦女禮服大襟衫」是黑緞鑲緄外加單條寬 4 公分提花織帶，與本站兩筆改用的兩件（新竹的如意雲頭圖案布多道緄邊、苗栗的黑配水藍雙道無闌干）在同一個部位各說一套，三件一起餵會讓緄邊沒有單一依據。留檔備查——直布扣的位置（頷下、大襟、腋下、脇邊）與袖口反折約 24 公分這兩項尺寸仍以它為準，那是寫在規格文字裡，不靠圖。】",
       "source": "國家文化記憶庫",
       "url": "https://tcmb.culture.tw/zh-tw/detail?indexCode=MOCCOLLECTIONS&id=107000025958",
       "holder": "國史館臺灣文獻館（該頁明寫「此件服裝應屬於北部客家婦女的禮服」）",
       "license": "數位物件 CC BY-NC 3.0 TW+、描述文字 CC BY 3.0 TW+"
     },
     "hakka-beike-02-cuff.jpg": {
-      "desc": "袖口反折處：黑緞鑲緄與寬 4 公分的藍紫色提花織帶",
+      "desc": "袖口反折處：黑緞鑲緄與寬 4 公分的藍紫色提花織帶 【未使用：同 hakka-beike-01。】",
       "source": "國家文化記憶庫",
       "url": "https://tcmb.culture.tw/zh-tw/detail?indexCode=MOCCOLLECTIONS&id=107000025958",
       "holder": "國史館臺灣文獻館（該頁明寫「此件服裝應屬於北部客家婦女的禮服」）",
       "license": "數位物件 CC BY-NC 3.0 TW+、描述文字 CC BY 3.0 TW+"
     },
     "hakka-beike-03-shape.jpg": {
-      "desc": "整件平放輪廓（中央有典藏單位浮水印，只當形制參考）",
+      "desc": "整件平放輪廓（中央有典藏單位浮水印，只當形制參考） 【未使用：同 hakka-beike-01。】",
       "source": "國家文化記憶庫",
       "url": "https://tcmb.culture.tw/zh-tw/detail?indexCode=MOCCOLLECTIONS&id=107000025958",
       "holder": "國史館臺灣文獻館（該頁明寫「此件服裝應屬於北部客家婦女的禮服」）",
       "license": "數位物件 CC BY-NC 3.0 TW+、描述文字 CC BY 3.0 TW+"
+    },
+    "hakka-north-04-yuntou.jpg": {
+      "desc": "北客大襟衫**如意雲頭**式的領襟：緄邊由粗細不同的布層層並排（粉紅底白點的圖案布為主，各道之間夾水藍細線），自立領向右斜掃過胸前成雲頭狀。這一件完全沒有黑緞",
+      "source": "國家文化記憶庫",
+      "url": "https://tcmb.culture.tw/zh-tw/detail?indexCode=MOCCOLLECTIONS&id=107000027594",
+      "holder": "國史館臺灣文獻館（該頁明寫「本物件為臺灣北部客家女性大襟衫」，並記北客襟頭已出現如意雲紋等複雜裝飾、牙子花色較繁複，式樣比南客更有變化）",
+      "license": "數位物件 CC BY-NC 3.0 TW+、描述文字 CC BY 3.0 TW+"
+    },
+    "hakka-north-05-cuff.jpg": {
+      "desc": "同一件的袖口：同一組圖案布緄邊在袖端排成寬帶，中間夾水藍細線",
+      "source": "國家文化記憶庫",
+      "url": "https://tcmb.culture.tw/zh-tw/detail?indexCode=MOCCOLLECTIONS&id=107000027594",
+      "holder": "國史館臺灣文獻館（該頁明寫「本物件為臺灣北部客家女性大襟衫」，並記北客襟頭已出現如意雲紋等複雜裝飾、牙子花色較繁複，式樣比南客更有變化）",
+      "license": "數位物件 CC BY-NC 3.0 TW+、描述文字 CC BY 3.0 TW+"
+    },
+    "hakka-north-06-shape.jpg": {
+      "desc": "同一件的整件平放輪廓（中央有典藏單位浮水印，只當形制與比例參考）",
+      "source": "國家文化記憶庫",
+      "url": "https://tcmb.culture.tw/zh-tw/detail?indexCode=MOCCOLLECTIONS&id=107000027594",
+      "holder": "國史館臺灣文獻館（該頁明寫「本物件為臺灣北部客家女性大襟衫」，並記北客襟頭已出現如意雲紋等複雜裝飾、牙子花色較繁複，式樣比南客更有變化）",
+      "license": "數位物件 CC BY-NC 3.0 TW+、描述文字 CC BY 3.0 TW+"
+    },
+    "hakka-north-07-indanthrene.jpg": {
+      "desc": "另一件北客大襟衫的整件平放：陰丹士林青棉布、小立領、右大襟自領口彎向右腋、衣長過臀（中央有典藏單位浮水印）",
+      "source": "國家文化記憶庫",
+      "url": "https://tcmb.culture.tw/zh-tw/detail?indexCode=MOCCOLLECTIONS&id=11000011845",
+      "holder": "國立臺灣歷史博物館（推測 1940–1950 年；該頁記「多層次鑲緄小立領」「大襟處的黑色和水藍色鑲緄，**未加闌干**」「頷下、大襟、腋下以及脇邊都是以直布扣絆作扣合」「袖子反折成為挽袖口袋」）",
+      "license": "CC BY 3.0 TW+"
+    },
+    "hakka-north-08-collar.jpg": {
+      "desc": "同一件的領口與大襟特寫：黑與水藍兩道鑲緄並排，外緣沒有提花織帶",
+      "source": "國家文化記憶庫",
+      "url": "https://tcmb.culture.tw/zh-tw/detail?indexCode=MOCCOLLECTIONS&id=11000011845",
+      "holder": "國立臺灣歷史博物館（推測 1940–1950 年；該頁記「多層次鑲緄小立領」「大襟處的黑色和水藍色鑲緄，**未加闌干**」「頷下、大襟、腋下以及脇邊都是以直布扣絆作扣合」「袖子反折成為挽袖口袋」）",
+      "license": "CC BY 3.0 TW+"
     },
     "tayal-beishi-female-01-set.jpg": {
       "desc": "泰雅族北勢群女子禮服整體：紅底密織多色帶狀紋有袖短上衣、黑袖口、多層帶紋片裙與綁腿、織帶頭飾垂紅流蘇",
