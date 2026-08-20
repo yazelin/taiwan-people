@@ -9,7 +9,7 @@
  * 手動 bump 的遲早會忘記，而忘記的症狀是「使用者永遠看不到新版」，沒有任何徵兆。
  */
 const SHELL_V = "shell-10afc9a";
-const ASSET_V = "asset-5263346";
+const ASSET_V = "asset-b439ace";
 
 // 前綴要跨專案唯一。CacheStorage 是 per-origin，yazelin.github.io 底下所有專案
 // 共用同一份；SW 的 scope 只管 fetch，管不到快取。用兩個字母的前綴很容易撞到別站。
@@ -113,6 +113,11 @@ self.addEventListener("activate", (e) => {
 const isAsset = (url) =>
   /\.(webp|png|jpg|jpeg|svg|mp3|m4a|woff2?)$/i.test(url.pathname);
 
+/* 會被同名覆蓋的圖：縣市底圖 img/<id>-base.webp。這些走 stale-while-revalidate，
+   其餘資產維持 cache-first。判斷用路徑而不是列舉檔名，新增特別版才不會漏。 */
+const isVolatileImage = (url) =>
+  /\/img\/[^/]+-base\.webp$/i.test(url.pathname);
+
 /* GitHub Pages 對每個檔都回 Vary: Accept-Encoding。
    ignoreVary 照加（無害、成本零），但別把它當保證——實測把它拿掉之後預設比對照樣命中，
    真正治好媒體播不出來的可能是下面的 206 合成。會不會播只有真的 decode 過才知道。
@@ -201,7 +206,33 @@ self.addEventListener("fetch", (e) => {
     return;
   }
 
-  // 圖與音：cache-first，看過就留著。內容換了就換檔名（底圖本來就是這個慣例）。
+  /* 縣市底圖：stale-while-revalidate。先回快取（畫面一樣快），同時背景抓一份新的存起來，
+     下次進來就是新的。
+
+     為什麼只有這一類特別處理：其餘資產走 cache-first，前提是「換內容就換檔名」，
+     而底圖不吃這條——同一個 <id>-base.webp 會被反覆重畫覆蓋（2026-08 那批特別版
+     光賽夏就重跑了十幾輪）。cache-first 對這種用法會一直給回訪者舊圖，
+     而且完全沒有徵兆：伺服器是新的、md5 對得上、無痕視窗看也是新的，
+     只有裝過 SW 的那個瀏覽器永遠停在舊版。
+
+     ASSET_V 換版時 activate 會清掉整包舊快取，理論上也能救，但那要等新 SW 真的
+     activate；而 GitHub Pages 給 sw.js 的是 max-age=600，推版後十分鐘內開的人
+     根本拿不到新的 sw.js，於是舊 SW continues 服務舊圖。SWR 不依賴換版就能自癒。 */
+  if (isVolatileImage(url)) {
+    e.respondWith((async () => {
+      const hit = await ownMatch(req);
+      // 背景更新要掛在 waitUntil 上，否則回應送出後 SW 可能被回收，put 靜靜失敗
+      const fresh = fetch(req).then(async (res) => {
+        if (res && res.ok) await put(ASSET, req, res.clone());
+        return res;
+      }).catch(() => null);
+      if (hit) { e.waitUntil(fresh); return hit; }
+      return (await fresh) || Response.error();
+    })());
+    return;
+  }
+
+  // 其他圖與音：cache-first，看過就留著。內容換了就換檔名（底圖以外本來就是這個慣例）。
   if (isAsset(url)) {
     e.respondWith((async () => {
       const range = req.headers.get("range");

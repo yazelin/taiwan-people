@@ -1082,3 +1082,21 @@ timeout 900 bash tools/gen.sh "$out" "$prompt" $refs || continue   # 卡住就�
 
 **推論**：凡是「靠人記得改版號」的機制都會壞，而且壞得沒有徵兆。
 驗收「線上是不是真的換了」不能只 `curl` 檔案，要用**帶著舊 SW 的瀏覽器**開。
+
+### 續集：換版號能治，但每次都要全站付 13MB
+
+2026-08-19 使用者在線上看到的拉阿魯哇還是舊的海邊那張，而 `curl` 下來的是新的山谷。
+查下去，`ASSET_V` 那套其實有運作（圖換的那個 commit 版號也跟著換了），
+問題出在它要等新的 `sw.js` 被抓到、新 SW 真的 activate，而 GitHub Pages 給 `sw.js`
+的是 `max-age=600`——推上去之後的那十分鐘，舊 SW 還在服務舊圖。
+
+現在 `img/*-base.webp` 改走 **stale-while-revalidate**：先回快取（畫面一樣快），
+同時背景抓新的存起來，下次進來就是新的。不必等換版號，也不會拖著整包一起重抓。
+其他資產維持 cache-first——那些是真的「換內容就換檔名」。
+
+連帶：`ASSET_V` 不再把底圖算進去。以前改一張圖就等於叫所有人重抓 13.3MB 的離線包，
+而每次重寫整包都在製造掉檔窗口（`cache.put` 失敗是靜默的，排最後的音檔最容易掉）。
+
+驗收跑 `NODE_PATH=/home/ct/mycelium/node_modules node tools/check_sw_swr.mjs . --port=8144`：
+它裝上 SW、在伺服器端把同一個底圖換掉內容、再進站，看回訪者第二次拿不拿得到新的位元組。
+負控制在那支檔案的開頭寫著（把 `isVolatileImage` 分支停掉，它必須紅）。

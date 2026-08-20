@@ -18,8 +18,11 @@ ASSET_V 本來是手動的，理由寫著「底圖採換內容就換檔名的慣
 全都還是舊圖——包括那些修正過的服飾。這正是本檔開頭說的那種最惡劣的症狀：
 沒有徵兆，本機也測不出來。所以 ASSET_V 也改成從內容算。
 
-代價要知道：任何一張圖換內容，整份離線包的快取都會被丟掉重抓（13MB）。
-比起讓人看到錯的服飾，這個代價值得。
+代價本來很重：任何一張圖換內容，整份離線包的快取都會被丟掉重抓（13MB）。
+2026-08-20 把 `img/*-base.webp` 改成 stale-while-revalidate 之後，那些底圖
+自己會更新，不必再靠丟掉整包來換，所以 ASSET_V 也不再把它們算進去
+——只算「換內容就得換整包」的那些（icon、og 圖、音檔、草稿以外的其他圖）。
+底圖有沒有真的更新到，由 tools/check_sw_swr.mjs 顧。
 """
 import hashlib
 import json
@@ -83,8 +86,13 @@ print(f"ASSET_LIST → {len(assets)} 個檔、{mb:.1f} MB")
 # 免得草稿版本（img/*-v2.webp 之類，.gitignore 擋掉的）也算進去，害版號亂跳。
 tracked = subprocess.run(["git", "-C", str(ROOT), "ls-files", "img", "audio"],
                          capture_output=True, text=True).stdout.split()
+# 底圖（img/<id>-base.webp）不算進去：它們走 stale-while-revalidate，換了內容自己會更新。
+# 算進去的話，每改一張圖就等於叫所有人重抓 13MB 的離線包，而且每次重寫整包
+# 都在製造掉檔窗口（cache.put 失敗是靜默的，排最後的音檔最容易掉）。
+BASE_IMG = re.compile(r"^img/[^/]+-base\.webp$", re.I)
 media = sorted(f for f in tracked
-               if f.lower().endswith((".webp", ".png", ".jpg", ".jpeg", ".svg", ".mp3", ".m4a")))
+               if f.lower().endswith((".webp", ".png", ".jpg", ".jpeg", ".svg", ".mp3", ".m4a"))
+               and not BASE_IMG.match(f))
 ha = hashlib.sha256()
 for f in media:
     ha.update(f.encode())
@@ -93,7 +101,7 @@ aver = "asset-" + ha.hexdigest()[:7]
 src, n = re.subn(r'const ASSET_V = "[^"]*";', f'const ASSET_V = "{aver}";', src, count=1)
 if n != 1:
     sys.exit("在 sw.js 裡找不到 ASSET_V")
-print(f"ASSET_V → {aver}（{len(media)} 個圖與音檔）")
+print(f"ASSET_V → {aver}（{len(media)} 個圖與音檔，底圖走 SWR 不計入）")
 
 ver = "shell-" + h.hexdigest()[:7]
 new, n = re.subn(r'const SHELL_V = "[^"]*";', f'const SHELL_V = "{ver}";', src, count=1)
