@@ -863,6 +863,11 @@ th{font-size:.7rem;letter-spacing:.16em;color:var(--ink3);white-space:nowrap;
   border-bottom-color:var(--line)}
 tr:last-child td{border-bottom:0}
 td:last-child{color:var(--ink2);white-space:nowrap}
+/* 看實物那張表的末欄是整句的「說明」，nowrap 會把它撐成 1600px 寬、
+   把前兩欄擠到 57px 一字一行（實測列高 418px）。這張表允許折行。 */
+.notes td:last-child{white-space:normal;min-width:22em}
+.notes td:first-child{white-space:nowrap}
+.notes td:nth-child(2){min-width:13em}
 .kind{font-size:.71rem;line-height:1.7;border-radius:3px;padding:0 .4rem;border:1px solid var(--line);white-space:nowrap}
 .kind.official{color:var(--blue);border-color:#bcd6e6;background:#f2f8fc}
 .kind.museum{color:var(--amber);border-color:#e7dcbd;background:#fbf7ea}
@@ -985,7 +990,7 @@ code{font-size:.92em;background:#f2eee4;border-radius:3px;padding:.05em .35em}
       <h2>看實物的地方</h2>
       <p>上面那張表是文字依據，這裡是影像依據。有色卡的棚拍照才談得上顏色，隔玻璃的展櫃照與插畫都不行。這裡只放連結、不存圖：各館的圖像重製都要另行申請授權，多數收費，但為了查證而瀏覽不需要申請。</p>
     </div>
-    <div class="srctable">
+    <div class="srctable notes">
       <table>
         <thead><tr><th>單位</th><th>入口</th><th>說明</th></tr></thead>
         <tbody id="colbody"></tbody>
