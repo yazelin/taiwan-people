@@ -2556,7 +2556,34 @@
           "data/costume-refs/hlaalua-female-02-headdress.jpg",
           "data/costume-refs/hlaalua-female-03-sash.jpg"
         ],
-        "tote": false
+        "tote": false,
+        "landmarks": [
+          "荖濃溪上游河谷",
+          "桃源區的山地部落",
+          "南橫公路沿線山稜"
+        ],
+        "landmarks_en": [
+          "the upper Laonong River winding through a deep mountain valley, pale grey boulders in a braided riverbed far below",
+          "a small mountain settlement of low houses on a river terrace, seen at a distance among trees",
+          "the forested ridges of the Southern Cross-Island Highway country receding in layers"
+        ],
+        "viewpoint": "standing on a mountain road above the upper Laonong River in Taoyuan District, Kaohsiung — the Hla'alua homeland. **THE CAMERA IS AT HER EYE HEIGHT.** Forested slopes rise on the LEFT and behind her; ahead the valley opens with the braided river far below and ridge behind ridge fading into haze.\n**THE RIGHT 40 PERCENT CARRIES NOTHING BUILT** — no roof, no house, no wall, no lamp post and no figure; it is ridges, river haze and sky only.\n**THIS IS DEEP MOUNTAIN COUNTRY, ABOUT 100 KM INLAND: there is NO coast, NO harbour, NO breakwater, NO city and NO sea anywhere in the picture.**",
+        "right_zone": "sky",
+        "hero_landmark_en": "the upper Laonong River valley — a broad braided riverbed of pale grey boulders far below, with forested mountain walls rising steeply on either side into drifting mist",
+        "viewpoint_sees": "from here the valley opens downstream, ridge behind ridge fading into blue haze, with a small settlement of low houses on a river terrace far below among the trees",
+        "viewpoint_support_en": [
+          "forested slopes of the Southern Cross-Island Highway country, layered ridges receding into haze",
+          "a narrow mountain road cut into the slope, edged with a low stone wall",
+          "clumps of bamboo and tree ferns at the roadside"
+        ],
+        "others_en": [
+          "forested slopes of the Southern Cross-Island Highway country, layered ridges receding into haze",
+          "a narrow mountain road cut into the slope, edged with a low stone wall",
+          "clumps of bamboo and tree ferns at the roadside"
+        ],
+        "tote_print": "a complete wordless illustration of a mountain river valley — braided pale riverbed between forested ridges, drawn in soft blue-green",
+        "foreground_layout": "The mountain road and its low stone edging are confined entirely to x=0–56 percent beneath and left of her, then exit through the bottom edge before x=56 percent. From x=60 percent all the way to the right edge the ground falls away into the valley",
+        "right_zone_desc": "The right 40 percent is the Laonong valley falling away below this same mountain road, built as FOUR depth bands. (1) Open sky fills the upper 45 percent, graded from soft blue to warm pale haze, with two or three thin cloud bands. (2) Along the horizon, layered ridges as pale blue silhouettes, each paler than the one in front. (3) Mid-slope forest in soft value bands with mist lying in the folds. (4) At the very bottom edge only, the pale braided riverbed catching warm light. No buildings, no roofs, no figures, no vehicles and no hard dark shapes anywhere in this zone"
       },
       "todo": [
         "拉阿魯哇族「男女傳統服飾」已登記智慧創作專用權（拉 H000073），範圍涵蓋女性。畫面上的紋樣要對回該筆公告確認，必要時取得同意",
@@ -2565,7 +2592,8 @@
       ],
       "notes": [
         "這是資料集裡法律依據最明確的一筆，形制錯了特別難看。出圖必跑 --checklist。"
-      ]
+      ],
+      "costume_basis": "\n\n**2026-08-20：視點從西子灣防波堤改成族人自己的土地。**先前這一筆完全繼承高雄市的地標（西子灣、蓮池潭、旗津），視點是「站在西子灣防波堤」——**把一個住在深山的族群放到高雄港邊**。\n依原住民族委員會，拉阿魯哇族分布於**高雄市桃源區高中里、桃源里，以及那瑪夏區瑪雅里**（荖濃溪上游山區，離西子灣約 100 公里）；四社為排剪 Paiciana、美壠 Vilanganʉ、塔蠟 Talicia、雁爾 Hlihlara，其中桃源部落與四社部落屬雁爾社，高中、高中二、草水部落屬排剪社，美蘭部落屬美瓏社。https://www.cip.gov.tw/portal/docList.html?CID=786B260E9D63A127\n已改成荖濃溪上游河谷、桃源區山地部落、南橫沿線山稜，並在 viewpoint 明講這是內陸深山、畫面裡不會有海岸、港口、防波堤或城市。\n**這跟鄒族那筆是同一個病**：特別版直接繼承縣市的觀光地標，而縣市地標選的是知名景點，不是該族的居住地。\n**改一個場景要動七個欄位，不是只有 `landmarks`。**第一次只改了 `landmarks` 就送去生圖，結果 prompt 裡仍到處是西子灣——真正進 prompt 的是 `hero_landmark_en`、`viewpoint_sees`、`viewpoint_support_en`、`others_en`、`tote_print`、`foreground_layout`、`right_zone_desc`，而 `landmarks` 只是給網頁顯示用的。**下次改別族的場景，要一次把這七個欄位都換掉，並用 `build_prompt.py … | grep -i <舊地名>` 驗到 0 才送生圖。**（另外我一度把欄位寫成 `right_zone_detail`，正確名稱是 `right_zone_desc`，寫錯的欄位不會報錯、只是靜靜不生效。）\n\n**2026-08-20 場景已改對，服飾仍有三個細節待修（下次動這一筆時處理）：**把出圖與 `hlaalua-female-01-set.jpg` 並排比對，大結構都對（交領上衣黑肩配淺藍身、袖口彩色織紋帶、黑裙、白色前垂布、頭飾銀片羽毛彩帶），錯的是：\n一、**絨球的位置**——實物是掛在**白色前垂布的兩側**成串垂下，出圖畫成沿裙襬兩側整條排下來；\n二、**前垂布下端**應該有一塊**菱形彩繡**在尖端，出圖把織紋散在裙子下襬；\n三、**少了淺藍色腰帶**——實物在腰上綁一條、末端垂在左側。\n另外實物是長褲配白靴，出圖是裙子，但取景切在大腿看不到，不算錯。"
     },
     {
       "id": "pingtung-paiwan",
