@@ -60,6 +60,22 @@ def main():
             "license": lic,
         }
 
+    # 登記了卻沒有任何一族在用的照片，一定要寫明「為什麼不用」。
+    # 2026-08-20 掃出來的：鄒族收了 7 張，只餵 2 張，另外 5 張是達邦社與特富野社的，
+    # 形制跟本站採用的那件互斥（V 領＋袖口多層織帶 vs 短外套全素＋另接袖套）。
+    # 停用是對的，但當時沒留下任何記號——下次有人覺得「參考照太少」就會整包加回去，
+    # 而互斥的照片一起餵進去，模型只能自己混，怎麼重跑都對不了。
+    used = set()
+    for c in json.loads((ROOT / "data" / "counties.json").read_text(encoding="utf-8"))["counties"]:
+        for r in c.get("scene", {}).get("costume_refs", []) or []:
+            used.add(pathlib.Path(r).name)
+    silent = [fn for fn in rows if fn not in used and "【未使用" not in rows[fn]["desc"]]
+    if silent:
+        raise SystemExit(
+            "FAIL: 這些照片登記在 SOURCES.md，但沒有任何一族在用，也沒寫明為什麼不用：\n  "
+            + "\n  ".join(sorted(silent))
+            + "\n在描述欄補一句【未使用：理由】，或者把它加進某一族的 scene.costume_refs。")
+
     have = {p.name for p in (ROOT / "data" / "costume-refs").glob("*.jpg")}
     missing = have - rows.keys()
     orphan = rows.keys() - have

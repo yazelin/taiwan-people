@@ -179,6 +179,14 @@ def costume_block(c):
         # 而排灣連跑三輪都畫錯。最後那句「文字與照片不符時以文字為準」
         # 擋不住它——那是元規則，位置又在整段最後，份量遠不如前面那句「draw it」。
         cut_only = c["scene"].get("costume_refs_cut_only")
+        # 每張實物照各自報上自己拍的是什麼。原本這段只寫「THE LAST REFERENCE IMAGE」單數，
+        # 但實際附的是 2 到 4 張，而且常常是不同件衣服的不同部位；「follow it for how the
+        # colours are distributed」這種話在多張並存時沒有明確對象，模型只能自己混。
+        # 2026-08-20 掃出來的實例：卑南附 4 張，其中 3 張是長袖 makiteng，
+        # 而 checklist 第 3 條明寫「當代穿法是無袖、胸兜直接上身，不要把長袖畫進去」——
+        # 照片與文字各拉一邊，畫對純屬運氣。所以清單末尾那句
+        # 「照片裡有、但上面文字沒列的衣物，不要畫」是這段的重點，不是補充。
+        parts.append(_ref_manifest(c))
         parts.append(
             "THE LAST REFERENCE IMAGE is a photograph of this actual garment as it is worn today. "
             + ("Take from it ONLY the CUT AND THE PROPORTIONS: how the pieces are constructed and "
@@ -376,6 +384,33 @@ def build(c):
         "absolutely no words or characters; every print is a complete finished graphic with no "
         "blank patches or unlabelled stickers. Landscape aspect ratio, 4:3. "
         "MUST NOT APPEAR: " + "; ".join(CARD["must_not"]) + "."
+    )
+
+
+def _ref_manifest(c):
+    """把附上的實物照逐張報出「這張拍的是什麼」，並劃清它管到哪裡。
+
+    描述文字取自 data/costume-refs.json（由 SOURCES.md 轉出），不另外手寫一份，
+    免得同一件事有兩個版本。
+    """
+    import json as _json
+    meta = _json.loads((ROOT / "data" / "costume-refs.json").read_text(encoding="utf-8"))["refs"]
+    lines = []
+    for i, p in enumerate(c["scene"]["costume_refs"], 1):
+        d = meta.get(pathlib.Path(p).name, {}).get("desc", "")
+        if d:
+            lines.append(f"({i}) {d}")
+    if not lines:
+        return ""
+    return (
+        "THE COSTUME PHOTOGRAPHS attached after the two character sheets, in the order attached, "
+        "each show this: " + "; ".join(lines) + ". "
+        "Each photograph governs only the garment and the part of the body its own line names. "
+        "Do not carry one photograph's colour, density or ornament across onto a garment that a "
+        "different photograph — or the written description above — is responsible for. "
+        "If a photograph shows a garment that the written description above does not list for this "
+        "picture, DO NOT DRAW THAT GARMENT: the photograph was collected for its construction and "
+        "its patterning, not as an instruction to dress her in it. "
     )
 
 
