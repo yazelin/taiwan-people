@@ -327,7 +327,9 @@ Promise.all([
   const peoples = Object.fromEntries(costume.peoples.map(p => [p.id, p]));
   const rows = counties.counties.filter(c => c.culture && c.base);
   let withPhoto = 0, documented = 0;
-  // 用 Set 去重：兩筆客家共用同一組照片，逐族累加會把 32 張算成 35 張
+  // 用 Set 去重：同一張照片可能被不只一族引用，逐族累加會重複計數。
+  // 2026-08-20 之前兩筆客家共用同一組照片，那時逐族累加會把 32 張算成 35 張；
+  // 現在兩筆各用各的，但去重這件事還是要做，換張共用的照片就會再發生。
   const seenPhotos = new Set();
 
   document.getElementById('pairs').innerHTML = rows.map(c => {
