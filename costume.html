@@ -746,7 +746,21 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .brand{display:flex;align-items:center;gap:.55rem;text-decoration:none;color:var(--ink)}
 .brand img{height:24px;width:auto;max-width:none;flex:none}
 .brand small{font-size:.6rem;letter-spacing:.2em;color:var(--ink3);font-weight:600}
-.nav nav{display:flex;gap:1.2rem;font-size:.86rem;flex-wrap:wrap}
+.nav nav{display:flex;gap:1.2rem;font-size:.86rem;flex-wrap:nowrap;
+  overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+.nav nav::-webkit-scrollbar{display:none}
+/* 全站層：固定順序、六頁一致，本頁不可點並以 amber 底線標記 */
+.site-nav [aria-current="page"]{color:var(--ink);font-weight:800;
+  border-bottom:2px solid var(--amber);padding-bottom:.1rem}
+/* 本頁層：只放同頁錨點。字級小一階、色淡一階，讓「跳段」與「換頁」一眼可辨 */
+.pagebar{border-top:1px solid var(--line2)}
+.page-nav{display:flex;gap:1rem;font-size:.78rem;padding:.4rem 0 .5rem;
+  flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+.page-nav::-webkit-scrollbar{display:none}
+.page-nav em{font-style:normal;font-size:.66rem;letter-spacing:.18em;
+  color:var(--ink3);font-weight:800;flex:none;align-self:center}
+.page-nav a{color:var(--ink3)}
+.page-nav a:hover{color:var(--blue)}
 .nav nav a{color:var(--ink2);text-decoration:none}
 .nav nav a:hover{color:var(--blue)}
 
@@ -866,7 +880,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;
 code{font-size:.92em;background:#f2eee4;border-radius:3px;padding:.05em .35em}
 
 @media (max-width:640px){
-  .nav nav{font-size:.8rem;gap:.85rem}
+  .nav nav{font-size:.8rem;gap:.85rem;mask-image:linear-gradient(to right,#000 90%,transparent)}
+  /* 窄螢幕藏英文小字：logo 本身已寫台灣人代表，留著會被 nav 擠成三行 */
+  .brand small{display:none}
   .count{width:100%;margin-left:0}
   .stats{gap:1.1rem}
   .rl{grid-template-columns:1.9rem 1fr;gap:0 .8rem}
@@ -887,16 +903,25 @@ code{font-size:.92em;background:#f2eee4;border-radius:3px;padding:.05em .35em}
 <header class="nav">
   <div class="wrap">
     <a class="brand" href="index.html"><img src="img/logo.webp" alt="台灣人代表"><small>PEOPLE OF TAIWAN</small></a>
-    <nav>
+    <nav class="site-nav" aria-label="全站">
+      <span aria-current="page">服飾依據</span>
+      <a href="costume-refs.html">照著什麼畫</a>
+      <a href="counties.html">縣市依據</a>
+      <a href="newcomers.html">新住民人數</a>
+      <a href="population.html">人口脈絡</a>
+    </nav>
+  </div>
+  <div class="pagebar">
+    <div class="wrap">
+      <nav class="page-nav" aria-label="本頁章節">
+        <em>本頁</em>
       <a href="#redlines">紅線</a>
       <a href="#peoples">族群</a>
       <a href="#sources">出處</a>
       <a href="#collections">看實物</a>
       <a href="#gaps">缺口</a>
-      <a href="costume-refs.html">照著什麼畫</a>
-      <a href="population.html">人口脈絡</a>
-      <a href="index.html">回首頁</a>
-    </nav>
+      </nav>
+    </div>
   </div>
 </header>
 
