@@ -51,7 +51,8 @@ python3 -m http.server 8901
 | `newcomers.html` | 新住民人數依據頁。讀 `data/newcomers.json` 渲染，不用建置 |
 | `counties.html` | 縣市查證頁。讀 `data/counties.json` 渲染，象徵逐格標可信度 |
 | `data/costume.json` | 各族群傳統服飾資料集，**創作依據的唯一事實來源** |
-| `data/sources/` | 各官方頁面的原文存檔，防連結爛掉 |
+| `data/sources/` | 各官方頁面的原文存檔，防連結爛掉。**PDF 會抽成文字**，不是把位元組倒進 .txt |
+| `data/sources/hakka/文物記錄表.json` | 客委會《台灣客家服飾民間收藏調查研究》（鄭惠美，2007）第三篇 201 張文物記錄表，含丈量、材質、釦數、年代與**來源地點**。客家服飾目前唯一的第一手實物資料。**腳本產生，不要手改** |
 | `img/<poster>.webp` | 21 張原始海報（22 縣市共用，新竹與嘉義各一對共用） |
 | `img/og.jpg` | 分享預覽圖 1200×630 |
 | `img/hero.webp` | 首頁人物（去背） |
@@ -79,6 +80,7 @@ python3 -m http.server 8901
 | `costume-refs.html` | 照著什麼畫：實物照與出圖逐族並排，含每張照片的典藏單位與授權 |
 | `tools/build_costume_refs_json.py` | 把 `SOURCES.md` 的表格轉成 `data/costume-refs.json`。**改出處或授權要改 SOURCES.md 再重跑** |
 | `tools/build_costume_review.py` | 產生 `review/costume.html`（本機驗收用的深色對照頁，不進版控） |
+| `tools/extract_hakka_cards.py` | 把客委會那份報告的文物記錄表抽成 `data/sources/hakka/文物記錄表.json`。改了報告存檔要重跑 |
 | `robots.txt` / `sitemap.xml` | 網址寫死在裡面，換網域要一起改 |
 | `AGENTS.md` | **動這個 repo 之前先讀**：硬規則與驗證方式 |
 | `data/character.md` | 角色阿蕊的設定：名字、她跟地方的關係、髮花規則、恆定項 |
