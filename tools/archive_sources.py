@@ -19,8 +19,12 @@ import argparse
 import json
 import pathlib
 import re
+import shutil
+import subprocess
 import sys
+import tempfile
 import time
+import unicodedata
 import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -55,6 +59,42 @@ def detag(html: str) -> str:
     return re.sub(r"\n{3,}", "\n\n", "\n".join(l for l in lines if l))
 
 
+def pdf_text(raw: bytes) -> str:
+    """PDF 走 pdftotext 抽文字。
+
+    直接把 PDF 的位元組當文字寫檔，存下來的是 `%PDF-1.6` 開頭的亂碼，
+    而且看起來有 7 MB 很像存到了。客委會那份 223 頁的客家服飾調查報告
+    就是這樣「存」了一個月沒人讀到，裡面 200 張文物記錄表（含照片、
+    丈量、來源地點）全部等於不存在。
+    """
+    if not shutil.which("pdftotext"):
+        raise RuntimeError("要 pdftotext 才能抽 PDF（apt install poppler-utils）")
+    with tempfile.NamedTemporaryFile(suffix=".pdf") as f:
+        f.write(raw)
+        f.flush()
+        out = subprocess.run(["pdftotext", "-layout", f.name, "-"],
+                             capture_output=True, timeout=300)
+    if out.returncode:
+        raise RuntimeError(f"pdftotext 失敗：{out.stderr.decode('utf-8', 'replace')[:200]}")
+    return out.stdout.decode("utf-8", "replace")
+
+
+def normalise(text: str) -> str:
+    """只把相容性漢字換回一般漢字，其他一個字都不動。
+
+    這不是潔癖。這份客委會報告抽出來的中文有一部分落在 CJK 相容漢字區
+    （「來」是 U+F92D 而不是 U+4F86），肉眼與 repr 都看不出差別，但
+    `grep 來源地點` 會回 0 筆、任何字面比對都會靜靜地失效。
+
+    **不能整份 NFKC**：那會把全形逗號、全形括號一起換成半形，
+    存檔就不再是原文了。所以只挑 U+F900–U+FAFF 這一段換。
+    """
+    return "".join(
+        unicodedata.normalize("NFKC", c) if "\uf900" <= c <= "\ufaff" else c
+        for c in text
+    )
+
+
 def slug(s: str) -> str:
     return re.sub(r"[\s/\\:*?\"<>|]+", "_", s).strip("_")[:80]
 
@@ -76,12 +116,16 @@ def main() -> None:
         try:
             req = urllib.request.Request(s["url"], headers={"User-Agent": "Mozilla/5.0"})
             with urllib.request.urlopen(req, timeout=45) as r:
-                raw = r.read().decode(r.headers.get_content_charset() or "utf-8", "replace")
+                raw = r.read()
+                charset = r.headers.get_content_charset() or "utf-8"
+            if raw[:4] == b"%PDF":
+                body = normalise(pdf_text(raw))
+            else:
+                body = normalise(detag(raw.decode(charset, "replace")))
         except Exception as e:  # noqa: BLE001 — 抓不到就記下來，不要中斷整批
             failed.append(f"{sid}：{e}")
             continue
 
-        body = detag(raw)
         if len(body) < MIN_CHARS:
             thin.append(f"{sid}（{len(body)} 字）　{s['url']}")
             continue
