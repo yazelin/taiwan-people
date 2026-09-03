@@ -6,6 +6,7 @@
 |---|---|
 | 生成或修改角色圖 | `data/character.md` |
 | **畫任何族群的服飾** | **`data/costume.json`** |
+| 畫客家服飾 | `data/costume.json` 之外，還要看 `data/sources/hakka/文物記錄表.json`（201 張第一手文物卡，有來源地點與丈量） |
 | 寫任何縣市的文案 | `data/counties.json` |
 | 改網站結構或樣式 | `index.html`（單檔，含資料表、地圖路徑、全部樣式） |
 | 改服飾依據頁 | `costume.html`（單檔，資料用 fetch 讀 `data/costume.json`） |
